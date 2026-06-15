@@ -11,6 +11,9 @@ __pycache__/
 # === 논문 PDF (재다운로드 가능, 용량 큼) ===
 data/pdfs/
 
+# === 수집 세션 체크포인트 DB (런타임 상태, 커밋 금지) ===
+data/collect_sessions.db
+
 # === IDE / OS ===
 .vscode/
 .idea/

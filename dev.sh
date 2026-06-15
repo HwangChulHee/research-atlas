@@ -6,7 +6,8 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 # 백엔드: vite proxy가 /api → :8000 으로 보내므로 포트 8000 고정.
-# --reload 안 씀: 수집 흐름이 인메모리 세션(MemorySaver)이라 재시작되면 진행 중 흐름이 끊김.
+# 수집 세션은 이제 SqliteSaver(data/collect_sessions.db)라 재시작에도 멈춘 흐름이 생존한다.
+# 그래도 --reload는 안 씀: 파일 저장마다 재기동되면 진행 중 요청(추출 등)이 끊겨서.
 uv run uvicorn api.main:app --port 8000 &
 BACK=$!
 
