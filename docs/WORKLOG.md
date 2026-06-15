@@ -2,6 +2,15 @@
 
 세션 인계용 개선 로그. 최신이 위.
 
+## 2026-06-16 — 그래프/채팅 레이아웃·수집 카드·입력 UI 개선 (web)
+
+그래프가 주 화면, 채팅이 조종석. 카드는 자연 확장, 분할은 드래그 조절, 입력은 편안한 크기로. 외부 라이브러리 없이 바닐라 React 드래그. (`web/src/routes/Graph.jsx`, `web/src/styles.css`)
+
+- **TASK A — 수집 카드 내부 스크롤 제거**: `.collect-report`(max-height 220px)·`.collect-gate`(max-height 140px)의 max-height+overflow 삭제 → 카드가 내용만큼 세로로 늘고, 길어지면 바깥 `.chat-msgs`가 스크롤(클로드식 자연 확장).
+- **TASK B — 그래프↔채팅 분할 드래그**: `.chat-panel` 고정폭(420px)을 `--chat-width` CSS 변수로. `.graph-area`와 패널 사이 `.pane-divider`(6px, col-resize) 추가. `onDividerDown`→window mousemove로 `chatWidth = window.innerWidth − ev.clientX` 갱신, mouseup에 해제. clamp는 모듈 레벨 `clampChat`: min 300px ~ max `min(창폭*0.55, 720)`. 폭 변경 시 `.graph-area`(flex:1) 줄어듦 → 기존 ResizeObserver가 d3 자동 재적합(그래프 로직 무수정). 드래그 중 `body.resizing-pane`으로 전역 col-resize+선택방지. collapsed면 divider/패널 통째 숨김(기존 토글 보존), 펴면 폭 복원. `chatWidth`는 localStorage(`chatWidth`)에 저장→새로고침 유지.
+- **TASK C — 입력·버튼 확대**: `.chat-input` 입력창 padding 11/12px·14px, 전송 버튼 padding 10/18px·--accent 배경. `.collect-actions button` padding 9/12px(진행=accent 주액션, 취소=ghost 위계 유지).
+- **검증**: `vite build` 통과. 색·간격은 기존 토큰 재사용.
+
 ## 2026-06-15 — Neo4j 읽기 경로 전환 마무리 (전체 적재 + papers=true + 디렉토리 정리)
 
 읽기 경로를 JSON 변환에서 Neo4j로 완전 전환. 쓰기 경로(수집/normalize/lexicon)는 손대지 않음 — JSON이 여전히 정본, Neo4j는 읽기 사본.

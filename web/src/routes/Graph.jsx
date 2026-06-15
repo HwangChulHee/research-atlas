@@ -28,6 +28,13 @@ function nodeMonth(node) {
   return earliest;
 }
 
+// 채팅 폭 제약: min 300px(카드 가독성) ~ max min(창폭*0.55, 720)(그래프 안 사라지게)
+const CHAT_MIN = 300;
+function clampChat(w) {
+  const max = Math.min(window.innerWidth * 0.55, 720);
+  return Math.max(CHAT_MIN, Math.min(w, max));
+}
+
 export default function Graph() {
   const svgRef = useRef(null);
   const areaRef = useRef(null); // 그래프 영역 div (크기 측정용)
@@ -44,6 +51,11 @@ export default function Graph() {
 
   // --- 채팅 패널 상태 ---
   const [collapsed, setCollapsed] = useState(false);
+  const [chatWidth, setChatWidth] = useState(() => {
+    const saved = Number(localStorage.getItem("chatWidth"));
+    return clampChat(saved > 0 ? saved : 420);
+  });
+  const [dragging, setDragging] = useState(false);
   const [messages, setMessages] = useState([]); // [{role:'user'|'agent', text}]
   const [chatInput, setChatInput] = useState("");
   const [pending, setPending] = useState(false);
@@ -81,6 +93,27 @@ export default function Graph() {
   useEffect(() => {
     msgEndRef.current && msgEndRef.current.scrollIntoView({ block: "end" });
   }, [messages, pending]);
+
+  // 채팅 폭 변경 시 localStorage 저장(새로고침에도 유지)
+  useEffect(() => {
+    localStorage.setItem("chatWidth", String(chatWidth));
+  }, [chatWidth]);
+
+  // divider 드래그: chat 폭 = 창 오른쪽 끝 − 마우스X. mouseup에 리스너 해제.
+  function onDividerDown(e) {
+    e.preventDefault();
+    setDragging(true);
+    document.body.classList.add("resizing-pane");
+    const onMove = (ev) => setChatWidth(clampChat(window.innerWidth - ev.clientX));
+    const onUp = () => {
+      setDragging(false);
+      document.body.classList.remove("resizing-pane");
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+    };
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+  }
 
   function goTo(id, list, idx) {
     apiRef.current.focus(id);
@@ -483,7 +516,13 @@ export default function Graph() {
           {"<"}
         </button>
       ) : (
-        <div className="chat-panel">
+        <>
+        <div
+          className={`pane-divider${dragging ? " dragging" : ""}`}
+          onMouseDown={onDividerDown}
+          title="드래그로 채팅 폭 조절"
+        />
+        <div className="chat-panel" style={{ "--chat-width": `${chatWidth}px` }}>
           <div className="chat-head">
             <button
               className="chat-toggle"
@@ -544,6 +583,7 @@ export default function Graph() {
             </button>
           </form>
         </div>
+        </>
       )}
     </div>
   );

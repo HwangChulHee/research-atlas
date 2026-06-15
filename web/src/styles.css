@@ -425,15 +425,32 @@ textarea {
   background: rgba(255, 255, 255, 0.45);
 }
 
+/* --- 그래프↔채팅 분할 divider (드래그로 폭 조절) --- */
+.pane-divider {
+  flex: 0 0 6px;
+  cursor: col-resize;
+  background: var(--border);
+  transition: background 0.15s;
+}
+.pane-divider:hover,
+.pane-divider.dragging {
+  background: var(--accent);
+}
+/* 드래그 중엔 전역 커서를 col-resize로 고정 + 텍스트 선택 방지 */
+body.resizing-pane {
+  cursor: col-resize;
+  user-select: none;
+}
+
 /* --- chat panel --- */
 .chat-panel {
-  width: 420px;
-  flex: 0 0 420px;
+  flex: 0 0 var(--chat-width, 420px);
   height: 100%;
   display: flex;
   flex-direction: column;
   background: var(--panel);
   border-left: 1px solid var(--border);
+  min-width: 0;
 }
 .chat-head {
   display: flex;
@@ -520,8 +537,6 @@ textarea {
   word-break: break-word;
   font-size: 13px;
   line-height: 1.45;
-  max-height: 220px;
-  overflow-y: auto;
 }
 .collect-counts {
   font-size: 13px;
@@ -530,8 +545,6 @@ textarea {
   list-style: none;
   margin: 0;
   padding: 0;
-  max-height: 140px;
-  overflow-y: auto;
   font-size: 12.5px;
 }
 .collect-gate .pass {
@@ -542,7 +555,7 @@ textarea {
 }
 .collect-actions {
   display: flex;
-  gap: 6px;
+  gap: 8px;
 }
 .collect-actions button {
   flex: 1;
@@ -550,7 +563,8 @@ textarea {
   color: var(--accent-fg);
   border: 1px solid var(--accent);
   border-radius: 6px;
-  padding: 6px 8px;
+  padding: 9px 12px;
+  font-size: 13.5px;
   cursor: pointer;
 }
 .collect-actions button.ghost {
@@ -592,10 +606,23 @@ textarea {
 
 .chat-input {
   display: flex;
-  gap: 6px;
-  padding: 8px 10px;
+  gap: 8px;
+  padding: 10px 12px;
   border-top: 1px solid var(--border);
 }
 .chat-input input {
   flex: 1;
+  padding: 11px 12px;
+  font-size: 14px;
+}
+.chat-input button {
+  padding: 10px 18px;
+  font-size: 14px;
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-color: var(--accent);
+}
+.chat-input button:hover:not(:disabled) {
+  background: var(--accent);
+  filter: brightness(0.95);
 }
