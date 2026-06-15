@@ -153,10 +153,10 @@ def build_graph_view(include_papers: bool) -> dict:
 
 @app.get("/api/graph")
 def get_graph(papers: bool = False):
-    """normalized_v2.json을 개념 주도 형태로 변환해 반환.
-
-    ?papers=true 면 논문 노드 + defines 엣지 추가(토글 표시용).
-    """
+    """개념 주도 그래프. papers=false는 Neo4j, papers=true는 아직 JSON(원본)."""
+    if not papers:
+        from .graph_neo4j import graph_view_neo4j
+        return graph_view_neo4j(include_papers=False)
     return build_graph_view(include_papers=papers)
 
 

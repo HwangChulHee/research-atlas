@@ -1,0 +1,43 @@
+@prefix atlas: <https://github.com/HwangChulHee/agent-project/atlas#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+atlas:p1910.10683 a atlas:Paper ;
+    atlas:buildsOn atlas:rag ;
+    atlas:defines atlas:t5 ;
+    atlas:paperType "technique" ;
+    atlas:problem "The growing diversity of transfer learning methods for NLP makes it difficult to compare approaches and understand which design choices drive performance."@en .
+
+atlas:p2005.11401 a atlas:Paper ;
+    atlas:buildsOn atlas:dpr ;
+    atlas:defines atlas:rag ;
+    atlas:paperType "technique" ;
+    atlas:problem "Pre-trained language models lack reliable access to external knowledge, are hard to update, and do not provide sufficient provenance for knowledge-intensive tasks."@en .
+
+atlas:p2301.12652 a atlas:Paper ;
+    atlas:buildsOn atlas:dpr,
+        atlas:rag,
+        atlas:replug ;
+    atlas:defines atlas:replug,
+        atlas:replug_lsr ;
+    atlas:paperType "technique" ;
+    atlas:problem "Prior retrieval-augmented language models require access to internal language model representations or fine-tuning, making them difficult to apply to large API-based black-box models."@en .
+
+atlas:replug_lsr a skos:Concept ;
+    skos:definition "A training scheme that uses a black-box language model’s scores to supervise and improve the retriever."@en ;
+    skos:prefLabel "REPLUG LSR"@en .
+
+atlas:t5 a skos:Concept ;
+    skos:definition "A unified text-to-text transfer learning framework that casts every NLP problem as text input to text output and trains a single model across tasks."@en ;
+    skos:prefLabel "T5"@en .
+
+atlas:dpr a skos:Concept ;
+    skos:prefLabel "DPR"@en .
+
+atlas:replug a skos:Concept ;
+    skos:definition "A retrieval-augmented language modeling framework that augments a frozen black-box language model by prepending retrieved documents and optionally ensembles multiple retrieved contexts in parallel."@en ;
+    skos:prefLabel "REPLUG"@en .
+
+atlas:rag a skos:Concept ;
+    skos:definition "A retrieval-augmented generation framework that combines a pre-trained seq2seq generator with a dense retriever over Wikipedia and jointly fine-tunes them end-to-end for knowledge-intensive generation."@en ;
+    skos:prefLabel "RAG"@en .
+
