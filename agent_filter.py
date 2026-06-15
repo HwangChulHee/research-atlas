@@ -85,8 +85,8 @@ TOOLS = [
 
 
 def load_node_names():
-    d = json.loads(Path("data/outputs/normalized.json").read_text())
-    return sorted(v["canonical"] for v in d["nodes"].values())
+    d = json.loads(Path("data/outputs/normalized_v2.json").read_text())
+    return sorted(v["canonical"] for v in d["nodes"].values() if v.get("type") == "concept")
 
 
 def build_system_prompt(names):

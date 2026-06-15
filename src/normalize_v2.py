@@ -1,6 +1,6 @@
 """normalize_v2: concepts/relations.json -> 이중 노드(paper+concept) + edges.
    LLM 없음(재조립). lexicon status로 개념 거름. 빈 링 개념 유지.
-   기존 normalized.json은 안 건드림 -> normalized_v2.json 별도 출력.
+   출력: normalized_v2.json.
    실행: uv run python src/normalize_v2.py
 """
 import glob
@@ -10,9 +10,33 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import config
-from normalize import canon, load_lexicon, save_lexicon, NODE_OK
 
 OUT = config.OUT_DIR / "normalized_v2.json"
+LEX_PATH = config.DATA_DIR / "lexicon.json"
+
+# 노드 자격: 이 status만 맵에 노드로
+NODE_OK = {"approved", "unreviewed"}
+
+
+def canon(s):
+    return " ".join(s.lower().replace("-", " ").split())
+
+
+def load_lexicon():
+    """반환: lex_raw(원본 dict), alias2rep(별칭canon→대표canon), rep_meta(대표canon→메타)"""
+    lex = json.load(open(LEX_PATH))["techniques"]
+    alias2rep, rep_meta = {}, {}
+    for rep, meta in lex.items():
+        rk = canon(rep)
+        rep_meta[rk] = {"label": rep, **meta}
+        alias2rep[rk] = rk
+        for v in meta.get("aliases", []):
+            alias2rep[canon(v)] = rk
+    return lex, alias2rep, rep_meta
+
+
+def save_lexicon(lex):
+    json.dump({"techniques": lex}, open(LEX_PATH, "w"), ensure_ascii=False, indent=2)
 
 
 def main():

@@ -1,7 +1,7 @@
 """research-atlas 웹 UI 백엔드.
 
 그래프(읽기 전용)와 사전(편집)을 서빙한다.
-파이프라인(src/)은 건드리지 않고, /api/rebuild만 src/normalize.py를 subprocess로 호출한다.
+파이프라인(src/)은 건드리지 않고, /api/rebuild만 src/normalize_v2.py를 subprocess로 호출한다.
 
 실행:  uv run uvicorn api.main:app --reload --port 8000
 """
@@ -16,7 +16,6 @@ from fastapi.middleware.cors import CORSMiddleware
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 LEX_PATH = DATA_DIR / "lexicon.json"
-NORMALIZED_PATH = DATA_DIR / "outputs" / "normalized.json"        # v1 (롤백용으로만 생성 유지)
 NORMALIZED_V2_PATH = DATA_DIR / "outputs" / "normalized_v2.json"  # v2 이중 노드 — 현재 소스
 
 app = FastAPI(title="research-atlas")
@@ -52,10 +51,10 @@ def _strip(nid: str) -> str:
 
 
 def build_graph_view(include_papers: bool) -> dict:
-    """normalized_v2.json(이중 노드) -> 개념 주도 v1 호환 형태로 변환.
+    """normalized_v2.json(이중 노드) -> 개념 주도 형태로 변환.
 
+    Neo4j 읽기 경로(graph_view_neo4j)가 정상화한 현역 변환의 롤백용 원본(/api/rebuild이 사용).
     기본(include_papers=False): 개념 노드만 + 개념간 builds_on(유도).
-      v1 normalized.json과 호환되는 키/필드 → 프론트 기존 코드 그대로 동작.
     include_papers=True: 위에 더해 논문 노드(paper: 접두사 유지)와 defines 엣지 추가.
     """
     if not NORMALIZED_V2_PATH.exists():
@@ -64,7 +63,7 @@ def build_graph_view(include_papers: bool) -> dict:
     v2_nodes, edges = raw["nodes"], raw["edges"]
     papers_meta = {pid: n for pid, n in v2_nodes.items() if n["type"] == "paper"}
 
-    # 개념 노드 → v1 호환 키(접두사 제거)
+    # 개념 노드 → 개념 주도 키(접두사 제거)
     out_nodes = {}
     for cid, n in v2_nodes.items():
         if n["type"] != "concept":
@@ -106,7 +105,7 @@ def build_graph_view(include_papers: bool) -> dict:
             node["domain"] = papers_meta[home].get("domain") or "general"
 
     # 개념간 builds_on 유도: 각 논문의 '첫 정의 개념' → builds_on 대상들.
-    # (v1 normalize.py와 동일 규칙: home concept = defs[0]. 자기 루프 제외, 중복 제거)
+    # (normalize_v2 규칙과 동일: home concept = defs[0]. 자기 루프 제외, 중복 제거)
     seen, builds_on = set(), []
     for pid_full, targets in builds_by_paper.items():
         src = defines_first.get(pid_full)
@@ -226,19 +225,15 @@ def merge_lexicon(body: dict = Body(...)):
 # --- 재빌드 ---
 @app.post("/api/rebuild")
 def rebuild():
-    """normalize.py(v1) + normalize_v2.py(v2) 실행 → 사전 편집을 그래프에 반영(LLM 없음).
-
-    v1 normalized.json도 함께 생성해 롤백 가능 상태 유지. 화면은 v2 변환을 본다.
-    """
-    for script in ("normalize.py", "normalize_v2.py"):
-        proc = subprocess.run(
-            [sys.executable, str(ROOT / "src" / script)],
-            cwd=str(ROOT),
-            capture_output=True,
-            text=True,
-        )
-        if proc.returncode != 0:
-            raise HTTPException(500, f"{script} 실패:\n{proc.stderr or proc.stdout}")
+    """normalize_v2.py 실행 → 사전 편집을 그래프(normalized_v2.json)에 반영(LLM 없음)."""
+    proc = subprocess.run(
+        [sys.executable, str(ROOT / "src" / "normalize_v2.py")],
+        cwd=str(ROOT),
+        capture_output=True,
+        text=True,
+    )
+    if proc.returncode != 0:
+        raise HTTPException(500, f"normalize_v2.py 실패:\n{proc.stderr or proc.stdout}")
     view = build_graph_view(include_papers=False)
     return {
         "ok": True,

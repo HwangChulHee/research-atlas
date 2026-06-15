@@ -1,7 +1,0 @@
-{
-  "builds_on": [
-    "RAG",
-    "FL-RAG",
-    "DRAGIN"
-  ]
-}
