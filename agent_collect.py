@@ -19,7 +19,6 @@ from typing import TypedDict
 
 import feedparser
 import numpy as np
-from dotenv import load_dotenv
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.types import Command, interrupt
@@ -34,7 +33,7 @@ import parse  # noqa: E402
 import prompts  # noqa: E402
 import relate  # noqa: E402
 
-load_dotenv()
+# .env 는 위 `import config`(load_dotenv(ROOT/.env))에서 이미 로딩됨 — 별도 호출 불필요.
 client = OpenAI()
 MODEL = "gpt-5.4-mini"
 EMBED_MODEL = "text-embedding-3-small"

@@ -9,13 +9,11 @@
 import json
 import sys
 from pathlib import Path
-from dotenv import load_dotenv
 from openai import OpenAI
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import config
+import config  # .env 로딩(config.py가 load_dotenv(ROOT/.env)) — 별도 load_dotenv 불필요
 
-load_dotenv()
 client = OpenAI()
 
 EMBED_MODEL = "text-embedding-3-small"

@@ -9,7 +9,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from openai import OpenAI
 
-load_dotenv()
+load_dotenv(Path(__file__).resolve().parent / ".env")  # cwd 무관하게 루트 .env 명시
 client = OpenAI()
 MODEL = "gpt-5.4-mini"
 
