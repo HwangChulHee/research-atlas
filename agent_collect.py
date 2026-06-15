@@ -34,10 +34,10 @@ import parse  # noqa: E402
 import relate  # noqa: E402
 
 # 프롬프트는 prompts/ 패키지 단일 출처에서(인라인 제거) — 한 프롬프트당 한 파일.
-from prompts.gate import GATE_PROMPT_VER, GATE_SYSTEM, GATE_USER  # noqa: E402
-from prompts.intent import INTENT_SYSTEM  # noqa: E402
-from prompts.report import REPORT_SYSTEM, build_report_user  # noqa: E402
-from prompts.expand import EXPAND_SYSTEM, build_expand_user  # noqa: E402
+from prompts.collect.gate import GATE_PROMPT_VER, GATE_SYSTEM, GATE_USER  # noqa: E402
+from prompts.collect.intent import INTENT_SYSTEM  # noqa: E402
+from prompts.collect.report import REPORT_SYSTEM, build_report_user  # noqa: E402
+from prompts.collect.expand import EXPAND_SYSTEM, build_expand_user  # noqa: E402
 
 # .env 는 위 `import config`(load_dotenv(ROOT/.env))에서 이미 로딩됨 — 별도 호출 불필요.
 client = OpenAI()
@@ -118,7 +118,7 @@ def parse_intent(text):
     return json.loads(resp.choices[0].message.tool_calls[0].function.arguments)
 
 
-# --- 현황 보고 + 충분성 추천 (LLM 1회) ---  REPORT_SYSTEM은 prompts.report
+# --- 현황 보고 + 충분성 추천 (LLM 1회) ---  REPORT_SYSTEM은 prompts.collect.report
 def _concept_line(key, score, norm):
     n = norm.get(key, {})
     name = n.get("canonical", key.split(":", 1)[-1])

@@ -7,7 +7,7 @@ _HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(_HERE.parent))   # 루트(prompts 패키지) — cwd 무관 import
 sys.path.insert(0, str(_HERE))          # src(config)
 import config
-from prompts.extract import EXTRACT_SYSTEM, EXTRACT_USER, EXTRACT_SCHEMA
+from prompts.pipeline.extract import EXTRACT_SYSTEM, EXTRACT_USER, EXTRACT_SCHEMA
 
 client = OpenAI()
 
