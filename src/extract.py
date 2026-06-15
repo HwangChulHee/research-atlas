@@ -7,7 +7,7 @@ _HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(_HERE.parent))   # 루트(prompts 패키지) — cwd 무관 import
 sys.path.insert(0, str(_HERE))          # src(config)
 import config
-from prompts import pipeline as prompts
+from prompts.extract import EXTRACT_SYSTEM, EXTRACT_USER, EXTRACT_SCHEMA
 
 client = OpenAI()
 
@@ -16,10 +16,10 @@ def extract_one(text: str) -> dict:
     resp = client.chat.completions.create(
         model=config.MODEL,
         messages=[
-            {"role": "system", "content": prompts.EXTRACT_SYSTEM},
-            {"role": "user", "content": prompts.EXTRACT_USER.format(text=text)},
+            {"role": "system", "content": EXTRACT_SYSTEM},
+            {"role": "user", "content": EXTRACT_USER.format(text=text)},
         ],
-        response_format={"type": "json_schema", "json_schema": prompts.EXTRACT_SCHEMA},
+        response_format={"type": "json_schema", "json_schema": EXTRACT_SCHEMA},
     )
     return json.loads(resp.choices[0].message.content)
 

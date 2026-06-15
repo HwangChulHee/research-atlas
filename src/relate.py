@@ -7,7 +7,7 @@ _HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(_HERE.parent))   # 루트(prompts 패키지) — cwd 무관 import
 sys.path.insert(0, str(_HERE))          # src(config)
 import config
-from prompts import pipeline as prompts
+from prompts.relate import RELATE_SYSTEM, RELATE_USER, RELATE_SCHEMA
 
 client = OpenAI()
 
@@ -17,12 +17,12 @@ def relate_one(concepts: dict, text: str) -> dict:
     resp = client.chat.completions.create(
         model=config.MODEL,
         messages=[
-            {"role": "system", "content": prompts.RELATE_SYSTEM},
-            {"role": "user", "content": prompts.RELATE_USER.format(
+            {"role": "system", "content": RELATE_SYSTEM},
+            {"role": "user", "content": RELATE_USER.format(
                 defines=defines, domain=concepts.get("domain", "general"),
                 problem=concepts.get("problem", ""), text=text)},
         ],
-        response_format={"type": "json_schema", "json_schema": prompts.RELATE_SCHEMA},
+        response_format={"type": "json_schema", "json_schema": RELATE_SCHEMA},
     )
     return json.loads(resp.choices[0].message.content)
 

@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 from openai import OpenAI
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # prompts 패키지 — cwd 무관 import
-from prompts.filter import build_system_prompt
+from prompts.command import build_system_prompt
 
 load_dotenv(Path(__file__).resolve().parent / ".env")  # cwd 무관하게 루트 .env 명시
 client = OpenAI()
