@@ -1,6 +1,23 @@
 import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
-import { getGraph, postCommand, collectStart, collectResume } from "../api.js";
+import {
+  getGraph,
+  postCommand,
+  collectStart,
+  collectResume,
+  collectGetState,
+} from "../api.js";
+
+// 대화 이력 localStorage 복원(chatWidth 패턴). 파싱 실패 시 빈 배열.
+function loadMessages() {
+  try {
+    const raw = localStorage.getItem("chatMessages");
+    const arr = raw ? JSON.parse(raw) : [];
+    return Array.isArray(arr) ? arr : [];
+  } catch {
+    return [];
+  }
+}
 
 const TYPE_COLOR = {
   technique: "#2563eb",
@@ -56,7 +73,7 @@ export default function Graph() {
     return clampChat(saved > 0 ? saved : 420);
   });
   const [dragging, setDragging] = useState(false);
-  const [messages, setMessages] = useState([]); // [{role:'user'|'agent', text}]
+  const [messages, setMessages] = useState(loadMessages); // [{role:'user'|'agent', text}]
   const [chatInput, setChatInput] = useState("");
   const [pending, setPending] = useState(false);
   const [chips, setChips] = useState([]); // 활성 조건 칩 라벨들
@@ -90,14 +107,31 @@ export default function Graph() {
     return () => ro.disconnect();
   }, []);
 
+  // 메시지/대기/수집카드(단계 전환·busy) 변할 때 맨 아래로 — 새 카드가 화면 밖에 안 묻히게
   useEffect(() => {
     msgEndRef.current && msgEndRef.current.scrollIntoView({ block: "end" });
-  }, [messages, pending]);
+  }, [messages, pending, collect]);
 
   // 채팅 폭 변경 시 localStorage 저장(새로고침에도 유지)
   useEffect(() => {
     localStorage.setItem("chatWidth", String(chatWidth));
   }, [chatWidth]);
+
+  // 대화 이력 저장(새로고침/브라우저 재시작에 대화 유지). chips는 그래프 상태와 연동돼 미복원.
+  useEffect(() => {
+    localStorage.setItem("chatMessages", JSON.stringify(messages));
+  }, [messages]);
+
+  // 부팅 시 수집 세션 복원 — 저장된 thread_id로 서버 체크포인터 상태 조회.
+  // 성공 시 카드 복원, 404(만료) 면 localStorage에서 제거. 마운트 1회.
+  useEffect(() => {
+    const tid = localStorage.getItem("collectThread");
+    if (!tid) return;
+    collectGetState(tid)
+      .then((res) => applyCollectResponse(res))
+      .catch(() => localStorage.removeItem("collectThread"));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // divider 드래그: chat 폭 = 창 오른쪽 끝 − 마우스X. mouseup에 리스너 해제.
   function onDividerDown(e) {
@@ -289,8 +323,11 @@ export default function Graph() {
       }
       setCollect(null);
       setReviseOpen(false);
+      localStorage.removeItem("collectThread"); // 흐름 종료 → 복원 대상 제거
       return;
     }
+    // thread_id 저장 → 새로고침/재접속 시 부팅 복원(chatWidth 패턴)
+    localStorage.setItem("collectThread", res.thread_id);
     setCollect({ thread_id: res.thread_id, stage: res.stage, data: res, busy: false });
   }
 
@@ -306,6 +343,7 @@ export default function Graph() {
   async function resumeCollect(decision) {
     if (!collect || collect.busy) return;
     setReviseOpen(false);
+    setReviseText(""); // ② 폼 닫으며 입력 잔류 제거
     const isExtract = collect.stage === "extract_confirm" && decision === "proceed";
     setCollect((c) => ({ ...c, busy: true, timedOut: false }));
 
@@ -328,6 +366,7 @@ export default function Graph() {
       } else {
         addAgent(`수집 재개 실패: ${err.message}`);
         setCollect(null);
+        localStorage.removeItem("collectThread");
       }
     }
   }
@@ -343,6 +382,19 @@ export default function Graph() {
   function clearHighlight() {
     apiRef.current && apiRef.current.highlight(null);
     setChips([]);
+  }
+
+  // 대화 비우기 — 전 상태 + localStorage 초기화 + 그래프 하이라이트 복원.
+  // 수집 흐름 중엔 버튼 disabled(고아 thread 방지)이므로 여기선 collect 정리만 방어적으로.
+  function clearChat() {
+    setMessages([]);
+    setChips([]);
+    setCollect(null);
+    setReviseOpen(false);
+    setReviseText("");
+    apiRef.current && apiRef.current.highlight(null);
+    localStorage.removeItem("chatMessages");
+    localStorage.removeItem("collectThread");
   }
 
   return (
@@ -532,6 +584,14 @@ export default function Graph() {
               {">"}
             </button>
             <span className="muted">필터 에이전트</span>
+            <button
+              className="chat-clear"
+              onClick={clearChat}
+              disabled={!!collect}
+              title={collect ? "수집 진행 중엔 비울 수 없어요" : "대화 비우기"}
+            >
+              비우기
+            </button>
           </div>
           <div className="chat-msgs">
             {messages.length === 0 && (
@@ -589,15 +649,30 @@ export default function Graph() {
   );
 }
 
+const STAGE_LABELS = {
+  interpret: "해석 확인",
+  approve: "물량 승인",
+  extract_confirm: "추출 승인",
+};
+const stageLabel = (stage) => STAGE_LABELS[stage] || "수집";
+
 // 수집 흐름 interrupt 카드 — stage별 버튼. resume은 onResume(decision)로.
 function CollectCard({ collect, onResume, reviseOpen, setReviseOpen, reviseText, setReviseText }) {
   const { stage, data, busy, timedOut } = collect;
 
   if (busy) {
+    // 직전 단계 맥락 한 줄 유지 — busy 중 "어느 단계였는지" 사라지지 않게(④)
+    const passed = (data.gate_summary || []).filter((s) => s.passed).length;
+    const nExtract = (data.to_extract || []).length;
+    const ctx =
+      stage === "extract_confirm"
+        ? `통과 ${passed}편 → ${nExtract}편 추출 중… (최대 수 분 걸릴 수 있어요)`
+        : "처리 중…";
     return (
       <div className="collect-card">
+        <div className="collect-stage">{stageLabel(stage)}</div>
         <div className="collect-busy">
-          <span className="spinner" /> 추출 중… (최대 수 분 걸릴 수 있어요)
+          <span className="spinner" /> {ctx}
         </div>
       </div>
     );
@@ -626,6 +701,16 @@ function CollectCard({ collect, onResume, reviseOpen, setReviseOpen, reviseText,
               onChange={(e) => setReviseText(e.target.value)}
             />
             <button type="submit">적용</button>
+            <button
+              type="button"
+              className="ghost"
+              onClick={() => {
+                setReviseOpen(false);
+                setReviseText("");
+              }}
+            >
+              뒤로
+            </button>
           </form>
         ) : (
           <div className="collect-actions">

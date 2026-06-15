@@ -463,6 +463,15 @@ body.resizing-pane {
   padding: 2px 8px;
   font-weight: bold;
 }
+.chat-clear {
+  margin-left: auto;
+  padding: 3px 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.chat-clear:hover:not(:disabled) {
+  color: var(--text);
+}
 .chat-toggle.collapsed {
   align-self: flex-start;
   margin: 8px 0 0 0;

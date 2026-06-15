@@ -52,3 +52,9 @@ export const collectResume = (thread_id, decision, signal) =>
     body: JSON.stringify({ thread_id, decision }),
     signal,
   }).then(jsonOrThrow);
+
+// 새로고침/재접속 시 thread_id로 현재 수집 상태 복원. 없으면 404.
+export const collectGetState = (thread_id) =>
+  fetch(`/api/collect/state?thread_id=${encodeURIComponent(thread_id)}`).then(
+    jsonOrThrow
+  );

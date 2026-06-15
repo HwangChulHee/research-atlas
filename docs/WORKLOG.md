@@ -2,6 +2,19 @@
 
 세션 인계용 개선 로그. 최신이 위.
 
+## 2026-06-16 — 수집 UX 버그 + 세션 영속(Sqlite)·복원·클리어
+
+수집 흐름을 서버 재시작/새로고침에도 잇고, CollectCard 갇힘·맥락유실 버그를 잡고, 대화 이력 유지 + 클리어를 더함. (`agent_collect.py`, `api/main.py`, `web/src/routes/Graph.jsx`, `web/src/api.js`, `web/src/styles.css`)
+
+- **PART 2 — 체크포인터 Sqlite 영속**: `build_collect_graph(checkpointer=None)` — 미지정 시 `SqliteSaver(sqlite3.connect("data/collect_sessions.db", check_same_thread=False))`(FastAPI 멀티스레드 대비). 서버는 기존대로 모듈 로드 시 1회 compile(매 요청 compile 금지 함정 유지). `graph_smoke`는 `MemorySaver()` 주입해 휘발성(db 오염·재실행 충돌 방지). `uv add langgraph-checkpoint-sqlite`. db는 .gitignore. dev.sh 주석 갱신(이제 재시작에 세션 생존, 그래도 --reload는 진행 중 요청 끊김 때문에 off).
+- **PART 3 — 세션 복원**: 신규 `GET /api/collect/state?thread_id=`. `_to_response`를 `_interrupt_response`(payload→stage별)·`_done_response`(values→done)로 분리 → get_state 어댑터가 재사용. 멈춤은 `snap.interrupts[0].value`(langgraph 1.2: StateSnapshot.interrupts 직접 노출), 완료는 `snap.next` 빔→`snap.values`, `created_at None`→404, interrupt 없는데 next 있음(실행 중간)→404(⑤ 범위). 반환 스키마는 start/resume과 동일 → 프론트가 그대로 카드 렌더. 프론트: startCollect 성공/응답마다 `localStorage.collectThread` 저장, done/취소/재개실패 시 제거, 마운트 useEffect가 thread 있으면 `collectGetState`→복원, 404면 제거.
+- **PART 1 — CollectCard 버그**:
+  - ①② revise 폼에 **[뒤로]**(ghost) 추가 → `setReviseOpen(false)+setReviseText("")`(빈 입력 갇힘 해소). `resumeCollect` 진입 시에도 `setReviseText("")`.
+  - ③ 자동 스크롤 effect deps에 `collect` 추가 → 단계 전환(approve→extract_confirm)·busy 때도 맨 아래로.
+  - ④ busy 카드에 직전 맥락 한 줄 유지(`stageLabel` + "통과 N편 → M편 추출 중…").
+- **PART 4 — 대화 유지 + 클리어**: `messages`를 `loadMessages()`로 초기 복원 + 변경 시 `localStorage.chatMessages` 저장(chips는 그래프 하이라이트와 연동돼 **미복원** — 라벨만 뜨는 불일치 방지). chat-head에 **[비우기]** 버튼(`clearChat`: 전 상태+그래프 highlight(null)+localStorage(chatMessages·collectThread) 초기화). 수집 흐름 중(collect!=null)엔 disabled(고아 thread 방지).
+- **검증**: vite build·app import·라우트 등록 OK. 인프로세스 통합테스트(무거운 노드 더미화 + 임시 db)로 **재시작 시뮬레이션** 전 단계 통과 — interpret/approve/extract_confirm 복원·done(extracted)·없는 thread 404. SqliteSaver get_state.interrupts 동작도 별도 미니그래프로 확인. (실 LLM/arXiv 경유 브라우저 시각확인은 사용자 dev.sh 권장.)
+
 ## 2026-06-16 — 그래프/채팅 레이아웃·수집 카드·입력 UI 개선 (web)
 
 그래프가 주 화면, 채팅이 조종석. 카드는 자연 확장, 분할은 드래그 조절, 입력은 편안한 크기로. 외부 라이브러리 없이 바닐라 React 드래그. (`web/src/routes/Graph.jsx`, `web/src/styles.css`)
