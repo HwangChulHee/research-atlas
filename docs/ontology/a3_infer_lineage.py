@@ -1,17 +1,20 @@
 """A-3: 추론으로 '숨은 개념 계보'를 끌어낸다.
 규칙: 논문이 A를 defines + B를 buildsOn  =>  A buildsUpon B
 """
+from pathlib import Path
+
 from rdflib import Graph, Namespace, BNode
 from rdflib.namespace import OWL
 from rdflib.collection import Collection
 import owlrl
 
 ATLAS = Namespace("https://github.com/HwangChulHee/agent-project/atlas#")
+TTL = Path(__file__).resolve().parent / "atlas_rag.ttl"
 
 
 def main():
     g = Graph()
-    g.parse("atlas_rag.ttl", format="turtle")
+    g.parse(str(TTL), format="turtle")
     before = len(g)
 
     # 스키마: 역속성 + 속성 사슬

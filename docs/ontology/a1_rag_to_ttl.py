@@ -4,7 +4,8 @@ from pathlib import Path
 from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, SKOS
 
-sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent.parent / "src"))
 import config
 
 ATLAS = Namespace("https://github.com/HwangChulHee/agent-project/atlas#")
@@ -63,7 +64,7 @@ def main():
             pred = ATLAS.defines if e["type"] == "defines" else ATLAS.buildsOn
             g.add((slug(e["from"]), pred, slug(e["to"])))
 
-    g.serialize(destination="atlas_rag.ttl", format="turtle")
+    g.serialize(destination=str(HERE / "atlas_rag.ttl"), format="turtle")
     papers = sum(1 for k in keep if nodes[k]["type"] == "paper")
     concepts = sum(1 for k in keep if nodes[k]["type"] == "concept")
     print(f"서브그래프: 논문 {papers}, 개념 {concepts}, 트리플 {len(g)}개 -> atlas_rag.ttl\n")

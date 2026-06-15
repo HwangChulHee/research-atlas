@@ -2,6 +2,19 @@
 
 세션 인계용 개선 로그. 최신이 위.
 
+## 2026-06-15 — Neo4j 읽기 경로 전환 마무리 (전체 적재 + papers=true + 디렉토리 정리)
+
+읽기 경로를 JSON 변환에서 Neo4j로 완전 전환. 쓰기 경로(수집/normalize/lexicon)는 손대지 않음 — JSON이 여전히 정본, Neo4j는 읽기 사본.
+
+- **TASK A — 전체 적재**: `load_neo4j.py`에서 `pick_subgraph`(RAG 서브그래프) 제거 → `normalized_v2.json` 전체 적재. 결과 Paper 70 / Concept 125 / 관계 195(엣지 196 중 중복 1건 `2307.09288→llama:builds_on`을 MERGE가 멱등 dedup). home_concept는 전체 논문 대상 첫 defines로 계산.
+- **TASK B — papers=true 전환**: `api/graph_neo4j.py`의 `graph_view_neo4j(include_papers=True)` 구현 — 논문 노드(`paper:` 접두사 복원)·`defines`·정의 없는 논문만의 `paper_builds_on`(3편)을 Cypher로 추가. `get_graph` 라우팅을 papers=false/true **둘 다 Neo4j**로. (Neo4j는 Paper.id를 접두사 없이 저장 → 출력 시 `paper:` 재부착, 개념 id는 양쪽 무접두.)
+- **검증**: `verify_neo4j.py`를 재작성 — 이제 **프로덕션 함수** `graph_view_neo4j`를 직접 호출해 `build_graph_view`의 충실한 JSON 포트와 papers=false/true 둘 다 대조(papers 리스트 정렬·엣지 집합화로 순서 무시). 전체 일치: 개념125·builds_on115·defines76·paper_builds_on3. 백엔드 띄워 `/api/graph` 양쪽 모드 curl로 동일 확인.
+- **TASK C**: `/api/lexicon`은 JSON 유지(lexicon.json은 rejected/pending 포함 전체 사전이라 Neo4j가 대체 불가 — 쓰기/검수 도메인). `/api/command`의 개념명 목록 조회만 `graph_view_neo4j`로 전환. `/api/rebuild`는 의도적으로 `build_graph_view`(JSON) 유지 — 방금 재생성한 JSON 카운트 보고 + 롤백 함수 보존.
+- **TASK D — 디렉토리 정리**:
+  - `load_neo4j.py`→`graphdb/load.py`, `verify_neo4j.py`→`graphdb/verify.py` (신규 `graphdb/` 패키지). a1/a3/ttl→`docs/ontology/`(+서사 README). 경로 한 단계 깊어진 만큼 `parent.parent`로 수정, 전 스크립트 새 위치에서 실행 검증.
+  - **함정 회피**: 핸드오프는 `neo4j/` 디렉토리를 지시했으나 그 이름은 루트가 sys.path에 오를 때(uvicorn cwd, main.py의 `sys.path.insert(ROOT)`) 설치된 `neo4j` 드라이버를 **shadow**해 `from neo4j import GraphDatabase`를 깨뜨림(empirical 확인). → 충돌 없는 `graphdb/`로 명명.
+- **롤백 보존**: `build_graph_view`(JSON) 원본은 main.py에 그대로(line 54), `/api/rebuild`가 계속 사용 → 죽은 코드 아님.
+
 ## 2026-06-11 — 프론트 채팅: 수집 에이전트 연결 (라우팅 + interrupt 카드)
 
 같은 채팅 패널에서 필터 명령과 수집 명령을 둘 다 받음. 수집이면 LangGraph 흐름(start/resume)을 타고 interrupt 3개를 버튼 카드로. "말로 부리는 수집" 데모의 마지막 표면.

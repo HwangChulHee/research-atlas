@@ -153,11 +153,12 @@ def build_graph_view(include_papers: bool) -> dict:
 
 @app.get("/api/graph")
 def get_graph(papers: bool = False):
-    """개념 주도 그래프. papers=false는 Neo4j, papers=true는 아직 JSON(원본)."""
-    if not papers:
-        from .graph_neo4j import graph_view_neo4j
-        return graph_view_neo4j(include_papers=False)
-    return build_graph_view(include_papers=papers)
+    """개념 주도 그래프. papers=false/true 모두 Neo4j 읽기 경로.
+
+    build_graph_view(JSON)는 롤백용으로 보존 — 라우팅만 Neo4j로 전환.
+    """
+    from .graph_neo4j import graph_view_neo4j
+    return graph_view_neo4j(include_papers=papers)
 
 
 # --- 사전 ---
@@ -269,7 +270,8 @@ def command(payload: dict = Body(...)):
     if not text:
         raise HTTPException(400, "text가 비어 있음")
 
-    view = build_graph_view(include_papers=False)
+    from .graph_neo4j import graph_view_neo4j
+    view = graph_view_neo4j(include_papers=False)
     names = sorted(v["canonical"] for v in view["nodes"].values())
 
     resp = _oai.chat.completions.create(
