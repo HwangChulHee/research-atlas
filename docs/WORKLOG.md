@@ -10,8 +10,9 @@
 - **데이터 안전(#1 원칙)**: 3~5단계를 try, 복원을 finally — 에러·Ctrl-C에도 원상복구. 백업은 `_snapshot_test.tmp`에 쓰고 원자적 `rename`(부분 스냅샷 방지). preflight: 부분 스냅샷 청소 + 직전 미복원 스냅샷 자동 복구(스냅샷이 pristine 본) + `git status --porcelain data/` dirty 경고.
 - **diff 산출**: `load_view()`가 normalized_v2.json에서 개념(canonical)·논문(id)·**개념간 계보**를 뽑음. 계보는 normalized에 직접 없고 paper→concept 엣지에서 유도 → build_graph_view 파생 규칙(home concept=첫 defines, →builds_on 대상)을 읽기 전용 미러. (검증: 실데이터 115엣지 = Neo4j 검증의 builds_on115와 일치.) lexicon status diff로 unreviewed 신규 N. 콘솔 + `data/test_runs/{ts}.json` 동일 내용.
 - **인자**: `test_collect.py "질문"` 1회차, `--query-file <파일>`(줄단위 #주석/빈줄 스킵, 각각 독립 회차·매번 복원). 자동 N회 반복은 7월 범위 밖.
+- **부산물 정리**: 추출이 받는 PDF(`data/pdfs/`, 백업 범위 밖·gitignore)는 회차 시작 시 파일명 집합을 찍어두고 finally에서 **이번에 새로 받은 것만** 삭제(기존 캐시 보존). → "추출 부산물 안 남음" 완전 충족.
 - **gitignore**: `data/_snapshot_test/`, `data/_snapshot_test.tmp/`, `data/test_runs/`.
-- **검증**: 임포트·인자/usage·preflight·load_view·build_record(형식·추가없음 케이스) OK. **데이터 안전 라운드트립**(backup→고의 오염[가짜 부산물+lexicon+normalized 변조]→restore)에서 outputs/lexicon **바이트 동일**·스냅샷 정리·git clean 확인. 실 LLM/arXiv 경유 end-to-end 1회 실행(PDF 다운로드·토큰 소모)은 비용/외부호출이라 사용자 확인 후 진행 권장.
+- **검증**: 임포트·인자/usage·preflight·load_view·build_record(형식·추가없음 케이스)·pdf cleanup(새것만 제거·기존 보존) OK. **데이터 안전 라운드트립**(backup→고의 오염→restore) 바이트 동일·git clean. **실 end-to-end 1회 성공**: "llm 에이전트 메모리 관련 조사해줘" → 발견 50·통과 34·추출 2(MAX_EXTRACT 상한 작동) → diff `+개념1(gaze heads)·+논문2·+lexicon unreviewed1`, `data/test_runs/`에 JSON 기록, 복원 후 outputs/lexicon 바이트 동일·git clean 확인.
 
 ## 2026-06-16 — 수집 UX 버그 + 세션 영속(Sqlite)·복원·클리어
 

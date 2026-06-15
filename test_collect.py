@@ -26,6 +26,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
 OUTPUTS = DATA / "outputs"
+PDFS = DATA / "pdfs"                    # 추출이 PDF를 받는 곳(백업 범위 밖·재다운로드 가능)
 LEXICON = DATA / "lexicon.json"
 NORMALIZED = OUTPUTS / "normalized_v2.json"
 SNAP = DATA / "_snapshot_test"          # 완료된 백업(= pristine 본)
@@ -169,6 +170,8 @@ def write_record(r):
 def run_one(query):
     """백업 → 수집 → normalize → diff → (finally)복원. 복원은 무슨 일이 있어도 실행."""
     backup()
+    # 이번 회차가 새로 받은 PDF만 정리하기 위한 기준(기존 PDF는 절대 안 건드림).
+    pdfs_before = {p.name for p in PDFS.glob("*")} if PDFS.exists() else set()
     try:
         before = load_view(NORMALIZED)
         lex_before = load_lex_status(LEXICON)
@@ -196,6 +199,11 @@ def run_one(query):
         return record
     finally:
         restore()
+        # 이번 회차가 새로 받은 PDF 부산물만 제거(기존 캐시는 보존).
+        if PDFS.exists():
+            for p in PDFS.glob("*"):
+                if p.name not in pdfs_before:
+                    p.unlink()
         print("복원 완료 — data/ 원상복구.\n")
 
 
