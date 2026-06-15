@@ -2,6 +2,10 @@
 
 세션 인계용 개선 로그. 최신이 위.
 
+## 2026-06-16 — 수집 diff 테스트를 eval/ 디렉토리로 + 재현 문서
+
+`test_collect.py`(루트)를 `eval/`로 모음: `eval/test_collect.py`(코드) + `eval/runs/`(회차 산출물 JSON, gitignore) + `eval/README.md`(재현 문서). 한 단계 깊어진 만큼 `ROOT = Path(__file__).parent.parent`로 수정(`HERE=eval/`, `RUNS=HERE/runs`), 백업 스냅샷은 data/ 백업이라 `data/_snapshot_test/`에 그대로. 실행은 레포 루트에서 `uv run python eval/test_collect.py "질문"`. .gitignore `data/test_runs/`→`eval/runs/`. README에 흐름·사전준비(.env/네트워크/비용)·출력 스키마·데이터 안전 보장·수동 복구법·동작원리(MemorySaver 휘발성·계보 유도 미러) 정리. 경로 재해석 후 load_view(실데이터 125/70/115)·write_record(eval/runs/) 동작 재검증.
+
 ## 2026-06-16 — 수집 diff 테스트 스크립트 (test_collect.py, rough)
 
 같은 질문으로 수집을 돌려 "기존 데이터에서 무엇이 추가됐나(diff)"를 보는 반자동 1회차 스크립트. 7월 정식 평가(격리 반복 N회·일관성 메트릭·정답지)의 rough 선행. 신규 파일 루트 `test_collect.py` 1개 + 산출물 디렉토리만, 수집 로직/프롬프트/그래프는 호출만.

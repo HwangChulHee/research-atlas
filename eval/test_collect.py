@@ -9,9 +9,11 @@
 에러·Ctrl-C 무엇에도 try/finally 로 복원이 보장된다. 수집 로직·프롬프트·그래프 정의는
 일절 건드리지 않고 agent_collect 의 기존 함수를 호출만 한다.
 
-사용:
-    uv run python test_collect.py "llm 에이전트 메모리 관련 조사해줘"
-    uv run python test_collect.py --query-file queries.txt   # 줄단위, 각각 독립 회차
+사용(레포 루트에서):
+    uv run python eval/test_collect.py "llm 에이전트 메모리 관련 조사해줘"
+    uv run python eval/test_collect.py --query-file eval/queries.txt   # 줄단위, 각각 독립 회차
+
+산출물은 eval/runs/{timestamp}.json. 자세한 재현법은 eval/README.md.
 
 범위 밖(7월): 같은 질문 자동 N회 반복 루프·일관성 메트릭·정답지 대조.
 """
@@ -23,15 +25,16 @@ import sys
 import uuid
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parent   # eval/ (이 스크립트·산출물이 사는 곳)
+ROOT = HERE.parent                       # 레포 루트
 DATA = ROOT / "data"
 OUTPUTS = DATA / "outputs"
 PDFS = DATA / "pdfs"                    # 추출이 PDF를 받는 곳(백업 범위 밖·재다운로드 가능)
 LEXICON = DATA / "lexicon.json"
 NORMALIZED = OUTPUTS / "normalized_v2.json"
-SNAP = DATA / "_snapshot_test"          # 완료된 백업(= pristine 본)
+SNAP = DATA / "_snapshot_test"          # 완료된 백업(= pristine 본). data/ 백업이라 data/ 안에 둔다.
 SNAP_TMP = DATA / "_snapshot_test.tmp"  # 작성 중 백업(원자적 rename 전)
-RUNS = DATA / "test_runs"               # 회차 산출물(JSON, gitignore)
+RUNS = HERE / "runs"                    # 회차 산출물(JSON, gitignore) — eval/runs/
 
 sys.path.insert(0, str(ROOT))
 # agent_collect import 는 OpenAI 클라이언트·임베딩 로더를 띄움(수집에 필요) — 정상.
@@ -211,13 +214,13 @@ def main():
     args = sys.argv[1:]
     if args and args[0] == "--query-file":
         if len(args) < 2:
-            sys.exit('사용: test_collect.py --query-file <파일>')
+            sys.exit('사용: eval/test_collect.py --query-file <파일>')
         lines = Path(args[1]).read_text().splitlines()
         queries = [ln.strip() for ln in lines if ln.strip() and not ln.lstrip().startswith("#")]
     elif args:
         queries = [" ".join(args)]  # 따옴표 없이 줘도 한 질문으로 합침
     else:
-        sys.exit('사용: test_collect.py "질문"   또는   test_collect.py --query-file <파일>')
+        sys.exit('사용: eval/test_collect.py "질문"   또는   eval/test_collect.py --query-file <파일>')
 
     if not queries:
         sys.exit("질문이 비어 있음.")

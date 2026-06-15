@@ -16,10 +16,10 @@ data/collect_sessions.db
 data/collect_sessions.db-shm
 data/collect_sessions.db-wal
 
-# === 수집 diff 테스트(test_collect.py): 임시 백업 + 회차 산출물 ===
+# === 수집 diff 테스트(eval/test_collect.py): 임시 백업 + 회차 산출물 ===
 data/_snapshot_test/
 data/_snapshot_test.tmp/
-data/test_runs/
+eval/runs/
 
 # === IDE / OS ===
 .vscode/
