@@ -25,13 +25,19 @@ from langgraph.types import Command, interrupt
 from openai import OpenAI
 
 # 기존 추출 파이프라인 재사용 (src/) — 호출만, 로직 수정 안 함
+sys.path.insert(0, str(Path(__file__).resolve().parent))          # 루트(prompts 패키지)
 sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
 import config  # noqa: E402
 import extract  # noqa: E402
 import fetch  # noqa: E402
 import parse  # noqa: E402
-import prompts  # noqa: E402
 import relate  # noqa: E402
+
+# 프롬프트는 prompts/ 패키지 단일 출처에서(인라인 제거).
+from prompts.collect import (  # noqa: E402
+    GATE_PROMPT_VER, GATE_SYSTEM, GATE_USER, INTENT_SYSTEM,
+    REPORT_SYSTEM, build_report_user, EXPAND_SYSTEM, build_expand_user,
+)
 
 # .env 는 위 `import config`(load_dotenv(ROOT/.env))에서 이미 로딩됨 — 별도 호출 불필요.
 client = OpenAI()
@@ -43,7 +49,6 @@ NORMALIZED_V2 = Path("data/outputs/normalized_v2.json")
 PAPERS_LEDGER = Path("data/outputs/papers.json")
 REJECT_VERDICTS = {"reject", "rejected", "drop"}  # 관문 탈락으로 보는 verdict
 
-GATE_PROMPT_VER = "gate-v1"   # 관문 프롬프트 버전 — 바뀌면 재판정 판별용
 MAX_EXTRACT = 2               # 스모크 추출 상한(실수로 수백 편 PDF 받는 사고 방지)
 
 INTENT_TOOL = {
@@ -104,37 +109,16 @@ def match(q, keys, mat, top=8, floor=0.30):
 
 
 def parse_intent(text):
-    system = (
-        "너는 논문 수집 에이전트의 의도 파싱기다. 사용자의 수집 명령을 report_intent로 보고한다. "
-        "topic은 arXiv 검색에 쓸 영어 연구용어로, interpretation은 주제의 가능한 갈래와 좁힌 방향을 적는다."
-    )
     resp = client.chat.completions.create(
         model=MODEL,
-        messages=[{"role": "system", "content": system}, {"role": "user", "content": text}],
+        messages=[{"role": "system", "content": INTENT_SYSTEM}, {"role": "user", "content": text}],
         tools=[INTENT_TOOL],
         tool_choice={"type": "function", "function": {"name": "report_intent"}},
     )
     return json.loads(resp.choices[0].message.tool_calls[0].function.arguments)
 
 
-# --- 현황 보고 + 충분성 추천 (LLM 1회) ---
-REPORT_SYSTEM = (
-    "너는 논문 수집 에이전트의 현황 분석가다. 주어진 수집 주제에 대해, 이미 보유한 "
-    "관련 기법(개념)과 같은 문제를 다룬 논문을 사람이 읽기 좋게 풀어 설명하고, "
-    "이 주제가 현재 그래프에 얼마나 덮여 있는지 종합 판정과 충분성 추천을 낸다.\n"
-    "아래 구조 그대로(한국어)로만 출력한다:\n"
-    "  관련 기법(개념):\n"
-    "  • <이름> — <이 주제 관점에서 한 줄 풀이> (<점수>)\n"
-    "  같은 문제를 다룬 논문:\n"
-    "  • <제목> — <problem 한 줄 요약> (<점수>)\n"
-    "  종합: <어느 측면이 덮였고 어디가 비었나 1~2문장>\n"
-    "  추천: <충분 | 부분적(수집 권장) | 비어있음(수집 강력 권장)> — <한 줄 근거>\n"
-    "규칙: 단순 나열이 아니라 주제 관점의 풀이를 쓴다. 정의 미보유 개념은 '정의 미보유'로 짧게 적는다. "
-    "점수는 괄호로 작게 병기하되 사람 문장이 주가 되게 한다. 추천은 세 등급 중 하나만 고른다. "
-    "후보가 비었으면 솔직히 비었다고 적고 추천에 반영한다."
-)
-
-
+# --- 현황 보고 + 충분성 추천 (LLM 1회) ---  REPORT_SYSTEM은 prompts.collect
 def _concept_line(key, score, norm):
     n = norm.get(key, {})
     name = n.get("canonical", key.split(":", 1)[-1])
@@ -154,12 +138,7 @@ def _paper_line(key, score, norm):
 def build_status_report(intent, cm_hits, pm_hits, norm):
     concepts = "\n".join(_concept_line(k, s, norm) for k, s in cm_hits) or "(매칭된 개념 없음)"
     papers = "\n".join(_paper_line(k, s, norm) for k, s in pm_hits) or "(매칭된 논문 없음)"
-    user = (
-        f"수집 주제: {intent['topic']} — {intent.get('topic_kr', '')}\n"
-        f"해석: {intent.get('interpretation', '')}\n\n"
-        f"[보유 개념 후보 — definition 매칭]\n{concepts}\n\n"
-        f"[같은 문제 논문 후보 — problem 매칭]\n{papers}"
-    )
+    user = build_report_user(intent, concepts, papers)
     resp = client.chat.completions.create(
         model=MODEL,
         messages=[
@@ -193,17 +172,10 @@ EXPAND_TOOL = {
 
 def expand_query(topic, related_terms=None):
     """topic을 arXiv 검색어 5~8개로 확장. related_terms(보유 개념/논문)는 맵 밀착 재료."""
-    system = (
-        "너는 arXiv 검색어 확장기다. 주어진 연구 주제를 arXiv 전문 검색에 쓸 영어 검색어 "
-        "5~8개로 펼친다. 동의어·인접 표현·상위/하위 개념을 포함하되 주제에서 벗어나지 않게 한다. "
-        "단순 반복은 금지. expand_queries로 보고한다."
-    )
-    user = f"주제: {topic}"
-    if related_terms:
-        user += "\n관련 보유 개념/논문(맵 밀착 검색어 재료): " + ", ".join(related_terms)
+    user = build_expand_user(topic, related_terms)
     resp = client.chat.completions.create(
         model=MODEL,
-        messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
+        messages=[{"role": "system", "content": EXPAND_SYSTEM}, {"role": "user", "content": user}],
         tools=[EXPAND_TOOL],
         tool_choice={"type": "function", "function": {"name": "expand_queries"}},
     )
@@ -352,15 +324,10 @@ GATE_TOOL = {
 
 def gate_classify(title, abstract):
     """LLM 1회. PAPER_TYPE_CRITERIA(추출과 동일 기준)로 초록만 보고 분류."""
-    system = (
-        "너는 논문 관문 분류기다. 제목과 초록만 보고(PDF 없이) paper_type을 하나로 분류한다.\n"
-        "paper_type 기준 — EXACTLY one of:\n" + prompts.PAPER_TYPE_CRITERIA +
-        "\nclassify_paper로 보고한다."
-    )
-    user = f"Title: {title}\n\nAbstract: {abstract}"
+    user = GATE_USER.format(title=title, abstract=abstract)
     resp = client.chat.completions.create(
         model=MODEL,
-        messages=[{"role": "system", "content": system},
+        messages=[{"role": "system", "content": GATE_SYSTEM},
                   {"role": "user", "content": user}],
         tools=[GATE_TOOL],
         tool_choice={"type": "function", "function": {"name": "classify_paper"}},

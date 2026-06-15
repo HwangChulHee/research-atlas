@@ -5,9 +5,13 @@
 실행: uv run python agent_filter.py
 """
 import json
+import sys
 from pathlib import Path
 from dotenv import load_dotenv
 from openai import OpenAI
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))  # prompts 패키지 — cwd 무관 import
+from prompts.filter import build_system_prompt
 
 load_dotenv(Path(__file__).resolve().parent / ".env")  # cwd 무관하게 루트 .env 명시
 client = OpenAI()
@@ -87,16 +91,6 @@ TOOLS = [
 def load_node_names():
     d = json.loads(Path("data/outputs/normalized_v2.json").read_text())
     return sorted(v["canonical"] for v in d["nodes"].values() if v.get("type") == "concept")
-
-
-def build_system_prompt(names):
-    return (
-        "너는 논문 지식그래프 화면을 조작하는 에이전트다. "
-        "사용자의 한국어/영어 명령을 tool call로 번역한다. 말로 답하지 말고 반드시 tool을 호출한다.\n"
-        "보여줘/강조/필터/계보는 filter·focus_lineage·reset로, 가져와/수집/찾아와/모아줘(arXiv에서 새 논문을 지도에 추가)는 collect로 보낸다.\n"
-        "사용자가 노드를 지칭하면 아래 목록에서 가장 가까운 canonical 이름을 골라 그대로 쓴다. 단, 목록에 명백히 대응하는 이름이 없으면(오타·무관한 단어) 절대 임의의 노드로 대체하지 말고 tool을 호출하지 말고 '해당 노드를 찾지 못했다'고 한 문장으로 답한다.\n"
-        f"노드 목록: {', '.join(names)}"
-    )
 
 
 SMOKE_QUERIES = [

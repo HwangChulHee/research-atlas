@@ -3,8 +3,11 @@ import argparse, json, sys
 from pathlib import Path
 from openai import OpenAI
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import config, prompts
+_HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(_HERE.parent))   # 루트(prompts 패키지) — cwd 무관 import
+sys.path.insert(0, str(_HERE))          # src(config)
+import config
+from prompts import pipeline as prompts
 
 client = OpenAI()
 
