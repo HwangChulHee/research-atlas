@@ -7,16 +7,9 @@ verify_neo4j.py 로 build_graph_view(JSON)와 전체 일치 검증된 로직.
 논문 노드 키/엣지에 "paper:" 접두사를 유지하므로, papers=true 출력에선 다시 붙인다.
 개념 id 는 양쪽 모두 접두사 없음.
 """
-import os
-from pathlib import Path
+from graphdb.conn import get_driver
 
-from dotenv import load_dotenv
-from neo4j import GraphDatabase
-
-load_dotenv(Path(__file__).resolve().parent.parent / ".env")
-_URI = os.environ["NEO4J_URI"]
-_AUTH = (os.environ["NEO4J_USER"], os.environ["NEO4J_PASSWORD"])
-_driver = GraphDatabase.driver(_URI, auth=_AUTH)
+_driver = get_driver()  # 모듈 로드 시 1회 생성(지연 연결이라 import는 안전)
 
 _NODES_CYPHER = """
 MATCH (c:Concept)

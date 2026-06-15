@@ -4,17 +4,16 @@ expected_from_json(include_papers) = build_graph_view 로직의 충실한 포트
 actual = api.graph_neo4j.graph_view_neo4j(include_papers) — 실제 프로덕션 함수.
 papers=false / papers=true 둘 다 비교. 순서가 무의미한 것(papers 리스트, 엣지)은 정렬/집합화 후 비교.
 """
-import json, os, sys
+import json, sys
 from pathlib import Path
-from dotenv import load_dotenv
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
-import config
+import config  # noqa: F401  (.env 로딩 + 경로 상수)
+# 드라이버는 만들지 않는다 — graph_view_neo4j(프로덕션)가 자체 드라이버로 읽는다.
+# .env 는 config / api.graph_neo4j import 시 이미 로딩됨.
 from api.graph_neo4j import graph_view_neo4j
-
-load_dotenv(ROOT / ".env")
 
 
 def _strip(nid):

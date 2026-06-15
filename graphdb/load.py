@@ -1,18 +1,15 @@
 """① 적재: normalized_v2.json 전체(이분 그래프) -> Neo4j (멱등, MERGE).
 build_graph_view가 읽는 필드 전부 저장: 개념(def_status), 논문(domain, home_concept).
 """
-import json, os, sys
+import json, sys
 from pathlib import Path
-from dotenv import load_dotenv
-from neo4j import GraphDatabase
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))          # graphdb.conn import용 (스크립트 실행 시 루트 미포함)
 sys.path.insert(0, str(ROOT / "src"))
 import config
 
-load_dotenv(ROOT / ".env")
-URI = os.environ["NEO4J_URI"]
-AUTH = (os.environ["NEO4J_USER"], os.environ["NEO4J_PASSWORD"])
+from graphdb.conn import get_driver
 
 
 def _id(nid):
@@ -59,7 +56,7 @@ def load(tx, nodes, edges):
 def main():
     data = json.loads((config.OUT_DIR / "normalized_v2.json").read_text())
     nodes, edges = data["nodes"], data["edges"]
-    with GraphDatabase.driver(URI, auth=AUTH) as drv:
+    with get_driver() as drv:
         with drv.session() as s:
             s.execute_write(ensure_constraints)
             s.execute_write(load, nodes, edges)
