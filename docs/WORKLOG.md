@@ -2,6 +2,17 @@
 
 세션 인계용 개선 로그. 최신이 위.
 
+## 2026-06-16 — 수집 diff 테스트 스크립트 (test_collect.py, rough)
+
+같은 질문으로 수집을 돌려 "기존 데이터에서 무엇이 추가됐나(diff)"를 보는 반자동 1회차 스크립트. 7월 정식 평가(격리 반복 N회·일관성 메트릭·정답지)의 rough 선행. 신규 파일 루트 `test_collect.py` 1개 + 산출물 디렉토리만, 수집 로직/프롬프트/그래프는 호출만.
+
+- **한 회차 흐름**: 백업(`data/outputs/`+`lexicon.json` 통째 → `data/_snapshot_test/`) → 기준선 로드 → 수집(`build_collect_graph(MemorySaver())` + `_run_scenario(…, ["proceed"×3])` 로 interrupt 자동통과, MAX_EXTRACT 상한) → `src/normalize_v2.py` subprocess 반영 → diff → **finally 복원**.
+- **데이터 안전(#1 원칙)**: 3~5단계를 try, 복원을 finally — 에러·Ctrl-C에도 원상복구. 백업은 `_snapshot_test.tmp`에 쓰고 원자적 `rename`(부분 스냅샷 방지). preflight: 부분 스냅샷 청소 + 직전 미복원 스냅샷 자동 복구(스냅샷이 pristine 본) + `git status --porcelain data/` dirty 경고.
+- **diff 산출**: `load_view()`가 normalized_v2.json에서 개념(canonical)·논문(id)·**개념간 계보**를 뽑음. 계보는 normalized에 직접 없고 paper→concept 엣지에서 유도 → build_graph_view 파생 규칙(home concept=첫 defines, →builds_on 대상)을 읽기 전용 미러. (검증: 실데이터 115엣지 = Neo4j 검증의 builds_on115와 일치.) lexicon status diff로 unreviewed 신규 N. 콘솔 + `data/test_runs/{ts}.json` 동일 내용.
+- **인자**: `test_collect.py "질문"` 1회차, `--query-file <파일>`(줄단위 #주석/빈줄 스킵, 각각 독립 회차·매번 복원). 자동 N회 반복은 7월 범위 밖.
+- **gitignore**: `data/_snapshot_test/`, `data/_snapshot_test.tmp/`, `data/test_runs/`.
+- **검증**: 임포트·인자/usage·preflight·load_view·build_record(형식·추가없음 케이스) OK. **데이터 안전 라운드트립**(backup→고의 오염[가짜 부산물+lexicon+normalized 변조]→restore)에서 outputs/lexicon **바이트 동일**·스냅샷 정리·git clean 확인. 실 LLM/arXiv 경유 end-to-end 1회 실행(PDF 다운로드·토큰 소모)은 비용/외부호출이라 사용자 확인 후 진행 권장.
+
 ## 2026-06-16 — 수집 UX 버그 + 세션 영속(Sqlite)·복원·클리어
 
 수집 흐름을 서버 재시작/새로고침에도 잇고, CollectCard 갇힘·맥락유실 버그를 잡고, 대화 이력 유지 + 클리어를 더함. (`agent_collect.py`, `api/main.py`, `web/src/routes/Graph.jsx`, `web/src/api.js`, `web/src/styles.css`)
