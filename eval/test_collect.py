@@ -182,6 +182,7 @@ def stages_from_snapshots(snapshots, responses):
             rec["topic"] = payload.get("topic", "")
             rec["status_report"] = payload.get("status_report", "")
         elif stage == "approve":
+            rec["queries"] = payload.get("queries", [])
             rec["counts"] = payload.get("counts", {})
         elif stage == "extract_confirm":
             rec["passed_count"] = payload.get("passed_count")
@@ -214,6 +215,12 @@ def render_md(r):
         if stage == "interpret":
             L += [f'topic: {st.get("topic", "")}', "", st.get("status_report", "") or ""]
         elif stage == "approve":
+            qs = st.get("queries", [])
+            if qs:
+                L.append(f"검색어 {len(qs)}개:")
+                L += [f'- "{q}"' for q in qs]
+            else:
+                L.append("검색어 없음(확장 실패 의심)")
             c = st.get("counts", {})
             L.append(f'발견 {c.get("found", 0)} / 보유제외 {c.get("owned_excluded", 0)} / '
                      f'관문탈락제외 {c.get("gate_excluded", 0)} / 신규 {c.get("new", 0)}')

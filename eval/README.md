@@ -104,7 +104,7 @@ llm 에이전트 메모리 관련 조사해줘
   "lexicon_new_unreviewed": ["gaze heads"],
   "stages": [
     {"stage": "interpret", "topic": "...", "status_report": "...전문...", "input": "proceed"},
-    {"stage": "approve", "counts": {"found": 50, "owned_excluded": 0, "gate_excluded": 0, "new": 50}, "input": "proceed"},
+    {"stage": "approve", "queries": ["LLM agent memory", "..."], "counts": {"found": 50, "owned_excluded": 0, "gate_excluded": 0, "new": 50}, "input": "proceed"},
     {"stage": "extract_confirm", "passed_count": 35, "to_extract": ["..."], "input": "proceed"}
   ],
   "report_text": "추출 완료 …"

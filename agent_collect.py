@@ -596,7 +596,9 @@ def gnode_expand_search(state):
 
 def gnode_approve(state):
     """[6] 물량 승인 — interrupt. resume: 'proceed' | 'cancel'."""
-    decision = interrupt({"stage": "approve", "counts": state["counts"]})
+    decision = interrupt({"stage": "approve",
+                          "counts": state["counts"],
+                          "queries": state.get("queries", [])})
     return {"decision": decision}
 
 

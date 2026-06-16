@@ -2,6 +2,15 @@
 
 세션 인계용 개선 로그. 최신이 위.
 
+## 2026-06-17 — 수집 기록에 arXiv 검색어(queries) 남기기
+
+"발견 N편"의 N을 만든 검색어가 기록에 안 남아 "발견 0편"의 원인(검색어가 빡빡한가/호출 실패인가)을 사후 추적 못 하던 문제. 검색어는 이미 state(`queries`)에 있었고 approve interrupt payload 에만 빠져 있었음 → payload 에 실어 snapshots→기록까지 자동 전파.
+
+- **TASK 1**(agent_collect.py): `gnode_approve` interrupt payload 에 `"queries": state.get("queries", [])` 추가(안전 접근). gnode_search·search_arxiv·expand_query·따옴표 전략(`all:"{q}"`) 전부 불가침 — 이미 있는 queries 노출만.
+- **TASK 2**(eval/test_collect.py): `.md` approve 블록에 "검색어 N개:" + 줄단위 목록(비면 "검색어 없음(확장 실패 의심)"), `.json` approve stage dict 에 `queries` 배열. 둘 다 `.get("queries", [])`.
+- **TASK 3**(검색 실패 목록): 권장대로 보류 — 검색어만 보여도 대개 갈림.
+- **검증/성과**: 1회차 실행이 마침 **발견 0편** → 기록된 검색어 7개가 전부 매우 긴 구문("LLM agent memory retrieval augmented memory for autonomous agents" 등). 즉 `all:"{q}"` 정확구문 매칭에 너무 길어 0건임이 한눈에 드러남(호출 실패 아님 — 검색어는 멀쩡). `.md`/`.json` 양쪽에 queries 확인, data/ 복원 clean, `_run_scenario`·수집 로직 불변.
+
 ## 2026-06-17 — 수집 diff 회차에 "대화 기록"(.md) + stages(.json) 추가
 
 회차마다 채팅 흐름(해석확인→물량승인→추출승인→결과→diff)을 **글로 재현**하는 사람용 `.md` 와, 기존 diff에 단계 payload(`stages`)·`report_text`를 더한 비교용 `.json`을 같은 timestamp로 짝지어 남기게 함. 수집 로직·프롬프트·그래프·`_run_scenario` 시그니처 전부 불가침 — `eval/test_collect.py`에서 반환값만 소비.
