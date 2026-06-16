@@ -187,6 +187,10 @@ def stages_from_snapshots(snapshots, responses):
         elif stage == "extract_confirm":
             rec["passed_count"] = payload.get("passed_count")
             rec["to_extract"] = payload.get("to_extract", [])
+            rec["target"] = payload.get("target")            # 동적 목표 편수
+            rec["judged_count"] = payload.get("judged_count")  # gate 가 실제 판정한 편수(배치)
+            if payload.get("cap_notice"):
+                rec["cap_notice"] = payload["cap_notice"]
         rec["input"] = inp
         stages.append(rec)
     return stages
@@ -226,8 +230,17 @@ def render_md(r):
                      f'관문탈락제외 {c.get("gate_excluded", 0)} / 신규 {c.get("new", 0)}')
         elif stage == "extract_confirm":
             to_ex = st.get("to_extract", [])
-            L.append(f'통과 {st.get("passed_count", 0)}편 → 추출 {len(to_ex)}편: '
+            tgt, judged = st.get("target"), st.get("judged_count")
+            econ = []
+            if tgt is not None:
+                econ.append(f"목표 {tgt}편")
+            if judged is not None:
+                econ.append(f"gate 판정 {judged}편")
+            econ_s = f" ({', '.join(econ)})" if econ else ""
+            L.append(f'통과 {st.get("passed_count", 0)}편{econ_s} → 추출 {len(to_ex)}편: '
                      + (", ".join(to_ex) if to_ex else "없음"))
+            if st.get("cap_notice"):
+                L.append(f'※ {st["cap_notice"]}')
         L += ["", f'→ 자동입력: {st.get("input", "")}', ""]
     L += ["## 결과", r.get("report_text", "") or "", "", "## diff (지도 변화)"]
     L += render_diff_md(r)

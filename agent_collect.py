@@ -52,7 +52,16 @@ PAPERS_LEDGER = Path("data/outputs/papers.json")
 COLLECT_DB = Path("data/collect_sessions.db")  # 수집 세션 체크포인트(서버 재시작에도 생존)
 REJECT_VERDICTS = {"reject", "rejected", "drop"}  # 관문 탈락으로 보는 verdict
 
-MAX_EXTRACT = 2               # 스모크 추출 상한(실수로 수백 편 PDF 받는 사고 방지)
+DEFAULT_EXTRACT = 2           # 사용자가 편수 미언급 시 기본 추출 편수
+HARD_CAP = 10                 # 안전 상한(실수로 수백 편 PDF 받는 사고 방지) — count 가 커도 여기까지만
+
+
+def extract_target(intent):
+    """사용자가 명시한 편수(intent['count']) → 목표 추출 편수.
+
+    미언급/모호(count=None)면 DEFAULT_EXTRACT, 명시했어도 HARD_CAP 을 넘지 않는다.
+    """
+    return min(intent.get("count") or DEFAULT_EXTRACT, HARD_CAP)
 
 INTENT_TOOL = {
     "type": "function",
@@ -67,6 +76,8 @@ INTENT_TOOL = {
                 "interpretation": {"type": "string", "description": "이 주제의 가능한 갈래들과 그중 어느 갈래로 좁혔는지 2~3문장. 모호한 부분이 있으면 명시 (예: '강건성은 검색 노이즈/적대적 공격/분포 변화로 갈리는데, RAG 맥락에선 보통 검색 노이즈를 뜻하므로 그쪽으로 해석')"},
                 "period_from": {"type": "string", "description": "YYYY-MM. 명시 없으면 빈 문자열"},
                 "period_to": {"type": "string", "description": "YYYY-MM. 명시 없으면 빈 문자열"},
+                "count": {"type": ["integer", "null"],
+                          "description": "사용자가 명시한 수집 논문 편수. 명시 없으면 null. '5편'->5, '여러 개'처럼 모호하면 null"},
             },
             "required": ["topic", "topic_kr", "interpretation"],
         },
@@ -222,11 +233,13 @@ def search_arxiv(queries, period_from="", period_to="", max_per_query=50):
             time.sleep(3)  # arXiv rate limit
         params = urllib.parse.urlencode({
             # 구문(phrase) 검색: 따옴표로 묶어야 다단어가 AND/구문으로 잡힘.
-            # 따옴표 없으면 all:이 토큰 OR로 풀려 submittedDate 정렬 시 무관 최신논문이 뜸.
+            # 따옴표 없으면 all:이 토큰 OR로 풀려 무관 논문이 뜸.
             "search_query": f'all:"{q}"',
             "start": 0,
             "max_results": max_per_query,
-            "sortBy": "submittedDate",
+            # relevance 정렬: 상위가 주제 적합 → 후보가 관련도순 → gate 상위부터 = 주제 가까운 것부터.
+            # (옛 submittedDate 정렬은 최신순이라 상위에 주제 무관 신상이 섞였음.)
+            "sortBy": "relevance",
             "sortOrder": "descending",
         })
         req = urllib.request.Request(
@@ -477,11 +490,12 @@ def collect_smoke():
 
 
 def collect_extract_smoke():
-    """[3][4][5] → [6] 물량승인(CLI) → [7] 관문 → [8] 통과분 최대 MAX_EXTRACT편 추출."""
+    """[3][4][5] → [6] 물량승인(CLI) → [7] 관문 → [8] 통과분 상위 target편 추출."""
     model, norm, (ck, cm), (pk, pm) = load_embeddings()
     query = "RAG 강건성 논문 찾아줘"
     intent = parse_intent(query)
     topic = intent["topic"]
+    target = extract_target(intent)   # 편수 미언급 → DEFAULT_EXTRACT
 
     qv = embed_query(topic, model)
     cm_hits, pm_hits = match(qv, ck, cm), match(qv, pk, pm)
@@ -516,10 +530,10 @@ def collect_extract_smoke():
     save_ledger(ledger)
     print(f"   → 통과 {len(passed)}/{len(new)} (관문 LLM {gate_calls}회, 캐시 {len(new) - gate_calls}회)")
 
-    # --- [8] 추출: 통과분 최대 MAX_EXTRACT편 ---
-    to_extract = passed[:MAX_EXTRACT]
-    if len(passed) > MAX_EXTRACT:
-        print(f"\n   상한으로 {MAX_EXTRACT}편만 추출 (통과 {len(passed)}편 중 나머지는 관문 기록만)")
+    # --- [8] 추출: 통과분 상위 target편 ---
+    to_extract = passed[:target]
+    if len(passed) > target:
+        print(f"\n   목표로 {target}편만 추출 (통과 {len(passed)}편 중 나머지는 관문 기록만)")
     print(f"\n[8] 추출 {len(to_extract)}편 (PDF 다운로드 시작):")
     extracted = []
     for aid in to_extract:
@@ -537,7 +551,7 @@ def collect_extract_smoke():
     try:
         assert new, "신규 후보 0편 — 관문/추출 검증 불가"
         assert all(ledger[a].get("gate") for a in new), "관문 미기록 후보 있음"
-        assert len(extracted) <= MAX_EXTRACT, f"추출 상한 초과: {len(extracted)}"
+        assert len(extracted) <= target, f"목표 편수 초과: {len(extracted)} > {target}"
         for a in extracted:
             assert (config.OUT_DIR / f"{a}.concepts.json").exists() \
                 and (config.OUT_DIR / f"{a}.relations.json").exists(), f"{a} 추출 파일 없음"
@@ -618,11 +632,36 @@ def route_after_approve(state):
     return "gate" if state.get("decision") == "proceed" else "report"
 
 
+GATE_BATCH = 10          # 한 배치당 gate 판정 편수
+GATE_MAX_BATCHES = 5     # 최대 5배치(=상위 50편)까지 보고 포기
+
+
 def gnode_gate(state):
-    """[7] 관문 — 후보 전체 분류."""
+    """[7] 관문 — 관련도순 상위부터 GATE_BATCH씩 배치 판정, 목표 편수 통과하면 조기 종료.
+
+    candidates 가 관련도순(search relevance)이라 상위부터 = 주제 가까운 것부터 본다.
+    목표(target)만큼 통과하면 나머지는 LLM 판정 안 함 → 호출 대폭 절감.
+    """
     ledger = load_ledger()
-    results = [(aid, *gate_one(aid, ledger)[:2]) for aid in state["candidates"]]
+    target = extract_target(state["intent"])
+    candidates = state["candidates"]
+    results, passed, gate_calls, batches = [], [], 0, 0
+    for b in range(GATE_MAX_BATCHES):
+        chunk = candidates[b * GATE_BATCH:(b + 1) * GATE_BATCH]
+        if not chunk:
+            break
+        batches += 1
+        for aid in chunk:
+            verdict, ok, cached = gate_one(aid, ledger)
+            gate_calls += 0 if cached else 1
+            results.append((aid, verdict, ok))
+            if ok:
+                passed.append(aid)
+        if len(passed) >= target:   # 목표 채우면 조기 종료(나머지 배치 LLM 판정 안 함)
+            break
     save_ledger(ledger)
+    print(f"\n[7] 관문 {batches}배치({len(results)}편) 판정 — 통과 {len(passed)} / 목표 {target} "
+          f"(LLM {gate_calls}회, 캐시 {len(results) - gate_calls}회, 미판정 {len(candidates) - len(results)}편)")
     return {"gate_results": results}
 
 
@@ -631,11 +670,18 @@ def gnode_confirm_extract(state):
 
     관문(빠름)과 추출(느림·stall 위험)을 분리 — 추출은 여기서 승인한 뒤에만 돈다.
     """
+    target = extract_target(state["intent"])
     passed = [aid for aid, _v, ok in state["gate_results"] if ok]
+    requested = state["intent"].get("count")
     decision = interrupt({
         "stage": "extract_confirm",
         "passed_count": len(passed),
-        "to_extract": passed[:MAX_EXTRACT],   # 상한 적용된 실제 추출 예정 목록
+        "to_extract": passed[:target],        # 목표 편수만큼 실제 추출 예정 목록
+        "target": target,
+        "judged_count": len(state["gate_results"]),
+        # 사용자가 HARD_CAP 초과 요청 시 상한 안내(카드용)
+        "cap_notice": (f"{requested}편 요청 → 상한 {HARD_CAP}편까지만 추출"
+                       if requested and requested > HARD_CAP else ""),
         "gate_summary": [{"id": aid, "verdict": v, "passed": ok}
                          for aid, v, ok in state["gate_results"]],
     })
@@ -647,11 +693,12 @@ def route_after_confirm_extract(state):
 
 
 def gnode_extract(state):
-    """[8] 추출 — 통과분 최대 MAX_EXTRACT편."""
+    """[8] 추출 — 통과분 상위 target편(사용자 명시 편수, 미언급 기본 DEFAULT_EXTRACT·상한 HARD_CAP)."""
     ledger = load_ledger()
+    target = extract_target(state["intent"])
     passed = [aid for aid, _v, ok in state["gate_results"] if ok]
     extracted = []
-    for aid in passed[:MAX_EXTRACT]:
+    for aid in passed[:target]:
         ok, _msg, _c = extract_pipeline(aid, ledger)
         if ok:
             extracted.append(aid)
@@ -765,9 +812,9 @@ def graph_smoke():
         assert not s_norm[2][1].get("extracted"), "추출승인 멈춤인데 이미 추출됨"
         # 3: cancel → 추출 0
         assert r_cancel.get("extracted", []) == [], f"취소인데 추출됨: {r_cancel.get('extracted')}"
-        # 4: 정상 → 추출 ≤ 상한, 파일 생성
+        # 4: 정상 → 추출 ≤ 목표(편수 미언급이라 DEFAULT_EXTRACT), 파일 생성
         ex = r_norm.get("extracted", [])
-        assert len(ex) <= MAX_EXTRACT, f"추출 상한 초과: {ex}"
+        assert len(ex) <= DEFAULT_EXTRACT, f"추출 목표 초과: {ex}"
         for a in ex:
             assert (config.OUT_DIR / f"{a}.concepts.json").exists(), f"{a} 추출 파일 없음"
         # revise: 재해석으로 돌아가 interrupt 1 재멈춤(깨지지 않음)

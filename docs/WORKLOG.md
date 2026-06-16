@@ -2,6 +2,17 @@
 
 세션 인계용 개선 로그. 최신이 위.
 
+## 2026-06-17 — 수집 선정 재설계: 동적 편수 + 관련도순 검색 + gate 배치 루프
+
+검색어 짧게 고친 뒤 드러난 뒷단 문제(gate 가 신규 전부 348편 LLM 판정 → 비쌈 / 최신순 검색이라 "앞 2편"이 주제 무관 신상 — "agent memory" 검색에 FragFuse 추출) 수정. 핵심은 "많이 찾는다"가 아니라 "많은데 아무거나 집는다" → **선정**을 고침. 그래프 골격·interrupt 3종·따옴표 전략·검색어 짧게 로직·_run_scenario 불변.
+
+- **TASK 0 검증**: (0-A) arXiv `sortBy=relevance` 상위 10편이 짧은 검색어 기준 주제 적합("agent memory"→전부 agent memory 논문) → 임베딩 정렬 생략 가능. (0-B) intent count 파싱 정확("5편"→5, "다섯 편"→5, "10개 정도"→10, "여러 개"/"좀"/미언급→null, "100편"→100).
+- **TASK 1 동적 편수**(agent_collect.py + prompts/collect/intent.py): INTENT_TOOL 에 `count`(["integer","null"], 선택) + 프롬프트 한 줄(영/한 일치). `MAX_EXTRACT=2` 폐기 → `DEFAULT_EXTRACT=2`/`HARD_CAP=10` + `extract_target(intent)=min(count or DEFAULT, HARD_CAP)`. confirm_extract·extract·smoke 전부 target 사용. HARD_CAP 초과 요청 시 카드에 `cap_notice`.
+- **TASK 2 관련도순 검색**(search_arxiv): `sortBy submittedDate→relevance`(descending 유지). found→candidates 관련도순 보존(dict 삽입순). 따옴표·rate limit·meta 불변, 임베딩 정렬 미추가(0-A 통과).
+- **TASK 3 gate 배치 루프**(gnode_gate): candidates 상위부터 `GATE_BATCH=10`씩 판정, 통과 누적 ≥ target 이면 조기 종료(`GATE_MAX_BATCHES=5`=상위 50편 한도). gate_one 캐시 그대로. 판정/통과/목표/미판정 콘솔 로그.
+- **기록 보강**(eval/test_collect.py): extract_confirm stage 에 target·judged_count·cap_notice 기록, .md 에 "통과 N편 (목표 T편, gate 판정 J편) → 추출 M편" + cap_notice 표기.
+- **검증**: graph_smoke 통과(cancel 추출0·정상 추출≤target·revise 재해석). 실 수집 "llm 에이전트 메모리…" → gate **10편만 판정**(옛 379편 전부 대비)·추출 2편이 주제 적합(Agent Memory Below the Prompt / MRMMIA — FragFuse 무관 추출 사라짐). "에이전트 메모리 5편 수집해줘" → target 5·**추출 5편**(FadeMem/GEM/MRMMIA/MemAdapter/MemState, 전부 on-topic). 두 회차 모두 data/ 복원 clean. extract_target/count 파싱 단위검증, .md 렌더 단위검증 통과.
+
 ## 2026-06-17 — 검색어 확장 수정: 긴 구문 0건 → 짧게 + 길이 가드
 
 직전 진단(긴 검색어로 `all:"{q}"` 정확구문 0건)의 근본 수정. 따옴표 전략·재시도·search_arxiv·gnode_search 전부 불가침, 검색어 길이 하나만 손봄.
