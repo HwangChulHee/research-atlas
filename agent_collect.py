@@ -46,6 +46,62 @@ client = OpenAI()
 MODEL = "gpt-5.4-mini"
 EMBED_MODEL = "text-embedding-3-small"
 
+
+# ---------- LLM 비용·시간 계기판 (레벨2: 호출당 기록 + 단계별 집계) ----------
+# 동작 불변 — 결과를 바꾸지 않고 토큰·시간만 옆에서 잰다. 흐름의 LLM 호출은 전부
+# logged_chat / logged_embed 를 경유시켜 _LLM_LOG 한 곳에 모은다. 회차 시작 시 reset.
+_LLM_LOG = []   # 호출별 기록 (모듈 레벨 누적; 회차 시작 시 _log_reset)
+
+
+def _log_reset():
+    """회차 시작 시 호출 — 누적 로그 비우기."""
+    _LLM_LOG.clear()
+
+
+def logged_chat(*, stage, **kwargs):
+    """client.chat.completions.create 래퍼 — 토큰·시간 기록(인자는 그대로 전달)."""
+    t0 = time.time()
+    resp = client.chat.completions.create(**kwargs)
+    u = getattr(resp, "usage", None)
+    _LLM_LOG.append({
+        "stage": stage, "kind": "chat", "model": kwargs.get("model"),
+        "prompt_tokens": getattr(u, "prompt_tokens", 0) or 0,
+        "completion_tokens": getattr(u, "completion_tokens", 0) or 0,
+        "seconds": round(time.time() - t0, 3),
+    })
+    return resp
+
+
+def logged_embed(*, stage, **kwargs):
+    """client.embeddings.create 래퍼 — 토큰·시간 기록(임베딩은 completion_tokens 없음)."""
+    t0 = time.time()
+    resp = client.embeddings.create(**kwargs)
+    u = getattr(resp, "usage", None)
+    _LLM_LOG.append({
+        "stage": stage, "kind": "embed", "model": kwargs.get("model"),
+        "prompt_tokens": getattr(u, "prompt_tokens", 0) or 0, "completion_tokens": 0,
+        "seconds": round(time.time() - t0, 3),
+    })
+    return resp
+
+
+def llm_summary():
+    """_LLM_LOG → stage별 {calls, prompt_tokens, completion_tokens, seconds} + total."""
+    from collections import defaultdict
+    agg = defaultdict(lambda: {"calls": 0, "prompt_tokens": 0,
+                               "completion_tokens": 0, "seconds": 0.0})
+    for e in _LLM_LOG:
+        a = agg[e["stage"]]
+        a["calls"] += 1
+        a["prompt_tokens"] += e["prompt_tokens"]
+        a["completion_tokens"] += e["completion_tokens"]
+        a["seconds"] = round(a["seconds"] + e["seconds"], 3)
+    total = {"calls": sum(a["calls"] for a in agg.values()),
+             "prompt_tokens": sum(a["prompt_tokens"] for a in agg.values()),
+             "completion_tokens": sum(a["completion_tokens"] for a in agg.values()),
+             "seconds": round(sum(a["seconds"] for a in agg.values()), 3)}
+    return {"by_stage": dict(agg), "total": total}
+
 ARXIV_API = "https://export.arxiv.org/api/query"
 NORMALIZED_V2 = Path("data/outputs/normalized_v2.json")
 PAPERS_LEDGER = Path("data/outputs/papers.json")
@@ -108,7 +164,7 @@ def load_embeddings():
 
 # --- 두 각도 매칭 ---
 def embed_query(topic, model):
-    qv = client.embeddings.create(model=model, input=[topic]).data[0].embedding
+    qv = logged_embed(stage="parse_embed", model=model, input=[topic]).data[0].embedding
     q = np.array(qv, dtype=np.float32)
     return q / np.linalg.norm(q)
 
@@ -123,7 +179,8 @@ def match(q, keys, mat, top=8, floor=0.30):
 
 
 def parse_intent(text):
-    resp = client.chat.completions.create(
+    resp = logged_chat(
+        stage="parse_intent",
         model=MODEL,
         messages=[{"role": "system", "content": INTENT_SYSTEM}, {"role": "user", "content": text}],
         tools=[INTENT_TOOL],
@@ -153,7 +210,8 @@ def build_status_report(intent, cm_hits, pm_hits, norm):
     concepts = "\n".join(_concept_line(k, s, norm) for k, s in cm_hits) or "(매칭된 개념 없음)"
     papers = "\n".join(_paper_line(k, s, norm) for k, s in pm_hits) or "(매칭된 논문 없음)"
     user = build_report_user(intent, concepts, papers)
-    resp = client.chat.completions.create(
+    resp = logged_chat(
+        stage="status_report",
         model=MODEL,
         messages=[
             {"role": "system", "content": REPORT_SYSTEM},
@@ -187,7 +245,8 @@ EXPAND_TOOL = {
 def expand_query(topic, related_terms=None):
     """topic을 arXiv 검색어 5~8개로 확장. related_terms(보유 개념/논문)는 맵 밀착 재료."""
     user = build_expand_user(topic, related_terms)
-    resp = client.chat.completions.create(
+    resp = logged_chat(
+        stage="expand",
         model=MODEL,
         messages=[{"role": "system", "content": EXPAND_SYSTEM}, {"role": "user", "content": user}],
         tools=[EXPAND_TOOL],
@@ -353,7 +412,8 @@ GATE_TOOL = {
 def gate_classify(title, abstract):
     """LLM 1회. PAPER_TYPE_CRITERIA(추출과 동일 기준)로 초록만 보고 분류."""
     user = GATE_USER.format(title=title, abstract=abstract)
-    resp = client.chat.completions.create(
+    resp = logged_chat(
+        stage="gate",
         model=MODEL,
         messages=[{"role": "system", "content": GATE_SYSTEM},
                   {"role": "user", "content": user}],
