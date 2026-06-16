@@ -2,6 +2,15 @@
 
 세션 인계용 개선 로그. 최신이 위.
 
+## 2026-06-17 — 수집 비용·성능 로깅 (레벨2: 단계별 집계 계기판)
+
+수집 흐름이 단계별로 LLM 호출수·토큰·시간을 얼마나 쓰는지 보이게. 개선 아님 — 계기판만. 동작 불변(래퍼는 인자 그대로 전달, 결과 안 바꿈). 수집 에이전트만 먼저(파이프라인·필터·command 는 후속).
+
+- **TASK 1·2 래퍼+집계**(agent_collect.py): `logged_chat`/`logged_embed`(stage 라벨 + resp.usage 토큰·wall-time 을 모듈 누적 `_LLM_LOG` 에 기록), `_log_reset()`(회차 시작), `llm_summary()`(stage별 calls/prompt/completion/seconds + total). 수집의 LLM 호출 **5곳 전부** 래퍼 경유: embed_query→`parse_embed`, parse_intent→`parse_intent`, build_status_report→`status_report`(핸드오프 목록엔 빠졌지만 실제 호출이라 포함), expand_query→`expand`, gate_classify→`gate`(배치 루프라 여러 번, stage 같게 합산). 프롬프트·인자·흐름 불변.
+- **TASK 3 eval 통합**(eval/test_collect.py): run_one 이 수집 전 `_log_reset()`, 후 `llm_summary()` → .json `"llm"`(by_stage+total) + .md `## LLM 비용·시간` 표(코드블록 정렬) + 콘솔 `print_cost`. 토큰은 `_tok`(>=1000→k약식). stage 표시순 고정(parse_embed→parse_intent→status_report→expand→gate).
+- **TASK 4**(웹 reset): 범위 밖(eval 중심). 후속.
+- **검증**: graph_smoke 통과(동작 불변). 실 수집 "llm 에이전트 메모리…" → 콘솔·.md·.json 에 비용 표, **gate 10회**(1배치)로 재설계 절감이 숫자로 드러남(루프 없었으면 379회). total 14회/in 7.7k·out 1.6k/19.5s. llm_summary·render/print 단위검증, data/ 복원 clean.
+
 ## 2026-06-17 — 수집 선정 재설계: 동적 편수 + 관련도순 검색 + gate 배치 루프
 
 검색어 짧게 고친 뒤 드러난 뒷단 문제(gate 가 신규 전부 348편 LLM 판정 → 비쌈 / 최신순 검색이라 "앞 2편"이 주제 무관 신상 — "agent memory" 검색에 FragFuse 추출) 수정. 핵심은 "많이 찾는다"가 아니라 "많은데 아무거나 집는다" → **선정**을 고침. 그래프 골격·interrupt 3종·따옴표 전략·검색어 짧게 로직·_run_scenario 불변.

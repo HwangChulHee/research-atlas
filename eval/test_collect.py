@@ -40,7 +40,9 @@ sys.path.insert(0, str(ROOT))
 # agent_collect import 는 OpenAI 클라이언트·임베딩 로더를 띄움(수집에 필요) — 정상.
 from langgraph.checkpoint.memory import MemorySaver  # noqa: E402
 
-from agent_collect import _run_scenario, build_collect_graph  # noqa: E402
+from agent_collect import (  # noqa: E402
+    _log_reset, _run_scenario, build_collect_graph, llm_summary,
+)
 
 
 # ---------- 백업 / 복원 (데이터 안전) ----------
@@ -209,6 +211,54 @@ def render_diff_md(r):
     ]
 
 
+# ---------- LLM 비용·시간 표시 (계기판) ----------
+_STAGE_ORDER = ["parse_embed", "parse_intent", "status_report", "expand", "gate"]
+
+
+def _tok(n):
+    """토큰 수 → 'kk' 약식(>=1000 은 17.0k, 아니면 raw)."""
+    return f"{n / 1000:.1f}k" if n >= 1000 else str(n)
+
+
+def _cost_rows(cost):
+    """llm_summary → (stage, calls, prompt, completion, seconds) 행들(고정 순서 우선)."""
+    by = (cost or {}).get("by_stage", {})
+    ordered = [s for s in _STAGE_ORDER if s in by] + [s for s in by if s not in _STAGE_ORDER]
+    return [(s, by[s]["calls"], by[s]["prompt_tokens"],
+             by[s]["completion_tokens"], by[s]["seconds"]) for s in ordered]
+
+
+def _cost_line(label, calls, pin, pout, sec):
+    return f"{label:<14}{calls:>3}회  in {_tok(pin):>6} / out {_tok(pout):>6}  {sec:>5.1f}s"
+
+
+def render_cost_md(cost):
+    """LLM 비용·시간을 .md 코드블록(정렬 유지) 줄 목록으로."""
+    if not cost or not cost.get("by_stage"):
+        return ["(LLM 호출 없음)"]
+    t = cost["total"]
+    lines = ["```"]
+    lines += [_cost_line(s, c, pi, po, se) for s, c, pi, po, se in _cost_rows(cost)]
+    lines.append("─" * 46)
+    lines.append(_cost_line("합계", t["calls"], t["prompt_tokens"],
+                            t["completion_tokens"], t["seconds"]) + "   (+ arXiv/PDF 시간 별도)")
+    lines.append("```")
+    return lines
+
+
+def print_cost(cost):
+    """콘솔에 stage별 LLM 비용·시간 요약(흐름 끝에)."""
+    if not cost or not cost.get("by_stage"):
+        print("\nLLM: 호출 없음")
+        return
+    print("\nLLM 비용·시간 (stage별):")
+    for s, c, pi, po, se in _cost_rows(cost):
+        print("  " + _cost_line(s, c, pi, po, se))
+    t = cost["total"]
+    print("  " + _cost_line("합계", t["calls"], t["prompt_tokens"],
+                            t["completion_tokens"], t["seconds"]))
+
+
 def render_md(r):
     """회차 record(stages·report_text 포함) → 채팅 흐름을 재현한 사람용 .md 텍스트."""
     L = [f'# 수집 회차 — "{r["query"]}"',
@@ -244,14 +294,17 @@ def render_md(r):
         L += ["", f'→ 자동입력: {st.get("input", "")}', ""]
     L += ["## 결과", r.get("report_text", "") or "", "", "## diff (지도 변화)"]
     L += render_diff_md(r)
+    if r.get("llm"):
+        L += ["", "## LLM 비용·시간"]
+        L += render_cost_md(r["llm"])
     return "\n".join(L) + "\n"
 
 
-def write_records(record, stages, report_text):
-    """같은 timestamp 로 .md(사람용 대화기록) + .json(기계 비교용·기존 diff+stages) 짝 기록."""
+def write_records(record, stages, report_text, cost=None):
+    """같은 timestamp 로 .md(사람용 대화기록) + .json(기계 비교용·기존 diff+stages+llm) 짝 기록."""
     RUNS.mkdir(parents=True, exist_ok=True)
     ts = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    full = {**record, "stages": stages, "report_text": report_text}
+    full = {**record, "stages": stages, "report_text": report_text, "llm": cost or {}}
     json_fn = RUNS / (ts + ".json")
     json_fn.write_text(json.dumps(full, ensure_ascii=False, indent=2))
     md_fn = RUNS / (ts + ".md")
@@ -275,7 +328,9 @@ def run_one(query):
         tid = "test-" + uuid.uuid4().hex[:8]
         print(f"\n=== 수집 시작: {query!r} (thread {tid}) ===")
         responses = ["proceed", "proceed", "proceed"]
+        _log_reset()   # 회차 LLM 비용·시간 계기판 초기화
         result, snapshots = _run_scenario(graph, tid, query, responses)
+        cost = llm_summary()   # 수집 동안 누적된 stage별 호출/토큰/시간
 
         # --- normalize 반영 (추출분 → 노드/lexicon) ---
         print("\n=== normalize_v2 반영 ===")
@@ -289,8 +344,9 @@ def run_one(query):
         lex_after = load_lex_status(LEXICON)
         record = build_record(query, tid, before, after, lex_before, lex_after)
         print_diff(record)
+        print_cost(cost)
         stages = stages_from_snapshots(snapshots, responses)
-        write_records(record, stages, result.get("report_text", ""))
+        write_records(record, stages, result.get("report_text", ""), cost)
         return record
     finally:
         restore()
