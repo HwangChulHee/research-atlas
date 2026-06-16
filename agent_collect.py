@@ -164,7 +164,7 @@ EXPAND_TOOL = {
                 "queries": {
                     "type": "array",
                     "items": {"type": "string"},
-                    "description": "5~8개의 영어 검색어. 동의어·인접 표현·상위/하위 개념을 포함하되 주제에서 벗어나지 않게. 단순 topic 반복 금지.",
+                    "description": "5~8개의 영어 검색어. 각 검색어는 2~4단어의 짧은 핵심구(여러 개념을 한 검색어에 합치지 말고 개념마다 분리). 동의어·인접 표현·상위/하위 개념을 포함하되 주제에서 벗어나지 않게. 단순 topic 반복 금지.",
                 },
             },
             "required": ["queries"],
@@ -183,12 +183,24 @@ def expand_query(topic, related_terms=None):
         tool_choice={"type": "function", "function": {"name": "expand_queries"}},
     )
     args = json.loads(resp.choices[0].message.tool_calls[0].function.arguments)
+    # 결정론적 안전망: 프롬프트가 확률적이라 또 긴 구문을 뱉을 수 있음.
+    # all:"<구문>" 정확매칭은 길수록 0건 → MAX_WORDS 초과는 (자르지 말고) 버림.
+    # 자르면 의미가 깨져 엉뚱한 매칭이 되므로 버리는 쪽이 안전.
+    MAX_WORDS = 6
+    MIN_QUERIES = 3
     out, seen = [], set()
     for q in args.get("queries", []):
         q = (q or "").strip()
-        if q and q.lower() not in seen:
-            seen.add(q.lower())
-            out.append(q)
+        if not q or q.lower() in seen:
+            continue
+        if len(q.split()) > MAX_WORDS:
+            print(f"  [확장] 너무 긴 검색어 버림({len(q.split())}단어): {q!r}", file=sys.stderr)
+            continue
+        seen.add(q.lower())
+        out.append(q)
+    if len(out) < MIN_QUERIES:
+        print(f"  [확장] 경고: 유효 검색어 {len(out)}개뿐(길이 가드 통과 부족) — 검색 재현율 낮을 수 있음",
+              file=sys.stderr)
     return out
 
 

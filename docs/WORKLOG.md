@@ -2,6 +2,17 @@
 
 세션 인계용 개선 로그. 최신이 위.
 
+## 2026-06-17 — 검색어 확장 수정: 긴 구문 0건 → 짧게 + 길이 가드
+
+직전 진단(긴 검색어로 `all:"{q}"` 정확구문 0건)의 근본 수정. 따옴표 전략·재시도·search_arxiv·gnode_search 전부 불가침, 검색어 길이 하나만 손봄.
+
+- **TASK 0 검증**: arXiv 에 직접 쏴봄 — 2~3단어 자연구("agent memory" 등)는 5건씩, 4단어 다개념 합성("episodic memory language model")은 0건. `all:"…"` 가 **정확 연속구문 매칭**이라 길수록·여러 개념 합칠수록 0건임 확인 → 방향(짧게·개념당 하나) 타당.
+- **TASK 1**(prompts/collect/expand.py + EXPAND_TOOL desc): EXPAND_SYSTEM 에 "각 검색어 2~4단어 짧은 핵심구, 여러 개념 한 검색어에 합치지 말고 개념마다 분리, 논문에 그대로 나오는 자연 용어" 결정적 규칙 + 좋음/나쁨 예시 추가. 5줄 메타 + [한글 번역]도 새 영문과 일치하게 갱신(영문이 실제 동작·번역은 주석). EXPAND_TOOL queries description 도 동일 취지로.
+- **TASK 2**(agent_collect.py expand_query): 결정론적 안전망 — dedup 루프에 `MAX_WORDS=6` 초과 검색어는 (자르지 말고)**버림**+stderr 경고, 유효 검색어 `MIN_QUERIES=3` 미만이면 재현율 경고. 자르면 의미 깨져 엉뚱 매칭이라 버리는 쪽. search_arxiv·따옴표 불변.
+- **TASK 3**(0건 재시도): 범위 밖 — 이번 수정으로 충분.
+- **검증**: 0건이던 "llm 에이전트 메모리…" 재수집 → 검색어 8개 전부 2단어("agent memory","episodic memory" 등) **발견 348편**. 둘째 주제 "검색 노이즈에 강건한 RAG" → 7개 짧은 검색어 **발견 152편**. 둘 다 data/ 복원 clean. 길이 가드 단위검증: 9단어 구문 버림+dedup+부족경고 동작.
+
+
 ## 2026-06-17 — 수집 기록에 arXiv 검색어(queries) 남기기
 
 "발견 N편"의 N을 만든 검색어가 기록에 안 남아 "발견 0편"의 원인(검색어가 빡빡한가/호출 실패인가)을 사후 추적 못 하던 문제. 검색어는 이미 state(`queries`)에 있었고 approve interrupt payload 에만 빠져 있었음 → payload 에 실어 snapshots→기록까지 자동 전파.
