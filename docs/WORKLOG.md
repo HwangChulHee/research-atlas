@@ -2,6 +2,16 @@
 
 세션 인계용 개선 로그. 최신이 위.
 
+## 2026-06-17 — 수집 diff 회차에 "대화 기록"(.md) + stages(.json) 추가
+
+회차마다 채팅 흐름(해석확인→물량승인→추출승인→결과→diff)을 **글로 재현**하는 사람용 `.md` 와, 기존 diff에 단계 payload(`stages`)·`report_text`를 더한 비교용 `.json`을 같은 timestamp로 짝지어 남기게 함. 수집 로직·프롬프트·그래프·`_run_scenario` 시그니처 전부 불가침 — `eval/test_collect.py`에서 반환값만 소비.
+
+- **재료**: `_run_scenario`가 이미 `(result, snapshots)` 반환(snapshots=각 interrupt의 `(payload, state)`). 기존 `run_one`은 반환값을 버렸음 → 이제 받아서 소비. payload 키: interpret(`status_report`·`topic`), approve(`counts`), extract_confirm(`passed_count`·`to_extract`).
+- **신규 함수**(test_collect.py): `stages_from_snapshots(snapshots, responses)`(snapshot i의 자동입력 = `responses[i]`, `_run_scenario`와 동일 규칙; payload `.get()` 안전접근으로 단계 미도달·키 누락 방어), `render_diff_md`/`render_md`(채팅 흐름 .md 생성), `write_records`(같은 ts로 .md+.json 짝). 기존 `write_record`(json 단독) 대체.
+- **전문 보존**: 콘솔의 `[:60]` 절단과 달리 .md는 `status_report`(개념 목록·설명·유사도 점수)·`report_text`를 **자르지 않고 전문**. 단계 일부 미도달이면 도달한 단계까지만.
+- **build_record**에 `thread`(tid) 추가. 콘솔 출력은 그대로 + 끝에 "기록: …md / …json" 안내.
+- **검증**: 실 1회차("llm 에이전트 메모리…") → `eval/runs/{ts}.md`/`.json` 쌍 생성, .md가 해석확인 전문(개념 8 + 논문 8 + 점수)까지 채팅처럼 읽힘, .json `stages` 3단계(status_report 1946자·counts·to_extract·report_text) 포함, `git status data/` clean(복원 정상). README도 .md/.json 짝·stages 스키마로 갱신.
+
 ## 2026-06-16 — 수집 diff 테스트를 eval/ 디렉토리로 + 재현 문서
 
 `test_collect.py`(루트)를 `eval/`로 모음: `eval/test_collect.py`(코드) + `eval/runs/`(회차 산출물 JSON, gitignore) + `eval/README.md`(재현 문서). 한 단계 깊어진 만큼 `ROOT = Path(__file__).parent.parent`로 수정(`HERE=eval/`, `RUNS=HERE/runs`), 백업 스냅샷은 data/ 백업이라 `data/_snapshot_test/`에 그대로. 실행은 레포 루트에서 `uv run python eval/test_collect.py "질문"`. .gitignore `data/test_runs/`→`eval/runs/`. README에 흐름·사전준비(.env/네트워크/비용)·출력 스키마·데이터 안전 보장·수동 복구법·동작원리(MemorySaver 휘발성·계보 유도 미러) 정리. 경로 재해석 후 load_view(실데이터 125/70/115)·write_record(eval/runs/) 동작 재검증.

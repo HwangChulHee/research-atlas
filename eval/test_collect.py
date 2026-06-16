@@ -126,7 +126,7 @@ def load_lex_status(path):
 
 
 # ---------- diff ----------
-def build_record(query, before, after, lex_before, lex_after):
+def build_record(query, thread, before, after, lex_before, lex_after):
     name = lambda rk: after["concepts"].get(rk, rk)  # noqa: E731
     add_concepts = sorted(after["concepts"][rk] for rk in after["concepts"]
                           if rk not in before["concepts"])
@@ -138,6 +138,7 @@ def build_record(query, before, after, lex_before, lex_after):
     return {
         "query": query,
         "time": datetime.datetime.now().isoformat(timespec="seconds"),
+        "thread": thread,
         "added_concepts": add_concepts,
         "added_papers": add_papers,
         "added_edges": add_edges,
@@ -162,11 +163,80 @@ def print_diff(r):
         print(f"+ lexicon: unreviewed 신규 {len(r['lexicon_new_unreviewed'])}  (검수 대기)")
 
 
-def write_record(r):
+# ---------- 회차 기록 (대화 .md + 비교 .json) ----------
+STAGE_KO = {"interpret": "해석확인", "approve": "물량승인", "extract_confirm": "추출승인"}
+
+
+def stages_from_snapshots(snapshots, responses):
+    """_run_scenario 가 돌려준 (payload, state) 리스트 → 단계 dict 목록.
+
+    snapshot i 의 자동입력은 _run_scenario 와 같은 규칙(responses[i], 없으면 'proceed').
+    payload 키는 .get() 으로 안전 접근 — 단계 미도달·키 누락에도 깨지지 않게.
+    """
+    stages = []
+    for i, (payload, _vals) in enumerate(snapshots):
+        inp = responses[i] if i < len(responses) else "proceed"
+        stage = payload.get("stage", "")
+        rec = {"stage": stage}
+        if stage == "interpret":
+            rec["topic"] = payload.get("topic", "")
+            rec["status_report"] = payload.get("status_report", "")
+        elif stage == "approve":
+            rec["counts"] = payload.get("counts", {})
+        elif stage == "extract_confirm":
+            rec["passed_count"] = payload.get("passed_count")
+            rec["to_extract"] = payload.get("to_extract", [])
+        rec["input"] = inp
+        stages.append(rec)
+    return stages
+
+
+def render_diff_md(r):
+    """diff 요약을 .md 줄 목록으로 (지도 변화 — print_diff 의 글 버전)."""
+    nc, npp, ne = r["added_concepts"], r["added_papers"], r["added_edges"]
+    if not (nc or npp or ne or r["lexicon_added"]):
+        return ["추가 없음 (전부 기존/dedup)"]
+    return [
+        f"+ 개념 {len(nc)}: " + ", ".join(nc),
+        f"+ 논문 {len(npp)}: " + ", ".join(npp),
+        f"+ 계보 {len(ne)}: " + ", ".join(ne),
+        f"+ lexicon: unreviewed 신규 {len(r['lexicon_new_unreviewed'])} (검수 대기)",
+    ]
+
+
+def render_md(r):
+    """회차 record(stages·report_text 포함) → 채팅 흐름을 재현한 사람용 .md 텍스트."""
+    L = [f'# 수집 회차 — "{r["query"]}"',
+         f'{r["time"].replace("T", " ")}  ·  thread {r.get("thread", "")}', ""]
+    for n, st in enumerate(r.get("stages", []), 1):
+        stage = st.get("stage", "")
+        L.append(f"## {n}. {STAGE_KO.get(stage, stage)} ({stage})")
+        if stage == "interpret":
+            L += [f'topic: {st.get("topic", "")}', "", st.get("status_report", "") or ""]
+        elif stage == "approve":
+            c = st.get("counts", {})
+            L.append(f'발견 {c.get("found", 0)} / 보유제외 {c.get("owned_excluded", 0)} / '
+                     f'관문탈락제외 {c.get("gate_excluded", 0)} / 신규 {c.get("new", 0)}')
+        elif stage == "extract_confirm":
+            to_ex = st.get("to_extract", [])
+            L.append(f'통과 {st.get("passed_count", 0)}편 → 추출 {len(to_ex)}편: '
+                     + (", ".join(to_ex) if to_ex else "없음"))
+        L += ["", f'→ 자동입력: {st.get("input", "")}', ""]
+    L += ["## 결과", r.get("report_text", "") or "", "", "## diff (지도 변화)"]
+    L += render_diff_md(r)
+    return "\n".join(L) + "\n"
+
+
+def write_records(record, stages, report_text):
+    """같은 timestamp 로 .md(사람용 대화기록) + .json(기계 비교용·기존 diff+stages) 짝 기록."""
     RUNS.mkdir(parents=True, exist_ok=True)
-    fn = RUNS / (datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + ".json")
-    fn.write_text(json.dumps(r, ensure_ascii=False, indent=2))
-    print(f"기록: {fn.relative_to(ROOT)}")
+    ts = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    full = {**record, "stages": stages, "report_text": report_text}
+    json_fn = RUNS / (ts + ".json")
+    json_fn.write_text(json.dumps(full, ensure_ascii=False, indent=2))
+    md_fn = RUNS / (ts + ".md")
+    md_fn.write_text(render_md(full))
+    print(f"기록: {md_fn.relative_to(ROOT)} / {json_fn.relative_to(ROOT)}")
 
 
 # ---------- 한 회차 ----------
@@ -184,7 +254,8 @@ def run_one(query):
         graph = build_collect_graph(MemorySaver())
         tid = "test-" + uuid.uuid4().hex[:8]
         print(f"\n=== 수집 시작: {query!r} (thread {tid}) ===")
-        _run_scenario(graph, tid, query, ["proceed", "proceed", "proceed"])
+        responses = ["proceed", "proceed", "proceed"]
+        result, snapshots = _run_scenario(graph, tid, query, responses)
 
         # --- normalize 반영 (추출분 → 노드/lexicon) ---
         print("\n=== normalize_v2 반영 ===")
@@ -196,9 +267,10 @@ def run_one(query):
         # --- diff ---
         after = load_view(NORMALIZED)
         lex_after = load_lex_status(LEXICON)
-        record = build_record(query, before, after, lex_before, lex_after)
+        record = build_record(query, tid, before, after, lex_before, lex_after)
         print_diff(record)
-        write_record(record)
+        stages = stages_from_snapshots(snapshots, responses)
+        write_records(record, stages, result.get("report_text", ""))
         return record
     finally:
         restore()

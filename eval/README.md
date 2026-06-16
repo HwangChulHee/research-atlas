@@ -9,7 +9,7 @@
 ```
 eval/
 ├─ test_collect.py   # 스크립트(1회차 = 백업→자동수집→normalize→diff→복원)
-├─ runs/             # 회차 산출물 {timestamp}.json  (gitignore)
+├─ runs/             # 회차 산출물 {timestamp}.md(사람용 대화기록) + .json(비교용)  (gitignore)
 └─ README.md         # 이 문서
 ```
 
@@ -24,7 +24,7 @@ eval/
            → interrupt 3개(해석·물량·추출 승인) 자동통과, 추출까지(MAX_EXTRACT 상한)
 4. 반영    subprocess: uv run python src/normalize_v2.py  (추출분 → 노드/lexicon)
 5. diff    normalized_v2.json 재로드 → 기준선과 비교: +개념 / +논문 / +계보 / +lexicon
-           → 콘솔 출력 + eval/runs/{timestamp}.json 기록
+           → 콘솔 출력 + eval/runs/{timestamp}.md(대화기록) + .json(diff+stages) 짝 기록
 6. 복원    finally: data/_snapshot_test/ → 되돌리고 스냅샷 정리,
            이번 회차가 새로 받은 PDF만 삭제 → data/ 원상복구
 ```
@@ -79,19 +79,35 @@ llm 에이전트 메모리 관련 조사해줘
 
 추가가 없으면 `+ 추가 없음 (전부 기존/dedup)`.
 
-### 파일 `eval/runs/{timestamp}.json`
+매 회차는 같은 timestamp 로 **두 파일**을 남긴다 — 사람이 읽는 `.md` 와 기계 비교용 `.json`.
 
-콘솔과 동일 내용을 구조화 저장(나중 회차 비교용 — 7월 토대). 실제 예시:
+### 파일 `eval/runs/{timestamp}.md` (사람용 대화기록)
+
+채팅 UI 에서 보던 흐름(해석확인 → 물량승인 → 추출승인 → 결과 → diff)을 **글로 재현**해 나중에 다시
+읽는 용도. 각 단계의 카드 전문(해석확인의 개념 목록·설명·유사도 점수, 최종 `report_text`)을 **자르지
+않고** 담는다. 단계가 일부 안 나오면(예: 신규 0편이라 추출승인 미도달) 도달한 단계까지만 기록.
+
+### 파일 `eval/runs/{timestamp}.json` (기계 비교용)
+
+콘솔 diff 와 동일 내용 + 단계별 payload(`stages`) + `report_text` 를 구조화 저장(7월 회차 비교의 토대).
+실제 예시:
 
 ```json
 {
   "query": "llm 에이전트 메모리 관련 조사해줘",
   "time": "2026-06-16T02:29:32",
+  "thread": "test-5dc82b8c",
   "added_concepts": ["gaze heads"],
   "added_papers": ["2606.14703", "2606.14704"],
   "added_edges": [],
   "lexicon_added": ["Image Heads", "Localization Heads", "gaze heads"],
-  "lexicon_new_unreviewed": ["gaze heads"]
+  "lexicon_new_unreviewed": ["gaze heads"],
+  "stages": [
+    {"stage": "interpret", "topic": "...", "status_report": "...전문...", "input": "proceed"},
+    {"stage": "approve", "counts": {"found": 50, "owned_excluded": 0, "gate_excluded": 0, "new": 50}, "input": "proceed"},
+    {"stage": "extract_confirm", "passed_count": 35, "to_extract": ["..."], "input": "proceed"}
+  ],
+  "report_text": "추출 완료 …"
 }
 ```
 
