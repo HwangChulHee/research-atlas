@@ -184,7 +184,8 @@ def patch_lexicon(name: str, patch: dict = Body(...)):
     """한 개념의 부분 업데이트. 전달된 필드만 수정 + Neo4j 증분 동기화(T0 표 6·9).
 
     - status → 'rejected': 노드·엣지 삭제(reject_concept).
-    - definition 전달: Neo4j 정의 갱신 + 재임베딩(update_definition).
+    - definition 전달: Neo4j 정의 갱신 + 재임베딩(update_definition). **임시 라이브 오버레이** —
+      재빌드 시 추출 정의로 복귀(정의 정본은 논문 추출). 정의 교정의 올바른 해법은 정본 교정.
     - status 를 approved/unreviewed 로 *상향*: 즉시 노드화는 범위 밖(표#7) — 감사가 리포트.
     """
     from graphdb.write import reject_concept, update_definition
@@ -201,15 +202,21 @@ def patch_lexicon(name: str, patch: dict = Body(...)):
     save_lexicon(lex)
 
     rk = canon(name)
+    note = None
     try:
         if patch.get("status") == "rejected":
             reject_concept(rk)
         if "definition" in patch:
             update_definition(rk, patch["definition"])
+            note = ("정의는 임시 라이브 오버레이입니다 — 재빌드 시 추출 정의로 복귀합니다"
+                    "(정의 정본은 논문 추출). 영구 교정은 정본(concepts.json) 수정/재추출로.")
     except Exception as e:  # noqa: BLE001  (lexicon은 이미 저장됨 — rebuild로 복구 가능)
         return {"ok": True, "name": name, "neo4j_sync": f"실패({type(e).__name__})",
                 **techniques[name]}
-    return {"ok": True, "name": name, **techniques[name]}
+    resp = {"ok": True, "name": name, **techniques[name]}
+    if note:
+        resp["note"] = note
+    return resp
 
 
 @app.post("/api/lexicon/merge")

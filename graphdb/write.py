@@ -195,9 +195,14 @@ def merge_concept(src_rk, dst_rk, *, driver=None):
 def update_definition(rk, definition, *, driver=None, embed=True):
     """T0#9: 사람이 개념 정의 수정 → Neo4j SET 정의 + 재임베딩 + 캐시 갱신.
 
-    주의(정의 출처): 그래프의 개념 정의 정본은 '논문 추출'(concepts.json→normalize_core)이다.
-    이 함수는 사람이 손으로 고친 정의를 라이브로 덮어쓴다 — 전체 재빌드 시 논문 정의로 되돌 수
-    있다(0.4 류의 알려진 한계). 감사(--audit)가 lexicon↔Neo4j 정의 드리프트를 리포트한다.
+    이건 **임시 라이브 오버레이**다 — 전체 재빌드(/api/rebuild) 시 추출 정의로 복귀한다.
+    설계상 의도다(버그 아님): 개념 정의의 정본은 '논문 추출'(concepts.json→normalize_core)이고,
+    사람이 lexicon에서 하는 일은 정의 작성이 아니라 자격 판정(approve/reject)·동일성 판정
+    (merge/alias)이다. 정의 자체는 추출 산물로 둔다. 감사(--audit C)가 lexicon↔Neo4j 정의
+    드리프트를 리포트한다.
+
+    정의가 틀렸을 때의 올바른 해법은 정본 교정이다 — 그 개념을 정의한 논문의 concepts.json을
+    고치거나(추출 오류 교정) 재추출 후 재빌드. "정의를 바꾸려면 정본을 바꿔라."
     """
     definition = (definition or "").strip()
     vec = None

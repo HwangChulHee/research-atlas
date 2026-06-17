@@ -18,7 +18,9 @@
 
 **T6 감사** `verify.py --audit`: lexicon.json↔Neo4j 드리프트 6종(A 거부인데노드 / B 별칭인데노드 / C 정의불일치 / D 닻깨짐 / E 노드누락 / E 노드잔재). 깨끗하면 전부 0·exit0, 드리프트 시 리포트·exit1(자동수정 안 함). row2 'NODE_OK인데 노드없음'은 lexicon-status 직접 비교가 미참조 시드 6건 오탐 → **재빌드 오라클(normalized_v2.json) 집합 비교**로 구현(clean=0).
 
-**알려진 한계(범위 밖, 후속 결정)**: 개념 정의의 정본은 '논문 추출'(concepts.json→normalize_core)이라 `update_definition`의 사람 손편집은 **전체 재빌드 시 논문 정의로 되돌아감**(verify는 통과 — 재빌드가 자기일관). 현재 lexicon의 비어있지않은 정의 33개는 전부 노드 정의와 동일(=오늘 기준 무영향). 손편집을 재빌드까지 보존하려면 `normalize_core`가 `lexicon.definition`(비어있지않을 때)을 override하게 하면 됨 — 오늘 기준 byte-동일이라 안전하나 0.4 "normalize 불변" 지시와 충돌해 보류. 감사 C가 이 드리프트를 리포트.
+**정의 정본 — 결정 확정(override 미적용)**: 개념 정의의 정본은 '논문 추출'(concepts.json→normalize_core)로 **둔다**. `update_definition`은 **임시 라이브 오버레이**로 유지 — 전체 재빌드 시 추출 정의로 복귀(버그 아님, 올바른 모델 표현). 이유: (1) lexicon.definition override를 켜면 "추출 정의가 더 정확해도 lexicon 옛 정의가 영구 승"으로 0.4 최초정의승이 조용히 lexicon승으로 갈림 — 오늘 byte-동일은 우연이고 비용은 미래 논문에서 발생. (2) 지도 신뢰성은 "기계가 논문에서 뽑았고 사람이 임의로 안 고침"에서 나옴 — 사람이 lexicon에서 하는 일은 자격 판정(approve/reject)·동일성 판정(merge/alias)이지 정의 작성이 아님. **명시 처리**: `update_definition` docstring + patch API 응답 `note`에 "임시 오버레이, 재빌드 시 복귀, 영구 교정은 정본(concepts.json) 수정/재추출" 박음. 감사 C가 lexicon↔Neo4j 정의 드리프트 리포트.
+
+**wipe 격리 확인**: `wipe()`는 재빌드 경로(load.py main)에만 1곳. write.py는 `wipe` import 안 함(ensure_constraints만), 증분 삭제는 전부 id 지정 단일노드(reject/merge)뿐 — 전역 wipe 없음. 증분 경로에 wipe 끼면 그래프 날아가므로 명시 검증함.
 
 **미적용(핸드오프 범위 밖 명시)**: eval test_collect B층 Neo4j 읽기 전환, 벡터 ANN 인덱스, lexicon SQLite화, 0.4 순서의존 버그 수정.
 
