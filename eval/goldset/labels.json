@@ -3,7 +3,7 @@
     "purpose": "goldset builds_on 정답 (사람 라벨, 채점 정본)",
     "rubric": "abstract+intro에 고유명사로 등장 + 확장/개선/베이스라인비교 중 하나. 인용(author-year)을 풀어 넣지 않음. 사용한 알고리즘·보통명사·동류 맥락언급 제외.",
     "status": "in_progress",
-    "labeled": 1,
+    "labeled": 3,
     "total": 50
   },
   "labels": {
