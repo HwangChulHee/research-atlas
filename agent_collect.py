@@ -787,7 +787,9 @@ def gnode_report(state):
             return {"report_text": f"추출 취소 — 관문 {len(gr)}편 완료(통과 {passed}편), 추출 안 함."}
         return {"report_text": "수집 취소 — 관문/추출 안 함."}
     ex = state.get("extracted", [])
-    return {"report_text": f"추출 완료 {len(ex)}편(Neo4j 반영 완료): {ex}"}
+    tail = "오프라인(eval) — Neo4j 미반영, rebuild 시 정본에서 합류" if is_offline() \
+        else "Neo4j 반영 완료"
+    return {"report_text": f"추출 완료 {len(ex)}편({tail}): {ex}"}
 
 
 def build_collect_graph(checkpointer=None):

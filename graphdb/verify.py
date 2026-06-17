@@ -3,6 +3,11 @@
 expected_from_json(include_papers) = build_graph_view 로직의 충실한 포트(JSON 직독).
 actual = api.graph_neo4j.graph_view_neo4j(include_papers) — 실제 프로덕션 함수.
 papers=false / papers=true 둘 다 비교. 순서가 무의미한 것(papers 리스트, 엣지)은 정렬/집합화 후 비교.
+
+주의: 단독 실행 전 normalize_v2.py 를 먼저 돌려 오라클(normalized_v2.json)을 최신화할 것.
+      API lexicon 편집(patch/merge)은 오라클을 갱신하지 않으므로, 편집 직후 verify 를 바로
+      부르면 stale 오라클과 비교해 FAIL 할 수 있다(드리프트 아님). /api/rebuild 는
+      normalize→load→verify 순서라 무관.
 """
 import json, sys
 from pathlib import Path
