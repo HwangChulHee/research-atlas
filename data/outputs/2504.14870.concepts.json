@@ -1,0 +1,31 @@
+{
+  "title": "Optimal Tool Call-controlled Policy Optimization for Tool-Integrated Reasoning",
+  "task": [
+    "tool-integrated reasoning",
+    "large language model reinforcement learning",
+    "question answering"
+  ],
+  "defines": [
+    {
+      "name": "OTC-PO",
+      "definition": "A reinforcement-learning framework that optimizes tool-integrated reasoning with rewards that balance answer correctness and minimal tool usage."
+    },
+    {
+      "name": "OTC-PPO",
+      "definition": "An instantiation of OTC-PO using Proximal Policy Optimization."
+    },
+    {
+      "name": "OTC-GRPO",
+      "definition": "An instantiation of OTC-PO using Group Relative Preference Optimization."
+    }
+  ],
+  "uses": [
+    "tool-integrated reward",
+    "Proximal Policy Optimization",
+    "Group Relative Preference Optimization",
+    "tool productivity"
+  ],
+  "problem": "Existing RL methods for tool-integrated reasoning optimize final correctness but ignore tool-use efficiency, leading to excessive tool calling and cognitive offloading.",
+  "domain": "general",
+  "paper_type": "technique"
+}

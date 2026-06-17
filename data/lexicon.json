@@ -1152,6 +1152,286 @@
       "definition": "",
       "source": "defines",
       "first_seen": "2605.01302"
+    },
+    "DeepSeek-R1-Zero": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2501.12948"
+    },
+    "DeepSeek-R1": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2501.12948"
+    },
+    "Group Relative Policy Optimization": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2501.12948"
+    },
+    "supervised fine-tuning": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2501.12948"
+    },
+    "SEARCH-R1": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2503.09516"
+    },
+    "Search-o1": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2501.05366"
+    },
+    "R1-Searcher++": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2505.17005"
+    },
+    "DeepResearcher": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2504.03160"
+    },
+    "R1-Searcher": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2504.03160"
+    },
+    "ReSearch": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2504.03160"
+    },
+    "DeepRAG": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2502.01142"
+    },
+    "RARE": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2503.23513"
+    },
+    "WebThinker": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2504.21776"
+    },
+    "RAG-Gym": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2502.13957"
+    },
+    "Re2Search++": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2502.13957"
+    },
+    "s3": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2505.14146"
+    },
+    "Gain Beyond RAG (GBR)": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2505.14146"
+    },
+    "DeepRetrieval": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2505.14146"
+    },
+    "Active RAG": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2505.14146"
+    },
+    "StarPO": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2504.20073"
+    },
+    "RAGEN": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2504.20073"
+    },
+    "StarPO-S": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2504.20073"
+    },
+    "RL": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2504.20073"
+    },
+    "SFT": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2504.20073"
+    },
+    "OTC-PO": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2504.14870"
+    },
+    "OTC-PPO": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2504.14870"
+    },
+    "OTC-GRPO": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2504.14870"
+    },
+    "GRPO": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2504.14870"
+    },
+    "ReasoningBank": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2509.25140"
+    },
+    "MaTTS": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2509.25140"
+    },
+    "trajectory memory": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2509.25140"
+    },
+    "workflow memory": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2509.25140"
+    },
+    "KG-R1": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2509.26383"
+    },
+    "ToG": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2509.26383"
+    },
+    "ReKnoS": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2509.26383"
+    },
+    "RoG": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2509.26383"
+    },
+    "HiPRAG": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2510.07794"
+    },
+    "GlobalRAG": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2510.20548"
+    },
+    "MARAG-R1": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2510.27569"
+    },
+    "Bi-RAR": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "defines",
+      "first_seen": "2511.09109"
     }
   }
 }

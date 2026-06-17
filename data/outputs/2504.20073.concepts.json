@@ -1,0 +1,38 @@
+{
+  "title": "RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning",
+  "task": [
+    "LLM agent training",
+    "multi-turn reinforcement learning",
+    "interactive environment learning",
+    "agent evaluation"
+  ],
+  "defines": [
+    {
+      "name": "StarPO",
+      "definition": "A general trajectory-level reinforcement learning framework for training LLM agents with multi-turn rollouts, state-thinking-action-reward representations, and policy optimization."
+    },
+    {
+      "name": "RAGEN",
+      "definition": "A modular system for training and evaluating LLM agents under multi-turn and stochastic reinforcement learning settings."
+    },
+    {
+      "name": "StarPO-S",
+      "definition": "A stabilized variant of StarPO that improves multi-turn RL robustness through trajectory filtering, critic baselining, and gradient stabilization."
+    }
+  ],
+  "uses": [
+    "trajectory-level reward assignment",
+    "multi-turn rollouts",
+    "policy optimization",
+    "trajectory filtering",
+    "critic baselining",
+    "gradient stabilization",
+    "decoupled clipping",
+    "validated prompts",
+    "rollout generation",
+    "reward assignment"
+  ],
+  "problem": "Training LLM agents with reinforcement learning is unstable and underexplored for multi-turn interactive settings with stochastic feedback, making self-evolution and reasoning difficult to learn reliably.",
+  "domain": "general",
+  "paper_type": "technique"
+}

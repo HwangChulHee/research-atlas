@@ -1,0 +1,26 @@
+{
+  "title": "DeepResearcher: Scaling Reinforcement Learning for LLM-based Research Agents in Real-World Environments",
+  "task": [
+    "open-domain question answering",
+    "deep research",
+    "web search-based information synthesis"
+  ],
+  "defines": [
+    {
+      "name": "DeepResearcher",
+      "definition": "A reinforcement-learning framework for training LLM-based research agents to interact with live web search engines and perform iterative reasoning and evidence gathering in real-world environments."
+    }
+  ],
+  "uses": [
+    "reinforcement learning",
+    "multi-agent architecture",
+    "browsing agents",
+    "web search",
+    "search APIs",
+    "webpage parsing",
+    "outcome rewards"
+  ],
+  "problem": "Existing prompt-engineered and RAG-based research agents are brittle and fail to capture the noise, heterogeneity, and dynamics of real-world web search.",
+  "domain": "general",
+  "paper_type": "technique"
+}

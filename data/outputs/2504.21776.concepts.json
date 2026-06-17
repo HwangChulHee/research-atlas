@@ -1,0 +1,29 @@
+{
+  "title": "WebThinker: Deep Research Agent via Autonomous Think-Search-and-Draft",
+  "task": [
+    "deep research",
+    "web-assisted reasoning",
+    "scientific report generation",
+    "knowledge-intensive question answering"
+  ],
+  "defines": [
+    {
+      "name": "WebThinker",
+      "definition": "An autonomous deep research agent that lets large reasoning models search, navigate, and draft reports on the web during the reasoning process."
+    }
+  ],
+  "uses": [
+    "Deep Web Explorer",
+    "Autonomous Think-Search-and-Draft",
+    "interactive web clicking",
+    "follow-up search",
+    "draft content tool",
+    "report checking tool",
+    "report editing tool",
+    "iterative online Direct Preference Optimization",
+    "RL-based training"
+  ],
+  "problem": "Large reasoning models relying on static internal knowledge struggle with knowledge-intensive tasks and comprehensive report generation that require dynamic web exploration and synthesis.",
+  "domain": "general",
+  "paper_type": "technique"
+}

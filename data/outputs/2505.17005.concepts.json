@@ -1,0 +1,25 @@
+{
+  "title": "R1-Searcher++",
+  "task": [
+    "retrieval-augmented generation",
+    "reasoning",
+    "question answering"
+  ],
+  "defines": [
+    {
+      "name": "R1-Searcher++",
+      "definition": "A two-stage training framework that teaches LLMs to adaptively use internal knowledge and external retrieval while memorizing useful retrieved information."
+    }
+  ],
+  "uses": [
+    "supervised fine-tuning",
+    "reinforcement learning",
+    "outcome supervision",
+    "reject sampling",
+    "memory mechanism",
+    "external search engine"
+  ],
+  "problem": "Existing RAG methods are often costly, generalize poorly, or over-rely on external retrieval while ignoring the model's internal knowledge.",
+  "domain": "general",
+  "paper_type": "technique"
+}

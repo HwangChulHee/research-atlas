@@ -1,0 +1,32 @@
+{
+  "title": "RAG-Gym: A Framework for Process Supervision in Autonomous Search Agents",
+  "task": [
+    "autonomous information-seeking",
+    "multi-hop question answering",
+    "search agent training",
+    "retrieval-augmented generation"
+  ],
+  "defines": [
+    {
+      "name": "RAG-Gym",
+      "definition": "A framework that formulates agentic search as an MDP and shifts supervision from final answers to intermediate search processes."
+    },
+    {
+      "name": "Re2Search++",
+      "definition": "A process-supervised search agent built on RAG-Gym and Re2Search that improves multi-hop information-seeking performance."
+    }
+  ],
+  "uses": [
+    "Markov Decision Process",
+    "process-level supervision",
+    "reasoning reflection",
+    "search queries as macro-actions",
+    "architecture design",
+    "parameter optimization",
+    "action evaluation",
+    "Re2Search"
+  ],
+  "problem": "Outcome-supervised search agents are prone to reward hacking, over-rely on parametric memory, and generalize poorly to out-of-domain information-seeking tasks.",
+  "domain": "search",
+  "paper_type": "technique"
+}

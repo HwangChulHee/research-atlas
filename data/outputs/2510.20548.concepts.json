@@ -1,0 +1,23 @@
+{
+  "title": "GlobalRAG: A Reinforcement Learning Framework for Global Reasoning in Multi-hop QA",
+  "task": [
+    "multi-hop question answering",
+    "retrieval-augmented generation",
+    "reinforcement learning for reasoning and retrieval"
+  ],
+  "defines": [
+    {
+      "name": "GlobalRAG",
+      "definition": "A reinforcement learning framework that improves global reasoning in multi-hop QA by decomposing questions into subgoals and coordinating retrieval with reasoning."
+    }
+  ],
+  "uses": [
+    "GRPO",
+    "Planning Quality Reward",
+    "SubGoal Completion Reward",
+    "progressive weight annealing"
+  ],
+  "problem": "Existing RL-based RAG methods lack global planning and faithful execution, which limits multi-step reasoning in multi-hop question answering.",
+  "domain": "general",
+  "paper_type": "technique"
+}

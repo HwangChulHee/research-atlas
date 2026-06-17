@@ -1,0 +1,27 @@
+{
+  "title": "Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG Systems",
+  "task": [
+    "analytical survey",
+    "taxonomy",
+    "comparative analysis",
+    "application review"
+  ],
+  "defines": [],
+  "uses": [
+    "reflection",
+    "planning",
+    "tool use",
+    "multi-agent collaboration",
+    "prompt chaining",
+    "routing",
+    "parallelization",
+    "orchestrator-worker models",
+    "evaluator-optimizer loops",
+    "vector databases",
+    "APIs",
+    "web sources"
+  ],
+  "problem": "Traditional RAG systems are static and linear, limiting multi-step reasoning, iterative refinement, and adaptive workflow control for dynamic external knowledge.",
+  "domain": "general",
+  "paper_type": "survey"
+}

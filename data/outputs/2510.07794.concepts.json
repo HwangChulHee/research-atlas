@@ -1,0 +1,28 @@
+{
+  "title": "Hierarchical Process Rewards for Efficient agentic RAG",
+  "task": [
+    "reinforcement learning",
+    "agentic retrieval-augmented generation",
+    "question answering",
+    "retrieval efficiency optimization"
+  ],
+  "defines": [
+    {
+      "name": "HiPRAG",
+      "definition": "A hierarchical process-reward training framework for agentic RAG that gives step-level feedback on search decisions to improve both answer quality and retrieval efficiency."
+    }
+  ],
+  "uses": [
+    "rule-based step parsing",
+    "process reward",
+    "format reward",
+    "answer reward",
+    "external LLM verification",
+    "over-search detection",
+    "under-search detection",
+    "PPO"
+  ],
+  "problem": "Current agentic RAG training relies too much on coarse outcome rewards and fails to provide fine-grained control over redundant or missing search decisions, leading to inefficient and unreliable retrieval behavior.",
+  "domain": "general",
+  "paper_type": "technique"
+}

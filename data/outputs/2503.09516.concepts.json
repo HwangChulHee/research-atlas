@@ -1,0 +1,27 @@
+{
+  "title": "SEARCH-R1",
+  "task": [
+    "retrieval-augmented reasoning",
+    "question answering",
+    "search engine interaction"
+  ],
+  "defines": [
+    {
+      "name": "SEARCH-R1",
+      "definition": "A reinforcement learning framework that trains large language models to interleave multi-turn search queries with step-by-step reasoning for retrieval-augmented decision-making."
+    }
+  ],
+  "uses": [
+    "reinforcement learning",
+    "PPO",
+    "GRPO",
+    "retrieved token masking",
+    "outcome-based reward",
+    "multi-turn retrieval",
+    "interleaved reasoning and search",
+    "search engine"
+  ],
+  "problem": "Existing LLMs are not optimized to interact effectively with search engines during reasoning, making search-augmented inference unstable and suboptimal.",
+  "domain": "general",
+  "paper_type": "technique"
+}

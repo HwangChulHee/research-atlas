@@ -1,0 +1,28 @@
+{
+  "title": "Bi-RAR: Bidirectional Retrieval-Augmented Reasoning with Information Distance",
+  "task": [
+    "question answering",
+    "retrieval-augmented reasoning",
+    "multi-step reasoning"
+  ],
+  "defines": [
+    {
+      "name": "Bi-RAR",
+      "definition": "A retrieval-augmented reasoning framework that evaluates each intermediate reasoning step in both forward and backward directions using bidirectional information distance and optimizes it with multi-objective reinforcement learning."
+    }
+  ],
+  "uses": [
+    "retrieval-augmented generation",
+    "search engine interaction",
+    "Kolmogorov complexity",
+    "normalized information distance",
+    "language model generation probabilities",
+    "multi-objective reinforcement learning",
+    "cascading reward structure",
+    "group relative policy optimization (GRPO)",
+    "weight-space interpolation"
+  ],
+  "problem": "Existing retrieval-augmented reasoning methods rely on outcome-based supervision that gives no explicit guidance for intermediate steps, leading to inefficient reasoning and reward hacking.",
+  "domain": "general",
+  "paper_type": "technique"
+}

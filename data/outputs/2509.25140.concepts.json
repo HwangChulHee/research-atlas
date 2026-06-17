@@ -1,0 +1,29 @@
+{
+  "title": "ReasoningBank: Scaling Agent Self-Evolving with Reasoning Memory",
+  "task": [
+    "agent memory",
+    "test-time scaling",
+    "web browsing",
+    "software engineering"
+  ],
+  "defines": [
+    {
+      "name": "ReasoningBank",
+      "definition": "A memory framework that distills generalizable reasoning strategies from an agent’s self-judged successful and failed experiences and retrieves them to guide future interactions."
+    },
+    {
+      "name": "MaTTS",
+      "definition": "Memory-aware test-time scaling that increases an agent’s interaction experience to accelerate and diversify memory formation."
+    }
+  ],
+  "uses": [
+    "self-judged successful and failed experiences",
+    "retrieval of relevant memories",
+    "integrating new learnings back into memory",
+    "contrastive signals",
+    "scaling up interaction experience"
+  ],
+  "problem": "Existing agent memory methods mainly store raw trajectories or successful routines, so agents do not effectively learn from accumulated experience or self-improve over time.",
+  "domain": "general",
+  "paper_type": "technique"
+}

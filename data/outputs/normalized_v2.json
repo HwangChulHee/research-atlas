@@ -1711,6 +1711,84 @@
       "def_status": "ok",
       "status": "approved"
     },
+    "paper:2501.05366": {
+      "type": "paper",
+      "title": "Search-o1: Agentic Retrieval-Augmented Generation for Large Reasoning Models",
+      "problem": "Large reasoning models often encounter knowledge insufficiency during long reasoning chains, causing uncertainty and errors.",
+      "task": [
+        "reasoning",
+        "retrieval-augmented generation",
+        "open-domain question answering"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
+    "concept:search o1": {
+      "type": "concept",
+      "canonical": "Search-o1",
+      "definition": "A framework that augments large reasoning models with agentic search-driven retrieval and document reasoning to supply external knowledge during stepwise reasoning.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "paper:2501.09136": {
+      "type": "paper",
+      "title": "Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG Systems",
+      "problem": "Traditional RAG systems are static and linear, limiting multi-step reasoning, iterative refinement, and adaptive workflow control for dynamic external knowledge.",
+      "task": [
+        "analytical survey",
+        "taxonomy",
+        "comparative analysis",
+        "application review"
+      ],
+      "domain": "general",
+      "paper_type": "survey"
+    },
+    "paper:2501.12948": {
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning Capability in Large Language Models via Reinforcement Learning",
+      "problem": "Existing reasoning methods rely heavily on human-annotated reasoning traces and supervised demonstrations, which limit scalability and constrain models to human-like reasoning paths.",
+      "task": [
+        "reasoning",
+        "mathematical problem solving",
+        "coding",
+        "STEM question answering",
+        "model distillation"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
+    "concept:deepseek r1 zero": {
+      "type": "concept",
+      "canonical": "DeepSeek-R1-Zero",
+      "definition": "An LLM trained with pure reinforcement learning on verifiable rewards to elicit emergent reasoning behaviors without supervised fine-tuning.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "concept:deepseek r1": {
+      "type": "concept",
+      "canonical": "DeepSeek-R1",
+      "definition": "A multi-stage reasoning model that combines reinforcement learning, rejection sampling, and supervised fine-tuning to improve reasoning while aligning behavior with human preferences.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "paper:2502.01142": {
+      "type": "paper",
+      "title": "DeepRAG",
+      "problem": "LLMs suffer from factual hallucinations, and existing RAG methods struggle to reason effectively because they produce inefficient decompositions and redundant retrievals that add noise.",
+      "task": [
+        "retrieval-augmented reasoning",
+        "question answering"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
+    "concept:deeprag": {
+      "type": "concept",
+      "canonical": "DeepRAG",
+      "definition": "A retrieval-augmented reasoning framework that models the retrieval process as a Markov Decision Process to enable adaptive, stepwise retrieval or parametric reasoning.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
     "paper:2502.04413": {
       "type": "paper",
       "title": "MedRAG: A Knowledge Graph-Elicited Reasoning Enhanced Retrieval-Augmented Generation Model for Medical Diagnosis",
@@ -1764,6 +1842,33 @@
       "def_status": "ok",
       "status": "approved"
     },
+    "paper:2502.13957": {
+      "type": "paper",
+      "title": "RAG-Gym: A Framework for Process Supervision in Autonomous Search Agents",
+      "problem": "Outcome-supervised search agents are prone to reward hacking, over-rely on parametric memory, and generalize poorly to out-of-domain information-seeking tasks.",
+      "task": [
+        "autonomous information-seeking",
+        "multi-hop question answering",
+        "search agent training",
+        "retrieval-augmented generation"
+      ],
+      "domain": "search",
+      "paper_type": "technique"
+    },
+    "concept:rag gym": {
+      "type": "concept",
+      "canonical": "RAG-Gym",
+      "definition": "A framework that formulates agentic search as an MDP and shifts supervision from final answers to intermediate search processes.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "concept:re2search++": {
+      "type": "concept",
+      "canonical": "Re2Search++",
+      "definition": "A process-supervised search agent built on RAG-Gym and Re2Search that improves multi-hop information-seeking performance.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
     "paper:2502.14802": {
       "type": "paper",
       "title": "From RAG to Memory: Non-Parametric Continual Learning for Large Language Models",
@@ -1787,6 +1892,52 @@
       "def_status": "ok",
       "status": "approved"
     },
+    "paper:2503.00223": {
+      "type": "paper",
+      "title": "DeepRetrieval",
+      "problem": "LLM-based query augmentation usually depends on expensive supervised learning or distillation and does not directly optimize for retrieval effectiveness.",
+      "task": [
+        "query generation",
+        "query rewriting",
+        "information retrieval",
+        "literature search",
+        "evidence-seeking retrieval",
+        "SQL database search"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
+    "paper:2503.09516": {
+      "type": "paper",
+      "title": "SEARCH-R1",
+      "problem": "Existing LLMs are not optimized to interact effectively with search engines during reasoning, making search-augmented inference unstable and suboptimal.",
+      "task": [
+        "retrieval-augmented reasoning",
+        "question answering",
+        "search engine interaction"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
+    "concept:search r1": {
+      "type": "concept",
+      "canonical": "SEARCH-R1",
+      "definition": "A reinforcement learning framework that trains large language models to interleave multi-turn search queries with step-by-step reasoning for retrieval-augmented decision-making.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "paper:2503.19470": {
+      "type": "paper",
+      "title": "ReSearch: Reasoning with Search via Reinforcement Learning",
+      "problem": "Existing multi-step RAG methods rely on manual prompts or supervised reasoning traces and struggle to jointly train robust reasoning and search for complex multi-hop questions.",
+      "task": [
+        "multi-hop question answering",
+        "retrieval-augmented reasoning",
+        "reasoning with search"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
     "paper:2503.21322": {
       "type": "paper",
       "title": "HyperGraphRAG: A Hypergraph-based Retrieval-Augmented Generation Framework for Knowledge-intensive Applications",
@@ -1806,6 +1957,299 @@
       "definition": "A hypergraph-based RAG framework that represents and retrieves n-ary relational facts with hyperedges to improve knowledge-intensive generation.",
       "def_status": "ok",
       "status": "approved"
+    },
+    "paper:2503.23513": {
+      "type": "paper",
+      "title": "Retrieval-Augmented Reasoning Modeling (RARE)",
+      "problem": "LLMs struggle to combine specialized domain knowledge with strong domain-specific reasoning, especially under constrained parameter budgets, leading to hallucination and weak reasoning.",
+      "task": [
+        "domain-specific question answering",
+        "reasoning"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
+    "concept:rare": {
+      "type": "concept",
+      "canonical": "RARE",
+      "definition": "A retrieval-augmented training paradigm that externalizes domain knowledge to retrievable sources while internalizing domain-specific reasoning patterns during training.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "paper:2504.03160": {
+      "type": "paper",
+      "title": "DeepResearcher: Scaling Reinforcement Learning for LLM-based Research Agents in Real-World Environments",
+      "problem": "Existing prompt-engineered and RAG-based research agents are brittle and fail to capture the noise, heterogeneity, and dynamics of real-world web search.",
+      "task": [
+        "open-domain question answering",
+        "deep research",
+        "web search-based information synthesis"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
+    "concept:deepresearcher": {
+      "type": "concept",
+      "canonical": "DeepResearcher",
+      "definition": "A reinforcement-learning framework for training LLM-based research agents to interact with live web search engines and perform iterative reasoning and evidence gathering in real-world environments.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "paper:2504.14870": {
+      "type": "paper",
+      "title": "Optimal Tool Call-controlled Policy Optimization for Tool-Integrated Reasoning",
+      "problem": "Existing RL methods for tool-integrated reasoning optimize final correctness but ignore tool-use efficiency, leading to excessive tool calling and cognitive offloading.",
+      "task": [
+        "tool-integrated reasoning",
+        "large language model reinforcement learning",
+        "question answering"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
+    "concept:otc po": {
+      "type": "concept",
+      "canonical": "OTC-PO",
+      "definition": "A reinforcement-learning framework that optimizes tool-integrated reasoning with rewards that balance answer correctness and minimal tool usage.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "concept:otc ppo": {
+      "type": "concept",
+      "canonical": "OTC-PPO",
+      "definition": "An instantiation of OTC-PO using Proximal Policy Optimization.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "concept:otc grpo": {
+      "type": "concept",
+      "canonical": "OTC-GRPO",
+      "definition": "An instantiation of OTC-PO using Group Relative Preference Optimization.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "paper:2504.20073": {
+      "type": "paper",
+      "title": "RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning",
+      "problem": "Training LLM agents with reinforcement learning is unstable and underexplored for multi-turn interactive settings with stochastic feedback, making self-evolution and reasoning difficult to learn reliably.",
+      "task": [
+        "LLM agent training",
+        "multi-turn reinforcement learning",
+        "interactive environment learning",
+        "agent evaluation"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
+    "concept:starpo": {
+      "type": "concept",
+      "canonical": "StarPO",
+      "definition": "A general trajectory-level reinforcement learning framework for training LLM agents with multi-turn rollouts, state-thinking-action-reward representations, and policy optimization.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "concept:ragen": {
+      "type": "concept",
+      "canonical": "RAGEN",
+      "definition": "A modular system for training and evaluating LLM agents under multi-turn and stochastic reinforcement learning settings.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "concept:starpo s": {
+      "type": "concept",
+      "canonical": "StarPO-S",
+      "definition": "A stabilized variant of StarPO that improves multi-turn RL robustness through trajectory filtering, critic baselining, and gradient stabilization.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "paper:2504.21776": {
+      "type": "paper",
+      "title": "WebThinker: Deep Research Agent via Autonomous Think-Search-and-Draft",
+      "problem": "Large reasoning models relying on static internal knowledge struggle with knowledge-intensive tasks and comprehensive report generation that require dynamic web exploration and synthesis.",
+      "task": [
+        "deep research",
+        "web-assisted reasoning",
+        "scientific report generation",
+        "knowledge-intensive question answering"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
+    "concept:webthinker": {
+      "type": "concept",
+      "canonical": "WebThinker",
+      "definition": "An autonomous deep research agent that lets large reasoning models search, navigate, and draft reports on the web during the reasoning process.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "paper:2505.14146": {
+      "type": "paper",
+      "title": "s3: Searcher for Search-Only Reinforcement Learning in Retrieval-Augmented Generation",
+      "problem": "Existing agentic RAG methods either optimize retrieval with metrics disconnected from answer quality or entangle retrieval and generation, making search optimization less effective and less compatible with frozen or black-box LLMs.",
+      "task": [
+        "retrieval-augmented generation",
+        "question answering",
+        "search agent training",
+        "reinforcement learning"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
+    "concept:s3": {
+      "type": "concept",
+      "canonical": "s3",
+      "definition": "A modular RL-based search framework that trains only the retriever/searcher to improve downstream generation quality while keeping the generator frozen.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "concept:gain beyond rag (gbr)": {
+      "type": "concept",
+      "canonical": "Gain Beyond RAG (GBR)",
+      "definition": "A reward signal that measures the generation accuracy improvement from retrieved documents over naïve RAG.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "paper:2505.17005": {
+      "type": "paper",
+      "title": "R1-Searcher++",
+      "problem": "Existing RAG methods are often costly, generalize poorly, or over-rely on external retrieval while ignoring the model's internal knowledge.",
+      "task": [
+        "retrieval-augmented generation",
+        "reasoning",
+        "question answering"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
+    "concept:r1 searcher++": {
+      "type": "concept",
+      "canonical": "R1-Searcher++",
+      "definition": "A two-stage training framework that teaches LLMs to adaptively use internal knowledge and external retrieval while memorizing useful retrieved information.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "paper:2509.25140": {
+      "type": "paper",
+      "title": "ReasoningBank: Scaling Agent Self-Evolving with Reasoning Memory",
+      "problem": "Existing agent memory methods mainly store raw trajectories or successful routines, so agents do not effectively learn from accumulated experience or self-improve over time.",
+      "task": [
+        "agent memory",
+        "test-time scaling",
+        "web browsing",
+        "software engineering"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
+    "concept:reasoningbank": {
+      "type": "concept",
+      "canonical": "ReasoningBank",
+      "definition": "A memory framework that distills generalizable reasoning strategies from an agent’s self-judged successful and failed experiences and retrieves them to guide future interactions.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "concept:matts": {
+      "type": "concept",
+      "canonical": "MaTTS",
+      "definition": "Memory-aware test-time scaling that increases an agent’s interaction experience to accelerate and diversify memory formation.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "paper:2509.26383": {
+      "type": "paper",
+      "title": "KG-R1",
+      "problem": "Existing KG-RAG systems rely on costly multi-module pipelines and do not generalize well across different knowledge graphs or schema changes.",
+      "task": [
+        "knowledge graph question answering",
+        "retrieval-augmented generation",
+        "multi-hop reasoning"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
+    "concept:kg r1": {
+      "type": "concept",
+      "canonical": "KG-R1",
+      "definition": "An agentic KG-RAG framework that uses end-to-end multi-turn reinforcement learning to learn a single unified policy for reasoning and retrieval over knowledge graphs.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "paper:2510.07794": {
+      "type": "paper",
+      "title": "Hierarchical Process Rewards for Efficient agentic RAG",
+      "problem": "Current agentic RAG training relies too much on coarse outcome rewards and fails to provide fine-grained control over redundant or missing search decisions, leading to inefficient and unreliable retrieval behavior.",
+      "task": [
+        "reinforcement learning",
+        "agentic retrieval-augmented generation",
+        "question answering",
+        "retrieval efficiency optimization"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
+    "concept:hiprag": {
+      "type": "concept",
+      "canonical": "HiPRAG",
+      "definition": "A hierarchical process-reward training framework for agentic RAG that gives step-level feedback on search decisions to improve both answer quality and retrieval efficiency.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "paper:2510.20548": {
+      "type": "paper",
+      "title": "GlobalRAG: A Reinforcement Learning Framework for Global Reasoning in Multi-hop QA",
+      "problem": "Existing RL-based RAG methods lack global planning and faithful execution, which limits multi-step reasoning in multi-hop question answering.",
+      "task": [
+        "multi-hop question answering",
+        "retrieval-augmented generation",
+        "reinforcement learning for reasoning and retrieval"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
+    "concept:globalrag": {
+      "type": "concept",
+      "canonical": "GlobalRAG",
+      "definition": "A reinforcement learning framework that improves global reasoning in multi-hop QA by decomposing questions into subgoals and coordinating retrieval with reasoning.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "paper:2510.27569": {
+      "type": "paper",
+      "title": "MARAG-R1: Multi-tool Agentic Retrieval-Augmented Generation via Reinforcement Learning",
+      "problem": "Existing RAG systems typically rely on a single retriever with fixed top-k selection, which limits access to comprehensive external information needed for corpus-level reasoning.",
+      "task": [
+        "retrieval-augmented generation",
+        "corpus-level reasoning",
+        "multi-hop question answering"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
+    "concept:marag r1": {
+      "type": "concept",
+      "canonical": "MARAG-R1",
+      "definition": "A unified multi-tool agentic RAG framework that learns to coordinate multiple retrieval mechanisms with reinforcement learning for broader external information access and global reasoning.",
+      "def_status": "ok",
+      "status": "unreviewed"
+    },
+    "paper:2511.09109": {
+      "type": "paper",
+      "title": "Bi-RAR: Bidirectional Retrieval-Augmented Reasoning with Information Distance",
+      "problem": "Existing retrieval-augmented reasoning methods rely on outcome-based supervision that gives no explicit guidance for intermediate steps, leading to inefficient reasoning and reward hacking.",
+      "task": [
+        "question answering",
+        "retrieval-augmented reasoning",
+        "multi-step reasoning"
+      ],
+      "domain": "general",
+      "paper_type": "technique"
+    },
+    "concept:bi rar": {
+      "type": "concept",
+      "canonical": "Bi-RAR",
+      "definition": "A retrieval-augmented reasoning framework that evaluates each intermediate reasoning step in both forward and backward directions using bidirectional information distance and optimizes it with multi-objective reinforcement learning.",
+      "def_status": "ok",
+      "status": "unreviewed"
     },
     "paper:2605.01302": {
       "type": "paper",
@@ -2774,6 +3218,51 @@
     },
     {
       "type": "defines",
+      "from": "paper:2501.05366",
+      "to": "concept:search o1"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2501.05366",
+      "to": "concept:rag"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2501.09136",
+      "to": "concept:rag"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2501.09136",
+      "to": "concept:graphrag"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2501.12948",
+      "to": "concept:deepseek r1 zero"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2501.12948",
+      "to": "concept:deepseek r1"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2501.12948",
+      "to": "concept:cot"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2502.01142",
+      "to": "concept:deeprag"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2502.01142",
+      "to": "concept:rag"
+    },
+    {
+      "type": "defines",
       "from": "paper:2502.04413",
       "to": "concept:medrag"
     },
@@ -2804,6 +3293,21 @@
     },
     {
       "type": "defines",
+      "from": "paper:2502.13957",
+      "to": "concept:rag gym"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2502.13957",
+      "to": "concept:re2search++"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2502.13957",
+      "to": "concept:rag"
+    },
+    {
+      "type": "defines",
       "from": "paper:2502.14802",
       "to": "concept:hipporag 2"
     },
@@ -2816,6 +3320,36 @@
       "type": "builds_on",
       "from": "paper:2502.14802",
       "to": "concept:raptor"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2503.00223",
+      "to": "concept:dpr"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2503.00223",
+      "to": "concept:bm25"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2503.09516",
+      "to": "concept:search r1"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2503.09516",
+      "to": "concept:rag"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2503.19470",
+      "to": "concept:rag"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2503.19470",
+      "to": "concept:deepseek r1"
     },
     {
       "type": "defines",
@@ -2831,6 +3365,176 @@
       "type": "builds_on",
       "from": "paper:2503.21322",
       "to": "concept:graphrag"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2503.23513",
+      "to": "concept:rare"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2503.23513",
+      "to": "concept:rag"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2504.03160",
+      "to": "concept:deepresearcher"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2504.03160",
+      "to": "concept:rag"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2504.03160",
+      "to": "concept:search r1"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2504.14870",
+      "to": "concept:otc po"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2504.14870",
+      "to": "concept:otc ppo"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2504.14870",
+      "to": "concept:otc grpo"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2504.14870",
+      "to": "concept:ppo"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2504.20073",
+      "to": "concept:starpo"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2504.20073",
+      "to": "concept:ragen"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2504.20073",
+      "to": "concept:starpo s"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2504.21776",
+      "to": "concept:webthinker"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2504.21776",
+      "to": "concept:rag"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2505.14146",
+      "to": "concept:s3"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2505.14146",
+      "to": "concept:gain beyond rag (gbr)"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2505.14146",
+      "to": "concept:rag"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2505.14146",
+      "to": "concept:search r1"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2505.14146",
+      "to": "concept:self rag"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2505.17005",
+      "to": "concept:r1 searcher++"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2505.17005",
+      "to": "concept:rag"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2509.25140",
+      "to": "concept:reasoningbank"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2509.25140",
+      "to": "concept:matts"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2509.26383",
+      "to": "concept:kg r1"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2509.26383",
+      "to": "concept:rag"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2510.07794",
+      "to": "concept:hiprag"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2510.07794",
+      "to": "concept:rag"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2510.20548",
+      "to": "concept:globalrag"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2510.20548",
+      "to": "concept:graphrag"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2510.27569",
+      "to": "concept:marag r1"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2510.27569",
+      "to": "concept:rag"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2510.27569",
+      "to": "concept:graphrag"
+    },
+    {
+      "type": "defines",
+      "from": "paper:2511.09109",
+      "to": "concept:bi rar"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2511.09109",
+      "to": "concept:rag"
     },
     {
       "type": "defines",

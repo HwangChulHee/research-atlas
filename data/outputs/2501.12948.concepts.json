@@ -1,0 +1,31 @@
+{
+  "title": "DeepSeek-R1: Incentivizing Reasoning Capability in Large Language Models via Reinforcement Learning",
+  "task": [
+    "reasoning",
+    "mathematical problem solving",
+    "coding",
+    "STEM question answering",
+    "model distillation"
+  ],
+  "defines": [
+    {
+      "name": "DeepSeek-R1-Zero",
+      "definition": "An LLM trained with pure reinforcement learning on verifiable rewards to elicit emergent reasoning behaviors without supervised fine-tuning."
+    },
+    {
+      "name": "DeepSeek-R1",
+      "definition": "A multi-stage reasoning model that combines reinforcement learning, rejection sampling, and supervised fine-tuning to improve reasoning while aligning behavior with human preferences."
+    }
+  ],
+  "uses": [
+    "DeepSeek-V3-Base",
+    "Group Relative Policy Optimization",
+    "rejection sampling",
+    "supervised fine-tuning",
+    "reinforcement learning",
+    "distillation"
+  ],
+  "problem": "Existing reasoning methods rely heavily on human-annotated reasoning traces and supervised demonstrations, which limit scalability and constrain models to human-like reasoning paths.",
+  "domain": "general",
+  "paper_type": "technique"
+}

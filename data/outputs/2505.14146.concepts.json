@@ -1,0 +1,31 @@
+{
+  "title": "s3: Searcher for Search-Only Reinforcement Learning in Retrieval-Augmented Generation",
+  "task": [
+    "retrieval-augmented generation",
+    "question answering",
+    "search agent training",
+    "reinforcement learning"
+  ],
+  "defines": [
+    {
+      "name": "s3",
+      "definition": "A modular RL-based search framework that trains only the retriever/searcher to improve downstream generation quality while keeping the generator frozen."
+    },
+    {
+      "name": "Gain Beyond RAG (GBR)",
+      "definition": "A reward signal that measures the generation accuracy improvement from retrieved documents over naïve RAG."
+    }
+  ],
+  "uses": [
+    "reinforcement learning",
+    "frozen generator LLM",
+    "naïve RAG",
+    "top-k retrieval",
+    "generation accuracy",
+    "exact match",
+    "retrieval metrics"
+  ],
+  "problem": "Existing agentic RAG methods either optimize retrieval with metrics disconnected from answer quality or entangle retrieval and generation, making search optimization less effective and less compatible with frozen or black-box LLMs.",
+  "domain": "general",
+  "paper_type": "technique"
+}

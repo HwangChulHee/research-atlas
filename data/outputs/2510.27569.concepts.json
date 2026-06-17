@@ -1,0 +1,25 @@
+{
+  "title": "MARAG-R1: Multi-tool Agentic Retrieval-Augmented Generation via Reinforcement Learning",
+  "task": [
+    "retrieval-augmented generation",
+    "corpus-level reasoning",
+    "multi-hop question answering"
+  ],
+  "defines": [
+    {
+      "name": "MARAG-R1",
+      "definition": "A unified multi-tool agentic RAG framework that learns to coordinate multiple retrieval mechanisms with reinforcement learning for broader external information access and global reasoning."
+    }
+  ],
+  "uses": [
+    "semantic search",
+    "keyword search",
+    "filtering",
+    "aggregation",
+    "supervised fine-tuning",
+    "reinforcement learning"
+  ],
+  "problem": "Existing RAG systems typically rely on a single retriever with fixed top-k selection, which limits access to comprehensive external information needed for corpus-level reasoning.",
+  "domain": "general",
+  "paper_type": "technique"
+}

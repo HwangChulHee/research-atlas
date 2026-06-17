@@ -1,0 +1,24 @@
+{
+  "title": "Retrieval-Augmented Reasoning Modeling (RARE)",
+  "task": [
+    "domain-specific question answering",
+    "reasoning"
+  ],
+  "defines": [
+    {
+      "name": "RARE",
+      "definition": "A retrieval-augmented training paradigm that externalizes domain knowledge to retrievable sources while internalizing domain-specific reasoning patterns during training."
+    }
+  ],
+  "uses": [
+    "retrieval-augmented generation",
+    "masked losses",
+    "training prompts",
+    "external knowledge bases",
+    "continual pre-training",
+    "supervised fine-tuning"
+  ],
+  "problem": "LLMs struggle to combine specialized domain knowledge with strong domain-specific reasoning, especially under constrained parameter budgets, leading to hallucination and weak reasoning.",
+  "domain": "general",
+  "paper_type": "technique"
+}

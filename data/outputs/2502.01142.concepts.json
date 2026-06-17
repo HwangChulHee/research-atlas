@@ -1,0 +1,25 @@
+{
+  "title": "DeepRAG",
+  "task": [
+    "retrieval-augmented reasoning",
+    "question answering"
+  ],
+  "defines": [
+    {
+      "name": "DeepRAG",
+      "definition": "A retrieval-augmented reasoning framework that models the retrieval process as a Markov Decision Process to enable adaptive, stepwise retrieval or parametric reasoning."
+    }
+  ],
+  "uses": [
+    "Markov Decision Process",
+    "binary tree search",
+    "imitation learning",
+    "chain of calibration",
+    "iterative retrieval",
+    "subquery generation",
+    "atomic decision"
+  ],
+  "problem": "LLMs suffer from factual hallucinations, and existing RAG methods struggle to reason effectively because they produce inefficient decompositions and redundant retrievals that add noise.",
+  "domain": "general",
+  "paper_type": "technique"
+}

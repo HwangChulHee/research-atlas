@@ -1,0 +1,30 @@
+{
+  "title": "DeepRetrieval",
+  "task": [
+    "query generation",
+    "query rewriting",
+    "information retrieval",
+    "literature search",
+    "evidence-seeking retrieval",
+    "SQL database search"
+  ],
+  "defines": [
+    {
+      "name": "DeepRetrieval",
+      "definition": "A reinforcement learning framework that trains LLMs to generate or rewrite queries by directly optimizing retrieval performance with retrieval-metric rewards."
+    }
+  ],
+  "uses": [
+    "large language models",
+    "reinforcement learning",
+    "retrieval metrics",
+    "NDCG",
+    "PubMed",
+    "ClinicalTrials.gov",
+    "BM25",
+    "dense retrieval systems"
+  ],
+  "problem": "LLM-based query augmentation usually depends on expensive supervised learning or distillation and does not directly optimize for retrieval effectiveness.",
+  "domain": "general",
+  "paper_type": "technique"
+}

@@ -1,0 +1,26 @@
+{
+  "title": "KG-R1",
+  "task": [
+    "knowledge graph question answering",
+    "retrieval-augmented generation",
+    "multi-hop reasoning"
+  ],
+  "defines": [
+    {
+      "name": "KG-R1",
+      "definition": "An agentic KG-RAG framework that uses end-to-end multi-turn reinforcement learning to learn a single unified policy for reasoning and retrieval over knowledge graphs."
+    }
+  ],
+  "uses": [
+    "reinforcement learning",
+    "LLM agent",
+    "KG query server",
+    "retrieval actions",
+    "multi-turn interaction",
+    "turn-wise rewards",
+    "outcome-based rewards"
+  ],
+  "problem": "Existing KG-RAG systems rely on costly multi-module pipelines and do not generalize well across different knowledge graphs or schema changes.",
+  "domain": "general",
+  "paper_type": "technique"
+}

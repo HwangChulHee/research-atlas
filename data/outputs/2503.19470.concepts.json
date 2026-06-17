@@ -1,0 +1,26 @@
+{
+  "title": "ReSearch: Reasoning with Search via Reinforcement Learning",
+  "task": [
+    "multi-hop question answering",
+    "retrieval-augmented reasoning",
+    "reasoning with search"
+  ],
+  "defines": [
+    {
+      "name": "ReSearch",
+      "definition": "A reinforcement learning framework that trains LLMs to interleave text-based reasoning with search queries and retrieved results without supervised reasoning-step annotations."
+    }
+  ],
+  "uses": [
+    "reinforcement learning",
+    "GRPO",
+    "search queries",
+    "retrieval results",
+    "text-based thinking",
+    "Qwen2.5-7B(-Instruct)",
+    "Qwen2.5-32B(-Instruct)"
+  ],
+  "problem": "Existing multi-step RAG methods rely on manual prompts or supervised reasoning traces and struggle to jointly train robust reasoning and search for complex multi-hop questions.",
+  "domain": "general",
+  "paper_type": "technique"
+}

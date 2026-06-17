@@ -1,0 +1,24 @@
+{
+  "title": "Search-o1: Agentic Retrieval-Augmented Generation for Large Reasoning Models",
+  "task": [
+    "reasoning",
+    "retrieval-augmented generation",
+    "open-domain question answering"
+  ],
+  "defines": [
+    {
+      "name": "Search-o1",
+      "definition": "A framework that augments large reasoning models with agentic search-driven retrieval and document reasoning to supply external knowledge during stepwise reasoning."
+    }
+  ],
+  "uses": [
+    "agentic RAG",
+    "agentic search workflow",
+    "Reason-in-Documents module",
+    "knowledge refinement module",
+    "retrieval mechanism"
+  ],
+  "problem": "Large reasoning models often encounter knowledge insufficiency during long reasoning chains, causing uncertainty and errors.",
+  "domain": "general",
+  "paper_type": "technique"
+}
