@@ -19,11 +19,16 @@
 """
 import datetime
 import json
+import os
 import shutil
 import subprocess
 import sys
 import uuid
 from pathlib import Path
+
+# 오프라인 모드: eval 세계 전체를 JSON으로 격리한다(수집이 프로덕션 Neo4j에 안 씀 +
+# 보조 읽기도 normalized_v2.json 직독). agent_collect import 전에 설정해야 전 경로에 적용.
+os.environ.setdefault("ATLAS_OFFLINE", "1")
 
 HERE = Path(__file__).resolve().parent   # eval/ (이 스크립트·산출물이 사는 곳)
 ROOT = HERE.parent                       # 레포 루트

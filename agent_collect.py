@@ -36,6 +36,7 @@ import parse  # noqa: E402
 import relate  # noqa: E402
 
 from graphdb.write import write_paper  # noqa: E402  (증분 쓰기 — 추출 직후 Neo4j 반영)
+from graphdb.read import is_offline, node_meta, owned_paper_ids  # noqa: E402  (읽기 단일 진입점)
 
 # 프롬프트는 prompts/ 패키지 단일 출처에서(인라인 제거) — 한 프롬프트당 한 파일.
 from prompts.collect.gate import GATE_PROMPT_VER, GATE_SYSTEM, GATE_USER  # noqa: E402
@@ -105,7 +106,6 @@ def llm_summary():
     return {"by_stage": dict(agg), "total": total}
 
 ARXIV_API = "https://export.arxiv.org/api/query"
-NORMALIZED_V2 = Path("data/outputs/normalized_v2.json")
 PAPERS_LEDGER = Path("data/outputs/papers.json")
 COLLECT_DB = Path("data/collect_sessions.db")  # 수집 세션 체크포인트(서버 재시작에도 생존)
 REJECT_VERDICTS = {"reject", "rejected", "drop"}  # 관문 탈락으로 보는 verdict
@@ -150,7 +150,7 @@ def load_embeddings():
     반환: model, norm(v2 nodes dict), (concept_keys, concept_mat), (paper_keys, paper_mat)
     """
     store = json.loads(Path("data/outputs/node_embeddings_v2.json").read_text())
-    norm = json.loads(Path("data/outputs/normalized_v2.json").read_text())["nodes"]
+    norm = node_meta()  # 라이브=Neo4j / 오프라인=normalized_v2.json (벡터는 캐시 그대로)
     model = store["model"]
 
     def build(prefix):
@@ -365,9 +365,8 @@ def upsert_ledger(found):
 
 # --- [5] 신규 후보 산출 (보유분/관문탈락 제외) ---
 def load_owned_ids():
-    """normalized_v2.json의 paper 노드 키에서 보유 arXiv ID 집합."""
-    nodes = json.loads(NORMALIZED_V2.read_text())["nodes"]
-    return {k.split("paper:", 1)[1] for k in nodes if k.startswith("paper:")}
+    """보유 arXiv ID 집합 — 읽기 단일 진입점(라이브=Neo4j / 오프라인=normalized_v2.json)."""
+    return owned_paper_ids()
 
 
 def dedup_new_candidates(found, ledger):
@@ -469,12 +468,16 @@ def extract_pipeline(aid, ledger):
     (config.OUT_DIR / f"{aid}.relations.json").write_text(
         json.dumps(rel, ensure_ascii=False, indent=2))
     # 증분 쓰기: 원자료가 디스크에 남은 직후 lexicon·Neo4j에 반영(불변식: 재빌드와 동일).
+    # 오프라인(eval)은 Neo4j 미반영 — eval 세계 전체가 JSON이라 격리 유지.
     # 실패해도 원자료는 디스크에 있으니 추출 자체는 성공으로 본다(rebuild/감사가 복구).
-    try:
-        write_paper(concepts, rel, aid)
-        wmsg = "Neo4j 반영"
-    except Exception as e:  # noqa: BLE001
-        wmsg = f"Neo4j 반영 실패({type(e).__name__}) — rebuild로 복구 필요"
+    if is_offline():
+        wmsg = "오프라인(eval) — Neo4j 미반영"
+    else:
+        try:
+            write_paper(concepts, rel, aid)
+            wmsg = "Neo4j 반영"
+        except Exception as e:  # noqa: BLE001
+            wmsg = f"Neo4j 반영 실패({type(e).__name__}) — rebuild로 복구 필요"
     ledger[aid]["extracted"] = True
     return True, f"추출 완료({msg}, {wmsg})", concepts
 

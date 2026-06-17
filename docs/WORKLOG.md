@@ -2,6 +2,23 @@
 
 세션 인계용 개선 로그. 최신이 위.
 
+## 2026-06-17 — 라이브/오프라인 모드 스위치 (증분 쓰기 호환성 마감)
+
+증분 쓰기 전환(e9f3059) 후 뒤처진 **보조 읽기 3곳 + eval 격리 1곳**을 단일 모드 스위치로 정리. 공통 뿌리: 이들이 아직 `normalized_v2.json`(이제 재빌드 전용 중간산물, 증분 때 갱신 안 됨)을 읽음.
+
+**모드** `ATLAS_OFFLINE` 환경변수: `=1`(오프라인·eval 전용 — 수집이 write_paper 스킵 + 보조읽기 JSON 직독 → Neo4j 완전 격리) / 미설정(라이브·기본 — 보조읽기 Neo4j 직독 실시간). 충돌 안 나는 이유: eval diff는 이미 JSON 기반(`load_view`)이라 eval 세계 전체가 JSON.
+
+**T1 `graphdb/read.py`(신규)**: write.py 대칭. `is_offline()`·`owned_paper_ids()`·`concept_names()`·`node_meta()`. 라이브는 Neo4j 직독, 오프라인은 normalized_v2.json. `node_meta` 라이브는 v2 노드 스키마와 같은 키('concept:rk'/'paper:id')로 직접 질의(개념주도 graph_view 아님), `_concept_line`(canonical/definition/**def_status**)·`_paper_line`(title/problem) 필드 충족. **라이브 Neo4j 다운 시 조용한 JSON 폴백 없음** — 명시적 실패(staleness 재유입 방지).
+
+**T2 배선**: agent_collect `load_owned_ids`→`owned_paper_ids()`, `load_embeddings`의 norm→`node_meta()`(벡터는 캐시 그대로), `extract_pipeline`의 write_paper를 `is_offline()` 가드(오프라인=미반영 메시지). agent_filter `load_node_names`→`concept_names()`. eval/test_collect 최상단 `os.environ.setdefault("ATLAS_OFFLINE","1")`(agent_collect import 전). 죽은 상수 `NORMALIZED_V2` 제거.
+
+**검증(스모크)**:
+- **S1(격리, 핵심)**: 오프라인서 extract_pipeline → write_paper 0회 호출·Neo4j 70→70 불변; 라이브선 1회·71. (full eval 대신 write 게이트를 결정적으로 증명 — 비용/비결정성 회피.)
+- **S2(라이브 실시간)**: Neo4j에 임시노드 직삽입 → owned/names/node_meta 즉시 반영, 삭제 후 사라짐(진짜 라이브).
+- **S3(다운 시 의도된 실패)**: 라이브+Neo4j down → `ServiceUnavailable`(폴백 없음); 오프라인은 같은 bad URI여도 JSON 70편 정상.
+- verify+audit exit0, lexicon/normalized 골든 byte-동일, 데이터 잔여변경 0.
+
+**미적용(범위 밖 명시)**: eval B층 Neo4j 읽기 전환(격리 위해 JSON diff 유지가 오히려 맞음), 0.4 순서의존, 벡터 ANN. normalize_core·write.py·load.py·graph_neo4j 미수정.
 ## 2026-06-17 — Neo4j 증분 쓰기 전환 (라이브 경로 + 재빌드 오라클)
 
 핸드오프 T0~T6 전부 구현·검증. 목표: 쓰기(수집/사전편집)가 일어나면 그 자리에서 Neo4j에 증분 반영. **불변식: 라이브 Neo4j == 같은 원자료·사전으로 배치 재빌드한 Neo4j** — 모든 작업의 합격선. 증분 경로와 배치 경로가 **같은 함수**(`normalize_core.normalize_paper`)를 쓰게 해 영영 갈라지지 않게 함.

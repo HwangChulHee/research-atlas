@@ -89,8 +89,9 @@ TOOLS = [
 
 
 def load_node_names():
-    d = json.loads(Path("data/outputs/normalized_v2.json").read_text())
-    return sorted(v["canonical"] for v in d["nodes"].values() if v.get("type") == "concept")
+    """개념 canonical 이름 — 읽기 단일 진입점(라이브=Neo4j / 오프라인=normalized_v2.json)."""
+    from graphdb.read import concept_names
+    return concept_names()
 
 
 SMOKE_QUERIES = [
