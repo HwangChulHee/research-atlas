@@ -139,5 +139,74 @@ def main():
     sys.exit(0 if ok else 1)
 
 
+# --- 감사(--audit): lexicon.json vs Neo4j 직독 드리프트 리포트(고치지 않음, 리포트만) ---
+def audit() -> int:
+    """라이브 Neo4j와 정본(lexicon.json + 재빌드 오라클 normalized_v2.json) 사이의 드리프트 점검.
+
+    탐지(모두 깨끗한 상태 0건):
+      A rejected인데 노드 존재   (lexicon status=rejected ∩ Neo4j Concept)
+      B 별칭인데 독립 노드        (lexicon alias canon이 그 대표와 다른데 Neo4j에 단독 노드)
+      C 정의 불일치              (lexicon 비어있지않은 definition ≠ Neo4j c.definition)
+      D 닻 깨짐                  (Paper.home_concept이 가리키는 Concept 부재)
+      E 노드 드리프트            (재빌드 오라클 개념집합 ↔ Neo4j 개념집합 불일치; row2 '있어야/없어야' 포함)
+    자동수정 금지 — 위상 정확도가 정체성. 사람이 보고 판단. 발견 시 exit 1.
+    """
+    import normalize_core as nc
+    from graphdb.conn import get_driver
+
+    lex = json.loads((config.DATA_DIR / "lexicon.json").read_text())["techniques"]
+    status_by_rk, def_by_rk, alias2rep = {}, {}, {}
+    for rep, meta in lex.items():
+        rk = nc.canon(rep)
+        status_by_rk[rk] = meta.get("status")
+        d = (meta.get("definition") or "").strip()
+        if d:
+            def_by_rk[rk] = d
+        for a in meta.get("aliases", []):
+            alias2rep[nc.canon(a)] = rk
+
+    with get_driver() as drv, drv.session() as s:
+        node_def = {r["id"]: (r["definition"] or "")
+                    for r in s.run("MATCH (c:Concept) RETURN c.id AS id, "
+                                   "c.definition AS definition")}
+        homes = [(r["pid"], r["h"]) for r in
+                 s.run("MATCH (p:Paper) WHERE p.home_concept IS NOT NULL "
+                       "RETURN p.id AS pid, p.home_concept AS h")]
+    node_ids = set(node_def)
+    oracle = json.loads((config.OUT_DIR / "normalized_v2.json").read_text())["nodes"]
+    oracle_ids = {k.split(":", 1)[1] for k, n in oracle.items() if n["type"] == "concept"}
+
+    A = sorted(rk for rk, st in status_by_rk.items() if st == "rejected" and rk in node_ids)
+    B = sorted(ac for ac, rep in alias2rep.items() if ac in node_ids and ac != rep)
+    C = sorted(rk for rk, d in def_by_rk.items()
+               if rk in node_def and node_def[rk].strip() != d)
+    D = sorted(pid for pid, h in homes if h not in node_ids)
+    E_missing = sorted(oracle_ids - node_ids)   # 오라클상 노드여야 하는데 라이브에 없음(row2)
+    E_extra = sorted(node_ids - oracle_ids)      # 라이브에 있는데 오라클엔 없음(거부/병합 잔재 등)
+
+    rows = [
+        ("A rejected인데 노드 존재", A),
+        ("B 별칭인데 독립 노드", B),
+        ("C 정의 불일치(lexicon≠Neo4j)", C),
+        ("D 닻 깨짐(home_concept 부재)", D),
+        ("E 노드 누락(오라클엔 있음=재빌드 필요)", E_missing),
+        ("E 노드 잔재(라이브에만 있음)", E_extra),
+    ]
+    total = 0
+    for label, ids in rows:
+        if ids:
+            total += len(ids)
+            print(f"⚠️  [{label}] {len(ids)}건: {ids[:20]}{' …' if len(ids) > 20 else ''}")
+        else:
+            print(f"✅ [{label}] 0건")
+    if total == 0:
+        print("=== 감사 통과 — 드리프트 없음 ===")
+    else:
+        print(f"=== 감사 {total}건 드리프트 — 사람 확인 필요(자동수정 안 함) ===")
+    return 0 if total == 0 else 1
+
+
 if __name__ == "__main__":
+    if "--audit" in sys.argv:
+        sys.exit(audit())
     main()

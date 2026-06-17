@@ -35,6 +35,8 @@ import fetch  # noqa: E402
 import parse  # noqa: E402
 import relate  # noqa: E402
 
+from graphdb.write import write_paper  # noqa: E402  (증분 쓰기 — 추출 직후 Neo4j 반영)
+
 # 프롬프트는 prompts/ 패키지 단일 출처에서(인라인 제거) — 한 프롬프트당 한 파일.
 from prompts.collect.gate import GATE_PROMPT_VER, GATE_SYSTEM, GATE_USER  # noqa: E402
 from prompts.collect.intent import INTENT_SYSTEM  # noqa: E402
@@ -466,8 +468,15 @@ def extract_pipeline(aid, ledger):
     rel = relate.relate_one(concepts, text)
     (config.OUT_DIR / f"{aid}.relations.json").write_text(
         json.dumps(rel, ensure_ascii=False, indent=2))
+    # 증분 쓰기: 원자료가 디스크에 남은 직후 lexicon·Neo4j에 반영(불변식: 재빌드와 동일).
+    # 실패해도 원자료는 디스크에 있으니 추출 자체는 성공으로 본다(rebuild/감사가 복구).
+    try:
+        write_paper(concepts, rel, aid)
+        wmsg = "Neo4j 반영"
+    except Exception as e:  # noqa: BLE001
+        wmsg = f"Neo4j 반영 실패({type(e).__name__}) — rebuild로 복구 필요"
     ledger[aid]["extracted"] = True
-    return True, f"추출 완료({msg})", concepts
+    return True, f"추출 완료({msg}, {wmsg})", concepts
 
 
 SMOKE = [
@@ -605,7 +614,7 @@ def collect_extract_smoke():
         else:
             print(f"   {aid}: {msg} (스킵)")  # 실패해도 중단 안 함
     save_ledger(ledger)
-    print(f"\n추출 완료 {len(extracted)}편. 노드 반영 필요 시: uv run python src/normalize_v2.py")
+    print(f"\n추출 완료 {len(extracted)}편 (Neo4j 반영 완료).")
 
     # --- 하드 게이트 ---
     try:
@@ -775,8 +784,7 @@ def gnode_report(state):
             return {"report_text": f"추출 취소 — 관문 {len(gr)}편 완료(통과 {passed}편), 추출 안 함."}
         return {"report_text": "수집 취소 — 관문/추출 안 함."}
     ex = state.get("extracted", [])
-    return {"report_text": f"추출 완료 {len(ex)}편: {ex}\n"
-                           f"노드 반영하려면: uv run python src/normalize_v2.py"}
+    return {"report_text": f"추출 완료 {len(ex)}편(Neo4j 반영 완료): {ex}"}
 
 
 def build_collect_graph(checkpointer=None):

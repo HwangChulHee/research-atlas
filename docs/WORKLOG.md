@@ -2,6 +2,26 @@
 
 세션 인계용 개선 로그. 최신이 위.
 
+## 2026-06-17 — Neo4j 증분 쓰기 전환 (라이브 경로 + 재빌드 오라클)
+
+핸드오프 T0~T6 전부 구현·검증. 목표: 쓰기(수집/사전편집)가 일어나면 그 자리에서 Neo4j에 증분 반영. **불변식: 라이브 Neo4j == 같은 원자료·사전으로 배치 재빌드한 Neo4j** — 모든 작업의 합격선. 증분 경로와 배치 경로가 **같은 함수**(`normalize_core.normalize_paper`)를 쓰게 해 영영 갈라지지 않게 함.
+
+**T1 공유 함수** `src/normalize_core.py`(신규): per-paper normalize 로직을 중립 형태(`{paper_node, concept_nodes, edges, new_lexicon_entries}`)로 추출. `normalize_v2.py`는 이걸 glob 순회 호출하게 리팩터 → `normalized_v2.json`·lexicon **byte-동일**(골든 diff 통과, 삽입순서까지). 0.4 규칙(canon, NODE_OK, 최초정의승, ok↛placeholder, home=첫 defines, 순서의존 pending) 글자대로 복제. CE1/CE2/CE3 카운터예제 직접 확인.
+
+**T2 임베딩 적재** `graphdb/load.py`: `node_embeddings_v2.json`(접두사 키)을 노드 id로 조인해 `c.embedding`/`p.embedding` SET. 확인: 개념 76·논문 70 임베딩, transformer dim 1536, verify 무회귀.
+
+**T3 수집 증분쓰기** `graphdb/write.py`(신규) `write_paper`: normalize_core→lexicon 저장→임베딩(tx 밖 OpenAI)→Neo4j MERGE. 최초정의승은 `_CONCEPT_MERGE`의 ON CREATE/ON MATCH CASE로 구현(정의 갱신을 SET 맨 뒤에 둬 CASE가 *옛* 값 읽게). `agent_collect.extract_pipeline`에 배선(추출 직후 반영, 실패해도 추출은 성공·rebuild 복구). gnode_report·CLI 안내문구에서 "수동 normalize_v2 실행" 제거. **검증: 전체 70편 도착순 replay → verify 통과(증분==재빌드)**, 단일 embed=True 스모크로 임베딩 SET 확인.
+
+**T4 사전편집 증분쓰기** `write.py`에 `reject_concept`(DETACH DELETE)·`merge_concept`(엣지 재연결+닻 이동+최초정의승 승계+src 삭제)·`update_definition`(SET 정의+재임베딩+캐시). `api/main.py` patch/merge 핸들러 배선. 각 조작 후 rebuild+verify 통과(reject 124, merge 123).
+
+**T5 rebuild=재빌드+적재+검증** `api/main.py` `/api/rebuild`: normalize_v2→load→verify→graph_view_neo4j 카운트. **`load.py`에 `wipe()` 추가** — 핸드오프는 "load.py가 덮어쓴다"고 가정했으나 실제론 MERGE만이라 드리프트(고아 엣지)를 안 지웠음. 이제 wipe+load로 진짜 전체 덮어쓰기. 스모크: 가짜 노드 심기→rebuild→사라짐, 카운트 Neo4j 기준.
+
+**T6 감사** `verify.py --audit`: lexicon.json↔Neo4j 드리프트 6종(A 거부인데노드 / B 별칭인데노드 / C 정의불일치 / D 닻깨짐 / E 노드누락 / E 노드잔재). 깨끗하면 전부 0·exit0, 드리프트 시 리포트·exit1(자동수정 안 함). row2 'NODE_OK인데 노드없음'은 lexicon-status 직접 비교가 미참조 시드 6건 오탐 → **재빌드 오라클(normalized_v2.json) 집합 비교**로 구현(clean=0).
+
+**알려진 한계(범위 밖, 후속 결정)**: 개념 정의의 정본은 '논문 추출'(concepts.json→normalize_core)이라 `update_definition`의 사람 손편집은 **전체 재빌드 시 논문 정의로 되돌아감**(verify는 통과 — 재빌드가 자기일관). 현재 lexicon의 비어있지않은 정의 33개는 전부 노드 정의와 동일(=오늘 기준 무영향). 손편집을 재빌드까지 보존하려면 `normalize_core`가 `lexicon.definition`(비어있지않을 때)을 override하게 하면 됨 — 오늘 기준 byte-동일이라 안전하나 0.4 "normalize 불변" 지시와 충돌해 보류. 감사 C가 이 드리프트를 리포트.
+
+**미적용(핸드오프 범위 밖 명시)**: eval test_collect B층 Neo4j 읽기 전환, 벡터 ANN 인덱스, lexicon SQLite화, 0.4 순서의존 버그 수정.
+
 ## 2026-06-17 — 수집 비용·성능 로깅 (레벨2: 단계별 집계 계기판)
 
 수집 흐름이 단계별로 LLM 호출수·토큰·시간을 얼마나 쓰는지 보이게. 개선 아님 — 계기판만. 동작 불변(래퍼는 인자 그대로 전달, 결과 안 바꿈). 수집 에이전트만 먼저(파이프라인·필터·command 는 후속).

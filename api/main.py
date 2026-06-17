@@ -181,7 +181,15 @@ def get_lexicon():
 
 @app.patch("/api/lexicon/{name}")
 def patch_lexicon(name: str, patch: dict = Body(...)):
-    """한 개념의 부분 업데이트. 전달된 필드만 수정."""
+    """한 개념의 부분 업데이트. 전달된 필드만 수정 + Neo4j 증분 동기화(T0 표 6·9).
+
+    - status → 'rejected': 노드·엣지 삭제(reject_concept).
+    - definition 전달: Neo4j 정의 갱신 + 재임베딩(update_definition).
+    - status 를 approved/unreviewed 로 *상향*: 즉시 노드화는 범위 밖(표#7) — 감사가 리포트.
+    """
+    from graphdb.write import reject_concept, update_definition
+    from normalize_core import canon
+
     lex = load_lexicon()
     techniques = lex.get("techniques", {})
     if name not in techniques:
@@ -191,6 +199,16 @@ def patch_lexicon(name: str, patch: dict = Body(...)):
         if key in editable:
             techniques[name][key] = value
     save_lexicon(lex)
+
+    rk = canon(name)
+    try:
+        if patch.get("status") == "rejected":
+            reject_concept(rk)
+        if "definition" in patch:
+            update_definition(rk, patch["definition"])
+    except Exception as e:  # noqa: BLE001  (lexicon은 이미 저장됨 — rebuild로 복구 가능)
+        return {"ok": True, "name": name, "neo4j_sync": f"실패({type(e).__name__})",
+                **techniques[name]}
     return {"ok": True, "name": name, **techniques[name]}
 
 
@@ -219,22 +237,44 @@ def merge_lexicon(body: dict = Body(...)):
     techniques[dst]["aliases"] = dst_aliases
     del techniques[src]
     save_lexicon(lex)
+
+    # Neo4j 증분 동기화(T0#8 + 0.6): src 엣지를 dst 로 재연결, 닻 이동, src 삭제.
+    from graphdb.write import merge_concept
+    from normalize_core import canon
+    try:
+        merge_concept(canon(src), canon(dst))
+    except Exception as e:  # noqa: BLE001  (lexicon은 이미 저장됨 — rebuild로 복구 가능)
+        return {"ok": True, "into": dst, "aliases": dst_aliases,
+                "neo4j_sync": f"실패({type(e).__name__})"}
     return {"ok": True, "into": dst, "aliases": dst_aliases}
 
 
 # --- 재빌드 ---
+def _run_step(name: str, *args: str) -> str:
+    """파이프라인 스텝을 subprocess로 실행. 실패 시 stdout/stderr 묶어 HTTP 500."""
+    proc = subprocess.run([sys.executable, *args], cwd=str(ROOT),
+                          capture_output=True, text=True)
+    if proc.returncode != 0:
+        raise HTTPException(500, f"{name} 실패:\n{proc.stdout}\n{proc.stderr}")
+    return proc.stdout
+
+
 @app.post("/api/rebuild")
 def rebuild():
-    """normalize_v2.py 실행 → 사전 편집을 그래프(normalized_v2.json)에 반영(LLM 없음)."""
-    proc = subprocess.run(
-        [sys.executable, str(ROOT / "src" / "normalize_v2.py")],
-        cwd=str(ROOT),
-        capture_output=True,
-        text=True,
-    )
-    if proc.returncode != 0:
-        raise HTTPException(500, f"normalize_v2.py 실패:\n{proc.stderr or proc.stdout}")
-    view = build_graph_view(include_papers=False)
+    """정본(원자료+사전)에서 Neo4j를 처음부터 다시 만들고 검증까지 — 증분 드리프트 복구 버튼.
+
+    1) src/normalize_v2.py  : 원자료→normalized_v2.json(오라클 중간산물) + lexicon 반영
+    2) graphdb/load.py      : Neo4j 전체 덮어쓰기(wipe+load) — 증분 드리프트 청소
+    3) graphdb/verify.py    : 라이브 Neo4j == 재빌드 JSON 검증(실패 시 500 + diff)
+    4) graph_view_neo4j     : Neo4j(라이브) 기준 카운트 반환
+       (build_graph_view(JSON) 카운트 금지 — '성공인데 화면 옛것' 함정.)
+    """
+    _run_step("normalize_v2.py", str(ROOT / "src" / "normalize_v2.py"))
+    _run_step("load.py", str(ROOT / "graphdb" / "load.py"))
+    _run_step("verify.py", str(ROOT / "graphdb" / "verify.py"))
+
+    from .graph_neo4j import graph_view_neo4j
+    view = graph_view_neo4j(include_papers=False)
     return {
         "ok": True,
         "nodes": len(view["nodes"]),
