@@ -385,175 +385,175 @@
     },
     "Dense Passage Retriever (DPR)": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A dual-encoder dense retrieval model that embeds questions and passages into a shared vector space and retrieves relevant passages by maximizing inner products.",
       "source": "defines",
       "first_seen": "2004.04906"
     },
     "Longformer": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A modified Transformer architecture with a sparse attention mechanism that scales linearly with sequence length for processing long documents.",
       "source": "defines",
       "first_seen": "2004.05150"
     },
     "LED": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A Longformer-based encoder-decoder model designed for long-document sequence-to-sequence tasks such as summarization.",
       "source": "defines",
       "first_seen": "2004.05150"
     },
     "Switch Transformer": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A simplified mixture-of-experts transformer that routes each input token to a single expert to enable sparse, scalable training with reduced communication and computation costs.",
       "source": "defines",
       "first_seen": "2101.03961"
     },
     "FLAN": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A pretrained language model instruction-tuned on many NLP datasets phrased as natural language instructions to improve zero-shot performance on unseen tasks.",
       "source": "defines",
       "first_seen": "2109.01652"
     },
     "Chinchilla": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A compute-optimal 70B-parameter language model trained with substantially more data to maximize performance under a fixed compute budget.",
       "source": "defines",
       "first_seen": "2203.15556"
     },
     "PaLM": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A 540-billion-parameter densely activated Transformer language model trained to study the effects of scaling on few-shot learning and broad language capabilities.",
       "source": "defines",
       "first_seen": "2204.02311"
     },
     "FlashAttention": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "An IO-aware exact attention algorithm that uses tiling and kernel fusion to minimize GPU memory traffic between HBM and SRAM.",
       "source": "defines",
       "first_seen": "2205.14135"
     },
     "block-sparse FlashAttention": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A sparse attention variant built on FlashAttention that exploits block sparsity to further reduce memory access and speed up attention.",
       "source": "defines",
       "first_seen": "2205.14135"
     },
     "emergent abilities of large language models": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "Abilities that are absent in smaller-scale models but present in larger-scale models, and therefore cannot be predicted by extrapolating smaller-model performance.",
       "source": "defines",
       "first_seen": "2206.07682"
     },
     "SELF-INSTRUCT": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A semi-automated bootstrapping framework that improves instruction-following by generating synthetic instructions and instances from a language model and using them to finetune the same model.",
       "source": "defines",
       "first_seen": "2212.10560"
     },
     "REPLUG LSR": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A training scheme that uses a black-box language model’s scores to supervise and improve the retriever.",
       "source": "defines",
       "first_seen": "2301.12652"
     },
     "Generative Agents": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "Computational agents that simulate believable human behavior by storing, reflecting on, and retrieving memories to plan and act over time.",
       "source": "defines",
       "first_seen": "2304.03442"
     },
     "RankGPT": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A prompting and distillation framework that uses large language models to rank passages by directly generating permutations of candidate passages.",
       "source": "defines",
       "first_seen": "2304.09542"
     },
     "Plan-and-Solve (PS) Prompting": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A zero-shot prompting strategy that first asks the model to devise a plan to break a problem into subtasks and then solve the subtasks according to that plan.",
       "source": "defines",
       "first_seen": "2305.04091"
     },
     "PS+ Prompting": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "An extended Plan-and-Solve prompting strategy that adds more detailed instructions to improve reasoning quality and reduce calculation errors.",
       "source": "defines",
       "first_seen": "2305.04091"
     },
     "Guanaco": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A family of chatbot models finetuned with QLORA that achieves strong Vicuna benchmark performance.",
       "source": "defines",
       "first_seen": "2305.14314"
     },
     "VOYAGER": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "An LLM-powered embodied lifelong learning agent for Minecraft that autonomously explores, acquires skills, and makes new discoveries using code-based actions and a growing skill library.",
       "source": "defines",
       "first_seen": "2305.16291"
     },
     "Direct Preference Optimization": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A reinforcement-learning-free method for training language models from human preferences by directly optimizing a policy with a binary classification objective.",
       "source": "defines",
       "first_seen": "2305.18290"
     },
     "Llama 2": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A collection of pretrained and fine-tuned large language models ranging from 7 billion to 70 billion parameters.",
       "source": "defines",
       "first_seen": "2307.09288"
     },
     "Llama 2-Chat": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A fine-tuned version of Llama 2 optimized for dialogue use cases.",
       "source": "defines",
       "first_seen": "2307.09288"
     },
     "Jina Embeddings v2": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "An open-source text embedding model that extends BERT with bidirectional ALiBi to encode sequences up to 8192 tokens for high-quality document embeddings.",
       "source": "defines",
       "first_seen": "2310.19923"
     },
     "selective state space models": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "State space models whose parameters are conditioned on the input to enable content-based selection and selective propagation or forgetting of information along the sequence.",
       "source": "defines",
       "first_seen": "2312.00752"
     },
     "Proposition indexing": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A dense retrieval approach that indexes a corpus using propositions, which are atomic, self-contained factoid units, instead of passages or sentences.",
       "source": "defines",
       "first_seen": "2312.06648"
     },
     "GutenQA": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A benchmark of 3,000 needle-in-a-haystack question-answer pairs derived from 100 public domain narrative books from Project Gutenberg for evaluating retrieval and RAG chunking methods.",
       "source": "defines",
       "first_seen": "2406.17526"
@@ -1029,126 +1029,126 @@
     },
     "RGB": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A bilingual benchmark for evaluating retrieval-augmented generation in large language models across four fundamental abilities: noise robustness, negative rejection, information integration, and counterfactual robustness.",
       "source": "defines",
       "first_seen": "2309.01431"
     },
     "RAFT": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A training recipe that fine-tunes LLMs to answer questions using relevant retrieved documents while ignoring distractor documents and citing supporting text verbatim.",
       "source": "defines",
       "first_seen": "2403.10131"
     },
     "RAGBench": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A large-scale benchmark dataset for training and evaluating retrieval-augmented generation systems across multiple industry domains and task types.",
       "source": "defines",
       "first_seen": "2407.11005"
     },
     "TRACe": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "An explainable and actionable RAG evaluation framework based on a suite of cross-domain metrics.",
       "source": "defines",
       "first_seen": "2407.11005"
     },
     "RAG taxonomy": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "rejected",
       "definition": "A taxonomy that conceptualizes and categorizes the core characteristics of retrieval-augmented generation applications across domains.",
       "source": "defines",
       "first_seen": "2408.02854"
     },
     "MedGraphRAG": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A graph-based retrieval-augmented generation framework for the medical domain that improves large language model responses with evidence-based retrieval and source-linked explanations.",
       "source": "defines",
       "first_seen": "2408.04187"
     },
     "MedRAG": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "A retrieval-augmented generation framework for medical diagnosis that combines knowledge graph-elicited reasoning with retrieved electronic health records to improve diagnostic accuracy and specificity.",
       "source": "defines",
       "first_seen": "2502.04413"
     },
     "AMG-RAG": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "An agentic graph-RAG framework that automatically constructs and continuously updates medical knowledge graphs to support evidence-grounded medical QA.",
       "source": "defines",
       "first_seen": "2502.13010"
     },
     "RAGAS": {
       "aliases": [],
-      "status": "pending",
+      "status": "approved",
       "definition": "",
       "source": "builds_on",
       "first_seen": "2407.11005"
     },
     "TruLens": {
       "aliases": [],
-      "status": "pending",
+      "status": "approved",
       "definition": "",
       "source": "builds_on",
       "first_seen": "2407.11005"
     },
     "ARES": {
       "aliases": [],
-      "status": "pending",
+      "status": "approved",
       "definition": "",
       "source": "builds_on",
       "first_seen": "2407.11005"
     },
     "AttributionBench": {
       "aliases": [],
-      "status": "pending",
+      "status": "approved",
       "definition": "",
       "source": "builds_on",
       "first_seen": "2407.11005"
     },
     "RAGTruth": {
       "aliases": [],
-      "status": "pending",
+      "status": "approved",
       "definition": "",
       "source": "builds_on",
       "first_seen": "2407.11005"
     },
     "FL-RAG": {
       "aliases": [],
-      "status": "pending",
+      "status": "approved",
       "definition": "",
       "source": "builds_on",
       "first_seen": "2502.04413"
     },
     "DRAGIN": {
       "aliases": [],
-      "status": "pending",
+      "status": "approved",
       "definition": "",
       "source": "builds_on",
       "first_seen": "2502.04413"
     },
     "GARAG": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "",
       "source": "defines",
       "first_seen": "2404.13948"
     },
     "CoRM-RAG": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "",
       "source": "defines",
       "first_seen": "2605.01302"
     },
     "Evidence Critic": {
       "aliases": [],
-      "status": "unreviewed",
+      "status": "approved",
       "definition": "",
       "source": "defines",
       "first_seen": "2605.01302"

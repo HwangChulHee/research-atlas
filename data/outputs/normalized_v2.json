@@ -168,7 +168,7 @@
       "canonical": "Dense Passage Retriever (DPR)",
       "definition": "A dual-encoder dense retrieval model that embeds questions and passages into a shared vector space and retrieves relevant passages by maximizing inner products.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "concept:bm25": {
       "type": "concept",
@@ -212,14 +212,14 @@
       "canonical": "Longformer",
       "definition": "A modified Transformer architecture with a sparse attention mechanism that scales linearly with sequence length for processing long documents.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "concept:led": {
       "type": "concept",
       "canonical": "LED",
       "definition": "A Longformer-based encoder-decoder model designed for long-document sequence-to-sequence tasks such as summarization.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "concept:transformer xl": {
       "type": "concept",
@@ -366,7 +366,7 @@
       "canonical": "Switch Transformer",
       "definition": "A simplified mixture-of-experts transformer that routes each input token to a single expert to enable sparse, scalable training with reduced communication and computation costs.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "concept:mixture of experts": {
       "type": "concept",
@@ -432,7 +432,7 @@
       "canonical": "FLAN",
       "definition": "A pretrained language model instruction-tuned on many NLP datasets phrased as natural language instructions to improve zero-shot performance on unseen tasks.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "paper:2201.11903": {
       "type": "paper",
@@ -525,7 +525,7 @@
       "canonical": "Chinchilla",
       "definition": "A compute-optimal 70B-parameter language model trained with substantially more data to maximize performance under a fixed compute budget.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "paper:2204.02311": {
       "type": "paper",
@@ -549,7 +549,7 @@
       "canonical": "PaLM",
       "definition": "A 540-billion-parameter densely activated Transformer language model trained to study the effects of scaling on few-shot learning and broad language capabilities.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "concept:pathways": {
       "type": "concept",
@@ -597,14 +597,14 @@
       "canonical": "FlashAttention",
       "definition": "An IO-aware exact attention algorithm that uses tiling and kernel fusion to minimize GPU memory traffic between HBM and SRAM.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "concept:block sparse flashattention": {
       "type": "concept",
       "canonical": "block-sparse FlashAttention",
       "definition": "A sparse attention variant built on FlashAttention that exploits block sparsity to further reduce memory access and speed up attention.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "paper:2206.07682": {
       "type": "paper",
@@ -622,7 +622,7 @@
       "canonical": "emergent abilities of large language models",
       "definition": "Abilities that are absent in smaller-scale models but present in larger-scale models, and therefore cannot be predicted by extrapolating smaller-model performance.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "paper:2210.03629": {
       "type": "paper",
@@ -712,7 +712,7 @@
       "canonical": "SELF-INSTRUCT",
       "definition": "A semi-automated bootstrapping framework that improves instruction-following by generating synthetic instructions and instances from a language model and using them to finetune the same model.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "paper:2301.12652": {
       "type": "paper",
@@ -739,7 +739,7 @@
       "canonical": "REPLUG LSR",
       "definition": "A training scheme that uses a black-box language model’s scores to supervise and improve the retriever.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "paper:2302.04761": {
       "type": "paper",
@@ -849,7 +849,7 @@
       "canonical": "Generative Agents",
       "definition": "Computational agents that simulate believable human behavior by storing, reflecting on, and retrieving memories to plan and act over time.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "concept:webgpt": {
       "type": "concept",
@@ -924,7 +924,7 @@
       "canonical": "RankGPT",
       "definition": "A prompting and distillation framework that uses large language models to rank passages by directly generating permutations of candidate passages.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "concept:monot5": {
       "type": "concept",
@@ -957,14 +957,14 @@
       "canonical": "Plan-and-Solve (PS) Prompting",
       "definition": "A zero-shot prompting strategy that first asks the model to devise a plan to break a problem into subtasks and then solve the subtasks according to that plan.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "concept:ps+ prompting": {
       "type": "concept",
       "canonical": "PS+ Prompting",
       "definition": "An extended Plan-and-Solve prompting strategy that adds more detailed instructions to improve reasoning quality and reduce calculation errors.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "concept:zero shot cot": {
       "type": "concept",
@@ -1073,7 +1073,7 @@
       "canonical": "Guanaco",
       "definition": "A family of chatbot models finetuned with QLORA that achieves strong Vicuna benchmark performance.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "paper:2305.16291": {
       "type": "paper",
@@ -1094,7 +1094,7 @@
       "canonical": "VOYAGER",
       "definition": "An LLM-powered embodied lifelong learning agent for Minecraft that autonomously explores, acquires skills, and makes new discoveries using code-based actions and a growing skill library.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "concept:gpt 4": {
       "type": "concept",
@@ -1120,7 +1120,7 @@
       "canonical": "Direct Preference Optimization",
       "definition": "A reinforcement-learning-free method for training language models from human preferences by directly optimizing a policy with a binary classification objective.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "paper:2307.09288": {
       "type": "paper",
@@ -1140,14 +1140,14 @@
       "canonical": "Llama 2",
       "definition": "A collection of pretrained and fine-tuned large language models ranging from 7 billion to 70 billion parameters.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "concept:llama 2 chat": {
       "type": "concept",
       "canonical": "Llama 2-Chat",
       "definition": "A fine-tuned version of Llama 2 optimized for dialogue use cases.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "paper:2308.00352": {
       "type": "paper",
@@ -1235,7 +1235,7 @@
       "canonical": "RGB",
       "definition": "A bilingual benchmark for evaluating retrieval-augmented generation in large language models across four fundamental abilities: noise robustness, negative rejection, information integration, and counterfactual robustness.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "paper:2310.04406": {
       "type": "paper",
@@ -1306,7 +1306,7 @@
       "canonical": "Jina Embeddings v2",
       "definition": "An open-source text embedding model that extends BERT with bidirectional ALiBi to encode sequences up to 8192 tokens for high-quality document embeddings.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "concept:alibi": {
       "type": "concept",
@@ -1354,7 +1354,7 @@
       "canonical": "selective state space models",
       "definition": "State space models whose parameters are conditioned on the input to enable content-based selection and selective propagation or forgetting of information along the sequence.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "paper:2312.06648": {
       "type": "paper",
@@ -1374,7 +1374,7 @@
       "canonical": "Proposition indexing",
       "definition": "A dense retrieval approach that indexes a corpus using propositions, which are atomic, self-contained factoid units, instead of passages or sentences.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "paper:2312.10997": {
       "type": "paper",
@@ -1457,7 +1457,7 @@
       "canonical": "RAFT",
       "definition": "A training recipe that fine-tunes LLMs to answer questions using relevant retrieved documents while ignoring distractor documents and citing supporting text verbatim.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "paper:2404.13948": {
       "type": "paper",
@@ -1476,7 +1476,7 @@
       "canonical": "GARAG",
       "definition": "A black-box adversarial attack method that uses a genetic algorithm to search for perturbed documents that simultaneously degrade retriever and reader performance in RAG systems.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "paper:2404.16130": {
       "type": "paper",
@@ -1548,7 +1548,7 @@
       "canonical": "GutenQA",
       "definition": "A benchmark of 3,000 needle-in-a-haystack question-answer pairs derived from 100 public domain narrative books from Project Gutenberg for evaluating retrieval and RAG chunking methods.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "paper:2407.11005": {
       "type": "paper",
@@ -1567,14 +1567,49 @@
       "canonical": "RAGBench",
       "definition": "A large-scale benchmark dataset for training and evaluating retrieval-augmented generation systems across multiple industry domains and task types.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "concept:trace": {
       "type": "concept",
       "canonical": "TRACe",
       "definition": "An explainable and actionable RAG evaluation framework based on a suite of cross-domain metrics.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
+    },
+    "concept:ragas": {
+      "type": "concept",
+      "canonical": "RAGAS",
+      "definition": "",
+      "def_status": "placeholder",
+      "status": "approved"
+    },
+    "concept:trulens": {
+      "type": "concept",
+      "canonical": "TruLens",
+      "definition": "",
+      "def_status": "placeholder",
+      "status": "approved"
+    },
+    "concept:ares": {
+      "type": "concept",
+      "canonical": "ARES",
+      "definition": "",
+      "def_status": "placeholder",
+      "status": "approved"
+    },
+    "concept:attributionbench": {
+      "type": "concept",
+      "canonical": "AttributionBench",
+      "definition": "",
+      "def_status": "placeholder",
+      "status": "approved"
+    },
+    "concept:ragtruth": {
+      "type": "concept",
+      "canonical": "RAGTruth",
+      "definition": "",
+      "def_status": "placeholder",
+      "status": "approved"
     },
     "paper:2408.02854": {
       "type": "paper",
@@ -1587,13 +1622,6 @@
       ],
       "domain": "general",
       "paper_type": "survey"
-    },
-    "concept:rag taxonomy": {
-      "type": "concept",
-      "canonical": "RAG taxonomy",
-      "definition": "A taxonomy that conceptualizes and categorizes the core characteristics of retrieval-augmented generation applications across domains.",
-      "def_status": "ok",
-      "status": "unreviewed"
     },
     "paper:2408.04187": {
       "type": "paper",
@@ -1612,7 +1640,7 @@
       "canonical": "MedGraphRAG",
       "definition": "A graph-based retrieval-augmented generation framework for the medical domain that improves large language model responses with evidence-based retrieval and source-linked explanations.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "paper:2408.08921": {
       "type": "paper",
@@ -1701,7 +1729,21 @@
       "canonical": "MedRAG",
       "definition": "A retrieval-augmented generation framework for medical diagnosis that combines knowledge graph-elicited reasoning with retrieved electronic health records to improve diagnostic accuracy and specificity.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
+    },
+    "concept:fl rag": {
+      "type": "concept",
+      "canonical": "FL-RAG",
+      "definition": "",
+      "def_status": "placeholder",
+      "status": "approved"
+    },
+    "concept:dragin": {
+      "type": "concept",
+      "canonical": "DRAGIN",
+      "definition": "",
+      "def_status": "placeholder",
+      "status": "approved"
     },
     "paper:2502.13010": {
       "type": "paper",
@@ -1720,7 +1762,7 @@
       "canonical": "AMG-RAG",
       "definition": "An agentic graph-RAG framework that automatically constructs and continuously updates medical knowledge graphs to support evidence-grounded medical QA.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "paper:2502.14802": {
       "type": "paper",
@@ -1784,14 +1826,14 @@
       "canonical": "CoRM-RAG",
       "definition": "A retrieval-augmented generation framework that uses counterfactual risk minimization to align retrieval with decision safety under biased or misleading queries.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     },
     "concept:evidence critic": {
       "type": "concept",
       "canonical": "Evidence Critic",
       "definition": "A lightweight scoring model that predicts the robustness utility of a document-query pair for supporting correct decisions under query perturbations.",
       "def_status": "ok",
-      "status": "unreviewed"
+      "status": "approved"
     }
   },
   "edges": [
@@ -2648,12 +2690,32 @@
     {
       "type": "builds_on",
       "from": "paper:2407.11005",
+      "to": "concept:ragas"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2407.11005",
+      "to": "concept:trulens"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2407.11005",
+      "to": "concept:ares"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2407.11005",
       "to": "concept:rgb"
     },
     {
-      "type": "defines",
-      "from": "paper:2408.02854",
-      "to": "concept:rag taxonomy"
+      "type": "builds_on",
+      "from": "paper:2407.11005",
+      "to": "concept:attributionbench"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2407.11005",
+      "to": "concept:ragtruth"
     },
     {
       "type": "builds_on",
@@ -2719,6 +2781,16 @@
       "type": "builds_on",
       "from": "paper:2502.04413",
       "to": "concept:rag"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2502.04413",
+      "to": "concept:fl rag"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2502.04413",
+      "to": "concept:dragin"
     },
     {
       "type": "defines",
