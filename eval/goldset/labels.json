@@ -18,6 +18,18 @@
     "2501.05366": {
       "title": "Search-o1",
       "builds_on": ["RAG", "o1", "QwQ"]
+    },
+    "2505.17005": {
+      "title": "R1-Searcher++",
+      "builds_on": ["RAG", "MCTS"]
+    },
+    "2504.03160": {
+      "title": "DeepResearcher",
+      "builds_on": ["RAG", "CoT", "Search-R1", "Search-o1", "R1-Searcher", "ReSearch"]
+    },
+    "2503.19470": {
+      "title": "ReSearch",
+      "builds_on": ["RAG", "DeepSeek-R1", "Iter-RetGen", "IRCoT"]
     }
   }
 }
