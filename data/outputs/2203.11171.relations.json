@@ -1,9 +1,5 @@
 {
   "builds_on": [
-    "chain-of-thought prompting",
-    "greedy decoding",
-    "sample-and-rank",
-    "beam search",
-    "ensemble-based approaches"
+    "chain-of-thought prompting"
   ]
 }

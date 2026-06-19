@@ -1,6 +1,7 @@
 {
   "builds_on": [
-    "GPT-4",
-    "novelty search"
+    "ReAct",
+    "Reflexion",
+    "AutoGPT"
   ]
 }

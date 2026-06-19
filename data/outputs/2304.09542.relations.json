@@ -1,7 +1,6 @@
 {
   "builds_on": [
-    "monoT5",
     "RankNet",
-    "BM25"
+    "monoT5"
   ]
 }

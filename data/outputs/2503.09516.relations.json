@@ -1,5 +1,6 @@
 {
   "builds_on": [
+    "DeepSeek-R1",
     "RAG"
   ]
 }

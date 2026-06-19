@@ -1,8 +1,6 @@
 {
   "builds_on": [
-    "RAG",
-    "ToG",
-    "ReKnoS",
-    "RoG"
+    "Retrieval-Augmented Generation",
+    "KG-RAG"
   ]
 }

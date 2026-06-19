@@ -1,11 +1,5 @@
 {
   "builds_on": [
-    "GPT-3",
-    "Chinchilla",
-    "PaLM",
-    "OPT",
-    "GPT-NeoX",
-    "BLOOM",
-    "GLM"
+    "Transformer"
   ]
 }

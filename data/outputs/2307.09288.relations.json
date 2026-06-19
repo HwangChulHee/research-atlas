@@ -1,6 +1,5 @@
 {
   "builds_on": [
-    "Llama",
-    "Llama 1"
+    "Llama"
   ]
 }

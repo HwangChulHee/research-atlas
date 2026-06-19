@@ -1,14 +1,11 @@
 {
   "builds_on": [
-    "Transformer-XL",
-    "Adaptive Span",
-    "Compressive",
-    "Reformer",
-    "Sparse",
-    "Routing",
-    "BP-Transformer",
-    "Blockwise",
     "Transformer",
-    "RoBERTa"
+    "Transformer-XL",
+    "Reformer",
+    "Adaptive Span",
+    "Compressive Transformer",
+    "BP-Transformer",
+    "Sparse Transformer"
   ]
 }

@@ -1,6 +1,6 @@
 {
   "builds_on": [
     "Chain-of-Thought Prompting",
-    "Self-Consistency"
+    "Few-Shot Prompting"
   ]
 }

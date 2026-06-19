@@ -1,5 +1,5 @@
 {
   "builds_on": [
-    "Chain-of-Thought"
+    "Chain-of-thought prompting"
   ]
 }

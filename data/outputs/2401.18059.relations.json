@@ -1,5 +1,6 @@
 {
   "builds_on": [
-    "RAG"
+    "retrieval-augmented language models",
+    "retrieval augmentation"
   ]
 }

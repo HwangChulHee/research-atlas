@@ -1,5 +1,7 @@
 {
   "builds_on": [
-    "Dense retrieval"
+    "DPR",
+    "Contriever",
+    "GTR"
   ]
 }

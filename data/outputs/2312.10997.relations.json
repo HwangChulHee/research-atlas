@@ -1,5 +1,8 @@
 {
   "builds_on": [
-    "RAG"
+    "Retrieval-Augmented Generation",
+    "Naive RAG",
+    "Advanced RAG",
+    "Modular RAG"
   ]
 }

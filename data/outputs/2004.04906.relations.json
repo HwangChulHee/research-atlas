@@ -1,7 +1,7 @@
 {
   "builds_on": [
-    "BM25",
-    "TF-IDF",
-    "ORQA"
+    "BERT",
+    "dual-encoder",
+    "maximum inner product search"
   ]
 }

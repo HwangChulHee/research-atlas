@@ -1,5 +1,7 @@
 {
   "builds_on": [
-    "GraphRAG"
+    "RAG",
+    "GraphRAG-R1",
+    "TIRESRAG-R1"
   ]
 }

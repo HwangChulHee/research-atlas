@@ -5,6 +5,7 @@
   collect/                 ② 수집 에이전트       gate / intent / report / expand
   filter/                  ③ 필터 에이전트       command (명령→tool 라우팅)
 
-각 프롬프트 위에 5줄 메타 + [한글 번역] 주석. extract/relate 영문은 동작 불변(byte-동일).
+각 프롬프트 위에 5줄 메타 + [한글 번역] 주석. extract 영문은 동작 불변(byte-동일);
+relate는 lineage-only로 전환(점수비교 baseline 제외 + 입력 필드 축소: problem/domain 제거).
 프롬프트→에이전트→적용 위치 지도는 README.md 참고.
 """

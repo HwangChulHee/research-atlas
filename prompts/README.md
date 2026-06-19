@@ -27,7 +27,8 @@ prompts/
 | `collect/gate.py` | `GATE_SYSTEM/USER`, `GATE_PROMPT_VER` | `agent_collect.py: gate_classify()/gate_one()` | ② 수집 에이전트 | **approve** 승인 후 관문 판정 |
 | `filter/command.py` | `build_system_prompt(names)` | `agent_filter.py` → `api/main.py` | ③ 필터 에이전트 | `POST /api/command` ← `/graph` 채팅(화면 조작 명령) |
 
-> 언어: `extract`/`relate`는 영문 프롬프트(동작 불변, byte-동일 유지). `gate`/`intent`/`report`/
+> 언어: `extract`/`relate`는 영문 프롬프트. `extract`는 동작 불변(byte-동일 유지),
+> `relate`는 lineage-only로 전환됨(점수비교 baseline 제외, 입력에서 problem/domain 제거). `gate`/`intent`/`report`/
 > `expand`/`command`는 지시문 영문. 단 **`report`는 출력이 한국어**(프론트가 그 보고를 그대로 표시),
 > **`command`는 사용자 한국어 트리거 단어(보여줘/가져와…)를 유지**한다.
 
@@ -38,7 +39,7 @@ prompts/
 `fetch → parse → extract → relate → normalize_v2 → embed_nodes_v2`. 논문 PDF에서 노드/계보를 뽑는다.
 
 - `pipeline/extract.py` 프롬프트 → `src/extract.py`: 논문 본문에서 `defines/uses/problem/domain/paper_type` 추출.
-- `pipeline/relate.py` 프롬프트 → `src/relate.py`: `builds_on`(딛고 선 선행 기법) 식별.
+- `pipeline/relate.py` 프롬프트 → `src/relate.py`: `builds_on`(방법적으로 딛고 선 선행 기법 — lineage-only, 점수비교 baseline 제외) 식별.
 - **적용**: 배치 실행(`uv run python src/extract.py [--run]`). 결과는 `*.concepts.json`/`*.relations.json`.
   이 두 프롬프트는 ②의 추출 단계에서도 그대로 재사용된다(같은 함수 호출).
 

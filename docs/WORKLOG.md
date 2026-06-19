@@ -2,6 +2,22 @@
 
 세션 인계용 개선 로그. 최신이 위.
 
+## 2026-06-19 — builds_on을 lineage-only로 전환 + relate 입력 필드 축소
+
+`builds_on`이 "계보(extends/improves) + 점수비교 baseline"을 한 통에 섞어 추출하던 것을 **lineage-only**(방법적 후예만)로 전환. 동시에 relate 입력에서 `problem`/`domain`을 빼고 `defines`+본문만 남김. **채점(scoring) 0회인 "평가 쌓기 전" 창에서 lockstep으로** 진행 — relate 프롬프트·골든셋 정답지·코퍼스를 같은 정의로 맞춤.
+
+- **동기**: (1) baseline 포함은 미검토 디폴트였고 제품(위상 지도)에서 GPT-4 류 거대 허브 노이즈를 만듦. (2) `problem`/`domain`은 extract 파생물이라 단계 오류 전파 + `problem` 텍스트가 본문 근거 없이 builds_on을 끌어내는 간섭(single-prompt 안티패턴). `defines`는 self-reference 배제 기능이 명확해 유지. domain/problem은 extract가 계속 뽑아 노드 속성으로 쓰임(데이터 손실 없음) — relate가 *소비*만 멈춤.
+- **변경**: `prompts/pipeline/relate.py` RELATE_SYSTEM=lineage-only(점수비교 baseline·부품(PPO/GRPO/MCTS)·데이터셋·툴·self-defined 제외, "Comparison alone is NOT builds_on"), RELATE_USER=defines-only. `src/relate.py: relate_one()` 호출부에서 domain/problem 인자 제거(`agent_collect.py`도 이 단일 경로 경유 — 추가 수정 불필요).
+- **⚠️ 두 변경 동시 반영 → 결과 변화 귀인 분리 불가**(의식적 선택). baseline 제외와 필드 축소가 한 재추출에 묶임.
+- **⚠️ 발견(핸드오프 가정과 불일치)**: `src/relate.py --run --force`는 `config.PAPER_IDS`(=FULL_IDS 54편)만 순회 → 에이전트 수집 37편(라벨된 골든셋 7편 + RARE 포함)이 **재추출 안 됨**. 일회용 드라이버로 나머지 37편을 `relate.relate_one`(프롬프트 단일 출처) 경유 재추출해 91편 전부 새 프롬프트로 정합화.
+- **코퍼스 before/after**(git HEAD↔작업트리): relations.json 변경 68편. raw builds_on 항목 190→196(↑6 — 새 프롬프트가 generic phrase "large language models"·"question answering" 등을 더 뱉음, 단 lexicon NODE_OK가 걸러냄). 정규화 그래프(normalize_v2): 개념 157→134, builds_on 엣지 153→133(**−20**), placeholder 56→33, defines 101 불변. GPT-4·BM25·PaLM·BLOOM·OPT 등 baseline이 의도대로 빠짐.
+- **골든셋 재판정(§4)**: 4-A 자율 적용 — 2505.17005 [RAG,MCTS]→[RAG], 2504.03160에서 CoT·Search-o1 drop, 2503.19470에서 Iter-RetGen·IRCoT drop. labels.json `_meta.rubric`을 lineage-only로 재작성, `labeled`=7 유지. **4-B 경계 4건(CoT/o1/QwQ/DeepSeek-R1)은 사용자 확정 대기** — 라벨 본문은 미변경 보존.
+- **워크시트(eval/goldset/translations 50편)**: 상단 "라벨링 규칙" 헤더 블록을 lineage-only로 byte-안전 교체(250/250 blockquote 라인만, 본문 0변경, Voyager CRLF 보존). 라벨 7편 본문 동기화는 4-B 확정 후.
+- **렉시콘 감사(§8, 삭제 0)**: 재추출로 무참조가 된 항목 38건 리포트 — approved 29(GPT-4·BM25·PaLM·RAPTOR·REPLUG 등), pending 9(R1-Searcher·RoG·ToG·DRAGIN 등). approved/rejected HITL 결정 무변경 확인, normalize_v2가 새 pending 48건 추가(머신 장부, 노드 아님). R1-Searcher/RAPTOR/RoG/ToG 등은 골든셋이 기대하는데 파이프라인이 놓친 recall 손실 → eval이 잡을 항목.
+- **소비 코드 점검(§3⑥)**: normalize_core·graphdb·api·web·command 전부 `builds_on`을 구조적 엣지명으로만 소비(baseline-vs-lineage 의미 하드코딩 없음). `focus_lineage`/`lineageSets`·온톨로지 `a3_infer_lineage`는 오히려 의미가 더 정확해짐 — **코드 수정 불필요**.
+- **⚠️ 미완(환경 블로커)**: Neo4j 미기동(WSL에 docker 없음) → `graphdb/load.py` 적재 + `graphdb/verify.py` 오라클(불변식 1) **미실행**. 새 `normalized_v2.json`(재빌드 오라클)은 생성됨 — Neo4j 기동 후 `/api/rebuild`(normalize→load→verify) 또는 load+verify 수동 실행 필요.
+- **문서**: README·prompts/README·prompts/__init__·docs/ontology/README에 lineage-only 반영.
+
 ## 2026-06-17 — 라이브/오프라인 모드 스위치 (증분 쓰기 호환성 마감)
 
 증분 쓰기 전환(e9f3059) 후 뒤처진 **보조 읽기 3곳 + eval 격리 1곳**을 단일 모드 스위치로 정리. 공통 뿌리: 이들이 아직 `normalized_v2.json`(이제 재빌드 전용 중간산물, 증분 때 갱신 안 됨)을 읽음.

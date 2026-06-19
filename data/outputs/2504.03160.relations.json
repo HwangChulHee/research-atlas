@@ -1,8 +1,6 @@
 {
   "builds_on": [
-    "RAG",
-    "Search-R1",
-    "R1-Searcher",
-    "ReSearch"
+    "Retrieval-Augmented Generation",
+    "RAG"
   ]
 }

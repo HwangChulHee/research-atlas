@@ -1,9 +1,7 @@
 {
   "builds_on": [
-    "RAG",
-    "Search-R1",
-    "DeepRetrieval",
-    "Self-RAG",
-    "Active RAG"
+    "Retrieval-Augmented Generation",
+    "Active RAG",
+    "Self-RAG"
   ]
 }

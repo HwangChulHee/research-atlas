@@ -14,6 +14,8 @@ research-atlas의 데이터는 **이분 그래프**다: 노드는 `paper`/`conce
   스키마는 단 두 줄: `definedBy ≡ inverseOf(defines)`, 그리고 속성 사슬
   `buildsUpon ⊑ definedBy ∘ buildsOn`. 즉 **"논문이 A를 정의하고 B를 딛고 서면, A는 B 위에 선다."**
   `owlrl`로 폐포를 전개하면 저장하지 않았던 `concept→concept` 계보가 도출된다(self-loop = 추출 오류로 표면화).
+  `buildsOn`이 lineage-only로 전환된 뒤(점수비교 baseline 제외)로는 이 사슬이 진짜 방법적 계보만
+  전개하므로 `buildsUpon` 추론의 의미 정확도가 올라간다(GPT-4 류 baseline 허브가 만들던 가짜 계보 소거).
 
 **서사**: RDF/OWL로 "논문 경유 개념 계보"가 표준 추론(property chain)으로 환원됨을 확인하고,
 그 추론을 운영 그래프 DB(Neo4j)의 Cypher(`home_concept → builds_on 대상`)로 구현했다.

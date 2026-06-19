@@ -1,5 +1,6 @@
 {
   "builds_on": [
+    "LLM-based multi-agent systems",
     "AutoGPT",
     "LangChain",
     "AgentVerse",

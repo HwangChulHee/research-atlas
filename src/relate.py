@@ -19,8 +19,7 @@ def relate_one(concepts: dict, text: str) -> dict:
         messages=[
             {"role": "system", "content": RELATE_SYSTEM},
             {"role": "user", "content": RELATE_USER.format(
-                defines=defines, domain=concepts.get("domain", "general"),
-                problem=concepts.get("problem", ""), text=text)},
+                defines=defines, text=text)},
         ],
         response_format={"type": "json_schema", "json_schema": RELATE_SCHEMA},
     )

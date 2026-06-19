@@ -1,5 +1,7 @@
 {
   "builds_on": [
-    "RAG"
+    "question answering",
+    "language modeling",
+    "span extraction"
   ]
 }

@@ -1,5 +1,6 @@
 {
   "builds_on": [
-    "RAG"
+    "GPT-3",
+    "GPT-J"
   ]
 }
