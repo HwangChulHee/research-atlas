@@ -510,3 +510,22 @@ frozen 정답지 50편 vs 파이프라인 출력(`data/outputs/{id}.relations.js
 **출력**: 콘솔(3세트 표 + FP 전체 + FN 전체 진단) + `eval/runs/score_buildson_{ts}.json/.md`(rep_key→라벨 변환 저장).
 
 실행: `uv run python eval/score_buildson.py` (스모크) / `--run` (전체).
+
+## 2026-06-22 — builds_on 채점 결과 항목별 분석 리포트 (eval/report_buildson.py)
+
+채점기(score_buildson.py) 결과를 **사람이 읽는 분석 문서**로 렌더링. 측정은 끝났고 이건 결과를 항목 단위로 푸는 작업 — 데이터·점수 무수정. 계산은 normalize_core 그대로 재사용(재발명 X), §8 기대 숫자 6항목 재현 검증 후에만 산출(불일치 시 중단).
+
+**산출물(eval/reports/, gitignore 아님 — 추적 확인):**
+- `buildson_analysis_v1.md` — 용어풀이→점수요약→논문별 상세표 50편→FP 3분류→FN 2분류→해석.
+- `buildson_items_v1.csv` — 항목 1줄(92행=ΣTP41+FP32+FN19). paper_id,title,group,concept,verdict,fn_reason,fp_category,concept_status.
+
+**FP 3분류(32건)** — "정밀도를 싸게 고칠 수 있나"의 답:
+- component_tool 5(PPO/MCTS/RAGAS/ARES/TruLens) — 계보 아님 → lexicon reject로 싸게 제거.
+- substrate 4(GPT-3/BERT류) — 백본, DPR·ColBERT엔 정답이라 전역 reject 불가(문맥의존).
+- method_misjudged 23(Self-RAG/ReAct/AutoGPT 등) — 진짜 방법인데 이 논문선 baseline. lexicon으로 못 고침 = relate 판단 문제. **다수.**
+
+**FN 2분류(19건)**: lexicon_dropped 3(DeepSeek-V3-Base/KG-RAG/TIRESRAG-R1, 전부 pending → 검수하면 복구) + not_extracted 16(abstract-only 형제계보 누락).
+
+**결론(문서 §5)**: 싸게 고칠 수 있는 건 소수(lexicon_dropped FN 3 + component_tool FP 5 = 사전작업). 점수를 좌우하는 다수(method_misjudged FP 23 + not_extracted FN 16)는 abstract+intro 입력의 본질적 한계 → 다음 레버는 lexicon이 아니라 relate가 보는 범위/맥락.
+
+실행: `uv run python eval/report_buildson.py`.
