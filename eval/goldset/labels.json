@@ -9,47 +9,78 @@
   "labels": {
     "2503.09516": {
       "title": "SEARCH-R1",
-      "builds_on": ["RAG", "DeepSeek-R1-Zero"]
+      "builds_on": [
+        "RAG",
+        "DeepSeek-R1-Zero"
+      ]
     },
     "2501.12948": {
       "title": "DeepSeek-R1",
-      "builds_on": ["CoT", "DeepSeek-V3-Base"]
+      "builds_on": [
+        "Chain-of-Thought",
+        "DeepSeek-V3-Base"
+      ]
     },
     "2501.05366": {
       "title": "Search-o1",
-      "builds_on": ["RAG", "o1"]
+      "builds_on": [
+        "RAG",
+        "o1"
+      ]
     },
     "2505.17005": {
       "title": "R1-Searcher++",
-      "builds_on": ["RAG"]
+      "builds_on": [
+        "RAG"
+      ]
     },
     "2504.03160": {
       "title": "DeepResearcher",
-      "builds_on": ["RAG", "Search-R1", "R1-Searcher", "ReSearch"]
+      "builds_on": [
+        "RAG",
+        "Search-R1",
+        "R1-Searcher",
+        "ReSearch"
+      ]
     },
     "2503.19470": {
       "title": "ReSearch",
-      "builds_on": ["RAG", "DeepSeek-R1"]
+      "builds_on": [
+        "RAG",
+        "DeepSeek-R1"
+      ]
     },
     "2502.01142": {
       "title": "DeepRAG",
-      "builds_on": ["RAG"]
+      "builds_on": [
+        "RAG"
+      ]
     },
     "2503.23513": {
       "title": "RARE",
-      "builds_on": ["RAG"]
+      "builds_on": [
+        "RAG"
+      ]
     },
     "2504.21776": {
       "title": "WebThinker",
-      "builds_on": ["RAG"]
+      "builds_on": [
+        "RAG"
+      ]
     },
     "2502.13957": {
       "title": "RAG-Gym",
-      "builds_on": ["RAG"]
+      "builds_on": [
+        "RAG"
+      ]
     },
     "2505.14146": {
       "title": "s3",
-      "builds_on": ["RAG", "Search-R1", "DeepRetrieval"]
+      "builds_on": [
+        "RAG",
+        "Search-R1",
+        "DeepRetrieval"
+      ]
     },
     "2503.00223": {
       "title": "DeepRetrieval",
@@ -65,7 +96,9 @@
     },
     "2504.14870": {
       "title": "OTC",
-      "builds_on": ["Search-R1"]
+      "builds_on": [
+        "Search-R1"
+      ]
     },
     "2509.25140": {
       "title": "ReasoningBank",
@@ -73,35 +106,59 @@
     },
     "2509.26383": {
       "title": "KG-R1",
-      "builds_on": ["RAG", "KG-RAG", "ToG", "ReKnoS", "RoG"]
+      "builds_on": [
+        "RAG",
+        "KG-RAG",
+        "ToG",
+        "ReKnoS",
+        "RoG"
+      ]
     },
     "2510.07794": {
       "title": "HiPRAG",
-      "builds_on": ["RAG"]
+      "builds_on": [
+        "RAG"
+      ]
     },
     "2510.20548": {
       "title": "GlobalRAG",
-      "builds_on": ["RAG", "Search-R1", "TIRESRAG-R1"]
+      "builds_on": [
+        "RAG",
+        "Search-R1",
+        "TIRESRAG-R1"
+      ]
     },
     "2510.27569": {
       "title": "MARAG-R1",
-      "builds_on": ["RAG"]
+      "builds_on": [
+        "RAG"
+      ]
     },
     "2511.09109": {
       "title": "Bi-RAR",
-      "builds_on": ["RAG", "Search-R1"]
+      "builds_on": [
+        "RAG",
+        "Search-R1"
+      ]
     },
     "2002.08909": {
       "title": "REALM",
-      "builds_on": ["kNN-LM"]
+      "builds_on": [
+        "kNN-LM"
+      ]
     },
     "2004.04906": {
       "title": "DPR",
-      "builds_on": ["ORQA", "BERT"]
+      "builds_on": [
+        "ORQA",
+        "BERT"
+      ]
     },
     "2004.12832": {
       "title": "ColBERT",
-      "builds_on": ["BERT"]
+      "builds_on": [
+        "BERT"
+      ]
     },
     "2201.11903": {
       "title": "Chain-of-Thought",
@@ -109,15 +166,21 @@
     },
     "2203.11171": {
       "title": "Self-Consistency",
-      "builds_on": ["Chain-of-Thought"]
+      "builds_on": [
+        "Chain-of-Thought"
+      ]
     },
     "2205.10625": {
       "title": "Least-to-Most",
-      "builds_on": ["Chain-of-Thought"]
+      "builds_on": [
+        "Chain-of-Thought"
+      ]
     },
     "2210.03629": {
       "title": "ReAct",
-      "builds_on": ["Chain-of-Thought"]
+      "builds_on": [
+        "Chain-of-Thought"
+      ]
     },
     "2301.12652": {
       "title": "REPLUG",
@@ -129,15 +192,22 @@
     },
     "2303.11366": {
       "title": "Reflexion",
-      "builds_on": ["ReAct"]
+      "builds_on": [
+        "ReAct"
+      ]
     },
     "2305.04091": {
       "title": "Plan-and-Solve",
-      "builds_on": ["Zero-shot-CoT", "Chain-of-Thought"]
+      "builds_on": [
+        "Zero-shot-CoT",
+        "Chain-of-Thought"
+      ]
     },
     "2305.14283": {
       "title": "Rewrite-Retrieve-Read",
-      "builds_on": ["RAG"]
+      "builds_on": [
+        "RAG"
+      ]
     },
     "2305.16291": {
       "title": "Voyager",
@@ -149,11 +219,15 @@
     },
     "2310.04406": {
       "title": "LATS",
-      "builds_on": ["ReAct"]
+      "builds_on": [
+        "ReAct"
+      ]
     },
     "2310.11511": {
       "title": "Self-RAG",
-      "builds_on": ["RAG"]
+      "builds_on": [
+        "RAG"
+      ]
     },
     "2401.14887": {
       "title": "Power of Noise",
@@ -161,23 +235,33 @@
     },
     "2401.15884": {
       "title": "CRAG",
-      "builds_on": ["RAG"]
+      "builds_on": [
+        "RAG"
+      ]
     },
     "2401.18059": {
       "title": "RAPTOR",
-      "builds_on": ["RAG"]
+      "builds_on": [
+        "RAG"
+      ]
     },
     "2403.10131": {
       "title": "RAFT",
-      "builds_on": ["RAG"]
+      "builds_on": [
+        "RAG"
+      ]
     },
     "2404.16130": {
       "title": "GraphRAG",
-      "builds_on": ["RAG"]
+      "builds_on": [
+        "RAG"
+      ]
     },
     "2405.14831": {
       "title": "HippoRAG",
-      "builds_on": ["RAG"]
+      "builds_on": [
+        "RAG"
+      ]
     },
     "2407.11005": {
       "title": "RAGBench",
@@ -185,27 +269,42 @@
     },
     "2408.04187": {
       "title": "MedGraphRAG",
-      "builds_on": ["GraphRAG", "RAG"]
+      "builds_on": [
+        "GraphRAG",
+        "RAG"
+      ]
     },
     "2406.17526": {
       "title": "LumberChunker",
-      "builds_on": ["RAG"]
+      "builds_on": [
+        "RAG"
+      ]
     },
     "2410.05779": {
       "title": "LightRAG",
-      "builds_on": ["RAG"]
+      "builds_on": [
+        "RAG"
+      ]
     },
     "2502.04413": {
       "title": "MedRAG",
-      "builds_on": ["RAG"]
+      "builds_on": [
+        "RAG"
+      ]
     },
     "2502.14802": {
       "title": "From RAG to Memory (HippoRAG 2)",
-      "builds_on": ["HippoRAG", "RAG"]
+      "builds_on": [
+        "HippoRAG",
+        "RAG"
+      ]
     },
     "2503.21322": {
       "title": "HyperGraphRAG",
-      "builds_on": ["GraphRAG", "RAG"]
+      "builds_on": [
+        "GraphRAG",
+        "RAG"
+      ]
     }
   }
 }
