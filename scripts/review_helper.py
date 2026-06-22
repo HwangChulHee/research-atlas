@@ -65,7 +65,7 @@ RUBRIC_SYSTEM = """\
   → 자동 reject 말고 confidence=low로 사람에게 넘겨라.
 - 애매하면 confidence=low로 두고 action은 보수적으로(reject로 단정 말 것).
 
-reason은 한 문장으로, 가능하면 evidence(정의문/인용 논문)를 인용하라.
+reason은 **반드시 한국어로** 한 문장(영어로 쓰지 말 것). 가능하면 evidence(정의문/인용 논문)를 인용하라.
 confidence: high(명백) / med / low(애매 — 사람 주목).
 """
 

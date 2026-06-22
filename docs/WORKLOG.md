@@ -730,3 +730,10 @@ UI 가독성: 전반적으로 글자가 작다는 피드백 → base 14→15px +
 - 정렬: "불확실한 것 먼저"(검토대기 제안 confidence low→high → 그외 이름순) — 검토 도구 의도.
 - 근거/evidence는 tooltip→상시 노출로 승격(사람이 1초 판단). 버튼 톤 정리(조잡함 제거).
 - web build 통과.
+
+## 2026-06-22 — 검토 도우미 근거 한글화
+
+도우미 제안 reason이 한/영 섞임 → 전부 한국어로.
+- review_helper.py RUBRIC: "reason은 반드시 한국어로(영어 금지)". 전체 재생성(97개, reason 한글 0 누락 확인).
+- Lexicon 카드: action/category 표기도 한글(승인/거부/병합→X, 계보/부품/일반어/베이스모델/저자-연도/우산범주/중복) — 표시용, 내부 로직은 원문 enum 유지.
+- web build 통과.

@@ -13,6 +13,22 @@ function parseAction(s) {
   if (s && s.startsWith("merge_into:")) return ["merge", s.slice(11)];
   return [s, null];
 }
+// 한글 표기(표시용 — 내부 로직은 원문 사용)
+const CAT_KR = {
+  lineage: "계보",
+  component: "부품",
+  generic: "일반어",
+  substrate: "베이스모델",
+  author_year: "저자-연도 인용",
+  umbrella: "우산범주",
+  duplicate: "중복",
+};
+function actionKr([act, tgt]) {
+  if (act === "approve") return "승인";
+  if (act === "reject") return "거부";
+  if (act === "merge") return `병합 → ${tgt || "?"}`;
+  return act;
+}
 
 const FILTERS = ["pending", "unreviewed", "approved", "rejected", "all"];
 const PAGE_SIZES = [25, 50, 100];
@@ -497,7 +513,8 @@ function ConceptCard({ item, card, onPatch, onDecision, onMerge }) {
         <div className="cc-sugg">
           <span className={`rv-conf rv-${sugg.confidence}`}>{sugg.confidence}</span>
           <span className="cc-sugg-text">
-            <b>제안: {sugg.action}</b> ({sugg.category}) — {sugg.reason}
+            <b>제안: {actionKr(parseAction(sugg.action))}</b> (
+            {CAT_KR[sugg.category] || sugg.category}) — {sugg.reason}
           </span>
           <button className="cc-apply" onClick={applySuggestion}>
             이대로 적용
