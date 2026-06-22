@@ -327,25 +327,8 @@ def run_smoke(st, defined, cited, paper_title):
     return ok
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--smoke", action="store_true", help="가설 5개만 PASS/FAIL")
-    args = ap.parse_args()
-
-    st = nc.load_lex_state()
-    defined, cited, paper_title = build_evidence_index(st)
-
-    if args.smoke:
-        run_smoke(st, defined, cited, paper_title)
-        return
-
-    candidates = [
-        (name, meta) for name, meta in st["lex"].items()
-        if meta.get("status") in REVIEW_STATUSES
-    ]
-    print(f"검토 대기 {len(candidates)}개 — 제안 생성(model={config.MODEL_RELATE}, temp=0)…",
-          flush=True)
-
+def generate_cards(candidates, st, defined, cited, paper_title):
+    """후보 리스트 → 카드 리스트(병렬). (생성된 카드, 실패목록) 반환."""
     cards = [None] * len(candidates)
     fail = []
     with ThreadPoolExecutor(max_workers=8) as ex:
@@ -363,20 +346,72 @@ def main():
             done += 1
             if done % 20 == 0:
                 print(f"  {done}/{len(candidates)}", flush=True)
-    cards = [c for c in cards if c]
-    if fail:
-        print(f"⚠️ 실패 {len(fail)}: {fail[:3]}")
+    return [c for c in cards if c], fail
 
+
+def write_reports(cards):
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
     (REPORT_DIR / "review_suggestions.json").write_text(
         json.dumps(cards, ensure_ascii=False, indent=2)
     )
     (REPORT_DIR / "review_suggestions.md").write_text(render_md(cards))
+
+
+def load_existing_cards():
+    p = REPORT_DIR / "review_suggestions.json"
+    if not p.exists():
+        return []
+    try:
+        return json.loads(p.read_text())
+    except (json.JSONDecodeError, OSError):
+        return []
+
+
+def summary(cards):
     appr = sum(1 for c in cards if c["suggestion"]["action"] == "approve")
     rej = sum(1 for c in cards if c["suggestion"]["action"] == "reject")
     mrg = sum(1 for c in cards if c["suggestion"]["action"].startswith("merge"))
     low = sum(1 for c in cards if c["suggestion"]["confidence"] == "low")
-    print(f"\n완료 {len(cards)}개 · approve {appr} · reject {rej} · merge {mrg} · 확신낮음 {low}")
+    return f"{len(cards)}개 · approve {appr} · reject {rej} · merge {mrg} · 확신낮음 {low}"
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--smoke", action="store_true", help="가설 5개만 PASS/FAIL")
+    ap.add_argument("--incremental", action="store_true",
+                    help="기존 스냅샷 유지하고, 카드 없는 신규 검토대기 개념만 생성")
+    args = ap.parse_args()
+
+    st = nc.load_lex_state()
+    defined, cited, paper_title = build_evidence_index(st)
+
+    if args.smoke:
+        run_smoke(st, defined, cited, paper_title)
+        return
+
+    candidates = [
+        (name, meta) for name, meta in st["lex"].items()
+        if meta.get("status") in REVIEW_STATUSES
+    ]
+
+    if args.incremental:
+        existing = {c["concept"]: c for c in load_existing_cards()}
+        cand_names = {name for name, _ in candidates}
+        kept = [existing[n] for n in cand_names if n in existing]  # 아직 대기 중인 기존 카드만
+        todo = [(name, meta) for name, meta in candidates if name not in existing]
+        print(f"증분: 기존 카드 {len(kept)} 유지 · 신규 {len(todo)} 생성 "
+              f"(model={config.MODEL_RELATE}, temp=0)…", flush=True)
+        new_cards, fail = generate_cards(todo, st, defined, cited, paper_title)
+        cards = kept + new_cards
+    else:
+        print(f"검토 대기 {len(candidates)}개 — 제안 생성"
+              f"(model={config.MODEL_RELATE}, temp=0)…", flush=True)
+        cards, fail = generate_cards(candidates, st, defined, cited, paper_title)
+
+    if fail:
+        print(f"⚠️ 실패 {len(fail)}: {fail[:3]}")
+    write_reports(cards)
+    print(f"\n완료 {summary(cards)}")
     print("저장: eval/reports/review_suggestions.{json,md}")
 
 

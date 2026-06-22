@@ -703,3 +703,12 @@ UI 가독성: 전반적으로 글자가 작다는 피드백 → base 14→15px +
 - 재빌드 필요 케이스: pending→approved만(노드 신규생성=normalize 몫). reject/merge/기존노드 승인은 라이브.
 - 검증: GET 97카드(reject50·approve38·merge9), PATCH dispatch 왕복(ToG pending→approved→pending, lexicon md5 무변경), web build 통과.
 - 범위 밖: low/med 일괄, 제안 실시간 재생성, 제안vs사람 일치율 측정.
+
+## 2026-06-22 — 검토 도우미: 제안 새로고침 + 증분
+
+새 개념(수집/재빌드로 lexicon에 pending 추가)은 정적 스냅샷이라 검토 패널에 안 떴음 → 증분 재생성 추가.
+- scripts/review_helper.py: --incremental 모드 — 기존 카드 중 아직 pending/unreviewed인 것만 유지, 카드 *없는* 신규 검토대기 개념만 LLM 생성해 병합(전체 재호출 없음). generate_cards/write_reports/load_existing_cards/summary로 리팩터.
+- api/main.py: POST /api/review_suggestions/regenerate — review_helper.py --incremental subprocess(재빌드 패턴) 후 갱신 카드 반환. (read-only 서빙 GET와 별개.)
+- api.js: regenerateReviewSuggestions.
+- Lexicon.jsx: ReviewPanel 헤더에 '✦ 제안 새로고침' 버튼(regenerating 상태) → setReviewCards 갱신. 패널 렌더 조건을 liveCards>0 → 검토대기(pending+unreviewed) 존재로 변경(카드 0이어도 새로고침 도달 가능), 카드 0 빈 상태 안내. 비용은 사람 클릭으로 통제(자동 LLM 호출 안 함 — '사람이 결정' 원칙).
+- 검증: --incremental(카드1 제거→신규1만 생성→97 복귀), POST 엔드포인트 97카드 반환, web build 통과. 스냅샷은 테스트 후 git 복원.

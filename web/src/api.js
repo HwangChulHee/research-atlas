@@ -33,6 +33,10 @@ export const rebuild = () =>
 export const getReviewSuggestions = () =>
   fetch("/api/review_suggestions").then(jsonOrThrow);
 
+// 증분 재생성 — 카드 없는 신규 검토대기 개념만 제안 생성(LLM). 갱신된 cards 반환.
+export const regenerateReviewSuggestions = () =>
+  fetch("/api/review_suggestions/regenerate", { method: "POST" }).then(jsonOrThrow);
+
 // 개념 '검토함' 토글 → reviewed.json 기록
 export const postReviewed = (id, reviewed) =>
   fetch("/api/concept/reviewed", {

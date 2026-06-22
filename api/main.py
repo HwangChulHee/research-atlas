@@ -189,6 +189,15 @@ def review_suggestions():
     return {"cards": json.loads(p.read_text())}  # .json은 카드 리스트
 
 
+@app.post("/api/review_suggestions/regenerate")
+def regenerate_review_suggestions():
+    """검토 도우미를 증분 실행 — 카드 없는 신규 검토대기 개념만 제안 생성(LLM).
+    기존 카드는 유지, 더는 대기 아닌 개념 카드는 정리. 갱신된 카드 리스트 반환."""
+    _run_step("review_helper.py",
+              str(ROOT / "scripts" / "review_helper.py"), "--incremental")
+    return review_suggestions()
+
+
 @app.post("/api/concept/reviewed")
 def set_reviewed(body: dict = Body(...)):
     """개념의 검토함 토글. {id, reviewed: bool} → reviewed.json에 기록."""

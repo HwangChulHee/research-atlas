@@ -5,6 +5,7 @@ import {
   patchLexicon,
   rebuild,
   getReviewSuggestions,
+  regenerateReviewSuggestions,
 } from "../api.js";
 
 // 제안 action 문자열 → (action, target). "merge_into:DPR" → ["merge","DPR"].
@@ -39,6 +40,7 @@ export default function Lexicon() {
   const [mergeFrom, setMergeFrom] = useState(null); // 병합 모달 대상(개념명) 또는 null
   const [reviewCards, setReviewCards] = useState([]); // 검토 도우미 제안 카드(정적 스냅샷)
   const [rebuilding, setRebuilding] = useState(false);
+  const [regenerating, setRegenerating] = useState(false);
   const [toast, setToast] = useState(null); // {msg, err}
 
   function toggleSort(key) {
@@ -114,6 +116,21 @@ export default function Lexicon() {
       flash(`재빌드 실패: ${e.message}`, true);
     } finally {
       setRebuilding(false);
+    }
+  }
+
+  // 증분 재생성 — 카드 없는 신규 검토대기 개념만 제안 생성(LLM). 새 수집/재빌드 후 사용.
+  async function doRegenerate() {
+    setRegenerating(true);
+    flash("새 개념 제안 생성 중… (LLM)");
+    try {
+      const r = await regenerateReviewSuggestions();
+      setReviewCards(r.cards || []);
+      flash(`제안 갱신됨 — 카드 ${(r.cards || []).length}개`);
+    } catch (e) {
+      flash(`제안 생성 실패: ${e.message}`, true);
+    } finally {
+      setRegenerating(false);
     }
   }
 
@@ -235,13 +252,15 @@ export default function Lexicon() {
         )}
       </header>
 
-      {liveCards.length > 0 && (
+      {(counts.pending || 0) + (counts.unreviewed || 0) > 0 && (
         <ReviewPanel
           cards={liveCards}
           approvedNames={approvedNames}
           onDecision={applyDecision}
           onRebuild={doRebuild}
           rebuilding={rebuilding}
+          onRegenerate={doRegenerate}
+          regenerating={regenerating}
         />
       )}
       <div className="lex-toolbar">
@@ -527,7 +546,15 @@ function Row({ item, onPatch, onMerge }) {
 
 // 검토 도우미 패널 — 제안 카드(정적 스냅샷)를 큐로 띄우고 카드별/일괄 적용.
 // 적용은 onDecision(applyDecision) 하나로 dispatch. low/med는 개별만, high는 일괄 가능.
-function ReviewPanel({ cards, approvedNames, onDecision, onRebuild, rebuilding }) {
+function ReviewPanel({
+  cards,
+  approvedNames,
+  onDecision,
+  onRebuild,
+  rebuilding,
+  onRegenerate,
+  regenerating,
+}) {
   const [open, setOpen] = useState(true);
   const [showHigh, setShowHigh] = useState(false);
   const [selected, setSelected] = useState(() => new Set());
@@ -661,18 +688,35 @@ function ReviewPanel({ cards, approvedNames, onDecision, onRebuild, rebuilding }
         </button>
         <span className="muted">제안일 뿐 — 적용은 당신의 클릭</span>
         <span className="spacer" />
+        <button
+          onClick={onRegenerate}
+          disabled={regenerating}
+          title="카드 없는 신규 검토대기 개념만 제안 생성(LLM)"
+        >
+          {regenerating ? "제안 생성 중…" : "✦ 제안 새로고침"}
+        </button>
         <button onClick={onRebuild} disabled={rebuilding} title="pending 승인분을 노드로 반영">
           {rebuilding ? "재빌드 중…" : "↻ 재빌드"}
         </button>
       </div>
       {open && (
         <>
-          <div className="rv-section-title">
-            ⚠️ 확신 낮음·중간 — 한 장씩 검토 ({lowMed.length})
-          </div>
-          {lowMed.length === 0 && <div className="muted rv-empty">없음</div>}
+          {cards.length === 0 && (
+            <div className="muted rv-empty">
+              제안 카드가 없습니다. 새 개념이 들어왔다면 [✦ 제안 새로고침]으로 생성하세요.
+            </div>
+          )}
+          {cards.length > 0 && (
+            <div className="rv-section-title">
+              ⚠️ 확신 낮음·중간 — 한 장씩 검토 ({lowMed.length})
+            </div>
+          )}
+          {cards.length > 0 && lowMed.length === 0 && (
+            <div className="muted rv-empty">없음</div>
+          )}
           {lowMed.map((c) => cardRow(c, false))}
 
+          {high.length > 0 && (
           <div className="rv-high">
             <button className="rv-toggle" onClick={() => setShowHigh((v) => !v)}>
               ✅ 확신 높음 {high.length}개 {showHigh ? "접기 ▴" : "펼치기 ▾"}
@@ -693,6 +737,7 @@ function ReviewPanel({ cards, approvedNames, onDecision, onRebuild, rebuilding }
               </>
             )}
           </div>
+          )}
         </>
       )}
     </section>
