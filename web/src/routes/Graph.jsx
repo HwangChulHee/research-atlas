@@ -593,7 +593,6 @@ export default function Graph() {
           )}
         </form>
         <div className="graph-controls">
-          <span className="graph-controls-label">필터</span>
           <select
             value={filterState.ptype || ""}
             onChange={(e) =>

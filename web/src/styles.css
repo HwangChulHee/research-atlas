@@ -22,7 +22,9 @@ body,
 }
 body {
   margin: 0;
-  overflow: hidden; /* 페이지 스크롤 차단 — 각 화면이 내부에서 스크롤 관리 */
+  /* 세로는 각 화면이 내부에서 관리. 가로는 최소 폭 미만일 때만 스크롤(reflow 안 함). */
+  overflow-y: hidden;
+  overflow-x: auto;
   background: var(--bg);
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Pretendard",
@@ -34,6 +36,7 @@ body {
 #root {
   display: flex;
   flex-direction: column;
+  min-width: 1024px; /* 데스크톱 고정 — 이보다 좁으면 가로 스크롤(레이아웃 안 무너짐) */
 }
 
 a {
@@ -612,8 +615,12 @@ textarea {
   left: 50%;
   transform: translateX(-50%);
   display: flex;
+  flex-wrap: nowrap; /* 한 줄 고정 — 라벨이 두 줄로 안 깨지게 */
   align-items: center;
   gap: 8px;
+  max-width: calc(100% - 24px);
+  overflow-x: auto; /* 좁으면 바 안에서 가로 스크롤(줄바꿈 대신) */
+  white-space: nowrap;
   padding: 8px 10px;
   background: var(--panel);
   border: 1px solid var(--border);
@@ -621,9 +628,12 @@ textarea {
   box-shadow: var(--shadow);
   z-index: 10;
 }
+.graph-controls > * {
+  flex: 0 0 auto; /* 항목 안 줄어들게 → 텍스트 줄바꿈 방지 */
+}
 .graph-controls select {
-  min-width: 96px;
-  max-width: 150px;
+  min-width: 88px;
+  max-width: 128px;
 }
 .graph-controls-label {
   font-size: 12px;
@@ -645,6 +655,7 @@ textarea {
   margin-left: 2px;
   border-left: 1px solid var(--border);
   user-select: none;
+  white-space: nowrap;
 }
 .graph-controls-toggle input {
   cursor: pointer;
@@ -1160,55 +1171,7 @@ body.resizing-pane {
   z-index: 8;
 }
 
-/* --- 반응형 --- */
-@media (max-width: 820px) {
-  .nav {
-    flex-wrap: wrap;
-    gap: 8px 12px;
-    padding: 8px 12px;
-  }
-  .nav .brand {
-    margin-right: 8px;
-  }
-  /* 지형도: 그래프 위 / 채팅 아래로 세로 적층 */
-  .graph-page {
-    flex-direction: column;
-  }
-  .graph-area {
-    flex: 1 1 55%;
-    min-height: 280px;
-  }
-  .pane-divider {
-    display: none;
-  }
-  .chat-panel {
-    flex: 1 1 45%;
-    width: 100% !important;
-    border-left: none;
-    border-top: 1px solid var(--border);
-  }
-  /* 사전 테이블: 가로 스크롤 보장 */
-  .lex-table {
-    min-width: 720px;
-  }
-  /* 사용법: 카드 1열 */
-  .usage-grid {
-    grid-template-columns: 1fr;
-  }
-}
-@media (max-width: 520px) {
-  .graph-search {
-    width: calc(100% - 24px);
-  }
-  .graph-controls {
-    flex-wrap: wrap;
-    max-width: calc(100% - 24px);
-    justify-content: center;
-  }
-  .graph-panel {
-    width: calc(100% - 24px);
-  }
-}
+/* 데스크톱 고정 레이아웃 — 적응형 reflow 없이 최소 폭 유지(좁으면 가로 스크롤). */
 
 /* --- 모션 민감 사용자 배려 --- */
 @media (prefers-reduced-motion: reduce) {

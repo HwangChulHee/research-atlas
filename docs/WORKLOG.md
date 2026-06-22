@@ -675,3 +675,10 @@ UI 가독성: 전반적으로 글자가 작다는 피드백 → base 14→15px +
 - Graph.jsx: 디테일 패널 '검토함' 체크박스(즉시 dataRef 반영), applyFilter에 unreviewed_only(이미 본 것 제외), setFilter/filterChips에 unreviewed_only 합류(filterState 단일 진실원 — 드롭다운·채팅·렌즈 동기), 컨트롤바 '안 본 것만' 토글, semantic_search를 reviewed로 가르기(안 본 것/이미 본 것, 렌즈 ON이면 안 본 것만, cosine 순서 유지).
 - (Change 6) agent_filter filter 도구에 unreviewed_only + 프롬프트 한 줄 → 채팅 "안 본 것만"도 동작.
 - 검증: 토글→reviewed.json 기록, /api/graph 머지(127개 reviewed 필드), **재빌드 후 rag.reviewed 유지(핵심 설계 증거)**, 채팅 "안 본 것만"→filter{unreviewed_only}, "2024 이후 안 본 것만"→조합, 라우팅 6/6, web build 통과.
+
+## 2026-06-22 — 반응형 제거(데스크톱 고정) + 지형도 컨트롤 바 줄바꿈 수정
+
+반응형 reflow가 좁은 화면에서 깨져 보임("개구리") → 적응형 걷어내고 데스크톱 고정으로.
+- @media(820/520) reflow 블록 삭제. 대신 #root min-width:1024px + body overflow-x:auto → 좁으면 레이아웃 무너지지 않고 가로 스크롤. (reduced-motion은 유지.)
+- 지형도 하단 필터 바: 라벨이 두 줄로 깨지던 문제 → flex-nowrap + 항목 flex:0 0 auto + 라벨 white-space:nowrap, 셀렉트 폭 축소, 넘치면 바 안 가로 스크롤. 중복되던 '필터' 텍스트 라벨 제거(셀렉트 placeholder가 이미 '유형 전체' 등으로 라벨 역할).
+- web build 통과.
