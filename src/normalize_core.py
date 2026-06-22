@@ -15,11 +15,13 @@
   defines가 와도 register가 no-op이라 계속 pending → 노드 안 됨. 이 동작 그대로 복제.
 """
 import json
+import re
 from pathlib import Path
 
 import config
 
 NODE_OK = {"approved", "unreviewed"}
+_PAREN = re.compile(r"\s*\(([^()]*)\)\s*")
 LEX_PATH = config.DATA_DIR / "lexicon.json"
 
 
@@ -61,6 +63,18 @@ def resolve(st, name):
     if k in st["alias2rep"]:
         rk = st["alias2rep"][k]
         return rk, st["rep_meta"][rk]["label"]
+    # fallback: "Long Form (ACRONYM)" 표기 변종 — 직접 매칭 실패 시에만,
+    # 이미 알려진 대표개념에만 연결(새 개념 생성 안 함).
+    m = _PAREN.search(name)
+    if m:
+        inner = canon(m.group(1))                  # 괄호 안 약어, 예: "RAG"
+        if inner in st["alias2rep"]:
+            rk = st["alias2rep"][inner]
+            return rk, st["rep_meta"][rk]["label"]
+        outer = canon(_PAREN.sub(" ", name))       # 괄호 뗀 본체
+        if outer in st["alias2rep"]:
+            rk = st["alias2rep"][outer]
+            return rk, st["rep_meta"][rk]["label"]
     return k, name
 
 
