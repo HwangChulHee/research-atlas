@@ -9,9 +9,10 @@ import {
 } from "../api.js";
 
 // 대화 이력 localStorage 복원(chatWidth 패턴). 파싱 실패 시 빈 배열.
-function loadMessages() {
+// key별로 분리: "chatMessages"=명령 탭 / "collectMessages"=수집 탭.
+function loadMessages(key) {
   try {
-    const raw = localStorage.getItem("chatMessages");
+    const raw = localStorage.getItem(key);
     const arr = raw ? JSON.parse(raw) : [];
     return Array.isArray(arr) ? arr : [];
   } catch {
@@ -73,8 +74,11 @@ export default function Graph() {
     return clampChat(saved > 0 ? saved : 420);
   });
   const [dragging, setDragging] = useState(false);
-  const [messages, setMessages] = useState(loadMessages); // [{role:'user'|'agent', text}]
+  const [activeTab, setActiveTab] = useState("command"); // "command" | "collect"
+  const [messages, setMessages] = useState(() => loadMessages("chatMessages")); // 명령 탭 [{role,text}]
+  const [collectMessages, setCollectMessages] = useState(() => loadMessages("collectMessages")); // 수집 탭
   const [chatInput, setChatInput] = useState("");
+  const [collectInput, setCollectInput] = useState("");
   const [pending, setPending] = useState(false);
   const [chips, setChips] = useState([]); // 활성 조건 칩 라벨들
   const msgEndRef = useRef(null);
@@ -107,10 +111,10 @@ export default function Graph() {
     return () => ro.disconnect();
   }, []);
 
-  // 메시지/대기/수집카드(단계 전환·busy) 변할 때 맨 아래로 — 새 카드가 화면 밖에 안 묻히게
+  // 메시지/대기/수집카드(단계 전환·busy)·탭 전환 시 맨 아래로 — 새 카드가 화면 밖에 안 묻히게
   useEffect(() => {
     msgEndRef.current && msgEndRef.current.scrollIntoView({ block: "end" });
-  }, [messages, pending, collect]);
+  }, [messages, collectMessages, pending, collect, activeTab]);
 
   // 채팅 폭 변경 시 localStorage 저장(새로고침에도 유지)
   useEffect(() => {
@@ -122,13 +126,21 @@ export default function Graph() {
     localStorage.setItem("chatMessages", JSON.stringify(messages));
   }, [messages]);
 
+  // 수집 탭 이력 저장(명령 탭과 분리된 별도 키).
+  useEffect(() => {
+    localStorage.setItem("collectMessages", JSON.stringify(collectMessages));
+  }, [collectMessages]);
+
   // 부팅 시 수집 세션 복원 — 저장된 thread_id로 서버 체크포인터 상태 조회.
   // 성공 시 카드 복원, 404(만료) 면 localStorage에서 제거. 마운트 1회.
   useEffect(() => {
     const tid = localStorage.getItem("collectThread");
     if (!tid) return;
     collectGetState(tid)
-      .then((res) => applyCollectResponse(res))
+      .then((res) => {
+        applyCollectResponse(res);
+        if (!res.done) setActiveTab("collect"); // 복원된 흐름이 살아있으면 수집 탭으로 — "사라진 듯" 방지
+      })
       .catch(() => localStorage.removeItem("collectThread"));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -256,6 +268,11 @@ export default function Graph() {
     setMessages((m) => [...m, { role: "agent", text }]);
   }
 
+  // 수집 탭 전용 에이전트 메시지(명령 탭 이력과 분리).
+  function addCollectMsg(text) {
+    setCollectMessages((m) => [...m, { role: "agent", text }]);
+  }
+
   function handleResult(res) {
     if (!res.tool) {
       addAgent(res.message || "처리할 수 없는 요청입니다.");
@@ -318,16 +335,12 @@ export default function Graph() {
   }
 
   async function runCommand(text) {
-    if (!text || pending || collect || !apiRef.current) return; // 수집 흐름 중엔 입력 잠금
+    if (!text || pending || !apiRef.current) return; // 명령 탭은 수집과 독립(잠금 제거)
     setMessages((m) => [...m, { role: "user", text }]);
     setPending(true);
     try {
       const res = await postCommand(text);
-      if (res.tool === "collect") {
-        await startCollect((res.args && res.args.topic_text) || text);
-      } else {
-        handleResult(res);
-      }
+      handleResult(res); // collect 라우팅 제거 — fetch 의도는 {tool:null, message} 안내로 옴
     } catch (err) {
       addAgent(`요청 실패: ${err.message}`);
     } finally {
@@ -338,9 +351,9 @@ export default function Graph() {
   // --- 수집 흐름: start → interrupt 카드 → resume … ---
   function applyCollectResponse(res) {
     if (res.done) {
-      addAgent(res.summary || "수집 종료");
+      addCollectMsg(res.summary || "수집 종료");
       if ((res.extracted || []).length) {
-        addAgent(`추출 ${res.extracted.length}편 — 지도에 반영하려면 재빌드가 필요해요.`);
+        addCollectMsg(`추출 ${res.extracted.length}편 — 지도에 반영하려면 재빌드가 필요해요.`);
       }
       setCollect(null);
       setReviseOpen(false);
@@ -353,10 +366,11 @@ export default function Graph() {
   }
 
   async function startCollect(text) {
+    setActiveTab("collect"); // 수집 시작 → 수집 탭으로
     try {
       applyCollectResponse(await collectStart(text));
     } catch (err) {
-      addAgent(`수집 시작 실패: ${err.message}`);
+      addCollectMsg(`수집 시작 실패: ${err.message}`);
       setCollect(null);
     }
   }
@@ -382,10 +396,10 @@ export default function Graph() {
       if (timer) clearTimeout(timer);
       if (err.name === "AbortError") {
         // 타임아웃 — 흐름은 살아있음(서버는 계속 추출 중일 수 있음). 안내 후 재시도/취소.
-        addAgent("추출이 지연됩니다. 서버에서 계속 진행 중일 수 있어요. 잠시 후 [재시도] 또는 [취소].");
+        addCollectMsg("추출이 지연됩니다. 서버에서 계속 진행 중일 수 있어요. 잠시 후 [재시도] 또는 [취소].");
         setCollect((c) => ({ ...c, busy: false, timedOut: true }));
       } else {
-        addAgent(`수집 재개 실패: ${err.message}`);
+        addCollectMsg(`수집 재개 실패: ${err.message}`);
         setCollect(null);
         localStorage.removeItem("collectThread");
       }
@@ -400,22 +414,37 @@ export default function Graph() {
     runCommand(text);
   }
 
+  // 수집 탭 입력 → 새 수집 흐름 시작. 진행 중인 흐름이 있으면(카드로 응답) 무시.
+  function sendCollect(e) {
+    e.preventDefault();
+    const text = collectInput.trim();
+    if (!text || collect) return;
+    setCollectInput("");
+    setCollectMessages((m) => [...m, { role: "user", text }]);
+    startCollect(text);
+  }
+
   function clearHighlight() {
     apiRef.current && apiRef.current.highlight(null);
     setChips([]);
   }
 
-  // 대화 비우기 — 전 상태 + localStorage 초기화 + 그래프 하이라이트 복원.
-  // 수집 흐름 중엔 버튼 disabled(고아 thread 방지)이므로 여기선 collect 정리만 방어적으로.
-  function clearChat() {
-    setMessages([]);
-    setChips([]);
-    setCollect(null);
-    setReviseOpen(false);
-    setReviseText("");
-    apiRef.current && apiRef.current.highlight(null);
-    localStorage.removeItem("chatMessages");
-    localStorage.removeItem("collectThread");
+  // 탭별 비우기. 명령 탭: messages+chips+highlight 초기화. 수집 탭: collectMessages+흐름 초기화.
+  // (수집 흐름 활성 중엔 수집 탭 비우기 버튼이 disabled — 고아 thread 방지.)
+  function clearActiveChat() {
+    if (activeTab === "command") {
+      setMessages([]);
+      setChips([]);
+      apiRef.current && apiRef.current.highlight(null);
+      localStorage.removeItem("chatMessages");
+    } else {
+      setCollectMessages([]);
+      setCollect(null);
+      setReviseOpen(false);
+      setReviseText("");
+      localStorage.removeItem("collectMessages");
+      localStorage.removeItem("collectThread");
+    }
   }
 
   return (
@@ -604,65 +633,116 @@ export default function Graph() {
             >
               {">"}
             </button>
-            <span className="muted">필터 에이전트</span>
+            <div className="chat-tabs">
+              <button
+                className={`chat-tab${activeTab === "command" ? " active" : ""}`}
+                onClick={() => setActiveTab("command")}
+              >
+                명령
+              </button>
+              <button
+                className={`chat-tab${activeTab === "collect" ? " active" : ""}`}
+                onClick={() => setActiveTab("collect")}
+              >
+                수집
+                {collect && activeTab !== "collect" && <span className="tab-dot">●</span>}
+              </button>
+            </div>
             <button
               className="chat-clear"
-              onClick={clearChat}
-              disabled={!!collect}
-              title={collect ? "수집 진행 중엔 비울 수 없어요" : "대화 비우기"}
+              onClick={clearActiveChat}
+              disabled={activeTab === "collect" && !!collect}
+              title={
+                activeTab === "collect" && collect
+                  ? "수집 진행 중엔 비울 수 없어요"
+                  : "대화 비우기"
+              }
             >
               비우기
             </button>
           </div>
           <div className="chat-msgs">
-            {messages.length === 0 && (
-              <div className="chat-examples">
-                <div className="muted chat-hint">예시 — 눌러서 실행:</div>
-                {[
-                  "벤치마크만 보여줘",
-                  "RAG 계보만 보여줘",
-                  "2024년 이후 나온 것만",
-                  "다 보여줘",
-                ].map((ex) => (
-                  <button
-                    type="button"
-                    key={ex}
-                    className="example-chip"
-                    onClick={() => runCommand(ex)}
-                    disabled={pending}
-                  >
-                    {ex}
-                  </button>
+            {activeTab === "command" ? (
+              <>
+                {messages.length === 0 && (
+                  <div className="chat-examples">
+                    <div className="muted chat-hint">예시 — 눌러서 실행:</div>
+                    {[
+                      "벤치마크만 보여줘",
+                      "RAG 계보만 보여줘",
+                      "검색하면서 추론하는 방법 있어?",
+                      "다 보여줘",
+                    ].map((ex) => (
+                      <button
+                        type="button"
+                        key={ex}
+                        className="example-chip"
+                        onClick={() => runCommand(ex)}
+                        disabled={pending}
+                      >
+                        {ex}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {messages.map((m, i) => (
+                  <div key={i} className={`chat-bubble ${m.role}`}>
+                    {m.text}
+                  </div>
                 ))}
-              </div>
+                {pending && <div className="chat-bubble agent">…</div>}
+              </>
+            ) : (
+              <>
+                {collectMessages.length === 0 && !collect && (
+                  <div className="chat-examples">
+                    <div className="muted chat-hint">
+                      arXiv에서 새 논문을 수집해 지도에 추가합니다. 주제를 입력하세요.
+                    </div>
+                  </div>
+                )}
+                {collectMessages.map((m, i) => (
+                  <div key={i} className={`chat-bubble ${m.role}`}>
+                    {m.text}
+                  </div>
+                ))}
+                {collect && <CollectCard
+                  collect={collect}
+                  onResume={resumeCollect}
+                  reviseOpen={reviseOpen}
+                  setReviseOpen={setReviseOpen}
+                  reviseText={reviseText}
+                  setReviseText={setReviseText}
+                />}
+              </>
             )}
-            {messages.map((m, i) => (
-              <div key={i} className={`chat-bubble ${m.role}`}>
-                {m.text}
-              </div>
-            ))}
-            {pending && !collect && <div className="chat-bubble agent">…</div>}
-            {collect && <CollectCard
-              collect={collect}
-              onResume={resumeCollect}
-              reviseOpen={reviseOpen}
-              setReviseOpen={setReviseOpen}
-              reviseText={reviseText}
-              setReviseText={setReviseText}
-            />}
             <div ref={msgEndRef} />
           </div>
-          <form className="chat-input" onSubmit={sendCommand}>
-            <input
-              placeholder={collect ? "수집 흐름 중 — 카드 버튼으로 응답하세요" : "명령을 입력…"}
-              value={chatInput}
-              onChange={(e) => setChatInput(e.target.value)}
-              disabled={pending || !!collect}
-            />
-            <button type="submit" disabled={pending || !!collect}>
-              전송
-            </button>
-          </form>
+          {activeTab === "command" ? (
+            <form className="chat-input" onSubmit={sendCommand}>
+              <input
+                placeholder="명령을 입력…"
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                disabled={pending}
+              />
+              <button type="submit" disabled={pending}>
+                전송
+              </button>
+            </form>
+          ) : (
+            <form className="chat-input" onSubmit={sendCollect}>
+              <input
+                placeholder={collect ? "수집 흐름 중 — 카드 버튼으로 응답하세요" : "수집할 주제를 입력…"}
+                value={collectInput}
+                onChange={(e) => setCollectInput(e.target.value)}
+                disabled={!!collect}
+              />
+              <button type="submit" disabled={!!collect}>
+                시작
+              </button>
+            </form>
+          )}
         </div>
         </>
       )}

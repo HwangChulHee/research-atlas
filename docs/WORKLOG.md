@@ -565,3 +565,15 @@ frozen 정답지 50편 vs 파이프라인 출력(`data/outputs/{id}.relations.js
 **검증**: 라우팅 스모크 6/6 PASS. 라이브 "검색하면서 추론하는 방법 있어?" → semantic_search, 개념6+논문6 실제 id 하이라이트. off-topic "양자컴퓨터…" → 빈 결과(→유사 노드 없음). web build 통과.
 
 실행: `uv run python agent_filter.py`(라우팅 스모크). 라이브: dev.sh.
+
+## 2026-06-22 — 수집 에이전트를 채팅 [수집] 서브탭으로 분리
+
+채팅 패널을 [명령]/[수집] 두 탭으로 분리. [명령]=filter/lineage/reset/semantic_search(기존). [수집]=수집 에이전트를 자체 입력창으로 시작·진행. 명령창에서 collect 라우팅을 제거해 semantic↔collect 애매함을 라우팅(LLM)이 아니라 탭(물리적)으로 제거. 수집 흐름 로직(agent_collect)은 무수정 — 트리거 위치 이전 + 채팅 UI 재구성.
+
+**변경 4파일**:
+- `agent_filter.py`: TOOLS에서 collect 도구 삭제(4개만 남음: filter/focus_lineage/reset/semantic_search). 스모크 #4 '모아줘' 기대값 collect→None(도구 없이 안내). 1·6 semantic_search 유지.
+- `prompts/filter/command.py`: collect 라우팅 삭제. fetch 의도(모아줘/수집/긁어와/추가)는 도구 안 부르고 평문 안내 — "새 논문 수집은 [수집] 탭에서 진행하세요."
+- `web/src/routes/Graph.jsx`: (1) activeTab 상태 command|collect. (2) 메시지 분리 — messages=명령 탭(localStorage chatMessages), collectMessages=수집 탭(신규 키 collectMessages, 별도 저장 useEffect). loadMessages(key) 일반화. addCollectMsg 신설 후 collect 핸들러 addAgent→addCollectMsg. (3) runCommand에서 collect 가드/분기 제거(명령 탭은 수집과 독립). (4) 복원 함정: 마운트 복원 성공+미완료면 setActiveTab("collect"), startCollect도 수집 탭 전환, collect 활성+다른 탭이면 수집 탭 라벨에 ● 점. (5) 입력창 2개: 명령(sendCommand, disabled=pending) / 수집(sendCollect, !collect일 때만 활성, 흐름 중엔 카드 버튼). (6) chat-msgs/입력 form을 activeTab으로 스위치. (7) clearActiveChat — 탭별 비우기(수집 흐름 중엔 수집 탭 비우기 disabled).
+- `web/src/styles.css`: .chat-tabs/.chat-tab/.active/.tab-dot (기존 .nav 톤 재사용).
+
+**검증**: 라우팅 스모크 6/6 PASS(#4 None, 1·6 semantic_search). 라이브: "모아줘"→tool:null + "[수집] 탭에서 진행하세요" 안내. "검색하면서 추론"→semantic_search(개념8·논문8). collect/start→interpret interrupt 정상(thread_id+actions). web build 통과. 복원 자동 전환/탭 이력 분리는 코드 경로 확인(수동 UI 확인 권장).

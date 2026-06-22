@@ -472,6 +472,28 @@ body.resizing-pane {
 .chat-clear:hover:not(:disabled) {
   color: var(--text);
 }
+.chat-tabs {
+  display: flex;
+  gap: 4px;
+}
+.chat-tab {
+  padding: 3px 12px;
+  font-size: 13px;
+  color: var(--muted);
+  border-color: transparent;
+  background: transparent;
+}
+.chat-tab.active {
+  color: var(--text);
+  border-bottom: 2px solid var(--accent);
+  border-radius: 0;
+}
+.chat-tab .tab-dot {
+  margin-left: 4px;
+  font-size: 8px;
+  color: var(--accent);
+  vertical-align: middle;
+}
 .chat-toggle.collapsed {
   align-self: flex-start;
   margin: 8px 0 0 0;
