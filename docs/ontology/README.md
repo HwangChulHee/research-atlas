@@ -1,3 +1,5 @@
+> ⚠️ legacy 실험 — 현재 빌드 경로 아님. (현행 동작은 [`../HOW_IT_WORKS.md`](../HOW_IT_WORKS.md) 참조)
+
 # 온톨로지 설계·추론 검증 → Neo4j 구현 (학습 산출물)
 
 research-atlas의 데이터는 **이분 그래프**다: 노드는 `paper`/`concept` 두 종류,

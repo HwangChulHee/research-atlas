@@ -645,3 +645,13 @@ focus_lineage가 canonical("Self-RAG")로 들어오는데 lineageSets가 toLower
 - 검색 동작 변경: 기존 "강조+스크롤"(matchSet/firstMatchRef) → 목록 좁히기(filter). 페이징과 자연 결합. firstMatch 스크롤 머신/ useRef 제거. matched 행 강조 제거.
 - 카운트: 검색 시 "N건", 우측 "총 N개 · 조건 M".
 - web build 통과.
+
+## 2026-06-22 — 전체 가독성 개선 + 문서화 패스(HOW_IT_WORKS/README)
+
+UI 가독성: 전반적으로 글자가 작다는 피드백 → base 14→15px + line-height 1.5, 컨트롤(button/input/select/textarea) 13→14px·패딩↑, badge 11→12px, 테이블 셀 패딩 6/8→9/11, 노드 라벨 13→14px, 채팅 버블 여백↑. styles.css만.
+
+문서화(코드 무수정):
+- docs/HOW_IT_WORKS.md 신규 — 기능별 동작 메커니즘 전체(화면/백엔드/평가). 기준 5cd3e46.
+- README.md 재작성 — 처음 보는 사람·리뷰어용. 왜 중요/핵심 결과(P0.82 R0.83·측정으로 결정)/실행(./dev.sh)/화면/구조+링크. stale 4곳 제거(/search 질의→/usage, 재빌드 버튼 문구 삭제, nav 순서 사용법/지형도/사전, --reload 단독→dev.sh).
+- docs/ontology/README.md 상단에 "⚠️ legacy" 배너.
+- FEATURES.md 안 만듦(HOW_IT_WORKS가 대체). 상호 링크 깨짐 0, web build 통과.

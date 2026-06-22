@@ -1,47 +1,56 @@
 # research-atlas
 
-LLM/RAG/에이전트 연구 논문들의 **지형도(topology)**를 만드는 파이프라인 + 웹 UI.
+**LLM·RAG·에이전트 연구 논문의 지형도(topology map).** 개별 논문이 아니라 *분야 전체의 구조*를 본다.
 
-논문에서 기법(노드)과 계보(`builds_on` 엣지 — 논문의 *방법*이 딛고 선 선행 기법만, 점수비교 baseline 제외 = lineage-only)를 추출해 그래프로 그리고,
-노드 후보는 **사전(lexicon)** 으로 거른다. 사전은 모든 개념의 "상태 장부"이며 사람이 승인/거부한다(HITL).
+## 왜 중요한가
 
-## 구성
+ChatGPT·Claude에게 논문 하나를 물으면 잘 설명해 준다. 하지만 LLM은 **분야 전체의 위상(topology)** 은 못 준다 — 무엇이 무엇에서 갈라져 나왔나(계보), 어디가 빽빽하고 어디가 비었나, *내 관심사가 그 지형의 어디쯤인가*. research-atlas는 그 지도를 만든다.
 
-- `src/` — 추출/정규화 파이프라인 (fetch → parse → extract → relate → normalize_v2 → embed_nodes_v2)
-- `prompts/` — 모든 LLM 프롬프트(한 파일당 하나). 프롬프트→에이전트→적용 위치 지도는 [`prompts/README.md`](prompts/README.md)
-- `data/lexicon.json` — 사전(상태 장부). 편집 대상.
-- `data/outputs/` — 맵 결과 (`normalized_v2.json` 등)
-- `api/` — FastAPI 백엔드 (그래프 읽기 + 사전 편집 + 재빌드)
-- `graphdb/` — Neo4j 적재(`load.py`)·검증(`verify.py`) 스크립트
-- `web/` — Vite + React UI (사전 편집 / 지형도 / 질의)
+세 가지 효용:
+1. **질문 → 위치** — 자유 문장으로 물으면 지도 위의 해당 노드로 데려간다.
+2. **주변 위상 탐색** — 그 노드의 계보(조상·자손)와 이웃을 펼쳐 본다.
+3. **세렌디피티** — "같은 문제를 다룬 다른 논문"을 의미적으로 띄워, 몰랐던 연결을 보여준다.
+
+## 핵심 결과
+
+- 라이브 그래프는 **gpt-5.4(full)** 품질로 빌드.
+- 사람이 라벨링한 **골든셋 50편** 평가에서 `builds_on` 계보 **정밀도 0.82 / 재현율 0.83**.
+- 핵심 서사는 **"직관이 아니라 측정으로 결정했다"** — 모델 비교로 full 승격(정밀도 +0.20), evidence·related-work 실험은 측정 후 *미채택*(개선 없음을 데이터로 확인).
+- 규모: 논문 91 · 개념 127 · `builds_on` 엣지 209.
+
+## 데모
+
+`(데모 GIF — TODO)`
 
 ## 실행
 
-```bash
-# 1) 백엔드 (프로젝트 루트에서)
-uv run uvicorn api.main:app --reload --port 8000
+전제:
+- **Neo4j 5** 가동 (`bolt://localhost:7687`)
+- 루트 `.env`에 `OPENAI_API_KEY` + `NEO4J_URI` / `NEO4J_USER` / `NEO4J_PASSWORD`
 
-# 2) 프론트 (별도 터미널)
-cd web
-npm install
-npm run dev        # Vite dev 서버 → http://localhost:5173
+```bash
+./dev.sh
 ```
 
-`web`의 `/api/*` 요청은 Vite proxy가 `localhost:8000`으로 전달한다.
+백엔드(:8000) + 프론트(:5173)를 한 번에 띄운다. 브라우저에서 **http://localhost:5173** (기본 진입 = `/usage`).
 
 ## 화면
 
-- **`/lexicon`** — 사전 편집. 보류(pending/unreviewed) 개념을 승인/거부/병합.
-  status를 바꾼 뒤 **재빌드** 버튼을 눌러야 그래프에 반영된다.
-- **`/graph`** — 지형도. 노드 색 = ptype, 빈 원 = 정의 없음, 엣지 = builds_on 계보.
-- **`/search`** — 질의 (준비 중).
+- **사용법 (`/usage`, 기본)** — 처음 보는 사람용. "하고 싶은 것"별 예시 칩을 누르면 지형도로 이동해 그 질문이 자동 실행되어 맵이 반응한다.
+- **지형도 (`/graph`)** — 개념 노드 + `builds_on` 계보를 그린 메인 화면. 오른쪽 채팅 **[명령]/[수집]** 탭 + 하단 수동 필터/계보 컨트롤. 명령창 = 이름검색·조건필터·계보·의미검색·리셋. 수집 = arXiv에서 새 논문 증분 추가.
+- **사전 (`/lexicon`)** — 개념의 상태 장부(approve/reject)·정의·병합을 편집(HITL).
 
-## API
+## 구조
 
-| 메서드 | 경로 | 설명 |
-|--------|------|------|
-| GET | `/api/graph` | 개념 주도 그래프(Neo4j). `?papers=true`면 논문 노드까지 포함 |
-| GET | `/api/lexicon` | 사전 개념 배열 반환 |
-| PATCH | `/api/lexicon/{name}` | 개념 부분 업데이트 (status/aliases/definition…) |
-| POST | `/api/lexicon/merge` | `{from, into}` — from을 into의 alias로 병합 후 삭제 |
-| POST | `/api/rebuild` | `src/normalize_v2.py` 실행 → 사전 편집을 그래프에 반영 (LLM 호출 없음) |
+| 디렉토리 | 역할 |
+|---|---|
+| `src/` | 빌드 파이프라인 (fetch → parse → extract → relate → normalize_v2 → embed) |
+| `api/` | FastAPI 백엔드 (그래프 읽기 · 사전 편집 · 재빌드) |
+| `graphdb/` | Neo4j 적재(`load.py`)·검증(`verify.py`)·접속(`conn.py`) |
+| `web/` | Vite + React UI (사용법 / 지형도 / 사전) |
+| `prompts/` | 모든 LLM 프롬프트(한 파일당 하나) |
+| `eval/` | 골든셋 평가 (정밀도/재현율 측정) |
+| `data/` | 사전(`lexicon.json`) · 맵 결과(`outputs/`) |
+| `docs/` | 문서 |
+
+자세한 동작 원리는 **[`docs/HOW_IT_WORKS.md`](docs/HOW_IT_WORKS.md)** — 각 기능이 무엇을 어떻게 하는지 전체 메커니즘. 프롬프트 지도는 [`prompts/README.md`](prompts/README.md), 평가 상세는 [`eval/README.md`](eval/README.md).
