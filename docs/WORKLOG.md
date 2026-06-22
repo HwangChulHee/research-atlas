@@ -605,3 +605,9 @@ frozen 정답지 50편 vs 파이프라인 출력(`data/outputs/{id}.relations.js
 ## 2026-06-22 — 로고 개선
 
 밋밋·전부소문자 로고 교체. SVG 지식그래프 마크(3노드 별자리, 하단 노드 accent 채움) + 워드마크 "Research Atlas"(Research=텍스트색 600, Atlas=accent 700). hover 시 마크 살짝 회전·확대. App.jsx 마크업 + styles.css(.brand-mark/.brand-word). web build 통과.
+
+## 2026-06-22 — lineageSets 하이픈 이름 버그 수정 (전 기록한 사전 이슈 해소)
+
+focus_lineage가 canonical("Self-RAG")로 들어오는데 lineageSets가 toLowerCase로만 조회해 rk(노드 id, "self rag")와 불일치 → 하이픈/특수문자 든 노드(Self-RAG/KG-RAG/R1-Searcher 등)는 계보 명령이 클라에서 조용히 실패하던 문제.
+수정(프론트 1함수): lineageSets 첫머리에서 node→id 해소 — 직접 키 → 소문자 키 → canonical 소문자 매칭 순, 못 찾으면 null. traversal은 그대로. 백엔드 무수정.
+검증(API+그래프로 재현): Self-RAG→id 'self rag' 조상2·자손2(전엔 MISSING), KG-RAG/R1-Searcher 해소 OK, RAG 36(하이픈없는 기존 동작 회귀 없음), 없는노드→null. web build 통과.

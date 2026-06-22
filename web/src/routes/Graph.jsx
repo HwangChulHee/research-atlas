@@ -240,8 +240,23 @@ export default function Graph() {
   function lineageSets(node, direction) {
     const nodes = dataRef.current.nodes;
     const builds = dataRef.current.builds_on;
-    const key = String(node).toLowerCase();
-    if (!nodes[key]) return null;
+    // 들어온 node를 노드 id(rk)로 해소한다. focus_lineage는 canonical("Self-RAG")로 들어오는데
+    // rk는 canonical에서 하이픈→공백·소문자화로 생성되므로("self rag") 단순 toLowerCase로는 불일치.
+    // 직접 키 우선 → 소문자 키 → canonical 소문자 매칭 순. 못 찾으면 null.
+    const raw = String(node);
+    const lower = raw.toLowerCase();
+    let key = null;
+    if (nodes[raw]) key = raw;
+    else if (nodes[lower]) key = lower;
+    else {
+      for (const [id, n] of Object.entries(nodes)) {
+        if (n.canonical && n.canonical.toLowerCase() === lower) {
+          key = id;
+          break;
+        }
+      }
+    }
+    if (!key) return null;
     // 사이클 방지 visited 사용. start 자신은 결과 집합에 미포함(개수 분리용).
     const walk = (next) => {
       const out = new Set();
