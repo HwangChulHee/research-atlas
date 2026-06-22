@@ -611,3 +611,10 @@ frozen 정답지 50편 vs 파이프라인 출력(`data/outputs/{id}.relations.js
 focus_lineage가 canonical("Self-RAG")로 들어오는데 lineageSets가 toLowerCase로만 조회해 rk(노드 id, "self rag")와 불일치 → 하이픈/특수문자 든 노드(Self-RAG/KG-RAG/R1-Searcher 등)는 계보 명령이 클라에서 조용히 실패하던 문제.
 수정(프론트 1함수): lineageSets 첫머리에서 node→id 해소 — 직접 키 → 소문자 키 → canonical 소문자 매칭 순, 못 찾으면 null. traversal은 그대로. 백엔드 무수정.
 검증(API+그래프로 재현): Self-RAG→id 'self rag' 조상2·자손2(전엔 MISSING), KG-RAG/R1-Searcher 해소 OK, RAG 36(하이픈없는 기존 동작 회귀 없음), 없는노드→null. web build 통과.
+
+## 2026-06-22 — [사용법] 배경 장식(지식그래프 별자리 SVG)
+
+밋밋한 배경에 앱 정체성(논문 지형도)에 맞는 SVG 별자리 backdrop 추가. 결정적 의사난수로 노드 30개 흩뿌리고 거리<175 쌍을 연결(가까울수록 진하게), accent(#2563eb) 저투명도. top-right/bottom-left 부드러운 radial glow 2개.
+- 레이아웃: usage-bg는 position:fixed(스크롤해도 제자리), z-index:0. usage-inner z-index:1(콘텐츠 위). nav position:relative z-index:5(배경이 nav 위로 안 올라오게). pointer-events:none.
+- 카드: frosted glass — rgba(255,255,255,.82)+backdrop-filter blur로 별자리가 카드 뒤로 은은히 비침. collect 카드 점선/그라데이션 구분 유지.
+- Usage.jsx에 useConstellation(useMemo) 생성기. web build 통과. (스크린샷 툴 없어 빌드/코드로만 확인 — 실물 dev.sh 권장.)

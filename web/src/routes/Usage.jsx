@@ -1,4 +1,33 @@
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+
+// 배경 장식용 지식그래프 별자리(결정적 — 새로고침에도 동일). 노드 흩뿌리고 가까운 것끼리 연결.
+const BG_W = 1200;
+const BG_H = 800;
+const EDGE_MAX = 175; // 이 거리 미만 노드쌍만 연결(가까울수록 진하게)
+function useConstellation() {
+  return useMemo(() => {
+    let s = 7; // 시드
+    const rnd = () => {
+      s = (s * 9301 + 49297) % 233280;
+      return s / 233280;
+    };
+    const N = 30;
+    const nodes = Array.from({ length: N }, () => ({
+      x: rnd() * BG_W,
+      y: rnd() * BG_H,
+      r: 2 + rnd() * 3.5,
+    }));
+    const edges = [];
+    for (let i = 0; i < N; i++) {
+      for (let j = i + 1; j < N; j++) {
+        const d = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
+        if (d < EDGE_MAX) edges.push({ i, j, d });
+      }
+    }
+    return { nodes, edges };
+  }, []);
+}
 
 // [사용법] 페이지 — "뭘 물어볼 수 있나"를 평범한 말로 보여주고, 예시를 누르면
 // 지형도(/graph)로 이동해 그 질문이 자동 실행된다(맵이 반응). 원리 설명은 docs/FEATURES.md.
@@ -50,6 +79,7 @@ const ROWS = [
 
 export default function Usage() {
   const navigate = useNavigate();
+  const { nodes, edges } = useConstellation();
 
   function go(action, text) {
     if (action === "collect") {
@@ -61,6 +91,43 @@ export default function Usage() {
 
   return (
     <div className="usage-page">
+      <div className="usage-bg" aria-hidden="true">
+        <svg
+          className="usage-bg-svg"
+          viewBox={`0 0 ${BG_W} ${BG_H}`}
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <defs>
+            <radialGradient id="ubgGlow" cx="80%" cy="12%" r="58%">
+              <stop offset="0%" stopColor="#2563eb" stopOpacity="0.13" />
+              <stop offset="100%" stopColor="#2563eb" stopOpacity="0" />
+            </radialGradient>
+            <radialGradient id="ubgGlow2" cx="10%" cy="95%" r="48%">
+              <stop offset="0%" stopColor="#2563eb" stopOpacity="0.07" />
+              <stop offset="100%" stopColor="#2563eb" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          <rect width={BG_W} height={BG_H} fill="url(#ubgGlow)" />
+          <rect width={BG_W} height={BG_H} fill="url(#ubgGlow2)" />
+          <g>
+            {edges.map((e, k) => (
+              <line
+                key={k}
+                x1={nodes[e.i].x}
+                y1={nodes[e.i].y}
+                x2={nodes[e.j].x}
+                y2={nodes[e.j].y}
+                stroke="#2563eb"
+                strokeWidth="1"
+                strokeOpacity={0.11 * (1 - e.d / EDGE_MAX)}
+              />
+            ))}
+            {nodes.map((n, i) => (
+              <circle key={i} cx={n.x} cy={n.y} r={n.r} fill="#2563eb" fillOpacity="0.2" />
+            ))}
+          </g>
+        </svg>
+      </div>
       <div className="usage-inner">
         <header className="usage-hero">
           <h1>이렇게 물어보세요</h1>
