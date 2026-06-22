@@ -1,0 +1,10 @@
+{
+  "builds_on": [
+    "RAG",
+    "GraphRAG",
+    "HippoRAG",
+    "ReAct",
+    "Search-R1",
+    "ReSearch"
+  ]
+}

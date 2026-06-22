@@ -1,0 +1,10 @@
+{
+  "builds_on": [
+    "ReAct",
+    "Monte Carlo Tree Search",
+    "Tree-of-Thought",
+    "Reasoning via Planning",
+    "Reflexion",
+    "Self-Refine"
+  ]
+}

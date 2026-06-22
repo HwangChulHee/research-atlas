@@ -1,0 +1,11 @@
+{
+  "builds_on": [
+    "RAG",
+    "REALM",
+    "Atlas",
+    "Dense Hierarchical Retrieval",
+    "Hybrid Hierarchical Retrieval",
+    "recursive-abstractive summarization",
+    "LlamaIndex"
+  ]
+}

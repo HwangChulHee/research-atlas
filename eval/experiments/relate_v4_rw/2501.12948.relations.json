@@ -1,0 +1,10 @@
+{
+  "builds_on": [
+    "DeepSeek-V3-Base",
+    "GRPO",
+    "rejection sampling",
+    "supervised fine-tuning",
+    "STaR",
+    "chain-of-thought prompting"
+  ]
+}

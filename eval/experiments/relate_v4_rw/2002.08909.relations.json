@@ -1,0 +1,8 @@
+{
+  "builds_on": [
+    "retrieve-and-edit",
+    "Product Key Memory",
+    "memory networks",
+    "sequence-to-sequence models with attention"
+  ]
+}
