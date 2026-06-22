@@ -282,12 +282,17 @@ export default function Graph() {
     const descendants = walk((cur) =>
       builds.filter((b) => b.to === cur).map((b) => b.from)
     );
-    let ids;
-    if (direction === "ancestors") ids = new Set(ancestors);
-    else if (direction === "descendants") ids = new Set(descendants);
-    else ids = new Set([...ancestors, ...descendants]);
-    ids.add(key);
-    return { ids, key, ancestors: ancestors.size, descendants: descendants.size };
+    const ancSet = direction === "descendants" ? new Set() : new Set(ancestors);
+    const descSet = direction === "ancestors" ? new Set() : new Set(descendants);
+    const ids = new Set([...ancSet, ...descSet, key]);
+    return {
+      ids,
+      key,
+      ancSet,
+      descSet,
+      ancestors: ancSet.size,
+      descendants: descSet.size,
+    };
   }
 
   function filterChips(args) {
@@ -328,11 +333,11 @@ export default function Graph() {
   function runLineageFromNode(id, dir) {
     const r = lineageSets(id, dir);
     if (!r) return;
-    apiRef.current.highlight(r.ids);
+    apiRef.current.highlightLineage(r.key, r.ancSet, r.descSet);
     const canonical = dataRef.current.nodes[r.key].canonical;
     setChips([`lineage=${canonical}`]);
     setFilterState({}); // 드롭다운 표시만 비움(highlight는 위에서 직접 세팅 — effect 안 터짐)
-    addAgent(`'${canonical}' 계보 강조 (조상 ${r.ancestors} · 자손 ${r.descendants})`);
+    addAgent(`'${canonical}' 계보 — 조상 ${r.ancestors}(파랑) · 자손 ${r.descendants}(주황)`);
   }
 
   // 수집 탭 전용 에이전트 메시지(명령 탭 이력과 분리).
@@ -356,12 +361,12 @@ export default function Graph() {
         addAgent(`'${args.node}' 노드를 찾지 못함`);
         return;
       }
-      apiRef.current.highlight(r.ids);
+      apiRef.current.highlightLineage(r.key, r.ancSet, r.descSet);
       const canonical = dataRef.current.nodes[r.key].canonical;
       setChips([`lineage=${canonical}`]);
       setFilterState({}); // 드롭다운 표시 동기(highlight는 위에서 직접 세팅)
       addAgent(
-        `'${canonical}' 계보 강조 (조상 ${r.ancestors} · 자손 ${r.descendants})`
+        `'${canonical}' 계보 — 조상 ${r.ancestors}(파랑) · 자손 ${r.descendants}(주황)`
       );
       return;
     }
@@ -575,6 +580,7 @@ export default function Graph() {
           )}
         </form>
         <div className="graph-controls">
+          <span className="graph-controls-label">필터</span>
           <select
             value={filterState.ptype || ""}
             onChange={(e) =>
@@ -624,6 +630,14 @@ export default function Graph() {
           >
             초기화
           </button>
+          <label className="graph-controls-toggle" title="논문 노드도 함께 표시">
+            <input
+              type="checkbox"
+              checked={showPapers}
+              onChange={(e) => setShowPapers(e.target.checked)}
+            />
+            논문 보기
+          </label>
         </div>
         <div className="graph-legend">
           <div>
@@ -649,15 +663,6 @@ export default function Graph() {
             />
             빈 원(점선) = 정의 없음
           </div>
-          <label className="paper-toggle" style={{ marginTop: 6 }}>
-            <input
-              type="checkbox"
-              checked={showPapers}
-              onChange={(e) => setShowPapers(e.target.checked)}
-            />
-            <span className="dot" style={{ background: "#9ca3af" }} />
-            논문 보기
-          </label>
         </div>
         {error && (
           <div className="graph-panel">
@@ -1089,7 +1094,11 @@ function render(container, svgEl, data, setSelected) {
   }
 
   const root = svg.append("g");
-  const zoom = d3.zoom().on("zoom", (e) => root.attr("transform", e.transform));
+  // 줌 아웃 시 라벨 숨김(겹침 방지) — 가까이 볼 때만 텍스트 표시
+  const zoom = d3.zoom().on("zoom", (e) => {
+    root.attr("transform", e.transform);
+    node.selectAll("text").attr("opacity", e.transform.k < 0.6 ? 0 : 1);
+  });
   svg.call(zoom);
 
   const link = root
@@ -1224,10 +1233,20 @@ function render(container, svgEl, data, setSelected) {
     setSelected(d); // 사이드 패널도 갱신
   }
 
+  // 원의 테두리/크기를 기본값으로 복원(계보 강조 후 일반 강조로 돌아올 때).
+  function resetStrokes() {
+    node
+      .select("circle")
+      .attr("stroke", (d) => stroke(d))
+      .attr("stroke-width", (d) => (isPaper(d) ? 1.5 : 2.5))
+      .attr("r", (d) => radius(d));
+  }
+
   // 강조/흐리게: 매칭 노드 opacity 1, 비매칭은 흐리게(숨기지 않음).
   // 엣지는 양 끝 모두 매칭일 때만 표시, 아니면 완전 숨김(화살촉 포함).
   // ids === null → 전체 복원.
   function highlight(ids) {
+    resetStrokes();
     if (!ids) {
       node.attr("opacity", 1);
       link.style("display", null).attr("stroke-opacity", 0.65);
@@ -1236,6 +1255,30 @@ function render(container, svgEl, data, setSelected) {
     node.attr("opacity", (d) => (ids.has(d.id) ? 1 : 0.18));
     link.style("display", (d) =>
       ids.has(d.source.id) && ids.has(d.target.id) ? null : "none"
+    );
+  }
+
+  // 계보 강조: 조상=파랑 테두리·자손=주황 테두리·시작 노드=강조(크게). 방향에 따라 한쪽은 빈 집합.
+  function highlightLineage(start, ancestors, descendants) {
+    const all = new Set([start, ...ancestors, ...descendants]);
+    node.attr("opacity", (d) => (all.has(d.id) ? 1 : 0.12));
+    node
+      .select("circle")
+      .attr("stroke", (d) =>
+        d.id === start
+          ? "#111827"
+          : ancestors.has(d.id)
+          ? "#2563eb"
+          : descendants.has(d.id)
+          ? "#d97706"
+          : stroke(d)
+      )
+      .attr("stroke-width", (d) =>
+        d.id === start ? 5 : all.has(d.id) ? 3.4 : isPaper(d) ? 1.5 : 2.5
+      )
+      .attr("r", (d) => (d.id === start ? 16 : radius(d)));
+    link.style("display", (d) =>
+      all.has(d.source.id) && all.has(d.target.id) ? null : "none"
     );
   }
 
@@ -1253,5 +1296,5 @@ function render(container, svgEl, data, setSelected) {
   const names = nodes
     .filter((n) => !isPaper(n))
     .map((n) => ({ id: n.id, canonical: n.canonical }));
-  return { sim, focus, names, highlight, resize, fitView };
+  return { sim, focus, names, highlight, highlightLineage, resize, fitView };
 }

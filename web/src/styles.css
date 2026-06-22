@@ -400,8 +400,8 @@ textarea {
 }
 .graph-panel {
   position: absolute;
-  top: 64px;
-  left: 12px;
+  top: 56px;
+  right: 12px;
   width: 300px;
   max-height: calc(100% - 200px);
   padding: 14px 16px;
@@ -514,8 +514,29 @@ textarea {
   min-width: 96px;
   max-width: 150px;
 }
+.graph-controls-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
 .graph-controls-reset {
   color: var(--muted);
+}
+.graph-controls-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  padding-left: 8px;
+  margin-left: 2px;
+  border-left: 1px solid var(--border);
+  user-select: none;
+}
+.graph-controls-toggle input {
+  cursor: pointer;
 }
 /* 디테일 패널 계보 버튼 */
 .detail-lineage {
