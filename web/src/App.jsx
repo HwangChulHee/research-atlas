@@ -10,8 +10,8 @@ export default function App() {
         <Link to="/usage" className="brand" title="사용법으로">
           <svg
             className="brand-mark"
-            width="22"
-            height="22"
+            width="28"
+            height="28"
             viewBox="0 0 24 24"
             fill="none"
             aria-hidden="true"
