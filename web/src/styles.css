@@ -410,6 +410,118 @@ textarea {
   padding: 24px;
   color: var(--muted);
 }
+/* --- 개념 카드(결정 중심) --- */
+.lex-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cc {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel);
+  padding: 12px 14px;
+}
+.cc-pending {
+  border-left: 3px solid var(--accent);
+}
+.cc-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cc-name {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.cc-spacer {
+  flex: 1;
+}
+.cc-actions {
+  display: flex;
+  gap: 6px;
+}
+.cc-actions button {
+  font-size: 12.5px;
+  padding: 4px 11px;
+}
+.cc-approve:not(:disabled) {
+  color: #15803d;
+  border-color: color-mix(in srgb, #15803d 40%, var(--border));
+}
+.cc-approve:not(:disabled):hover {
+  background: #dcfce7;
+  border-color: #15803d;
+}
+.cc-reject:not(:disabled) {
+  color: #b91c1c;
+  border-color: color-mix(in srgb, #b91c1c 40%, var(--border));
+}
+.cc-reject:not(:disabled):hover {
+  background: #fee2e2;
+  border-color: #b91c1c;
+}
+.cc-evidence {
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.cc-def {
+  margin: 0;
+}
+.cc-papers {
+  margin-top: 3px;
+  font-size: 12px;
+}
+.cc-papers a {
+  color: var(--accent);
+}
+.cc-papers a:hover {
+  text-decoration: underline;
+}
+.cc-sugg {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 8px 10px;
+  background: var(--bg);
+  border-radius: 8px;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+.cc-sugg-text {
+  flex: 1;
+}
+.cc-apply {
+  flex: 0 0 auto;
+  font-size: 12px;
+  padding: 4px 11px;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.cc-apply:hover:not(:disabled) {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+.cc-aliases {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 10px;
+  font-size: 12.5px;
+}
+.cc-alias-add {
+  font-size: 12px;
+  padding: 2px 9px;
+  color: var(--muted);
+}
+.cc-none {
+  margin-right: 2px;
+}
+
 /* 행 인라인 도우미 제안 */
 .lex-sugg {
   display: flex;

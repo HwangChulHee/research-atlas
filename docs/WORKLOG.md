@@ -721,3 +721,12 @@ UI 가독성: 전반적으로 글자가 작다는 피드백 → base 14→15px +
 - cardByName 맵으로 인덱싱. liveCards/approvedNames/CONF_RANK 제거.
 - styles: .lex-sugg/.lex-sugg-apply 추가(rv-conf 배지 재사용). rv-* 패널 CSS는 무해해 잔존.
 - web build 통과(JS 축소).
+
+## 2026-06-22 — 사전 재설계: 결정 중심 카드 + 근거 필수(의도 반영)
+
+"필드 나열 테이블"이 사전의 의도(자격·동일성 판정)와 안 맞고 조잡 → 결정 중심 카드 리스트로 재설계.
+- 테이블 → 카드 리스트(ConceptCard). 행마다: 이름+상태배지 / 결정버튼(승인·거부·병합, 우상단 그룹) / **근거(항상 노출, 필수)**: 정의 + 정의·조상인용 논문(arXiv 링크) / 도우미 제안 블록(confidence+action+reason+[이대로 적용]) / 별칭(보조, 접이식).
+- 제거: definition 편집(정본=논문 추출이라 사전 편집은 footgun → 읽기전용 근거로), source·first_seen 칼럼(판단 가치 낮음), status 셀렉트(승인/거부 버튼이 대체), 클릭 컬럼정렬.
+- 정렬: "불확실한 것 먼저"(검토대기 제안 confidence low→high → 그외 이름순) — 검토 도구 의도.
+- 근거/evidence는 tooltip→상시 노출로 승격(사람이 1초 판단). 버튼 톤 정리(조잡함 제거).
+- web build 통과.

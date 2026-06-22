@@ -14,7 +14,6 @@ function parseAction(s) {
   return [s, null];
 }
 
-const STATUSES = ["approved", "unreviewed", "pending", "rejected"];
 const FILTERS = ["pending", "unreviewed", "approved", "rejected", "all"];
 const PAGE_SIZES = [25, 50, 100];
 
@@ -31,8 +30,6 @@ export default function Lexicon() {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("pending"); // 대기열 처리가 주 작업
   const [query, setQuery] = useState("");
-  const [sortKey, setSortKey] = useState(null); // "name" | "status" | "source" | "first_seen"
-  const [sortDir, setSortDir] = useState("asc");
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(50);
   const [showHelp, setShowHelp] = useState(true); // 상태 설명 펼침(기본 표시)
@@ -41,14 +38,6 @@ export default function Lexicon() {
   const [rebuilding, setRebuilding] = useState(false);
   const [regenerating, setRegenerating] = useState(false);
   const [toast, setToast] = useState(null); // {msg, err}
-
-  function toggleSort(key) {
-    if (sortKey === key) setSortDir((d) => (d === "asc" ? "desc" : "asc"));
-    else {
-      setSortKey(key);
-      setSortDir("asc");
-    }
-  }
 
   const flash = (msg, err = false) => {
     setToast({ msg, err });
@@ -164,48 +153,39 @@ export default function Lexicon() {
 
   const q = query.trim().toLowerCase();
 
-  // 상태 필터 + 이름 검색 → 정렬. 검색은 목록을 좁힌다(페이징과 자연스럽게 결합).
-  const filtered = useMemo(() => {
-    let arr = items.filter((it) => filter === "all" || it.status === filter);
-    if (q) arr = arr.filter((it) => it.name.toLowerCase().includes(q));
-    if (sortKey) {
-      arr = [...arr].sort((a, b) => {
-        const av = (a[sortKey] ?? "").toString().toLowerCase();
-        const bv = (b[sortKey] ?? "").toString().toLowerCase();
-        const cmp = av < bv ? -1 : av > bv ? 1 : 0;
-        return sortDir === "asc" ? cmp : -cmp;
-      });
-    }
-    return arr;
-  }, [items, filter, q, sortKey, sortDir]);
-
-  // 필터/검색/정렬/페이지크기가 바뀌면 1페이지로
-  useEffect(() => {
-    setPage(1);
-  }, [filter, q, sortKey, sortDir, pageSize]);
-
-  const pageCount = Math.max(1, Math.ceil(filtered.length / pageSize));
-  const safePage = Math.min(page, pageCount);
-  const paged = filtered.slice((safePage - 1) * pageSize, safePage * pageSize);
-
-  // 검토 도우미 제안을 개념명으로 인덱싱 → 테이블 행에 인라인 표시.
+  // 검토 도우미 제안을 개념명으로 인덱싱 → 카드에 근거·제안 인라인.
   const cardByName = useMemo(() => {
     const m = {};
     for (const c of reviewCards) m[c.concept] = c;
     return m;
   }, [reviewCards]);
 
-  // 정렬 가능한 헤더 셀
-  const th = (key, label, width) => (
-    <th
-      style={{ width, cursor: "pointer" }}
-      onClick={() => toggleSort(key)}
-      title="클릭하여 정렬"
-    >
-      {label}
-      {sortKey === key ? (sortDir === "asc" ? " ▲" : " ▼") : ""}
-    </th>
-  );
+  // 상태 필터 + 이름 검색 → "불확실한 것 먼저"로 정렬(검토 도구의 의도).
+  // 검토대기 행은 제안 확신 낮은 순(low→med→high) → 그 외는 이름순. 검색은 목록을 좁힌다.
+  const CONF = { low: 0, med: 1, high: 2 };
+  const filtered = useMemo(() => {
+    let arr = items.filter((it) => filter === "all" || it.status === filter);
+    if (q) arr = arr.filter((it) => it.name.toLowerCase().includes(q));
+    const rank = (it) => {
+      const c = cardByName[it.name];
+      if (c && ["pending", "unreviewed"].includes(it.status))
+        return CONF[c.suggestion.confidence] ?? 3;
+      return 9; // 제안 없는 건 뒤로
+    };
+    return [...arr].sort(
+      (a, b) => rank(a) - rank(b) || a.name.localeCompare(b.name)
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items, filter, q, cardByName]);
+
+  // 필터/검색/페이지크기가 바뀌면 1페이지로
+  useEffect(() => {
+    setPage(1);
+  }, [filter, q, pageSize]);
+
+  const pageCount = Math.max(1, Math.ceil(filtered.length / pageSize));
+  const safePage = Math.min(page, pageCount);
+  const paged = filtered.slice((safePage - 1) * pageSize, safePage * pageSize);
 
   return (
     <div className="lex-wrap">
@@ -298,31 +278,18 @@ export default function Lexicon() {
           <span className="spinner" /> 사전 불러오는 중…
         </div>
       ) : (
-        <table className="lex-table">
-          <thead>
-            <tr>
-              {th("name", "개념명", "15%")}
-              <th style={{ width: "20%" }}>aliases</th>
-              {th("status", "status", "11%")}
-              <th style={{ width: "24%" }}>definition</th>
-              {th("source", "source", "7%")}
-              {th("first_seen", "first_seen", "8%")}
-              <th style={{ width: "15%" }}>액션</th>
-            </tr>
-          </thead>
-          <tbody>
-            {paged.map((it) => (
-              <Row
-                key={it.name}
-                item={it}
-                card={cardByName[it.name]}
-                onPatch={applyPatch}
-                onDecision={applyDecision}
-                onMerge={setMergeFrom}
-              />
-            ))}
-          </tbody>
-        </table>
+        <div className="lex-list">
+          {paged.map((it) => (
+            <ConceptCard
+              key={it.name}
+              item={it}
+              card={cardByName[it.name]}
+              onPatch={applyPatch}
+              onDecision={applyDecision}
+              onMerge={setMergeFrom}
+            />
+          ))}
+        </div>
       )}
       {!loading && filtered.length > pageSize && (
         <Pager
@@ -430,46 +397,120 @@ function MergeModal({ from, items, onCancel, onConfirm }) {
   );
 }
 
-function Row({ item, card, onPatch, onDecision, onMerge }) {
-  const [newAlias, setNewAlias] = useState("");
-  const [def, setDef] = useState(item.definition || "");
-  const defDirty = def !== (item.definition || "");
+// arXiv id → 링크
+function PaperLinks({ ids }) {
+  return ids.map((p, i) => (
+    <span key={p}>
+      {i > 0 ? " · " : ""}
+      <a href={`https://arxiv.org/abs/${p}`} target="_blank" rel="noreferrer">
+        {p}
+      </a>
+    </span>
+  ));
+}
 
-  // 도우미 제안은 아직 검토 대기(pending/unreviewed)인 행에만 인라인 표시.
-  const sugg =
-    card && ["pending", "unreviewed"].includes(item.status) ? card.suggestion : null;
-  const evidenceTip = () => {
-    if (!card) return "";
-    const e = card.evidence || {};
-    const parts = [sugg.reason];
-    if (e.cited_in?.length) parts.push(`조상 인용: ${e.cited_in.join(", ")}`);
-    if (e.defined_in?.length)
-      parts.push(`정의 논문: ${e.defined_in.map((d) => d.paper).join(", ")}`);
-    return parts.join("\n");
-  };
-  function applySuggestion() {
-    const [act, tgt] = parseAction(sugg.action);
-    if (act === "merge" && !tgt) onMerge(item.name); // target 모르면 모달로
-    else onDecision(item.name, act, tgt);
-  }
+// 개념 카드 — 결정(승인/거부/병합) 중심. 근거(정의·출처 논문)를 항상 보여주고,
+// 도우미 제안은 가이드로. definition/first_seen/source 같은 메타는 노출하지 않음
+// (정의 정본은 논문 추출이라 여기서 편집 안 함 — 사전은 자격·동일성 판정만).
+function ConceptCard({ item, card, onPatch, onDecision, onMerge }) {
+  const [aliasOpen, setAliasOpen] = useState(false);
+  const [newAlias, setNewAlias] = useState("");
+
+  const pending = ["pending", "unreviewed"].includes(item.status);
+  const sugg = card && pending ? card.suggestion : null;
+  const ev = (card && card.evidence) || {};
+  const definition = item.definition || ev.definition || "";
+  const defPapers = (ev.defined_in || []).map((d) => d.paper);
+  const citePapers = ev.cited_in || [];
+  const noEvidence = !definition && defPapers.length === 0 && citePapers.length === 0;
 
   function addAlias() {
     const a = newAlias.trim();
-    if (!a || item.aliases.includes(a)) {
-      setNewAlias("");
-      return;
-    }
-    onPatch(item.name, { aliases: [...item.aliases, a] });
     setNewAlias("");
+    setAliasOpen(false);
+    if (!a || item.aliases.includes(a)) return;
+    onPatch(item.name, { aliases: [...item.aliases, a] });
   }
   function removeAlias(a) {
     onPatch(item.name, { aliases: item.aliases.filter((x) => x !== a) });
   }
+  function applySuggestion() {
+    const [act, tgt] = parseAction(sugg.action);
+    if (act === "merge" && !tgt) onMerge(item.name); // target 모르면 모달
+    else onDecision(item.name, act, tgt);
+  }
 
   return (
-    <tr>
-      <td>{item.name}</td>
-      <td>
+    <div className={`cc${pending ? " cc-pending" : ""}`}>
+      <div className="cc-top">
+        <span className="cc-name">{item.name}</span>
+        <span className={`badge st-${item.status}`}>{item.status}</span>
+        <span className="cc-spacer" />
+        <div className="cc-actions">
+          <button
+            className="cc-approve"
+            disabled={item.status === "approved"}
+            onClick={() => onDecision(item.name, "approve", null)}
+            title="승인 → 그래프에 표시"
+          >
+            ✓ 승인
+          </button>
+          <button
+            className="cc-reject"
+            disabled={item.status === "rejected"}
+            onClick={() => onDecision(item.name, "reject", null)}
+            title="거부 → 그래프에서 제거"
+          >
+            ✕ 거부
+          </button>
+          <button onClick={() => onMerge(item.name)} title="다른 개념의 alias로 병합">
+            ⤳ 병합
+          </button>
+        </div>
+      </div>
+
+      {/* 근거 — 항상 보임(판단 1초) */}
+      <div className="cc-evidence">
+        {definition ? (
+          <p className="cc-def">{definition}</p>
+        ) : (
+          <p className="cc-def muted">정의 없음(원논문 미수록)</p>
+        )}
+        <div className="cc-papers muted">
+          {defPapers.length > 0 && (
+            <span>
+              정의 <PaperLinks ids={defPapers} />
+            </span>
+          )}
+          {defPapers.length > 0 && citePapers.length > 0 && <span> · </span>}
+          {citePapers.length > 0 && (
+            <span>
+              조상으로 인용 <PaperLinks ids={citePapers} />
+            </span>
+          )}
+          {noEvidence && <span>출처 논문 없음 — 이름만 등장</span>}
+        </div>
+      </div>
+
+      {/* 도우미 제안 — 가이드. 적용은 [이대로] */}
+      {sugg && (
+        <div className="cc-sugg">
+          <span className={`rv-conf rv-${sugg.confidence}`}>{sugg.confidence}</span>
+          <span className="cc-sugg-text">
+            <b>제안: {sugg.action}</b> ({sugg.category}) — {sugg.reason}
+          </span>
+          <button className="cc-apply" onClick={applySuggestion}>
+            이대로 적용
+          </button>
+        </div>
+      )}
+
+      {/* 별칭 — 동일성 관리(보조) */}
+      <div className="cc-aliases">
+        <span className="muted">별칭:</span>
+        {item.aliases.length === 0 && !aliasOpen && (
+          <span className="muted cc-none">없음</span>
+        )}
         {item.aliases.map((a) => (
           <span className="alias-chip" key={a}>
             {a}
@@ -478,82 +519,22 @@ function Row({ item, card, onPatch, onDecision, onMerge }) {
             </button>
           </span>
         ))}
-        <input
-          placeholder="+ alias"
-          value={newAlias}
-          onChange={(e) => setNewAlias(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && addAlias()}
-          onBlur={addAlias}
-          style={{ width: 80 }}
-        />
-      </td>
-      <td>
-        <select
-          className={`badge st-${item.status}`}
-          value={item.status}
-          onChange={(e) => onPatch(item.name, { status: e.target.value })}
-        >
-          {STATUSES.map((s) => (
-            <option key={s} value={s}>
-              {s}
-            </option>
-          ))}
-        </select>
-      </td>
-      <td>
-        <textarea
-          className={`lex-def${defDirty ? " dirty" : ""}`}
-          rows={2}
-          style={{ width: "100%", resize: "vertical" }}
-          value={def}
-          onChange={(e) => setDef(e.target.value)}
-          onBlur={() => defDirty && onPatch(item.name, { definition: def })}
-          placeholder="(비어 있음)"
-        />
-        {defDirty && (
-          <div className="lex-def-hint muted">변경됨 — 포커스 해제 시 저장</div>
+        {aliasOpen ? (
+          <input
+            autoFocus
+            placeholder="별칭 입력 후 Enter"
+            value={newAlias}
+            onChange={(e) => setNewAlias(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && addAlias()}
+            onBlur={addAlias}
+            style={{ width: 140 }}
+          />
+        ) : (
+          <button className="cc-alias-add" onClick={() => setAliasOpen(true)}>
+            + 별칭
+          </button>
         )}
-      </td>
-      <td className="muted">{item.source}</td>
-      <td className="muted">{item.first_seen}</td>
-      <td>
-        {sugg && (
-          <div className="lex-sugg" title={evidenceTip()}>
-            <span className={`rv-conf rv-${sugg.confidence}`}>{sugg.confidence}</span>
-            <span className="muted">
-              제안 {sugg.category}·{sugg.action}
-            </span>
-            <button className="lex-sugg-apply" onClick={applySuggestion}>
-              이대로
-            </button>
-          </div>
-        )}
-        <div className="lex-actions">
-          <button
-            className="lex-approve"
-            disabled={item.status === "approved"}
-            onClick={() => onDecision(item.name, "approve", null)}
-            title="승인 → 그래프에 표시"
-          >
-            ✓ 승인
-          </button>
-          <button
-            className="lex-reject"
-            disabled={item.status === "rejected"}
-            onClick={() => onDecision(item.name, "reject", null)}
-            title="거부 → 그래프에서 제거"
-          >
-            ✕ 거부
-          </button>
-          <button
-            className="lex-merge-btn"
-            onClick={() => onMerge(item.name)}
-            title="다른 개념의 alias로 병합"
-          >
-            병합
-          </button>
-        </div>
-      </td>
-    </tr>
+      </div>
+    </div>
   );
 }
