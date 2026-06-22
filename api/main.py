@@ -179,6 +179,16 @@ def get_graph(papers: bool = False):
     return view
 
 
+@app.get("/api/review_suggestions")
+def review_suggestions():
+    """검토 도우미 제안(정적 스냅샷). scripts/review_helper.py가 생성. 적용은 기존
+    PATCH/merge 엔드포인트로 — 여기선 서빙만(read-only)."""
+    p = ROOT / "eval" / "reports" / "review_suggestions.json"
+    if not p.exists():
+        return {"cards": []}
+    return {"cards": json.loads(p.read_text())}  # .json은 카드 리스트
+
+
 @app.post("/api/concept/reviewed")
 def set_reviewed(body: dict = Body(...)):
     """개념의 검토함 토글. {id, reviewed: bool} → reviewed.json에 기록."""

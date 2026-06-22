@@ -693,3 +693,13 @@ UI 가독성: 전반적으로 글자가 작다는 피드백 → base 14→15px +
 - 스모크 5/5: GRPO→component/reject, DeepSeek-R1→lineage/approve, Dense Passage Retriever→merge_into:DPR, **DeepSeek-V3-Base·Active RAG→high-reject 아님(이름판정 함정 가드)**.
 - 전체 97개: approve 38·reject 50·merge 9·확신낮음 20. lexicon.json md5 무변경 검증.
 - 범위 밖: 자동적용(쓰기)·UI배선·제안vs사람 일치율·임베딩 merge(다음 단계).
+
+## 2026-06-22 — 검토 도우미 UI 배선(Lexicon 검토 큐 패널)
+
+도우미 제안(eval/reports/review_suggestions.json)을 Lexicon 페이지 패널로 띄우고 카드별/일괄 적용. 적용은 전부 기존 엔드포인트로 dispatch — 새 적용 로직 없음. 원칙: 도우미는 제안만, 사람이 클릭 결정.
+- api/main.py: GET /api/review_suggestions(정적 .json 서빙만, read-only). 적용은 기존 PATCH /api/lexicon/{name}·POST /api/lexicon/merge 재사용.
+- api.js: getReviewSuggestions 한 줄.
+- Lexicon.jsx: applyDecision(name,action,target) 하나로 approve→patch status, reject→patch status, merge→mergeLexicon 라우팅. '이대로 적용'(제안 튜플)과 수동 오버라이드가 같은 함수. ReviewPanel: confidence low→med→high 정렬, low/med 개별 카드(근거 항상 노출, low는 '이대로 적용' 비강조), high는 접기+체크박스 다중선택→'선택 적용'(window.confirm). 적용 성공 시 카드 즉시 제거(setItems 낙관적, 머지는 src 삭제). pending 승인은 "재빌드 시 노드화" 토스트. 패널 하단 재빌드 버튼.
+- 재빌드 필요 케이스: pending→approved만(노드 신규생성=normalize 몫). reject/merge/기존노드 승인은 라이브.
+- 검증: GET 97카드(reject50·approve38·merge9), PATCH dispatch 왕복(ToG pending→approved→pending, lexicon md5 무변경), web build 통과.
+- 범위 밖: low/med 일괄, 제안 실시간 재생성, 제안vs사람 일치율 측정.

@@ -1,5 +1,18 @@
 import { useEffect, useMemo, useState } from "react";
-import { getLexicon, mergeLexicon, patchLexicon } from "../api.js";
+import {
+  getLexicon,
+  mergeLexicon,
+  patchLexicon,
+  rebuild,
+  getReviewSuggestions,
+} from "../api.js";
+
+// 제안 action 문자열 → (action, target). "merge_into:DPR" → ["merge","DPR"].
+function parseAction(s) {
+  if (s && s.startsWith("merge_into:")) return ["merge", s.slice(11)];
+  return [s, null];
+}
+const CONF_RANK = { low: 0, med: 1, high: 2 };
 
 const STATUSES = ["approved", "unreviewed", "pending", "rejected"];
 const FILTERS = ["pending", "unreviewed", "approved", "rejected", "all"];
@@ -24,6 +37,8 @@ export default function Lexicon() {
   const [pageSize, setPageSize] = useState(50);
   const [showHelp, setShowHelp] = useState(true); // 상태 설명 펼침(기본 표시)
   const [mergeFrom, setMergeFrom] = useState(null); // 병합 모달 대상(개념명) 또는 null
+  const [reviewCards, setReviewCards] = useState([]); // 검토 도우미 제안 카드(정적 스냅샷)
+  const [rebuilding, setRebuilding] = useState(false);
   const [toast, setToast] = useState(null); // {msg, err}
 
   function toggleSort(key) {
@@ -52,7 +67,55 @@ export default function Lexicon() {
 
   useEffect(() => {
     reload();
+    getReviewSuggestions()
+      .then((r) => setReviewCards(r.cards || []))
+      .catch(() => setReviewCards([])); // 제안 파일 없으면 패널 자체가 안 뜸
   }, []);
+
+  // 결정 튜플(action,target) → 기존 엔드포인트로 dispatch. 새 적용 로직 없음.
+  // "이대로 적용"과 수동 오버라이드가 같은 함수 — 차이는 넣는 튜플뿐.
+  async function applyDecision(name, action, target) {
+    try {
+      if (action === "approve") {
+        const wasPending = items.find((it) => it.name === name)?.status === "pending";
+        await patchLexicon(name, { status: "approved" });
+        setItems((prev) =>
+          prev.map((it) => (it.name === name ? { ...it, status: "approved" } : it))
+        );
+        flash(wasPending ? `승인됨: ${name} · 재빌드 시 노드화` : `승인됨: ${name}`);
+      } else if (action === "reject") {
+        await patchLexicon(name, { status: "rejected" });
+        setItems((prev) =>
+          prev.map((it) => (it.name === name ? { ...it, status: "rejected" } : it))
+        );
+        flash(`거부됨: ${name}`);
+      } else if (action === "merge") {
+        if (!target) {
+          flash(`병합 대상 없음: ${name}`, true);
+          return false;
+        }
+        await mergeLexicon(name, target);
+        setItems((prev) => prev.filter((it) => it.name !== name)); // src 삭제됨
+        flash(`병합됨: ${name} → ${target}`);
+      }
+      return true;
+    } catch (e) {
+      flash(`적용 실패(${name}): ${e.message}`, true);
+      return false;
+    }
+  }
+
+  async function doRebuild() {
+    setRebuilding(true);
+    try {
+      const r = await rebuild();
+      flash(`재빌드 완료 — 노드 ${r.nodes} / 계보 ${r.builds_on}`);
+    } catch (e) {
+      flash(`재빌드 실패: ${e.message}`, true);
+    } finally {
+      setRebuilding(false);
+    }
+  }
 
   // 한 항목의 필드를 PATCH하고 로컬 상태도 갱신
   async function applyPatch(name, patch) {
@@ -109,6 +172,28 @@ export default function Lexicon() {
   const safePage = Math.min(page, pageCount);
   const paged = filtered.slice((safePage - 1) * pageSize, safePage * pageSize);
 
+  // 검토 도우미: 아직 pending/unreviewed인 개념의 카드만(처리된 건 자동으로 빠짐).
+  const statusByName = useMemo(() => {
+    const m = {};
+    for (const it of items) m[it.name] = it.status;
+    return m;
+  }, [items]);
+  const liveCards = useMemo(
+    () =>
+      reviewCards.filter((c) =>
+        ["pending", "unreviewed"].includes(statusByName[c.concept])
+      ),
+    [reviewCards, statusByName]
+  );
+  const approvedNames = useMemo(
+    () =>
+      items
+        .filter((it) => it.status === "approved")
+        .map((it) => it.name)
+        .sort(),
+    [items]
+  );
+
   // 정렬 가능한 헤더 셀
   const th = (key, label, width) => (
     <th
@@ -149,6 +234,16 @@ export default function Lexicon() {
           </ul>
         )}
       </header>
+
+      {liveCards.length > 0 && (
+        <ReviewPanel
+          cards={liveCards}
+          approvedNames={approvedNames}
+          onDecision={applyDecision}
+          onRebuild={doRebuild}
+          rebuilding={rebuilding}
+        />
+      )}
       <div className="lex-toolbar">
         <div className="lex-filters">
           {FILTERS.map((f) => (
@@ -427,5 +522,179 @@ function Row({ item, onPatch, onMerge }) {
         </div>
       </td>
     </tr>
+  );
+}
+
+// 검토 도우미 패널 — 제안 카드(정적 스냅샷)를 큐로 띄우고 카드별/일괄 적용.
+// 적용은 onDecision(applyDecision) 하나로 dispatch. low/med는 개별만, high는 일괄 가능.
+function ReviewPanel({ cards, approvedNames, onDecision, onRebuild, rebuilding }) {
+  const [open, setOpen] = useState(true);
+  const [showHigh, setShowHigh] = useState(false);
+  const [selected, setSelected] = useState(() => new Set());
+  const [targets, setTargets] = useState({});
+  const [busy, setBusy] = useState(false);
+
+  const sorted = [...cards].sort(
+    (a, b) =>
+      CONF_RANK[a.suggestion.confidence] - CONF_RANK[b.suggestion.confidence]
+  );
+  const lowMed = sorted.filter((c) => c.suggestion.confidence !== "high");
+  const high = sorted.filter((c) => c.suggestion.confidence === "high");
+
+  const targetOf = (c) =>
+    targets[c.concept] !== undefined ? targets[c.concept] : c.similar_existing || "";
+
+  const applySuggestion = (c) => {
+    const [act, tgt] = parseAction(c.suggestion.action);
+    onDecision(c.concept, act, act === "merge" ? tgt : null);
+  };
+
+  function toggleSel(name) {
+    setSelected((s) => {
+      const n = new Set(s);
+      if (n.has(name)) n.delete(name);
+      else n.add(name);
+      return n;
+    });
+  }
+
+  async function applyBatch() {
+    const chosen = high.filter((c) => selected.has(c.concept));
+    if (chosen.length === 0) return;
+    const counts = { approve: 0, reject: 0, merge: 0 };
+    chosen.forEach((c) => (counts[parseAction(c.suggestion.action)[0]] += 1));
+    if (
+      !window.confirm(
+        `approve ${counts.approve} · reject ${counts.reject} · merge ${counts.merge} 적용할까요?`
+      )
+    )
+      return;
+    setBusy(true);
+    for (const c of chosen) {
+      const [act, tgt] = parseAction(c.suggestion.action);
+      // eslint-disable-next-line no-await-in-loop
+      await onDecision(c.concept, act, act === "merge" ? tgt : null);
+    }
+    setSelected(new Set());
+    setBusy(false);
+  }
+
+  const evidence = (c) => {
+    const e = c.evidence || {};
+    const empty =
+      !e.definition && !(e.defined_in || []).length && !(e.cited_in || []).length;
+    return (
+      <div className="rv-evidence">
+        {e.definition && <div>정의: {e.definition.slice(0, 220)}</div>}
+        {(e.defined_in || []).length > 0 && (
+          <div>정의 논문: {e.defined_in.map((d) => d.paper).join(", ")}</div>
+        )}
+        {(e.cited_in || []).length > 0 && (
+          <div>조상 인용: {e.cited_in.join(", ")}</div>
+        )}
+        {empty && <div className="muted">근거 없음(이름만) — 확인 필요</div>}
+      </div>
+    );
+  };
+
+  const controls = (c, primary) => (
+    <div className="rv-controls">
+      <button
+        className={`rv-apply${primary ? " primary" : ""}`}
+        onClick={() => applySuggestion(c)}
+      >
+        이대로 적용 · {c.suggestion.action}
+      </button>
+      <span className="rv-manual">
+        <button onClick={() => onDecision(c.concept, "approve", null)}>승인</button>
+        <button onClick={() => onDecision(c.concept, "reject", null)}>거부</button>
+        <button
+          onClick={() => onDecision(c.concept, "merge", targetOf(c))}
+          disabled={!targetOf(c)}
+        >
+          병합→
+        </button>
+        <select
+          value={targetOf(c)}
+          onChange={(e) => setTargets((t) => ({ ...t, [c.concept]: e.target.value }))}
+        >
+          <option value="">(대상)</option>
+          {approvedNames.map((n) => (
+            <option key={n} value={n}>
+              {n}
+            </option>
+          ))}
+        </select>
+      </span>
+    </div>
+  );
+
+  const cardRow = (c, batch) => (
+    <div className="rv-card" key={c.concept}>
+      <div className="rv-head">
+        {batch && (
+          <input
+            type="checkbox"
+            checked={selected.has(c.concept)}
+            onChange={() => toggleSel(c.concept)}
+          />
+        )}
+        <b>{c.concept}</b>
+        <span className={`badge st-${c.status}`}>{c.status}</span>
+        <span className={`rv-conf rv-${c.suggestion.confidence}`}>
+          {c.suggestion.confidence}
+        </span>
+      </div>
+      {evidence(c)}
+      <div className="rv-sugg">
+        제안: <b>{c.suggestion.category}</b> — {c.suggestion.reason}
+      </div>
+      {controls(c, c.suggestion.confidence !== "low")}
+    </div>
+  );
+
+  return (
+    <section className="rv-panel">
+      <div className="rv-panel-head">
+        <button className="rv-toggle" onClick={() => setOpen((v) => !v)}>
+          검토 도우미 제안 {cards.length}개 {open ? "▴" : "▾"}
+        </button>
+        <span className="muted">제안일 뿐 — 적용은 당신의 클릭</span>
+        <span className="spacer" />
+        <button onClick={onRebuild} disabled={rebuilding} title="pending 승인분을 노드로 반영">
+          {rebuilding ? "재빌드 중…" : "↻ 재빌드"}
+        </button>
+      </div>
+      {open && (
+        <>
+          <div className="rv-section-title">
+            ⚠️ 확신 낮음·중간 — 한 장씩 검토 ({lowMed.length})
+          </div>
+          {lowMed.length === 0 && <div className="muted rv-empty">없음</div>}
+          {lowMed.map((c) => cardRow(c, false))}
+
+          <div className="rv-high">
+            <button className="rv-toggle" onClick={() => setShowHigh((v) => !v)}>
+              ✅ 확신 높음 {high.length}개 {showHigh ? "접기 ▴" : "펼치기 ▾"}
+            </button>
+            {showHigh && (
+              <>
+                <div className="rv-batchbar">
+                  <button
+                    className="primary"
+                    disabled={busy || selected.size === 0}
+                    onClick={applyBatch}
+                  >
+                    선택 적용 ({selected.size})
+                  </button>
+                  <span className="muted">체크 후 일괄. low/med는 일괄 대상이 아니에요.</span>
+                </div>
+                {high.map((c) => cardRow(c, true))}
+              </>
+            )}
+          </div>
+        </>
+      )}
+    </section>
   );
 }

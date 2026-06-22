@@ -287,6 +287,122 @@ textarea {
   font-size: 12px;
   padding: 3px 6px;
 }
+/* --- 검토 도우미 패널 --- */
+.rv-panel {
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent) 4%, var(--panel));
+  padding: 12px 14px;
+}
+.rv-panel-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rv-panel-head .spacer {
+  flex: 1;
+}
+.rv-toggle {
+  font-weight: 600;
+  background: transparent;
+  border-color: transparent;
+}
+.rv-section-title {
+  margin: 12px 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.rv-empty {
+  font-size: 13px;
+  padding: 4px 0 8px;
+}
+.rv-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+.rv-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.rv-conf {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 999px;
+}
+.rv-low {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.rv-med {
+  background: #fef9c3;
+  color: #a16207;
+}
+.rv-high {
+  background: transparent;
+}
+.rv-conf.rv-high {
+  background: #dcfce7;
+  color: #15803d;
+}
+.rv-evidence {
+  margin: 6px 0;
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.rv-sugg {
+  font-size: 13px;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+.rv-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.rv-apply {
+  font-size: 12px;
+}
+.rv-apply.primary,
+.rv-batchbar .primary {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-color: var(--accent);
+}
+.rv-apply.primary:hover:not(:disabled),
+.rv-batchbar .primary:hover:not(:disabled) {
+  filter: brightness(0.95);
+  background: var(--accent);
+}
+.rv-manual {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding-left: 8px;
+  border-left: 1px solid var(--border);
+}
+.rv-manual button,
+.rv-manual select {
+  font-size: 12px;
+  padding: 3px 8px;
+}
+.rv-high > .rv-toggle {
+  margin-top: 8px;
+}
+.rv-batchbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
 .lex-loading {
   display: flex;
   align-items: center;

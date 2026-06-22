@@ -29,6 +29,10 @@ export const mergeLexicon = (from, into) =>
 export const rebuild = () =>
   fetch("/api/rebuild", { method: "POST" }).then(jsonOrThrow);
 
+// 검토 도우미 제안(정적 스냅샷). 적용은 patchLexicon/mergeLexicon 재사용.
+export const getReviewSuggestions = () =>
+  fetch("/api/review_suggestions").then(jsonOrThrow);
+
 // 개념 '검토함' 토글 → reviewed.json 기록
 export const postReviewed = (id, reviewed) =>
   fetch("/api/concept/reviewed", {
