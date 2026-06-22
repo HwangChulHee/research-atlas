@@ -601,3 +601,7 @@ frozen 정답지 50편 vs 파이프라인 출력(`data/outputs/{id}.relations.js
 - `routes/Usage.jsx`: 표→카드 그리드. 히어로(h1 "이렇게 물어보세요" + 설명), 카드마다 제목+힌트+보기/수집 배지+칩+효과(→ 화살표). collect 카드는 점선·그라데이션으로 구분.
 - `styles.css`: usage-hero/grid/card/badge/hint/chip/effect 신규. 칩은 pill+hover fill, 카드 hover lift+shadow, color-mix로 accent 톤. 로고 hover opacity.
 - 검증: web build 통과. (브라우저 스크린샷 툴 없어 클래스 매칭+빌드로 확인 — 실물은 dev.sh 권장.)
+
+## 2026-06-22 — 로고 개선
+
+밋밋·전부소문자 로고 교체. SVG 지식그래프 마크(3노드 별자리, 하단 노드 accent 채움) + 워드마크 "Research Atlas"(Research=텍스트색 600, Atlas=accent 700). hover 시 마크 살짝 회전·확대. App.jsx 마크업 + styles.css(.brand-mark/.brand-word). web build 통과.

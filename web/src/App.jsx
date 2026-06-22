@@ -8,7 +8,25 @@ export default function App() {
     <>
       <nav className="nav">
         <Link to="/usage" className="brand" title="사용법으로">
-          research-atlas
+          <svg
+            className="brand-mark"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <line x1="6" y1="8" x2="18" y2="6.5" />
+            <line x1="6" y1="8" x2="12" y2="18" />
+            <line x1="18" y1="6.5" x2="12" y2="18" />
+            <circle cx="6" cy="8" r="2.3" />
+            <circle cx="18" cy="6.5" r="2.3" />
+            <circle cx="12" cy="18" r="3" className="brand-node-accent" />
+          </svg>
+          <span className="brand-word">
+            <span className="b-r">Research</span>
+            <span className="b-a">Atlas</span>
+          </span>
         </Link>
         <NavLink to="/usage">사용법</NavLink>
         <NavLink to="/graph">지형도</NavLink>

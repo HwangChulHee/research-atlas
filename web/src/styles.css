@@ -51,15 +51,44 @@ a {
   border-bottom: 1px solid var(--border);
 }
 .nav .brand {
-  font-weight: bold;
-  font-size: 19px;
-  letter-spacing: -0.01em;
-  color: var(--accent);
-  margin-right: 14px;
-  transition: opacity 0.12s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 16px;
 }
-.nav .brand:hover {
-  opacity: 0.75;
+.brand-mark {
+  flex: 0 0 auto;
+  transition: transform 0.18s ease;
+}
+.brand-mark line {
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  opacity: 0.45;
+}
+.brand-mark circle {
+  fill: var(--panel);
+  stroke: var(--accent);
+  stroke-width: 1.8;
+}
+.brand-mark .brand-node-accent {
+  fill: var(--accent);
+}
+.brand-word {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.brand-word .b-r {
+  color: var(--text);
+}
+.brand-word .b-a {
+  color: var(--accent);
+  font-weight: 700;
+  margin-left: 3px;
+}
+.nav .brand:hover .brand-mark {
+  transform: rotate(-12deg) scale(1.08);
 }
 .nav a {
   color: var(--muted);
