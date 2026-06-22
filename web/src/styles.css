@@ -139,6 +139,22 @@ textarea {
   overflow: auto;
   padding: 16px;
 }
+.lex-header {
+  margin-bottom: 14px;
+}
+.lex-header h1 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.lex-header p {
+  margin: 0;
+  max-width: 640px;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
 .lex-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -149,16 +165,46 @@ textarea {
 .lex-toolbar .spacer {
   flex: 1;
 }
+/* 상태 필터 — 세그먼티드 컨트롤 */
+.lex-filters {
+  display: inline-flex;
+  gap: 3px;
+  padding: 3px;
+  background: var(--hover);
+  border-radius: 9px;
+}
 .filter-btn {
-  padding: 4px 10px;
+  padding: 4px 13px;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 6px;
+  color: var(--muted);
+  text-transform: capitalize;
+}
+.filter-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: transparent;
 }
 .filter-btn.active {
-  background: var(--accent);
-  color: var(--accent-fg);
-  border-color: var(--accent);
+  background: var(--panel);
+  color: var(--text);
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+  font-weight: 600;
 }
 .filter-btn.active:hover:not(:disabled) {
-  background: var(--accent);
+  background: var(--panel);
+}
+.lex-search {
+  width: 200px;
+}
+.lex-total {
+  font-size: 12px;
+  white-space: nowrap;
+}
+.lex-merge-btn {
+  font-size: 12px;
+  padding: 3px 10px;
 }
 .lex-table {
   width: 100%;

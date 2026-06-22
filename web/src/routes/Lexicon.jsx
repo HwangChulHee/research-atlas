@@ -1,10 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import {
-  getLexicon,
-  mergeLexicon,
-  patchLexicon,
-  rebuild,
-} from "../api.js";
+import { getLexicon, mergeLexicon, patchLexicon } from "../api.js";
 
 const STATUSES = ["approved", "unreviewed", "pending", "rejected"];
 const FILTERS = ["pending", "unreviewed", "approved", "rejected", "all"];
@@ -17,7 +12,6 @@ export default function Lexicon() {
   const [sortKey, setSortKey] = useState(null); // "name" | "status" | "source" | "first_seen"
   const [sortDir, setSortDir] = useState("asc");
   const [toast, setToast] = useState(null); // {msg, err}
-  const [rebuilding, setRebuilding] = useState(false);
   const firstMatchRef = useRef(null); // 검색 첫 매칭 행 → 스크롤 대상
 
   function toggleSort(key) {
@@ -78,18 +72,6 @@ export default function Lexicon() {
     }
   }
 
-  async function doRebuild() {
-    setRebuilding(true);
-    try {
-      const r = await rebuild();
-      flash(`그래프 갱신됨 — 노드 ${r.nodes} / 계보 ${r.builds_on}`);
-    } catch (e) {
-      flash(`재빌드 실패: ${e.message}`, true);
-    } finally {
-      setRebuilding(false);
-    }
-  }
-
   const counts = useMemo(() => {
     const c = {};
     for (const it of items) c[it.status] = (c[it.status] || 0) + 1;
@@ -141,22 +123,31 @@ export default function Lexicon() {
 
   return (
     <div className="lex-wrap">
+      <header className="lex-header">
+        <h1>사전</h1>
+        <p>
+          개념(노드)의 표기·별칭·정의·상태를 검토하고 정리합니다. 대기열(pending)을
+          승인/거부하는 게 주 작업이에요.
+        </p>
+      </header>
       <div className="lex-toolbar">
-        {FILTERS.map((f) => (
-          <button
-            key={f}
-            className={`filter-btn${filter === f ? " active" : ""}`}
-            onClick={() => setFilter(f)}
-          >
-            {f}
-            {f !== "all" && counts[f] ? ` (${counts[f]})` : ""}
-          </button>
-        ))}
+        <div className="lex-filters">
+          {FILTERS.map((f) => (
+            <button
+              key={f}
+              className={`filter-btn${filter === f ? " active" : ""}`}
+              onClick={() => setFilter(f)}
+            >
+              {f}
+              {f !== "all" && counts[f] ? ` ${counts[f]}` : ""}
+            </button>
+          ))}
+        </div>
         <input
+          className="lex-search"
           placeholder="개념명 검색(강조)…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          style={{ width: 180 }}
         />
         {q && (
           <span className="muted">
@@ -166,10 +157,9 @@ export default function Lexicon() {
           </span>
         )}
         <span className="spacer" />
-        <span className="muted">승인/거부 후 재빌드해야 그래프에 반영됩니다 →</span>
-        <button onClick={doRebuild} disabled={rebuilding}>
-          {rebuilding ? "재빌드 중…" : "↻ 그래프 재빌드"}
-        </button>
+        <span className="muted lex-total">
+          총 {items.length}개 · 표시 {visible.length}
+        </span>
       </div>
 
       {loading ? (
@@ -279,11 +269,12 @@ function Row({ item, onPatch, onMerge, matched, rowRef }) {
       <td className="muted">{item.source}</td>
       <td className="muted">{item.first_seen}</td>
       <td>
-        <button onClick={() => onMerge(item.name)} title="다른 개념의 alias로 병합">
+        <button
+          className="lex-merge-btn"
+          onClick={() => onMerge(item.name)}
+          title="다른 개념의 alias로 병합"
+        >
           병합
-        </button>
-        <button disabled title="준비 중: 사용 맥락을 LLM에 질의" style={{ marginTop: 4 }}>
-          AI 도우미
         </button>
       </td>
     </tr>

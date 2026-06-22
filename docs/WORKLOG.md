@@ -618,3 +618,12 @@ focus_lineage가 canonical("Self-RAG")로 들어오는데 lineageSets가 toLower
 - 레이아웃: usage-bg는 position:fixed(스크롤해도 제자리), z-index:0. usage-inner z-index:1(콘텐츠 위). nav position:relative z-index:5(배경이 nav 위로 안 올라오게). pointer-events:none.
 - 카드: frosted glass — rgba(255,255,255,.82)+backdrop-filter blur로 별자리가 카드 뒤로 은은히 비침. collect 카드 점선/그라데이션 구분 유지.
 - Usage.jsx에 useConstellation(useMemo) 생성기. web build 통과. (스크린샷 툴 없어 빌드/코드로만 확인 — 실물 dev.sh 권장.)
+
+## 2026-06-22 — [사전] UI 개선 + AI도우미/재빌드 버튼 제거
+
+- 액션 칼럼의 비활성 "AI 도우미"(준비중 placeholder) 삭제. 병합 버튼만 남기고 컴팩트화.
+- 그래프 재빌드 버튼 + "재빌드해야 반영" 안내 제거(사용자 판단: UI에서 불필요). rebuild import/state/함수 제거. /api/rebuild 엔드포인트·api.js 래퍼는 유지(백엔드 무수정).
+- 페이지 헤더 추가(h1 "사전" + 한 줄 설명) — Usage/지형도와 톤 통일.
+- 상태 필터를 세그먼티드 컨트롤로(--hover 배경 그룹 + 활성칩 패널+그림자). 검색창 폭, 우측에 "총 N개 · 표시 M" 카운트(재빌드 자리 대체).
+- web build 통과. (스크린샷 툴 없어 빌드/코드 확인 — 실물 dev.sh 권장.)
+- 참고: 재빌드 버튼 제거로, pending→approved 승인이 그래프에 반영되려면 CLI 재빌드(normalize_v2→load) 필요. reject/정의수정/병합은 기존대로 증분 동기화됨.
