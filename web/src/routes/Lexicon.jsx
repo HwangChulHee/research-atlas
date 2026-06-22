@@ -30,6 +30,7 @@ function actionKr([act, tgt]) {
   return act;
 }
 
+const STATUSES = ["approved", "unreviewed", "pending", "rejected"];
 const FILTERS = ["pending", "unreviewed", "approved", "rejected", "all"];
 const PAGE_SIZES = [25, 50, 100];
 
@@ -136,6 +137,14 @@ export default function Lexicon() {
     } finally {
       setRegenerating(false);
     }
+  }
+
+  // 수동 상태 변경(4개 중 아무거나). approved/rejected는 applyDecision으로(토스트·노드 동기),
+  // pending/unreviewed로 되돌리기는 단순 status 패치.
+  function setStatus(name, status) {
+    if (status === "approved") return applyDecision(name, "approve", null);
+    if (status === "rejected") return applyDecision(name, "reject", null);
+    return applyPatch(name, { status });
   }
 
   // 한 항목의 필드를 PATCH하고 로컬 상태도 갱신
@@ -302,6 +311,7 @@ export default function Lexicon() {
               card={cardByName[it.name]}
               onPatch={applyPatch}
               onDecision={applyDecision}
+              onSetStatus={setStatus}
               onMerge={setMergeFrom}
             />
           ))}
@@ -428,7 +438,7 @@ function PaperLinks({ ids }) {
 // 개념 카드 — 결정(승인/거부/병합) 중심. 근거(정의·출처 논문)를 항상 보여주고,
 // 도우미 제안은 가이드로. definition/first_seen/source 같은 메타는 노출하지 않음
 // (정의 정본은 논문 추출이라 여기서 편집 안 함 — 사전은 자격·동일성 판정만).
-function ConceptCard({ item, card, onPatch, onDecision, onMerge }) {
+function ConceptCard({ item, card, onPatch, onDecision, onSetStatus, onMerge }) {
   const [aliasOpen, setAliasOpen] = useState(false);
   const [newAlias, setNewAlias] = useState("");
 
@@ -460,7 +470,18 @@ function ConceptCard({ item, card, onPatch, onDecision, onMerge }) {
     <div className={`cc${pending ? " cc-pending" : ""}`}>
       <div className="cc-top">
         <span className="cc-name">{item.name}</span>
-        <span className={`badge st-${item.status}`}>{item.status}</span>
+        <select
+          className={`badge st-${item.status} cc-status`}
+          value={item.status}
+          onChange={(e) => onSetStatus(item.name, e.target.value)}
+          title="상태 수동 변경"
+        >
+          {STATUSES.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
         <span className="cc-spacer" />
         <div className="cc-actions">
           <button

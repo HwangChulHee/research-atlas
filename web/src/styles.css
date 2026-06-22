@@ -438,6 +438,11 @@ textarea {
 .cc-spacer {
   flex: 1;
 }
+.cc-status {
+  cursor: pointer;
+  font-weight: 600;
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+}
 .cc-actions {
   display: flex;
   gap: 6px;

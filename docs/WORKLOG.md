@@ -737,3 +737,7 @@ UI 가독성: 전반적으로 글자가 작다는 피드백 → base 14→15px +
 - review_helper.py RUBRIC: "reason은 반드시 한국어로(영어 금지)". 전체 재생성(97개, reason 한글 0 누락 확인).
 - Lexicon 카드: action/category 표기도 한글(승인/거부/병합→X, 계보/부품/일반어/베이스모델/저자-연도/우산범주/중복) — 표시용, 내부 로직은 원문 enum 유지.
 - web build 통과.
+
+## 2026-06-22 — 사전 수동 상태 변경 복원
+
+카드 상단 상태 배지를 편집 가능한 select로 — 4개 상태(approved/unreviewed/pending/rejected) 수동 변경(특히 pending/unreviewed로 되돌리기). setStatus 라우팅: approved/rejected는 applyDecision(토스트·Neo4j 동기), pending/unreviewed는 status 패치. 빠른 승인/거부 버튼은 triage용으로 유지. web build 통과.
