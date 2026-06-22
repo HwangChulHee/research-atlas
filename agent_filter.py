@@ -39,6 +39,10 @@ TOOLS = [
                         "type": "string",
                         "description": "YYYY-MM. 이 시점 이후 등장한 노드만 (예: '2024년 이후' -> '2024-01')",
                     },
+                    "unreviewed_only": {
+                        "type": "boolean",
+                        "description": "'안 본 것만/내가 모르는 것/아직 안 익힌 것'이면 true — 검토함 표시한 개념 제외",
+                    },
                 },
             },
         },

@@ -17,6 +17,8 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 LEX_PATH = DATA_DIR / "lexicon.json"
 NORMALIZED_V2_PATH = DATA_DIR / "outputs" / "normalized_v2.json"  # v2 이중 노드 — 현재 소스
+# 개인화 상태(검토함). 정본(추출+lexicon)과 분리 → 재빌드가 안 건드림(wipe 안 됨).
+REVIEWED_PATH = DATA_DIR / "reviewed.json"
 
 app = FastAPI(title="research-atlas")
 
@@ -150,14 +152,49 @@ def build_graph_view(include_papers: bool) -> dict:
     return view
 
 
+# --- 개인화: 검토함(reviewed) ---
+def _load_reviewed() -> set:
+    """data/reviewed.json → 검토한 개념 rk 집합(없으면 빈 set)."""
+    if not REVIEWED_PATH.exists():
+        return set()
+    try:
+        return set(json.loads(REVIEWED_PATH.read_text()).get("reviewed", []))
+    except (json.JSONDecodeError, OSError):
+        return set()
+
+
 @app.get("/api/graph")
 def get_graph(papers: bool = False):
     """개념 주도 그래프. papers=false/true 모두 Neo4j 읽기 경로.
+    개념 노드엔 개인화 reviewed 플래그를 머지(reviewed.json 기준).
 
     build_graph_view(JSON)는 롤백용으로 보존 — 라우팅만 Neo4j로 전환.
     """
     from .graph_neo4j import graph_view_neo4j
-    return graph_view_neo4j(include_papers=papers)
+    view = graph_view_neo4j(include_papers=papers)
+    reviewed = _load_reviewed()
+    for nid, node in view["nodes"].items():
+        if node.get("type") != "paper":  # 개념만
+            node["reviewed"] = nid in reviewed
+    return view
+
+
+@app.post("/api/concept/reviewed")
+def set_reviewed(body: dict = Body(...)):
+    """개념의 검토함 토글. {id, reviewed: bool} → reviewed.json에 기록."""
+    cid = body.get("id")
+    if not cid:
+        raise HTTPException(400, "id 필요")
+    flag = bool(body.get("reviewed"))
+    s = _load_reviewed()
+    if flag:
+        s.add(cid)
+    else:
+        s.discard(cid)
+    REVIEWED_PATH.write_text(
+        json.dumps({"reviewed": sorted(s)}, ensure_ascii=False, indent=2)
+    )
+    return {"id": cid, "reviewed": flag}
 
 
 # --- 사전 ---

@@ -7,6 +7,7 @@ import {
   collectStart,
   collectResume,
   collectGetState,
+  postReviewed,
 } from "../api.js";
 
 // 대화 이력 localStorage 복원(chatWidth 패턴). 파싱 실패 시 빈 배열.
@@ -229,6 +230,7 @@ export default function Graph() {
       if (n.type === "paper") continue; // 필터/계보는 개념만 대상(논문은 표시용)
       if (args.ptype && n.ptype !== args.ptype) continue;
       if (args.domain && n.domain !== args.domain) continue;
+      if (args.unreviewed_only && n.reviewed) continue; // 이미 본 것 제외
       if (args.date_after) {
         const ym = nodeMonth(n);
         if (!ym || ym < args.date_after) continue;
@@ -300,6 +302,7 @@ export default function Graph() {
     if (args.ptype) c.push(`ptype=${args.ptype}`);
     if (args.domain) c.push(`domain=${args.domain}`);
     if (args.date_after) c.push(`date_after=${args.date_after}`);
+    if (args.unreviewed_only) c.push("안 본 것만");
     return c;
   }
 
@@ -314,6 +317,7 @@ export default function Graph() {
     if (next.ptype) clean.ptype = next.ptype;
     if (next.domain) clean.domain = next.domain;
     if (next.date_after) clean.date_after = next.date_after;
+    if (next.unreviewed_only) clean.unreviewed_only = true;
     setFilterState(clean);
     if (Object.keys(clean).length === 0) {
       apiRef.current && apiRef.current.highlight(null);
@@ -378,18 +382,27 @@ export default function Graph() {
       const a = res.args || {};
       const concepts = a.concepts || [];
       const papers = a.papers || [];
-      const ids = new Set([
-        ...concepts.map((h) => h.id),
-        ...papers.map((h) => h.id),
-      ]);
+      // reviewed로 가르기(②-b). 논문은 reviewed 없음 → 항상 '안 본 것' 취급.
+      const all = [...concepts, ...papers];
+      const seen = [];
+      const unseen = [];
+      for (const h of all) {
+        (dataRef.current.nodes[h.id]?.reviewed ? seen : unseen).push(h.id);
+      }
+      const lens = !!filterState.unreviewed_only;
+      // 렌즈 ON이면 안 본 것만, OFF면 전부 강조(cosine 순서 유지 — 재정렬 안 함).
+      const ids = new Set(lens ? unseen : [...unseen, ...seen]);
       if (ids.size === 0) {
-        addAgent(`'${a.query}'와(과) 유사한 노드 없음`);
+        addAgent(`'${a.query}'${lens ? " 안 본 결과 없음" : "와(과) 유사한 노드 없음"}`);
         return;
       }
       apiRef.current.highlight(ids);
-      setChips([`검색="${a.query}"`]);
-      setFilterState({}); // 드롭다운 표시 동기
-      addAgent(`'${a.query}' 의미검색 · 개념 ${concepts.length} · 논문 ${papers.length} 강조`);
+      setChips([`검색="${a.query}"`, ...(lens ? ["안 본 것만"] : [])]);
+      setFilterState(lens ? { unreviewed_only: true } : {}); // 필터 표시 비우되 렌즈는 유지
+      addAgent(
+        `'${a.query}' 의미검색 · 안 본 것 ${unseen.length} · 이미 본 것 ${seen.length}` +
+          (lens ? " (안 본 것만 강조)" : "")
+      );
       // 논문 hit가 있는데 논문 표시가 꺼져 있으면 안내(토글은 사용자 몫 — 자동 변경 안 함).
       if (papers.length > 0 && !showPapers) {
         addAgent(`논문 ${papers.length}개도 매칭됨 — '논문 보기'를 켜면 보입니다.`);
@@ -623,6 +636,22 @@ export default function Graph() {
               </option>
             ))}
           </select>
+          <label
+            className="graph-controls-toggle"
+            title="검토함 표시한 개념은 숨김(나에게 새로운 것만)"
+          >
+            <input
+              type="checkbox"
+              checked={!!filterState.unreviewed_only}
+              onChange={(e) =>
+                setFilter({
+                  ...filterState,
+                  unreviewed_only: e.target.checked || undefined,
+                })
+              }
+            />
+            안 본 것만
+          </label>
           <button
             className="graph-controls-reset"
             onClick={() => setFilter({})}
@@ -720,6 +749,19 @@ export default function Graph() {
                     <span className="muted">domain: {selected.domain}</span>
                   )}
                 </div>
+                <label className="detail-reviewed">
+                  <input
+                    type="checkbox"
+                    checked={!!selected.reviewed}
+                    onChange={async (e) => {
+                      const v = e.target.checked;
+                      await postReviewed(selected.id, v);
+                      dataRef.current.nodes[selected.id].reviewed = v; // 즉시 반영(필터·검색용)
+                      setSelected({ ...selected, reviewed: v });
+                    }}
+                  />
+                  검토함 (이미 아는 기법)
+                </label>
                 <div className="detail-lineage">
                   <span className="muted">계보</span>
                   <button onClick={() => runLineageFromNode(selected.id, "ancestors")}>

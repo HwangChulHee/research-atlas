@@ -665,3 +665,13 @@ UI 가독성: 전반적으로 글자가 작다는 피드백 → base 14→15px +
 - 사용법: 사소한 3행 삭제(조건으로 좁혀보기/이름 정확히 알때/전체 되돌리기) → 의미검색·계보·수집만 남김.
 - 가독성(직전): base 15px 등.
 - web build 통과. (스크린샷 툴 없어 빌드/코드로만 확인 — 실물 dev.sh 권장.)
+
+## 2026-06-22 — 개인 이해도(reviewed) + "안 본 것만" 렌즈
+
+정체성 정합 기능: 분야 위상 × "나에게 새로운 것". reviewed 불린 하나로 ①맵 필터 + ②-b 의미검색 단서. (②-a LLM 설명 생성·점수화·논문 reviewed·멀티유저는 범위 밖.)
+- 저장: data/reviewed.json(개념 rk 집합), 정본·Neo4j와 분리 → 재빌드가 안 건드림(wipe 안 됨). .gitignore 처리(개인 상태). 단일 사용자 가정.
+- api/main.py: _load_reviewed(), GET /api/graph가 개념 노드에 reviewed 머지, POST /api/concept/reviewed 토글.
+- web/api.js: postReviewed.
+- Graph.jsx: 디테일 패널 '검토함' 체크박스(즉시 dataRef 반영), applyFilter에 unreviewed_only(이미 본 것 제외), setFilter/filterChips에 unreviewed_only 합류(filterState 단일 진실원 — 드롭다운·채팅·렌즈 동기), 컨트롤바 '안 본 것만' 토글, semantic_search를 reviewed로 가르기(안 본 것/이미 본 것, 렌즈 ON이면 안 본 것만, cosine 순서 유지).
+- (Change 6) agent_filter filter 도구에 unreviewed_only + 프롬프트 한 줄 → 채팅 "안 본 것만"도 동작.
+- 검증: 토글→reviewed.json 기록, /api/graph 머지(127개 reviewed 필드), **재빌드 후 rag.reviewed 유지(핵심 설계 증거)**, 채팅 "안 본 것만"→filter{unreviewed_only}, "2024 이후 안 본 것만"→조합, 라우팅 6/6, web build 통과.

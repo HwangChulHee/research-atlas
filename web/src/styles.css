@@ -650,6 +650,18 @@ textarea {
   cursor: pointer;
 }
 /* 디테일 패널 계보 버튼 */
+.detail-reviewed {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  font-size: 13px;
+  cursor: pointer;
+  user-select: none;
+}
+.detail-reviewed input {
+  cursor: pointer;
+}
 .detail-lineage {
   display: flex;
   align-items: center;
