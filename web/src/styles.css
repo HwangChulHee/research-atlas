@@ -208,26 +208,29 @@ textarea {
 .lex-legend {
   list-style: none;
   margin: 12px 0 0;
-  padding: 12px 14px;
+  padding: 10px 14px;
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 8px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-  gap: 8px 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 24px;
 }
 .lex-legend li {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  white-space: nowrap;
 }
 .lex-legend .badge {
   flex: 0 0 auto;
-  min-width: 76px;
+  min-width: 84px;
   text-align: center;
 }
 .lex-legend .muted {
-  font-size: 12.5px;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .lex-pager {
   display: flex;
@@ -295,6 +298,15 @@ textarea {
 .lex-pagesize {
   font-size: 12px;
   padding: 3px 6px;
+}
+/* 비용·반영 작업 버튼(재빌드/제안 새로고침) — 일반 편집과 시각 구분 */
+.lex-op {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  color: var(--accent);
+}
+.lex-op:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--accent) 8%, var(--panel));
+  border-color: var(--accent);
 }
 /* --- 검토 도우미 패널 --- */
 .rv-panel {
@@ -440,7 +452,7 @@ textarea {
   gap: 8px;
 }
 .cc-name {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
@@ -457,8 +469,8 @@ textarea {
   gap: 6px;
 }
 .cc-actions button {
-  font-size: 12.5px;
-  padding: 4px 11px;
+  font-size: 13px;
+  padding: 5px 12px;
 }
 .cc-approve:not(:disabled) {
   color: #15803d;
@@ -478,8 +490,8 @@ textarea {
 }
 .cc-evidence {
   margin: 8px 0 0;
-  font-size: 13px;
-  line-height: 1.55;
+  font-size: 14.5px;
+  line-height: 1.6;
 }
 .cc-def {
   margin: 0;
@@ -490,8 +502,8 @@ textarea {
   overflow: hidden;
 }
 .cc-papers {
-  margin-top: 3px;
-  font-size: 12px;
+  margin-top: 4px;
+  font-size: 13px;
 }
 .cc-papers a {
   color: var(--accent);
@@ -504,19 +516,19 @@ textarea {
   align-items: flex-start;
   gap: 8px;
   margin-top: 10px;
-  padding: 8px 10px;
+  padding: 9px 11px;
   background: var(--bg);
   border-radius: 8px;
-  font-size: 12.5px;
-  line-height: 1.5;
+  font-size: 13.5px;
+  line-height: 1.55;
 }
 .cc-sugg-text {
   flex: 1;
 }
 .cc-apply {
   flex: 0 0 auto;
-  font-size: 12px;
-  padding: 4px 11px;
+  font-size: 13px;
+  padding: 5px 12px;
   border-color: var(--accent);
   color: var(--accent);
 }
@@ -530,7 +542,7 @@ textarea {
   flex-wrap: wrap;
   gap: 4px;
   margin-top: 10px;
-  font-size: 12.5px;
+  font-size: 13px;
 }
 .cc-alias-add {
   font-size: 12px;
@@ -1425,6 +1437,33 @@ body.resizing-pane {
 }
 
 /* --- 지형도 로딩 오버레이 --- */
+/* 계보 강조 시 방향 색 범례 */
+.graph-lineage-key {
+  position: absolute;
+  top: 46px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  padding: 5px 12px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  font-size: 12px;
+  z-index: 9;
+}
+.graph-lineage-key span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.graph-lineage-key i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
 .graph-loading {
   position: absolute;
   inset: 0;

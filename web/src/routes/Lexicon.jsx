@@ -36,10 +36,10 @@ const PAGE_SIZES = [15, 30, 50];
 
 // 각 상태가 뭘 의미하는지 — 그래프 표시 여부 포함(NODE_OK = approved/unreviewed).
 const STATUS_INFO = [
-  ["approved", "검토·승인됨 → 그래프에 표시"],
-  ["unreviewed", "논문이 정의한 개념(자동 등록) → 그래프에 표시 · 검토 전"],
-  ["pending", "참조(builds_on)로만 등장, 정의 없음 → 그래프 미표시 · 검토 대기"],
-  ["rejected", "거부됨 → 그래프 미표시"],
+  ["approved", "승인됨 · 그래프 표시"],
+  ["unreviewed", "논문이 정의 · 그래프 표시 · 검토 전"],
+  ["pending", "참조로만 등장 · 그래프 미표시 · 검토 대기"],
+  ["rejected", "거부됨 · 그래프 미표시"],
 ];
 
 export default function Lexicon() {
@@ -263,13 +263,19 @@ export default function Lexicon() {
         {q && <span className="muted">{filtered.length}건</span>}
         <span className="spacer" />
         <button
+          className="lex-op"
           onClick={doRegenerate}
           disabled={regenerating}
           title="카드 없는 신규 검토대기 개념만 제안 생성(LLM)"
         >
           {regenerating ? "제안 생성 중…" : "✦ 제안 새로고침"}
         </button>
-        <button onClick={doRebuild} disabled={rebuilding} title="pending 승인분을 노드로 반영">
+        <button
+          className="lex-op"
+          onClick={doRebuild}
+          disabled={rebuilding}
+          title="pending 승인분을 노드로 반영(그래프 재빌드)"
+        >
           {rebuilding ? "재빌드 중…" : "↻ 재빌드"}
         </button>
         <select

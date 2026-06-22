@@ -159,6 +159,7 @@ export default function Graph() {
 
   // [사용법]에서 넘어온 질의 자동 실행 — 그래프 준비(ready) 후 1회. state는 비워 재실행 방지.
   // run 계열은 읽기전용 하이라이트라 즉시 실행. collect는 destructive라 주제만 prefill(자동 시작 X).
+  // 들어온 질의가 없으면 기본 뷰 = RAG 계보(전체 헤어볼 대신 한 줄기만 — 임시 기본).
   useEffect(() => {
     if (!ready || consumedRef.current) return;
     const st = location.state || {};
@@ -171,6 +172,13 @@ export default function Graph() {
       setActiveTab("collect");
       setCollectInput(st.collectTopic); // 수집 입력창 prefill, 사람이 [시작] 눌러야 함
       navigate("/graph", { replace: true, state: null });
+    } else {
+      consumedRef.current = true;
+      const r = lineageSets("RAG", "both"); // 기본: RAG 계보로 시작
+      if (r) {
+        apiRef.current.highlightLineage(r.key, r.ancSet, r.descSet);
+        setChips([`기본: RAG 계보`]);
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready, location.state]);
@@ -570,6 +578,19 @@ export default function Graph() {
                 </button>
               </span>
             ))}
+          </div>
+        )}
+        {chips.some((c) => c.startsWith("lineage=") || c.includes("계보")) && (
+          <div className="graph-lineage-key">
+            <span>
+              <i style={{ background: "#2563eb" }} /> 조상
+            </span>
+            <span>
+              <i style={{ background: "#d97706" }} /> 자손
+            </span>
+            <span>
+              <i style={{ background: "#111827" }} /> 기준
+            </span>
           </div>
         )}
         <form className="graph-search" onSubmit={runSearch}>
