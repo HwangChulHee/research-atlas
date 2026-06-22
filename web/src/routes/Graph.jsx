@@ -658,6 +658,14 @@ export default function Graph() {
               </option>
             ))}
           </select>
+          <button
+            className="graph-controls-reset"
+            onClick={() => setFilter({})}
+            title="필터·강조 초기화"
+          >
+            초기화
+          </button>
+          <span className="gc-sep" />
           <label
             className="graph-controls-toggle"
             title="검토함 표시한 개념은 숨김(나에게 새로운 것만)"
@@ -674,13 +682,6 @@ export default function Graph() {
             />
             안 본 것만
           </label>
-          <button
-            className="graph-controls-reset"
-            onClick={() => setFilter({})}
-            title="필터·강조 초기화"
-          >
-            초기화
-          </button>
           <label className="graph-controls-toggle" title="논문 노드도 함께 표시">
             <input
               type="checkbox"
@@ -1161,7 +1162,7 @@ function render(container, svgEl, data, setSelected, onSettled) {
   // 줌 아웃 시 라벨 숨김(겹침 방지) — 가까이 볼 때만 텍스트 표시
   const zoom = d3.zoom().on("zoom", (e) => {
     root.attr("transform", e.transform);
-    node.selectAll("text").attr("opacity", e.transform.k < 0.6 ? 0 : 1);
+    node.selectAll("text").attr("opacity", e.transform.k < 0.7 ? 0 : 1);
   });
   svg.call(zoom);
 

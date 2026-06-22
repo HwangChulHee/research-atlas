@@ -182,7 +182,7 @@ textarea {
 }
 .lex-header h1 {
   margin: 0 0 4px;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
@@ -298,6 +298,12 @@ textarea {
 .lex-pagesize {
   font-size: 12px;
   padding: 3px 6px;
+}
+.lex-tb-sep {
+  width: 1px;
+  align-self: stretch;
+  background: var(--border);
+  margin: 0 2px;
 }
 /* 비용·반영 작업 버튼(재빌드/제안 새로고침) — 일반 편집과 시각 구분 */
 .lex-op {
@@ -462,6 +468,8 @@ textarea {
 .cc-status {
   cursor: pointer;
   font-weight: 600;
+  font-size: 13px;
+  padding: 4px 10px;
   border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
 }
 .cc-actions {
@@ -469,8 +477,8 @@ textarea {
   gap: 6px;
 }
 .cc-actions button {
-  font-size: 13px;
-  padding: 5px 12px;
+  font-size: 14px;
+  padding: 7px 16px;
 }
 .cc-approve:not(:disabled) {
   color: #15803d;
@@ -527,8 +535,8 @@ textarea {
 }
 .cc-apply {
   flex: 0 0 auto;
-  font-size: 13px;
-  padding: 5px 12px;
+  font-size: 14px;
+  padding: 7px 16px;
   border-color: var(--accent);
   color: var(--accent);
 }
@@ -753,13 +761,29 @@ textarea {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 420px;
   background: #dcfce7;
   border: 1px solid #16a34a;
   color: #166534;
-  padding: 10px 16px;
+  padding: 10px 14px;
   border-radius: 6px;
   box-shadow: var(--shadow);
   z-index: 100;
+}
+.toast-x {
+  border: none;
+  background: transparent;
+  color: inherit;
+  padding: 0 2px;
+  font-size: 12px;
+  opacity: 0.7;
+}
+.toast-x:hover:not(:disabled) {
+  opacity: 1;
+  background: transparent;
 }
 .toast.err {
   background: #fee2e2;
@@ -928,11 +952,14 @@ textarea {
   font-size: 13px;
   color: var(--muted);
   cursor: pointer;
-  padding-left: 8px;
-  margin-left: 2px;
-  border-left: 1px solid var(--border);
   user-select: none;
   white-space: nowrap;
+}
+.gc-sep {
+  width: 1px;
+  align-self: stretch;
+  background: var(--border);
+  margin: 0 4px;
 }
 .graph-controls-toggle input {
   cursor: pointer;

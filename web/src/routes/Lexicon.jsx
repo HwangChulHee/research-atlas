@@ -32,7 +32,7 @@ function actionKr([act, tgt]) {
 
 const STATUSES = ["approved", "unreviewed", "pending", "rejected"];
 const FILTERS = ["pending", "unreviewed", "approved", "rejected", "all"];
-const PAGE_SIZES = [15, 30, 50];
+const PAGE_SIZES = [10, 20, 40];
 
 // 각 상태가 뭘 의미하는지 — 그래프 표시 여부 포함(NODE_OK = approved/unreviewed).
 const STATUS_INFO = [
@@ -48,7 +48,7 @@ export default function Lexicon() {
   const [filter, setFilter] = useState("pending"); // 대기열 처리가 주 작업
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(15);
+  const [pageSize, setPageSize] = useState(10);
   const [showHelp, setShowHelp] = useState(true); // 상태 설명 펼침(기본 표시)
   const [mergeFrom, setMergeFrom] = useState(null); // 병합 모달 대상(개념명) 또는 null
   const [reviewCards, setReviewCards] = useState([]); // 검토 도우미 제안 카드(정적 스냅샷)
@@ -58,7 +58,7 @@ export default function Lexicon() {
 
   const flash = (msg, err = false) => {
     setToast({ msg, err });
-    setTimeout(() => setToast(null), 3000);
+    if (!err) setTimeout(() => setToast(null), 3000); // 에러는 수동으로 닫을 때까지 유지
   };
 
   async function reload() {
@@ -225,10 +225,7 @@ export default function Lexicon() {
             상태 설명 {showHelp ? "▴" : "▾"}
           </button>
         </div>
-        <p>
-          개념(노드)의 표기·별칭·정의·상태를 검토하고 정리합니다. 대기열(pending)을
-          승인/거부하는 게 주 작업이에요.
-        </p>
+        <p>개념 후보를 승인·거부·병합해 정리합니다 — 대기열(pending) 처리가 주 작업이에요.</p>
         {showHelp && (
           <ul className="lex-legend">
             {STATUS_INFO.map(([s, desc]) => (
@@ -278,6 +275,7 @@ export default function Lexicon() {
         >
           {rebuilding ? "재빌드 중…" : "↻ 재빌드"}
         </button>
+        <span className="lex-tb-sep" />
         <select
           className="lex-pagesize"
           value={pageSize}
@@ -348,7 +346,12 @@ export default function Lexicon() {
       )}
 
       {toast && (
-        <div className={`toast${toast.err ? " err" : ""}`}>{toast.msg}</div>
+        <div className={`toast${toast.err ? " err" : ""}`}>
+          {toast.msg}
+          <button className="toast-x" onClick={() => setToast(null)} title="닫기">
+            ✕
+          </button>
+        </div>
       )}
     </div>
   );
