@@ -1,8 +1,7 @@
 {
   "builds_on": [
-    "Retrieval-Augmented Generation",
+    "Retrieval-Augmented Generation (RAG)",
     "RAGAS",
-    "TruLens",
     "ARES"
   ]
 }

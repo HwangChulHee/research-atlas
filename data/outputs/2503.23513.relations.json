@@ -1,5 +1,7 @@
 {
   "builds_on": [
-    "RAG"
+    "RAG",
+    "CPT",
+    "SFT"
   ]
 }

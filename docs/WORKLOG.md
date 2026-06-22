@@ -529,3 +529,21 @@ frozen 정답지 50편 vs 파이프라인 출력(`data/outputs/{id}.relations.js
 **결론(문서 §5)**: 싸게 고칠 수 있는 건 소수(lexicon_dropped FN 3 + component_tool FP 5 = 사전작업). 점수를 좌우하는 다수(method_misjudged FP 23 + not_extracted FN 16)는 abstract+intro 입력의 본질적 한계 → 다음 레버는 lexicon이 아니라 relate가 보는 범위/맥락.
 
 실행: `uv run python eval/report_buildson.py`.
+
+## 2026-06-22 — full 라이브 승격 (relate만) + 그래프 재빌드
+
+모델 비교 결론(full이 builds_on 정밀도 +0.20, 비용 <$1)에 따라 **라이브 relate를 gpt-5.4(full)로 승격**. 범위는 relate만 — extract는 검증 구성대로 mini 유지(개념/노드 불변), evidence·RW 미사용.
+
+**config 분리**: `MODEL` → `MODEL_EXTRACT="gpt-5.4-mini"` + `MODEL_RELATE="gpt-5.4"`. extract.py/relate.py 호출부 분기, relate에 `temperature=0` 추가. 가드: src/의 config.MODEL 참조는 extract·relate 둘뿐.
+
+**세팅(새 머신)**: uv sync, .env(시크릿, gitignore 확인), Neo4j docker 기동 + verify_connectivity OK, outputs parsed/concepts/relations 91편 확인 → 게이트 통과.
+
+**relate 재실행**: `eval/run_relate_full.py`(ThreadPool 8워커)로 91편 full,temp=0 재호출 → relations.json 덮어쓰기. ok=91 fail=0(파싱실패 0). mini 백업은 /tmp.
+
+**재빌드**: normalize_v2(노드218/엣지209) → embed_nodes_v2(194,dim1536) → load.py(Neo4j: Paper91/Concept127/관계208).
+
+**승격 게이트(핵심)**: goldset 50편 새 relations 기준 재채점 → 전체 micro **P 0.820 / R 0.833**. 검증값 model_full_t0(P 0.803/R 0.817)과 거의 동일(미세 상회, temp=0 9/10 결정성 범위). → 검증한 full@0 구성을 그대로 승격 확인. (주: score_buildson.py SMOKE는 mini 기대값 하드코딩이라 개선방향으로 불일치 → run_full 직접 호출로 집계. 게이트 기준은 집계지 SMOKE가 아님.)
+
+**mini→full 변화**: builds_on 집합 변경 69/91편, 엣지 총합 196→137. full이 더 보수적·정밀(선조 나열 FP 제거 = 정밀도 +0.20 출처). 예: Attention paper builds_on []로.
+
+산출물: src/config·extract·relate, data/outputs/*.relations.json(91 교체), normalized_v2.json, node_embeddings_v2.json, Neo4j 적재, eval/reports/full_promotion.md, eval/run_relate_full.py, eval/runs/score_buildson_20260622-171113.*.

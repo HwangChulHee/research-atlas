@@ -19,13 +19,6 @@
       "def_status": "ok",
       "status": "approved"
     },
-    "concept:lstm": {
-      "type": "concept",
-      "canonical": "LSTM",
-      "definition": "",
-      "def_status": "placeholder",
-      "status": "approved"
-    },
     "paper:1810.04805": {
       "type": "paper",
       "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
@@ -48,16 +41,16 @@
       "def_status": "ok",
       "status": "approved"
     },
-    "concept:elmo": {
+    "concept:openai gpt": {
       "type": "concept",
-      "canonical": "ELMo",
+      "canonical": "OpenAI GPT",
       "definition": "",
       "def_status": "placeholder",
       "status": "approved"
     },
-    "concept:openai gpt": {
+    "concept:elmo": {
       "type": "concept",
-      "canonical": "OpenAI GPT",
+      "canonical": "ELMo",
       "definition": "",
       "def_status": "placeholder",
       "status": "approved"
@@ -97,6 +90,13 @@
       "domain": "general",
       "paper_type": "analysis"
     },
+    "concept:lstm": {
+      "type": "concept",
+      "canonical": "LSTM",
+      "definition": "",
+      "def_status": "placeholder",
+      "status": "approved"
+    },
     "paper:2002.08909": {
       "type": "paper",
       "title": "REALM: Retrieval-Augmented Language Model Pre-Training",
@@ -114,20 +114,6 @@
       "canonical": "REALM",
       "definition": "A retrieval-augmented language model pre-training framework that learns a latent knowledge retriever and uses retrieved documents during pre-training, fine-tuning, and inference.",
       "def_status": "ok",
-      "status": "approved"
-    },
-    "concept:roberta": {
-      "type": "concept",
-      "canonical": "RoBERTa",
-      "definition": "",
-      "def_status": "placeholder",
-      "status": "approved"
-    },
-    "concept:knn lm": {
-      "type": "concept",
-      "canonical": "kNN-LM",
-      "definition": "",
-      "def_status": "placeholder",
       "status": "approved"
     },
     "paper:2004.04906": {
@@ -179,23 +165,9 @@
       "def_status": "ok",
       "status": "approved"
     },
-    "concept:transformer xl": {
+    "concept:roberta": {
       "type": "concept",
-      "canonical": "Transformer-XL",
-      "definition": "",
-      "def_status": "placeholder",
-      "status": "approved"
-    },
-    "concept:reformer": {
-      "type": "concept",
-      "canonical": "Reformer",
-      "definition": "",
-      "def_status": "placeholder",
-      "status": "approved"
-    },
-    "concept:bp transformer": {
-      "type": "concept",
-      "canonical": "BP-Transformer",
+      "canonical": "RoBERTa",
       "definition": "",
       "def_status": "placeholder",
       "status": "approved"
@@ -241,9 +213,9 @@
       "def_status": "ok",
       "status": "approved"
     },
-    "concept:dpr": {
+    "concept:bart": {
       "type": "concept",
-      "canonical": "DPR",
+      "canonical": "BART",
       "definition": "",
       "def_status": "placeholder",
       "status": "approved"
@@ -321,13 +293,6 @@
       "canonical": "LoRA",
       "definition": "A parameter-efficient fine-tuning method that freezes pretrained model weights and injects trainable low-rank decomposition matrices into Transformer layers to adapt large language models.",
       "def_status": "ok",
-      "status": "approved"
-    },
-    "concept:prefix tuning": {
-      "type": "concept",
-      "canonical": "prefix-tuning",
-      "definition": "",
-      "def_status": "placeholder",
       "status": "approved"
     },
     "paper:2109.01652": {
@@ -711,34 +676,6 @@
       "def_status": "ok",
       "status": "approved"
     },
-    "concept:saycan": {
-      "type": "concept",
-      "canonical": "SayCan",
-      "definition": "",
-      "def_status": "placeholder",
-      "status": "approved"
-    },
-    "concept:hugginggpt": {
-      "type": "concept",
-      "canonical": "HuggingGPT",
-      "definition": "An LLM-powered agent that uses ChatGPT as a controller to plan tasks, select expert models from Hugging Face, execute them, and synthesize the results for complex AI requests.",
-      "def_status": "ok",
-      "status": "approved"
-    },
-    "concept:generative agents": {
-      "type": "concept",
-      "canonical": "Generative Agents",
-      "definition": "Computational agents that simulate believable human behavior by storing, reflecting on, and retrieving memories to plan and act over time.",
-      "def_status": "ok",
-      "status": "approved"
-    },
-    "concept:webgpt": {
-      "type": "concept",
-      "canonical": "WebGPT",
-      "definition": "",
-      "def_status": "placeholder",
-      "status": "approved"
-    },
     "paper:2303.17580": {
       "type": "paper",
       "title": "HuggingGPT: Solving AI Tasks with ChatGPT and its Friends in Hugging Face",
@@ -751,6 +688,13 @@
       ],
       "domain": "general",
       "paper_type": "technique"
+    },
+    "concept:hugginggpt": {
+      "type": "concept",
+      "canonical": "HuggingGPT",
+      "definition": "An LLM-powered agent that uses ChatGPT as a controller to plan tasks, select expert models from Hugging Face, execute them, and synthesize the results for complex AI requests.",
+      "def_status": "ok",
+      "status": "approved"
     },
     "paper:2303.17651": {
       "type": "paper",
@@ -786,6 +730,13 @@
       "domain": "general",
       "paper_type": "technique"
     },
+    "concept:generative agents": {
+      "type": "concept",
+      "canonical": "Generative Agents",
+      "definition": "Computational agents that simulate believable human behavior by storing, reflecting on, and retrieving memories to plan and act over time.",
+      "def_status": "ok",
+      "status": "approved"
+    },
     "paper:2304.09542": {
       "type": "paper",
       "title": "RankGPT: How Far Are Large Language Models from Effective Rankers?",
@@ -807,6 +758,13 @@
       "def_status": "ok",
       "status": "approved"
     },
+    "concept:gpt 4": {
+      "type": "concept",
+      "canonical": "GPT-4",
+      "definition": "",
+      "def_status": "placeholder",
+      "status": "approved"
+    },
     "concept:ranknet": {
       "type": "concept",
       "canonical": "RankNet",
@@ -814,9 +772,9 @@
       "def_status": "placeholder",
       "status": "approved"
     },
-    "concept:monot5": {
+    "concept:bm25": {
       "type": "concept",
-      "canonical": "monoT5",
+      "canonical": "BM25",
       "definition": "",
       "def_status": "placeholder",
       "status": "approved"
@@ -963,13 +921,6 @@
       "def_status": "ok",
       "status": "approved"
     },
-    "concept:autogpt": {
-      "type": "concept",
-      "canonical": "AutoGPT",
-      "definition": "",
-      "def_status": "placeholder",
-      "status": "approved"
-    },
     "paper:2305.18290": {
       "type": "paper",
       "title": "Direct Preference Optimization: Your Language Model is Secretly a Reward Model",
@@ -987,13 +938,6 @@
       "canonical": "Direct Preference Optimization",
       "definition": "A reinforcement-learning-free method for training language models from human preferences by directly optimizing a policy with a binary classification objective.",
       "def_status": "ok",
-      "status": "approved"
-    },
-    "concept:ppo": {
-      "type": "concept",
-      "canonical": "PPO",
-      "definition": "",
-      "def_status": "placeholder",
       "status": "approved"
     },
     "paper:2307.09288": {
@@ -1042,27 +986,6 @@
       "canonical": "MetaGPT",
       "definition": "A multi-agent meta-programming framework that encodes software-development standardized operating procedures into coordinated LLM agent workflows.",
       "def_status": "ok",
-      "status": "approved"
-    },
-    "concept:langchain": {
-      "type": "concept",
-      "canonical": "LangChain",
-      "definition": "",
-      "def_status": "placeholder",
-      "status": "approved"
-    },
-    "concept:agentverse": {
-      "type": "concept",
-      "canonical": "AgentVerse",
-      "definition": "",
-      "def_status": "placeholder",
-      "status": "approved"
-    },
-    "concept:chatdev": {
-      "type": "concept",
-      "canonical": "ChatDev",
-      "definition": "",
-      "def_status": "placeholder",
       "status": "approved"
     },
     "paper:2308.08155": {
@@ -1189,13 +1112,6 @@
       "def_status": "placeholder",
       "status": "approved"
     },
-    "concept:e5": {
-      "type": "concept",
-      "canonical": "E5",
-      "definition": "",
-      "def_status": "placeholder",
-      "status": "approved"
-    },
     "paper:2312.00752": {
       "type": "paper",
       "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
@@ -1241,6 +1157,13 @@
       "canonical": "Proposition indexing",
       "definition": "A dense retrieval approach that indexes a corpus using propositions, which are atomic, self-contained factoid units, instead of passages or sentences.",
       "def_status": "ok",
+      "status": "approved"
+    },
+    "concept:dpr": {
+      "type": "concept",
+      "canonical": "DPR",
+      "definition": "",
+      "def_status": "placeholder",
       "status": "approved"
     },
     "paper:2312.10997": {
@@ -1383,13 +1306,6 @@
       "def_status": "ok",
       "status": "approved"
     },
-    "concept:ircot": {
-      "type": "concept",
-      "canonical": "IRCoT",
-      "definition": "",
-      "def_status": "placeholder",
-      "status": "approved"
-    },
     "paper:2406.17526": {
       "type": "paper",
       "title": "LumberChunker: Dynamic Text Segmentation for Dense Retrieval and RAG",
@@ -1446,13 +1362,6 @@
     "concept:ragas": {
       "type": "concept",
       "canonical": "RAGAS",
-      "definition": "",
-      "def_status": "placeholder",
-      "status": "approved"
-    },
-    "concept:trulens": {
-      "type": "concept",
-      "canonical": "TruLens",
       "definition": "",
       "def_status": "placeholder",
       "status": "approved"
@@ -1624,6 +1533,13 @@
       "def_status": "ok",
       "status": "unreviewed"
     },
+    "concept:deepseek v3 base": {
+      "type": "concept",
+      "canonical": "DeepSeek-V3-Base",
+      "definition": "",
+      "def_status": "placeholder",
+      "status": "approved"
+    },
     "paper:2502.01142": {
       "type": "paper",
       "title": "DeepRAG",
@@ -1777,6 +1693,13 @@
       "domain": "general",
       "paper_type": "technique"
     },
+    "concept:research": {
+      "type": "concept",
+      "canonical": "ReSearch",
+      "definition": "A reinforcement learning framework that trains LLMs to interleave text-based reasoning with search queries and retrieved results without supervised reasoning-step annotations.",
+      "def_status": "ok",
+      "status": "approved"
+    },
     "paper:2503.21322": {
       "type": "paper",
       "title": "HyperGraphRAG: A Hypergraph-based Retrieval-Augmented Generation Framework for Knowledge-intensive Applications",
@@ -1834,6 +1757,13 @@
       "def_status": "ok",
       "status": "unreviewed"
     },
+    "concept:r1 searcher": {
+      "type": "concept",
+      "canonical": "R1-Searcher",
+      "definition": "",
+      "def_status": "placeholder",
+      "status": "approved"
+    },
     "paper:2504.14870": {
       "type": "paper",
       "title": "Optimal Tool Call-controlled Policy Optimization for Tool-Integrated Reasoning",
@@ -1866,6 +1796,13 @@
       "definition": "An instantiation of OTC-PO using Group Relative Preference Optimization.",
       "def_status": "ok",
       "status": "unreviewed"
+    },
+    "concept:ppo": {
+      "type": "concept",
+      "canonical": "PPO",
+      "definition": "",
+      "def_status": "placeholder",
+      "status": "approved"
     },
     "paper:2504.20073": {
       "type": "paper",
@@ -2013,6 +1950,13 @@
       "def_status": "ok",
       "status": "unreviewed"
     },
+    "concept:kg rag": {
+      "type": "concept",
+      "canonical": "KG-RAG",
+      "definition": "",
+      "def_status": "placeholder",
+      "status": "approved"
+    },
     "paper:2510.07794": {
       "type": "paper",
       "title": "Hierarchical Process Rewards for Efficient agentic RAG",
@@ -2051,6 +1995,13 @@
       "definition": "A reinforcement learning framework that improves global reasoning in multi-hop QA by decomposing questions into subgoals and coordinating retrieval with reasoning.",
       "def_status": "ok",
       "status": "unreviewed"
+    },
+    "concept:tiresrag r1": {
+      "type": "concept",
+      "canonical": "TIRESRAG-R1",
+      "definition": "",
+      "def_status": "placeholder",
+      "status": "approved"
     },
     "paper:2510.27569": {
       "type": "paper",
@@ -2126,11 +2077,6 @@
       "to": "concept:transformer"
     },
     {
-      "type": "builds_on",
-      "from": "paper:1706.03762",
-      "to": "concept:lstm"
-    },
-    {
       "type": "defines",
       "from": "paper:1810.04805",
       "to": "concept:bert"
@@ -2138,7 +2084,7 @@
     {
       "type": "builds_on",
       "from": "paper:1810.04805",
-      "to": "concept:elmo"
+      "to": "concept:transformer"
     },
     {
       "type": "builds_on",
@@ -2146,9 +2092,29 @@
       "to": "concept:openai gpt"
     },
     {
+      "type": "builds_on",
+      "from": "paper:1810.04805",
+      "to": "concept:elmo"
+    },
+    {
       "type": "defines",
       "from": "paper:1910.10683",
       "to": "concept:t5"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:1910.10683",
+      "to": "concept:transformer"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2001.08361",
+      "to": "concept:transformer"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2001.08361",
+      "to": "concept:lstm"
     },
     {
       "type": "defines",
@@ -2159,21 +2125,6 @@
       "type": "builds_on",
       "from": "paper:2002.08909",
       "to": "concept:bert"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2002.08909",
-      "to": "concept:roberta"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2002.08909",
-      "to": "concept:t5"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2002.08909",
-      "to": "concept:knn lm"
     },
     {
       "type": "defines",
@@ -2203,17 +2154,7 @@
     {
       "type": "builds_on",
       "from": "paper:2004.05150",
-      "to": "concept:transformer xl"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2004.05150",
-      "to": "concept:reformer"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2004.05150",
-      "to": "concept:bp transformer"
+      "to": "concept:roberta"
     },
     {
       "type": "defines",
@@ -2233,12 +2174,7 @@
     {
       "type": "builds_on",
       "from": "paper:2005.11401",
-      "to": "concept:rag"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2005.11401",
-      "to": "concept:dpr"
+      "to": "concept:bart"
     },
     {
       "type": "defines",
@@ -2273,7 +2209,7 @@
     {
       "type": "builds_on",
       "from": "paper:2106.09685",
-      "to": "concept:prefix tuning"
+      "to": "concept:transformer"
     },
     {
       "type": "defines",
@@ -2288,12 +2224,12 @@
     {
       "type": "builds_on",
       "from": "paper:2109.01652",
-      "to": "concept:t5"
+      "to": "concept:bert"
     },
     {
       "type": "builds_on",
       "from": "paper:2109.01652",
-      "to": "concept:bert"
+      "to": "concept:t5"
     },
     {
       "type": "defines",
@@ -2329,6 +2265,11 @@
       "type": "defines",
       "from": "paper:2203.15556",
       "to": "concept:chinchilla"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2203.15556",
+      "to": "concept:transformer"
     },
     {
       "type": "builds_on",
@@ -2371,11 +2312,6 @@
       "to": "concept:block sparse flashattention"
     },
     {
-      "type": "builds_on",
-      "from": "paper:2205.14135",
-      "to": "concept:flashattention"
-    },
-    {
       "type": "defines",
       "from": "paper:2206.07682",
       "to": "concept:emergent abilities of large language models"
@@ -2396,11 +2332,6 @@
       "to": "concept:constitutional ai"
     },
     {
-      "type": "builds_on",
-      "from": "paper:2212.08073",
-      "to": "concept:rlhf"
-    },
-    {
       "type": "defines",
       "from": "paper:2212.10496",
       "to": "concept:hyde"
@@ -2408,17 +2339,22 @@
     {
       "type": "builds_on",
       "from": "paper:2212.10496",
-      "to": "concept:contriever"
+      "to": "concept:instructgpt"
     },
     {
       "type": "builds_on",
       "from": "paper:2212.10496",
-      "to": "concept:instructgpt"
+      "to": "concept:contriever"
     },
     {
       "type": "defines",
       "from": "paper:2212.10560",
       "to": "concept:self instruct"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2212.10560",
+      "to": "concept:gpt 3"
     },
     {
       "type": "builds_on",
@@ -2438,22 +2374,12 @@
     {
       "type": "builds_on",
       "from": "paper:2301.12652",
-      "to": "concept:rag"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2301.12652",
-      "to": "concept:rag"
+      "to": "concept:gpt 3"
     },
     {
       "type": "defines",
       "from": "paper:2302.04761",
       "to": "concept:toolformer"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2302.04761",
-      "to": "concept:gpt 3"
     },
     {
       "type": "defines",
@@ -2474,31 +2400,6 @@
       "type": "builds_on",
       "from": "paper:2303.11366",
       "to": "concept:react"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2303.11366",
-      "to": "concept:saycan"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2303.11366",
-      "to": "concept:toolformer"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2303.11366",
-      "to": "concept:hugginggpt"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2303.11366",
-      "to": "concept:generative agents"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2303.11366",
-      "to": "concept:webgpt"
     },
     {
       "type": "defines",
@@ -2523,12 +2424,17 @@
     {
       "type": "builds_on",
       "from": "paper:2304.09542",
+      "to": "concept:gpt 4"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2304.09542",
       "to": "concept:ranknet"
     },
     {
       "type": "builds_on",
       "from": "paper:2304.09542",
-      "to": "concept:monot5"
+      "to": "concept:bm25"
     },
     {
       "type": "defines",
@@ -2543,12 +2449,12 @@
     {
       "type": "builds_on",
       "from": "paper:2305.04091",
-      "to": "concept:zero shot cot"
+      "to": "concept:cot"
     },
     {
       "type": "builds_on",
       "from": "paper:2305.04091",
-      "to": "concept:cot"
+      "to": "concept:zero shot cot"
     },
     {
       "type": "defines",
@@ -2558,7 +2464,7 @@
     {
       "type": "builds_on",
       "from": "paper:2305.06983",
-      "to": "concept:cot"
+      "to": "concept:rag"
     },
     {
       "type": "defines",
@@ -2574,6 +2480,11 @@
       "type": "defines",
       "from": "paper:2305.14283",
       "to": "concept:rewrite retrieve read"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2305.14283",
+      "to": "concept:rag"
     },
     {
       "type": "defines",
@@ -2596,21 +2507,6 @@
       "to": "concept:voyager"
     },
     {
-      "type": "builds_on",
-      "from": "paper:2305.16291",
-      "to": "concept:react"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2305.16291",
-      "to": "concept:reflexion"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2305.16291",
-      "to": "concept:autogpt"
-    },
-    {
       "type": "defines",
       "from": "paper:2305.18290",
       "to": "concept:direct preference optimization"
@@ -2619,11 +2515,6 @@
       "type": "builds_on",
       "from": "paper:2305.18290",
       "to": "concept:rlhf"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2305.18290",
-      "to": "concept:ppo"
     },
     {
       "type": "defines",
@@ -2636,42 +2527,12 @@
       "to": "concept:llama 2 chat"
     },
     {
-      "type": "builds_on",
-      "from": "paper:2307.09288",
-      "to": "concept:llama"
-    },
-    {
       "type": "defines",
       "from": "paper:2308.00352",
       "to": "concept:metagpt"
     },
     {
-      "type": "builds_on",
-      "from": "paper:2308.00352",
-      "to": "concept:autogpt"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2308.00352",
-      "to": "concept:langchain"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2308.00352",
-      "to": "concept:agentverse"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2308.00352",
-      "to": "concept:chatdev"
-    },
-    {
       "type": "defines",
-      "from": "paper:2308.08155",
-      "to": "concept:autogen"
-    },
-    {
-      "type": "builds_on",
       "from": "paper:2308.08155",
       "to": "concept:autogen"
     },
@@ -2679,16 +2540,6 @@
       "type": "defines",
       "from": "paper:2309.01431",
       "to": "concept:rgb"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2309.01431",
-      "to": "concept:rag"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2309.01431",
-      "to": "concept:rag"
     },
     {
       "type": "defines",
@@ -2716,6 +2567,11 @@
       "to": "concept:rag"
     },
     {
+      "type": "builds_on",
+      "from": "paper:2310.11511",
+      "to": "concept:rag"
+    },
+    {
       "type": "defines",
       "from": "paper:2310.19923",
       "to": "concept:jina embeddings v2"
@@ -2736,11 +2592,6 @@
       "to": "concept:jina embeddings v1"
     },
     {
-      "type": "builds_on",
-      "from": "paper:2310.19923",
-      "to": "concept:e5"
-    },
-    {
       "type": "defines",
       "from": "paper:2312.00752",
       "to": "concept:mamba"
@@ -2759,16 +2610,6 @@
       "type": "builds_on",
       "from": "paper:2312.06648",
       "to": "concept:dpr"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2312.06648",
-      "to": "concept:contriever"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2312.10997",
-      "to": "concept:rag"
     },
     {
       "type": "builds_on",
@@ -2826,11 +2667,6 @@
       "to": "concept:rag"
     },
     {
-      "type": "builds_on",
-      "from": "paper:2404.16130",
-      "to": "concept:rag"
-    },
-    {
       "type": "defines",
       "from": "paper:2405.14831",
       "to": "concept:hipporag"
@@ -2839,11 +2675,6 @@
       "type": "builds_on",
       "from": "paper:2405.14831",
       "to": "concept:rag"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2405.14831",
-      "to": "concept:ircot"
     },
     {
       "type": "defines",
@@ -2883,12 +2714,12 @@
     {
       "type": "builds_on",
       "from": "paper:2407.11005",
-      "to": "concept:trulens"
+      "to": "concept:ares"
     },
     {
       "type": "builds_on",
-      "from": "paper:2407.11005",
-      "to": "concept:ares"
+      "from": "paper:2408.02854",
+      "to": "concept:rag"
     },
     {
       "type": "defines",
@@ -2898,21 +2729,11 @@
     {
       "type": "builds_on",
       "from": "paper:2408.04187",
-      "to": "concept:graphrag"
+      "to": "concept:rag"
     },
     {
       "type": "builds_on",
       "from": "paper:2408.04187",
-      "to": "concept:rag"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2408.08921",
-      "to": "concept:rag"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2408.08921",
       "to": "concept:graphrag"
     },
     {
@@ -2921,19 +2742,9 @@
       "to": "concept:late chunking"
     },
     {
-      "type": "builds_on",
-      "from": "paper:2409.04701",
-      "to": "concept:rag"
-    },
-    {
       "type": "defines",
       "from": "paper:2410.05779",
       "to": "concept:lightrag"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2410.05779",
-      "to": "concept:rag"
     },
     {
       "type": "builds_on",
@@ -2951,6 +2762,11 @@
       "to": "concept:rag"
     },
     {
+      "type": "builds_on",
+      "from": "paper:2410.12788",
+      "to": "concept:lumberchunker"
+    },
+    {
       "type": "defines",
       "from": "paper:2501.05366",
       "to": "concept:search o1"
@@ -2958,11 +2774,6 @@
     {
       "type": "builds_on",
       "from": "paper:2501.05366",
-      "to": "concept:rag"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2501.09136",
       "to": "concept:rag"
     },
     {
@@ -2978,7 +2789,7 @@
     {
       "type": "builds_on",
       "from": "paper:2501.12948",
-      "to": "concept:cot"
+      "to": "concept:deepseek v3 base"
     },
     {
       "type": "defines",
@@ -2991,19 +2802,9 @@
       "to": "concept:rag"
     },
     {
-      "type": "builds_on",
-      "from": "paper:2502.01142",
-      "to": "concept:rag"
-    },
-    {
       "type": "defines",
       "from": "paper:2502.04413",
       "to": "concept:medrag"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2502.04413",
-      "to": "concept:rag"
     },
     {
       "type": "builds_on",
@@ -3063,7 +2864,7 @@
     {
       "type": "builds_on",
       "from": "paper:2503.09516",
-      "to": "concept:deepseek r1"
+      "to": "concept:deepseek r1 zero"
     },
     {
       "type": "builds_on",
@@ -3071,9 +2872,19 @@
       "to": "concept:rag"
     },
     {
+      "type": "defines",
+      "from": "paper:2503.19470",
+      "to": "concept:research"
+    },
+    {
       "type": "builds_on",
       "from": "paper:2503.19470",
       "to": "concept:rag"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2503.19470",
+      "to": "concept:deepseek r1"
     },
     {
       "type": "defines",
@@ -3113,7 +2924,17 @@
     {
       "type": "builds_on",
       "from": "paper:2504.03160",
-      "to": "concept:rag"
+      "to": "concept:search r1"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2504.03160",
+      "to": "concept:r1 searcher"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2504.03160",
+      "to": "concept:research"
     },
     {
       "type": "defines",
@@ -3134,6 +2955,11 @@
       "type": "builds_on",
       "from": "paper:2504.14870",
       "to": "concept:ppo"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2504.14870",
+      "to": "concept:search r1"
     },
     {
       "type": "defines",
@@ -3161,6 +2987,11 @@
       "to": "concept:rag"
     },
     {
+      "type": "builds_on",
+      "from": "paper:2504.21776",
+      "to": "concept:direct preference optimization"
+    },
+    {
       "type": "defines",
       "from": "paper:2505.14146",
       "to": "concept:s3"
@@ -3179,6 +3010,11 @@
       "type": "builds_on",
       "from": "paper:2505.14146",
       "to": "concept:self rag"
+    },
+    {
+      "type": "builds_on",
+      "from": "paper:2505.14146",
+      "to": "concept:search r1"
     },
     {
       "type": "defines",
@@ -3211,6 +3047,11 @@
       "to": "concept:rag"
     },
     {
+      "type": "builds_on",
+      "from": "paper:2509.26383",
+      "to": "concept:kg rag"
+    },
+    {
       "type": "defines",
       "from": "paper:2510.07794",
       "to": "concept:hiprag"
@@ -3231,6 +3072,11 @@
       "to": "concept:rag"
     },
     {
+      "type": "builds_on",
+      "from": "paper:2510.20548",
+      "to": "concept:tiresrag r1"
+    },
+    {
       "type": "defines",
       "from": "paper:2510.27569",
       "to": "concept:marag r1"
@@ -3239,21 +3085,6 @@
       "type": "builds_on",
       "from": "paper:2510.27569",
       "to": "concept:rag"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2510.27569",
-      "to": "concept:graphrag"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2510.27569",
-      "to": "concept:hypergraphrag"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2510.27569",
-      "to": "concept:search r1"
     },
     {
       "type": "defines",
@@ -3279,11 +3110,6 @@
       "type": "defines",
       "from": "paper:2605.01302",
       "to": "concept:evidence critic"
-    },
-    {
-      "type": "builds_on",
-      "from": "paper:2605.01302",
-      "to": "concept:rag"
     },
     {
       "type": "builds_on",

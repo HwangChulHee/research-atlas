@@ -1,10 +1,5 @@
 {
   "builds_on": [
-    "ReAct",
-    "SayCan",
-    "Toolformer",
-    "HuggingGPT",
-    "generative agents",
-    "WebGPT"
+    "ReAct"
   ]
 }

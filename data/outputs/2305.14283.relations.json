@@ -1,7 +1,6 @@
 {
   "builds_on": [
-    "retrieve-then-read",
-    "retrieval-augmented LLMs",
-    "query rewriting"
+    "RAG",
+    "retrieve-then-read"
   ]
 }

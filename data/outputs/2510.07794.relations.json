@@ -1,7 +1,5 @@
 {
   "builds_on": [
-    "agentic RAG",
-    "RAG",
-    "reinforcement learning"
+    "RAG"
   ]
 }

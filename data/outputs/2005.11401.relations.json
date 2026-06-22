@@ -1,6 +1,6 @@
 {
   "builds_on": [
-    "RAG",
-    "DPR"
+    "Dense Passage Retriever",
+    "BART"
   ]
 }

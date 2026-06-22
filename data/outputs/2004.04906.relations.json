@@ -1,7 +1,6 @@
 {
   "builds_on": [
     "BERT",
-    "dual-encoder",
-    "maximum inner product search"
+    "dual-encoder"
   ]
 }

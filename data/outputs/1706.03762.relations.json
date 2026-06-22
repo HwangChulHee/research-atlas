@@ -1,9 +1,3 @@
 {
-  "builds_on": [
-    "attention mechanisms",
-    "encoder-decoder architectures",
-    "recurrent neural networks",
-    "LSTM",
-    "gated recurrent neural networks"
-  ]
+  "builds_on": []
 }

@@ -1,6 +1,6 @@
 {
   "builds_on": [
-    "RLHF",
-    "RLAIF"
+    "Reinforcement Learning from Human Feedback",
+    "RL from AI Feedback"
   ]
 }

@@ -1,8 +1,5 @@
 {
   "builds_on": [
-    "retrieve-and-generate",
-    "active retrieval augmented generation",
-    "passive retrieval augmented LMs",
-    "chain-of-thought"
+    "RAG"
   ]
 }

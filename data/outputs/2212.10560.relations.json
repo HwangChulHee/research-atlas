@@ -1,5 +1,8 @@
 {
   "builds_on": [
-    "InstructGPT"
+    "GPT-3",
+    "InstructGPT",
+    "SUPER-NATURALINSTRUCTIONS",
+    "PromptSource"
   ]
 }

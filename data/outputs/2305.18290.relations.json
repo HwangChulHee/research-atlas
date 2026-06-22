@@ -1,7 +1,6 @@
 {
   "builds_on": [
     "RLHF",
-    "RLAIF",
-    "PPO"
+    "Bradley-Terry model"
   ]
 }

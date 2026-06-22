@@ -1,7 +1,5 @@
 {
   "builds_on": [
-    "question answering",
-    "language modeling",
-    "span extraction"
+    "Transformer"
   ]
 }

@@ -1,5 +1,3 @@
 {
-  "builds_on": [
-    "few-shot prompting"
-  ]
+  "builds_on": []
 }

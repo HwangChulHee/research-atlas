@@ -1,6 +1,5 @@
 {
   "builds_on": [
-    "retrieval-augmented generation",
-    "IRCoT"
+    "RAG"
   ]
 }

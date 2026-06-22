@@ -1,7 +1,5 @@
 {
   "builds_on": [
-    "prefix-tuning",
-    "adapters",
-    "fine-tuning"
+    "Transformer"
   ]
 }

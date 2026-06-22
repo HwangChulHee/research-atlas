@@ -1,6 +1,8 @@
 {
   "builds_on": [
+    "ChatGPT",
+    "GPT-4",
     "RankNet",
-    "monoT5"
+    "BM25"
   ]
 }

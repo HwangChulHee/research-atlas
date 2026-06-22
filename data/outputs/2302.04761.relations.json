@@ -1,6 +1,3 @@
 {
-  "builds_on": [
-    "GPT-3",
-    "GPT-J"
-  ]
+  "builds_on": []
 }

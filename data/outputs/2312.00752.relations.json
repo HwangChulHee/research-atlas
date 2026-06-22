@@ -1,6 +1,7 @@
 {
   "builds_on": [
-    "Transformers",
-    "structured state space models"
+    "structured state space models",
+    "S4",
+    "S5"
   ]
 }

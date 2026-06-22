@@ -1,7 +1,7 @@
 {
   "builds_on": [
+    "Transformer",
     "GPT-3",
-    "Gopher",
     "Kaplan et al. (2020)"
   ]
 }

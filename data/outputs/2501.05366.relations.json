@@ -1,5 +1,6 @@
 {
   "builds_on": [
-    "RAG"
+    "RAG",
+    "OpenAI-o1"
   ]
 }

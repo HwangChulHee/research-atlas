@@ -1,6 +1,6 @@
 {
   "builds_on": [
-    "Contriever",
-    "InstructGPT"
+    "InstructGPT",
+    "Contriever"
   ]
 }

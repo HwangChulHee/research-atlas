@@ -1,7 +1,6 @@
 {
   "builds_on": [
-    "Zero-shot-CoT",
-    "Chain-of-Thought prompting",
-    "Program-of-Thought Prompting"
+    "Chain-of-Thought Prompting",
+    "Zero-shot-CoT"
   ]
 }

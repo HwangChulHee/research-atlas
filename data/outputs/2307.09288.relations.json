@@ -1,5 +1,3 @@
 {
-  "builds_on": [
-    "Llama"
-  ]
+  "builds_on": []
 }

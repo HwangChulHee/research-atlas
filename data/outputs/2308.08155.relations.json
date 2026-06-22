@@ -1,5 +1,3 @@
 {
-  "builds_on": [
-    "AutoGen"
-  ]
+  "builds_on": []
 }

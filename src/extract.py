@@ -14,7 +14,7 @@ client = OpenAI()
 
 def extract_one(text: str) -> dict:
     resp = client.chat.completions.create(
-        model=config.MODEL,
+        model=config.MODEL_EXTRACT,
         messages=[
             {"role": "system", "content": EXTRACT_SYSTEM},
             {"role": "user", "content": EXTRACT_USER.format(text=text)},

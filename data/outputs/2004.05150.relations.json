@@ -1,11 +1,6 @@
 {
   "builds_on": [
     "Transformer",
-    "Transformer-XL",
-    "Reformer",
-    "Adaptive Span",
-    "Compressive Transformer",
-    "BP-Transformer",
-    "Sparse Transformer"
+    "RoBERTa"
   ]
 }

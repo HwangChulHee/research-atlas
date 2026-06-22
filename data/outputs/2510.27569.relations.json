@@ -1,9 +1,6 @@
 {
   "builds_on": [
-    "Retrieval-Augmented Generation",
-    "GraphRAG",
-    "HyperGraphRAG",
-    "Search-R1",
-    "ReSearch"
+    "RAG",
+    "Agentic RAG"
   ]
 }

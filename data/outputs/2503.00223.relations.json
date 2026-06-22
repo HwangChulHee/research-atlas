@@ -1,6 +1,3 @@
 {
-  "builds_on": [
-    "query augmentation",
-    "reinforcement learning"
-  ]
+  "builds_on": []
 }

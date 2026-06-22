@@ -1,6 +1,5 @@
 {
   "builds_on": [
-    "ChatGPT",
-    "Hugging Face"
+    "ChatGPT"
   ]
 }

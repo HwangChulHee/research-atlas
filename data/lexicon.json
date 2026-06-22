@@ -1774,6 +1774,104 @@
       "definition": "",
       "source": "builds_on",
       "first_seen": "2510.20548"
+    },
+    "Dense Passage Retriever": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2005.11401"
+    },
+    "GPT-2": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2005.14165"
+    },
+    "Reinforcement Learning from Human Feedback": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2212.08073"
+    },
+    "RL from AI Feedback": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2212.08073"
+    },
+    "SUPER-NATURALINSTRUCTIONS": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2212.10560"
+    },
+    "PromptSource": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2212.10560"
+    },
+    "Codex": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2301.12652"
+    },
+    "Bradley-Terry model": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2305.18290"
+    },
+    "S4": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2312.00752"
+    },
+    "S5": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2312.00752"
+    },
+    "OpenAI-o1": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2501.05366"
+    },
+    "Re2Search": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2502.13957"
+    },
+    "CPT": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2503.23513"
+    },
+    "Tool-Integrated Reasoning": {
+      "aliases": [],
+      "status": "pending",
+      "definition": "",
+      "source": "builds_on",
+      "first_seen": "2504.14870"
     }
   }
 }

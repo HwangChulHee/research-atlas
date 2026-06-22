@@ -1,5 +1,3 @@
 {
-  "builds_on": [
-    "FlashAttention"
-  ]
+  "builds_on": []
 }

@@ -1,6 +1,5 @@
 {
   "builds_on": [
-    "Retrieval-augmented generation",
     "RAG"
   ]
 }

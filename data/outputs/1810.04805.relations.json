@@ -1,6 +1,7 @@
 {
   "builds_on": [
-    "ELMo",
-    "OpenAI GPT"
+    "Transformer",
+    "OpenAI GPT",
+    "ELMo"
   ]
 }

@@ -1,7 +1,5 @@
 {
   "builds_on": [
-    "Chain-of-Thought prompting",
-    "DeepSeek-V3-Base",
-    "Group Relative Policy Optimization"
+    "DeepSeek-V3-Base"
   ]
 }

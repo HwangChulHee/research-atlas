@@ -1,7 +1,6 @@
 {
   "builds_on": [
-    "retrieval-augmented language models",
-    "Retrieval-Augmented Generation",
-    "RAG"
+    "GPT-3",
+    "Codex"
   ]
 }

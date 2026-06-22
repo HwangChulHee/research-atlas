@@ -15,7 +15,8 @@ client = OpenAI()
 def relate_one(concepts: dict, text: str) -> dict:
     defines = ", ".join(m["name"] for m in concepts.get("defines", [])) or "(none)"
     resp = client.chat.completions.create(
-        model=config.MODEL,
+        model=config.MODEL_RELATE,
+        temperature=0,
         messages=[
             {"role": "system", "content": RELATE_SYSTEM},
             {"role": "user", "content": RELATE_USER.format(
