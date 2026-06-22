@@ -48,27 +48,6 @@ const ROWS = [
     action: "run",
   },
   {
-    want: "조건으로 좁혀 보기",
-    hint: "시점·분야",
-    examples: ["2024년 이후 나온 것만", "의료 분야만"],
-    effect: "조건에 맞는 것만 강조, 나머지는 흐리게",
-    action: "run",
-  },
-  {
-    want: "이름을 정확히 알 때",
-    hint: "바로 그 노드로",
-    examples: ["GraphRAG", "Toolformer"],
-    effect: "그 노드로 바로 이동·강조",
-    action: "run",
-  },
-  {
-    want: "전체로 되돌리기",
-    hint: null,
-    examples: ["다 보여줘"],
-    effect: "모든 강조·필터 해제",
-    action: "run",
-  },
-  {
     want: "지도에 없는 새 논문 추가",
     hint: "arXiv에서 수집",
     examples: ["멀티에이전트 협업 논문 모아줘"],

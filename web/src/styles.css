@@ -280,9 +280,120 @@ textarea {
   font-size: 12px;
   white-space: nowrap;
 }
+.lex-pagesize {
+  font-size: 12px;
+  padding: 3px 6px;
+}
+.lex-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 24px;
+  color: var(--muted);
+}
+/* 행 액션 — 승인/거부/병합 */
+.lex-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.lex-actions button {
+  font-size: 12px;
+  padding: 3px 9px;
+}
+.lex-approve:not(:disabled) {
+  color: #15803d;
+  border-color: color-mix(in srgb, #15803d 45%, var(--border));
+}
+.lex-approve:not(:disabled):hover {
+  background: #dcfce7;
+  border-color: #15803d;
+}
+.lex-reject:not(:disabled) {
+  color: #b91c1c;
+  border-color: color-mix(in srgb, #b91c1c 45%, var(--border));
+}
+.lex-reject:not(:disabled):hover {
+  background: #fee2e2;
+  border-color: #b91c1c;
+}
 .lex-merge-btn {
   font-size: 12px;
   padding: 3px 10px;
+}
+/* 정의 저장 피드백 */
+.lex-def.dirty {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+.lex-def-hint {
+  font-size: 11px;
+  margin-top: 2px;
+}
+/* 병합 모달 */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+.modal {
+  width: min(440px, calc(100vw - 32px));
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  padding: 18px 18px 14px;
+}
+.modal h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+.modal p {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.modal-search {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.modal-list {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px;
+  min-height: 120px;
+}
+.modal-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  text-align: left;
+  border: none;
+  background: transparent;
+  padding: 7px 10px;
+  border-radius: 6px;
+}
+.modal-item:hover {
+  background: var(--hover);
+  border-color: transparent;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
 }
 .lex-table {
   width: 100%;

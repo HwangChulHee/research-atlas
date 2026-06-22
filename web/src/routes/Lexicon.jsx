@@ -3,7 +3,7 @@ import { getLexicon, mergeLexicon, patchLexicon } from "../api.js";
 
 const STATUSES = ["approved", "unreviewed", "pending", "rejected"];
 const FILTERS = ["pending", "unreviewed", "approved", "rejected", "all"];
-const PAGE_SIZE = 50;
+const PAGE_SIZES = [25, 50, 100];
 
 // 각 상태가 뭘 의미하는지 — 그래프 표시 여부 포함(NODE_OK = approved/unreviewed).
 const STATUS_INFO = [
@@ -21,7 +21,9 @@ export default function Lexicon() {
   const [sortKey, setSortKey] = useState(null); // "name" | "status" | "source" | "first_seen"
   const [sortDir, setSortDir] = useState("asc");
   const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(50);
   const [showHelp, setShowHelp] = useState(true); // 상태 설명 펼침(기본 표시)
+  const [mergeFrom, setMergeFrom] = useState(null); // 병합 모달 대상(개념명) 또는 null
   const [toast, setToast] = useState(null); // {msg, err}
 
   function toggleSort(key) {
@@ -64,15 +66,8 @@ export default function Lexicon() {
     }
   }
 
-  async function doMerge(from) {
-    const into = window.prompt(
-      `"${from}"을(를) 어느 개념의 alias로 병합할까요?\n대상 개념명을 정확히 입력하세요.`
-    );
-    if (!into) return;
-    if (!items.some((it) => it.name === into)) {
-      flash(`대상 개념 없음: ${into}`, true);
-      return;
-    }
+  async function confirmMerge(from, into) {
+    setMergeFrom(null);
     try {
       await mergeLexicon(from, into);
       flash(`병합됨: ${from} → ${into}`);
@@ -105,14 +100,14 @@ export default function Lexicon() {
     return arr;
   }, [items, filter, q, sortKey, sortDir]);
 
-  // 필터/검색/정렬이 바뀌면 1페이지로
+  // 필터/검색/정렬/페이지크기가 바뀌면 1페이지로
   useEffect(() => {
     setPage(1);
-  }, [filter, q, sortKey, sortDir]);
+  }, [filter, q, sortKey, sortDir, pageSize]);
 
-  const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const pageCount = Math.max(1, Math.ceil(filtered.length / pageSize));
   const safePage = Math.min(page, pageCount);
-  const paged = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+  const paged = filtered.slice((safePage - 1) * pageSize, safePage * pageSize);
 
   // 정렬 가능한 헤더 셀
   const th = (key, label, width) => (
@@ -175,48 +170,47 @@ export default function Lexicon() {
         />
         {q && <span className="muted">{filtered.length}건</span>}
         <span className="spacer" />
+        <select
+          className="lex-pagesize"
+          value={pageSize}
+          onChange={(e) => setPageSize(Number(e.target.value))}
+          title="페이지당 개수"
+        >
+          {PAGE_SIZES.map((n) => (
+            <option key={n} value={n}>
+              {n}/쪽
+            </option>
+          ))}
+        </select>
         <span className="muted lex-total">
           총 {items.length}개 · 조건 {filtered.length}
         </span>
       </div>
       {!loading && filtered.length > 0 && (
-        <div className="lex-pager">
-          <span className="muted">
-            {(safePage - 1) * PAGE_SIZE + 1}–
-            {Math.min(safePage * PAGE_SIZE, filtered.length)} / {filtered.length}
-          </span>
-          {pageCount > 1 && (
-            <span className="lex-pager-ctrl">
-              <button disabled={safePage <= 1} onClick={() => setPage(safePage - 1)}>
-                ‹ 이전
-              </button>
-              <span className="muted">
-                {safePage} / {pageCount}
-              </span>
-              <button
-                disabled={safePage >= pageCount}
-                onClick={() => setPage(safePage + 1)}
-              >
-                다음 ›
-              </button>
-            </span>
-          )}
-        </div>
+        <Pager
+          page={safePage}
+          pageCount={pageCount}
+          pageSize={pageSize}
+          total={filtered.length}
+          onPage={setPage}
+        />
       )}
 
       {loading ? (
-        <div className="muted">로딩 중…</div>
+        <div className="lex-loading">
+          <span className="spinner" /> 사전 불러오는 중…
+        </div>
       ) : (
         <table className="lex-table">
           <thead>
             <tr>
-              {th("name", "개념명", "16%")}
-              <th style={{ width: "22%" }}>aliases</th>
-              {th("status", "status", "12%")}
-              <th style={{ width: "28%" }}>definition</th>
-              {th("source", "source", "8%")}
+              {th("name", "개념명", "15%")}
+              <th style={{ width: "20%" }}>aliases</th>
+              {th("status", "status", "11%")}
+              <th style={{ width: "24%" }}>definition</th>
+              {th("source", "source", "7%")}
               {th("first_seen", "first_seen", "8%")}
-              <th style={{ width: "6%" }}>액션</th>
+              <th style={{ width: "15%" }}>액션</th>
             </tr>
           </thead>
           <tbody>
@@ -225,11 +219,20 @@ export default function Lexicon() {
                 key={it.name}
                 item={it}
                 onPatch={applyPatch}
-                onMerge={doMerge}
+                onMerge={setMergeFrom}
               />
             ))}
           </tbody>
         </table>
+      )}
+      {!loading && filtered.length > pageSize && (
+        <Pager
+          page={safePage}
+          pageCount={pageCount}
+          pageSize={pageSize}
+          total={filtered.length}
+          onPage={setPage}
+        />
       )}
       {!loading && filtered.length === 0 && (
         <div className="muted" style={{ padding: 20 }}>
@@ -237,9 +240,93 @@ export default function Lexicon() {
         </div>
       )}
 
+      {mergeFrom && (
+        <MergeModal
+          from={mergeFrom}
+          items={items}
+          onCancel={() => setMergeFrom(null)}
+          onConfirm={(into) => confirmMerge(mergeFrom, into)}
+        />
+      )}
+
       {toast && (
         <div className={`toast${toast.err ? " err" : ""}`}>{toast.msg}</div>
       )}
+    </div>
+  );
+}
+
+// 페이저 — 상·하단 재사용.
+function Pager({ page, pageCount, pageSize, total, onPage }) {
+  return (
+    <div className="lex-pager">
+      <span className="muted">
+        {(page - 1) * pageSize + 1}–{Math.min(page * pageSize, total)} / {total}
+      </span>
+      {pageCount > 1 && (
+        <span className="lex-pager-ctrl">
+          <button disabled={page <= 1} onClick={() => onPage(page - 1)}>
+            ‹ 이전
+          </button>
+          <span className="muted">
+            {page} / {pageCount}
+          </span>
+          <button disabled={page >= pageCount} onClick={() => onPage(page + 1)}>
+            다음 ›
+          </button>
+        </span>
+      )}
+    </div>
+  );
+}
+
+// 병합 모달 — window.prompt 대체. 대상 개념을 검색해 클릭하면 병합.
+function MergeModal({ from, items, onCancel, onConfirm }) {
+  const [q, setQ] = useState("");
+  const ql = q.trim().toLowerCase();
+  const candidates = items
+    .filter((it) => it.name !== from)
+    .filter((it) => !ql || it.name.toLowerCase().includes(ql))
+    .slice(0, 50);
+
+  return (
+    <div className="modal-backdrop" onClick={onCancel}>
+      <div className="modal" onClick={(e) => e.stopPropagation()}>
+        <h3>
+          <b>{from}</b> 을(를) 다른 개념의 alias로 병합
+        </h3>
+        <p className="muted">
+          대상 개념을 고르면 <b>{from}</b> 이(가) 그 개념의 alias로 흡수되고 삭제됩니다.
+        </p>
+        <input
+          autoFocus
+          className="modal-search"
+          placeholder="대상 개념 검색…"
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+        />
+        <div className="modal-list">
+          {candidates.length === 0 ? (
+            <div className="muted" style={{ padding: 10 }}>
+              일치하는 개념 없음
+            </div>
+          ) : (
+            candidates.map((it) => (
+              <button
+                key={it.name}
+                className="modal-item"
+                onClick={() => onConfirm(it.name)}
+              >
+                <span>{it.name}</span>
+                <span className={`badge st-${it.status}`}>{it.status}</span>
+              </button>
+            ))
+          )}
+        </div>
+        <div className="modal-actions">
+          <button onClick={onCancel}>취소</button>
+        </div>
+      </div>
     </div>
   );
 }
@@ -298,6 +385,7 @@ function Row({ item, onPatch, onMerge }) {
       </td>
       <td>
         <textarea
+          className={`lex-def${defDirty ? " dirty" : ""}`}
           rows={2}
           style={{ width: "100%", resize: "vertical" }}
           value={def}
@@ -305,17 +393,38 @@ function Row({ item, onPatch, onMerge }) {
           onBlur={() => defDirty && onPatch(item.name, { definition: def })}
           placeholder="(비어 있음)"
         />
+        {defDirty && (
+          <div className="lex-def-hint muted">변경됨 — 포커스 해제 시 저장</div>
+        )}
       </td>
       <td className="muted">{item.source}</td>
       <td className="muted">{item.first_seen}</td>
       <td>
-        <button
-          className="lex-merge-btn"
-          onClick={() => onMerge(item.name)}
-          title="다른 개념의 alias로 병합"
-        >
-          병합
-        </button>
+        <div className="lex-actions">
+          <button
+            className="lex-approve"
+            disabled={item.status === "approved"}
+            onClick={() => onPatch(item.name, { status: "approved" })}
+            title="승인 → 그래프에 표시"
+          >
+            ✓ 승인
+          </button>
+          <button
+            className="lex-reject"
+            disabled={item.status === "rejected"}
+            onClick={() => onPatch(item.name, { status: "rejected" })}
+            title="거부 → 그래프에서 제거"
+          >
+            ✕ 거부
+          </button>
+          <button
+            className="lex-merge-btn"
+            onClick={() => onMerge(item.name)}
+            title="다른 개념의 alias로 병합"
+          >
+            병합
+          </button>
+        </div>
       </td>
     </tr>
   );
