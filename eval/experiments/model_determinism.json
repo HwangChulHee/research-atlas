@@ -1,0 +1,265 @@
+{
+  "mini": {
+    "n": 10,
+    "same": 7,
+    "rows": [
+      {
+        "pid": "2503.09516",
+        "same": true,
+        "stored": [
+          "DeepSeek-R1 Zero",
+          "PPO",
+          "GRPO"
+        ],
+        "rerun": [
+          "DeepSeek-R1 Zero",
+          "PPO",
+          "GRPO"
+        ]
+      },
+      {
+        "pid": "2501.12948",
+        "same": true,
+        "stored": [
+          "DeepSeek-V3-Base",
+          "Group Relative Policy Optimization",
+          "supervised fine-tuning",
+          "rejection sampling"
+        ],
+        "rerun": [
+          "DeepSeek-V3-Base",
+          "Group Relative Policy Optimization",
+          "supervised fine-tuning",
+          "rejection sampling"
+        ]
+      },
+      {
+        "pid": "2501.05366",
+        "same": true,
+        "stored": [
+          "RAG"
+        ],
+        "rerun": [
+          "RAG"
+        ]
+      },
+      {
+        "pid": "2505.17005",
+        "same": false,
+        "stored": [
+          "Retrieval-Augmented Generation",
+          "Supervised Fine-Tuning",
+          "Reinforcement Learning",
+          "Monte Carlo Tree Search"
+        ],
+        "rerun": [
+          "Retrieval-Augmented Generation",
+          "SFT",
+          "reinforcement learning"
+        ]
+      },
+      {
+        "pid": "2504.03160",
+        "same": true,
+        "stored": [
+          "ReSearch",
+          "Search-R1",
+          "R1-Searcher"
+        ],
+        "rerun": [
+          "ReSearch",
+          "Search-R1",
+          "R1-Searcher"
+        ]
+      },
+      {
+        "pid": "2503.19470",
+        "same": true,
+        "stored": [
+          "Retrieval-Augmented Generation",
+          "DeepSeek-R1",
+          "GRPO"
+        ],
+        "rerun": [
+          "Retrieval-Augmented Generation",
+          "DeepSeek-R1",
+          "GRPO"
+        ]
+      },
+      {
+        "pid": "2502.01142",
+        "same": false,
+        "stored": [
+          "Retrieval-Augmented Generation",
+          "Markov Decision Process",
+          "Iterative Retrieval",
+          "Imitation Learning"
+        ],
+        "rerun": [
+          "Retrieval-Augmented Generation",
+          "Markov Decision Process",
+          "Binary Tree Search",
+          "Imitation Learning",
+          "Chain of Calibration"
+        ]
+      },
+      {
+        "pid": "2503.23513",
+        "same": true,
+        "stored": [
+          "Retrieval-Augmented Generation"
+        ],
+        "rerun": [
+          "Retrieval-Augmented Generation"
+        ]
+      },
+      {
+        "pid": "2504.21776",
+        "same": false,
+        "stored": [
+          "RAG",
+          "Direct Preference Optimization"
+        ],
+        "rerun": [
+          "RAG",
+          "DPO"
+        ]
+      },
+      {
+        "pid": "2502.13957",
+        "same": true,
+        "stored": [
+          "Retrieval-Augmented Generation"
+        ],
+        "rerun": [
+          "Retrieval-Augmented Generation"
+        ]
+      }
+    ]
+  },
+  "full": {
+    "n": 10,
+    "same": 9,
+    "rows": [
+      {
+        "pid": "2503.09516",
+        "same": true,
+        "stored": [
+          "DeepSeek-R1 Zero",
+          "RAG"
+        ],
+        "rerun": [
+          "DeepSeek-R1 Zero",
+          "RAG"
+        ]
+      },
+      {
+        "pid": "2501.12948",
+        "same": true,
+        "stored": [
+          "DeepSeek-V3-Base"
+        ],
+        "rerun": [
+          "DeepSeek-V3-Base"
+        ]
+      },
+      {
+        "pid": "2501.05366",
+        "same": true,
+        "stored": [
+          "RAG",
+          "OpenAI-o1"
+        ],
+        "rerun": [
+          "RAG",
+          "OpenAI-o1"
+        ]
+      },
+      {
+        "pid": "2505.17005",
+        "same": true,
+        "stored": [
+          "RAG"
+        ],
+        "rerun": [
+          "RAG"
+        ]
+      },
+      {
+        "pid": "2504.03160",
+        "same": true,
+        "stored": [
+          "RAG",
+          "Search-R1",
+          "R1-Searcher",
+          "ReSearch"
+        ],
+        "rerun": [
+          "RAG",
+          "Search-R1",
+          "R1-Searcher",
+          "ReSearch"
+        ]
+      },
+      {
+        "pid": "2503.19470",
+        "same": true,
+        "stored": [
+          "Retrieval-Augmented Generation",
+          "DeepSeek-R1"
+        ],
+        "rerun": [
+          "Retrieval-Augmented Generation",
+          "DeepSeek-R1"
+        ]
+      },
+      {
+        "pid": "2502.01142",
+        "same": true,
+        "stored": [
+          "RAG"
+        ],
+        "rerun": [
+          "RAG"
+        ]
+      },
+      {
+        "pid": "2503.23513",
+        "same": true,
+        "stored": [
+          "RAG",
+          "CPT",
+          "SFT"
+        ],
+        "rerun": [
+          "RAG",
+          "CPT",
+          "SFT"
+        ]
+      },
+      {
+        "pid": "2504.21776",
+        "same": true,
+        "stored": [
+          "RAG",
+          "Direct Preference Optimization"
+        ],
+        "rerun": [
+          "RAG",
+          "Direct Preference Optimization"
+        ]
+      },
+      {
+        "pid": "2502.13957",
+        "same": false,
+        "stored": [
+          "Retrieval-Augmented Generation"
+        ],
+        "rerun": [
+          "Retrieval-Augmented Generation",
+          "Re2Search"
+        ]
+      }
+    ]
+  }
+}

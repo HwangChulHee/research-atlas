@@ -1,0 +1,6 @@
+{
+  "builds_on": [
+    "Chain-of-Thought (CoT) prompting",
+    "Zero-shot-CoT"
+  ]
+}

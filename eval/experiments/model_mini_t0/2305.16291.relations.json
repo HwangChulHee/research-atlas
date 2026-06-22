@@ -1,0 +1,7 @@
+{
+  "builds_on": [
+    "ReAct",
+    "Reflexion",
+    "AutoGPT"
+  ]
+}

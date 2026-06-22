@@ -1,0 +1,8 @@
+{
+  "latency_s": 5.044,
+  "usage": {
+    "prompt": 2465,
+    "completion": 28,
+    "total": 2493
+  }
+}

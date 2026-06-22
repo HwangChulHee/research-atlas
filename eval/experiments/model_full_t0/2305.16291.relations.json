@@ -1,0 +1,8 @@
+{
+  "builds_on": [
+    "novelty search",
+    "ReAct",
+    "Reflexion",
+    "AutoGPT"
+  ]
+}

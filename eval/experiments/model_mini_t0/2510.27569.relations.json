@@ -1,0 +1,10 @@
+{
+  "builds_on": [
+    "Retrieval-Augmented Generation",
+    "Agentic RAG",
+    "GraphRAG",
+    "HyperGraphRAG",
+    "Search-R1",
+    "ReSearch"
+  ]
+}
