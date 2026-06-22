@@ -32,7 +32,7 @@ function actionKr([act, tgt]) {
 
 const STATUSES = ["approved", "unreviewed", "pending", "rejected"];
 const FILTERS = ["pending", "unreviewed", "approved", "rejected", "all"];
-const PAGE_SIZES = [25, 50, 100];
+const PAGE_SIZES = [15, 30, 50];
 
 // 각 상태가 뭘 의미하는지 — 그래프 표시 여부 포함(NODE_OK = approved/unreviewed).
 const STATUS_INFO = [
@@ -48,7 +48,7 @@ export default function Lexicon() {
   const [filter, setFilter] = useState("pending"); // 대기열 처리가 주 작업
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(50);
+  const [pageSize, setPageSize] = useState(15);
   const [showHelp, setShowHelp] = useState(true); // 상태 설명 펼침(기본 표시)
   const [mergeFrom, setMergeFrom] = useState(null); // 병합 모달 대상(개념명) 또는 null
   const [reviewCards, setReviewCards] = useState([]); // 검토 도우미 제안 카드(정적 스냅샷)
