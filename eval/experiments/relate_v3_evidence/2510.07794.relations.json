@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "agentic RAG",
+      "evidence": "“HiPRAG, a Hierarchical Process reward framework for agentic RAG”"
+    },
+    {
+      "name": "reinforcement learning",
+      "evidence": "“we introduce Hierarchical Process Rewards for Efficient agentic RAG (HiPRAG), a novel training methodology that incorporates a fine-grained, knowledge-grounded process reward into the RL training”"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "builds_on": [
+    {
+      "name": "RAG",
+      "evidence": "reinforcement learning has recently shown promise in improving retrieval-augmented generation (RAG)"
+    },
+    {
+      "name": "GRPO",
+      "evidence": "These objectives are jointly optimized using GRPO (Shao et al., 2024)"
+    },
+    {
+      "name": "TIRESRAG-R1",
+      "evidence": "inspired by TIRESRAG-R1 (He et al., 2025), we adopt a progressive weight annealing strategy"
+    }
+  ]
+}

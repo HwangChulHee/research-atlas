@@ -1,0 +1,16 @@
+{
+  "builds_on": [
+    {
+      "name": "Zero-shot-CoT",
+      "evidence": "we propose Plan-and-Solve (PS) Prompting. It consists of two components"
+    },
+    {
+      "name": "few-shot chain-of-thought (CoT) prompting",
+      "evidence": "few-shot chain-of-thought (CoT) prompting includes a few manually crafted step-by-step reasoning demonstrations"
+    },
+    {
+      "name": "Zero-shot-Program-of-Thought (PoT) Prompting",
+      "evidence": "is comparable to or exceeds Zero-shot-Program-of-Thought (PoT) Prompting"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "BERT",
+      "evidence": "“we augment language model pre-training with a latent knowledge retriever”"
+    },
+    {
+      "name": "k-Nearest Neighbor Language Model",
+      "evidence": "“In the language modeling literature, the k-Nearest Neighbor Language Model (Khandelwal et al., 2019) (kNN-LM) retrieves similar LM examples to improve memorization.”"
+    }
+  ]
+}

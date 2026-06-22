@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "meta-programming",
+      "evidence": "“we design a promising GPT-based Meta-Programming framework called MetaGPT”"
+    },
+    {
+      "name": "LLM-based multi-agent collaborations",
+      "evidence": "“an innovative meta-programming framework incorporating efficient human workflows into LLM-based multi-agent collaborations”"
+    }
+  ]
+}

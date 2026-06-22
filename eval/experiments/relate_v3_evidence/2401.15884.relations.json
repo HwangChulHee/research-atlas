@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "RAG",
+      "evidence": "“we propose the Corrective Retrieval Augmented Generation (CRAG)”"
+    },
+    {
+      "name": "Self-RAG",
+      "evidence": "“CRAG is plug-and-play and experimentally implemented into RAG (Lewis et al., 2020) and Self-RAG (Asai et al., 2024)”"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "PPO",
+      "evidence": "We implement OTC-PPO ... based on PPO [19]"
+    },
+    {
+      "name": "GRPO",
+      "evidence": "We implement OTC-GRPO ... based on GRPO [20]"
+    }
+  ]
+}

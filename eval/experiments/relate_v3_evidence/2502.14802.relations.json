@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "HippoRAG",
+      "evidence": "“HippoRAG 2 builds upon the Personalized PageRank algorithm used in HippoRAG”"
+    },
+    {
+      "name": "Personalized PageRank",
+      "evidence": "“HippoRAG 2 builds upon the Personalized PageRank algorithm used in HippoRAG”"
+    }
+  ]
+}

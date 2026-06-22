@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "Retrieval Augmented Generation",
+      "evidence": "“We propose a novel adaptation strategy – Retrieval-Augmented Fine Tuning (RAFT). RAFT specifically addresses the challenge of fine-tuning LLMs to both incorporate domain knowledge while also improving in-domain RAG performance.”"
+    },
+    {
+      "name": "instruction fine-tuning",
+      "evidence": "“In this paper, we study how to combine instruction fine-tuning (IFT) with retrieval augmented generation (RAG).”"
+    }
+  ]
+}

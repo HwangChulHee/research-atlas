@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "GraphRAG",
+      "evidence": "“Our method builds on GraphRAG”"
+    },
+    {
+      "name": "Retrieval-Augmented Generation (RAG)",
+      "evidence": "“we introduce a novel graph-based RAG method for medical domain”"
+    }
+  ]
+}

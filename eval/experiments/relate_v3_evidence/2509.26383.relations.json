@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "Retrieval-augmented generation",
+      "evidence": "“Knowledge-graph retrieval-augmented generation (KG-RAG) couples large language models (LLMs) with structured, verifiable knowledge graphs (KGs)”"
+    },
+    {
+      "name": "knowledge-graph retrieval-augmented generation",
+      "evidence": "“To address this, we introduce KG-R1, an agentic framework that optimizes KG-RAG through reinforcement learning (RL).”"
+    }
+  ]
+}

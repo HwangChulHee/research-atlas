@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "ReAct",
+      "evidence": "“Recent works such as ReAct [30] ... have demonstrated the feasibility of autonomous decision-making agents that are built on top of a large language model (LLM) core.”"
+    },
+    {
+      "name": "WebGPT",
+      "evidence": "“Recent works such as ReAct [30], SayCan [1], Toolformer [22], HuggingGPT [23], generative agents [19], and WebGPT [17] have demonstrated the feasibility of autonomous decision-making agents”"
+    }
+  ]
+}

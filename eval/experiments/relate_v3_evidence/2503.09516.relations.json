@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "DeepSeek-R1 Zero",
+      "evidence": "“SEARCH-R1 can be viewed as an extension of DeepSeek-R1 Zero (Guo et al., 2025)”"
+    },
+    {
+      "name": "RAG",
+      "evidence": "“improve performance by 24% (Qwen2.5-7B) and 20% (Qwen2.5-3B) over various RAG baselines under the same setting”"
+    }
+  ]
+}

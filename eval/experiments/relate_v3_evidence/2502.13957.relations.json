@@ -1,0 +1,16 @@
+{
+  "builds_on": [
+    {
+      "name": "Retrieval-Augmented Generation",
+      "evidence": "This transition is largely powered by Retrieval-Augmented Generation (RAG), which grounds model outputs in external documents to ensure factuality"
+    },
+    {
+      "name": "Markov Decision Process",
+      "evidence": "We formulate agentic search as a Markov Decision Process (MDP) in which search queries act as macro-actions."
+    },
+    {
+      "name": "reinforcement learning",
+      "evidence": "Building on the success of reinforcement learning in enhancing LLMs for mathematical reasoning"
+    }
+  ]
+}

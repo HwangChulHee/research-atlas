@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "GPT-J",
+      "evidence": "“Toolformer, which is based on a pretrained GPT-J model”"
+    },
+    {
+      "name": "in-context learning",
+      "evidence": "“based on the recent idea of using large LMs with in-context learning”"
+    }
+  ]
+}

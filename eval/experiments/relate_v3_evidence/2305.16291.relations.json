@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "in-context learning",
+      "evidence": "“VOYAGER interacts with GPT-4 via blackbox queries … through prompting and in-context learning”"
+    },
+    {
+      "name": "novelty search",
+      "evidence": "“This approach can be perceived as an in-context form of novelty search”"
+    }
+  ]
+}

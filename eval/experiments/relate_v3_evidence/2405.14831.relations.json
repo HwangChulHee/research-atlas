@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "RAG",
+      "evidence": "“we introduce HippoRAG, a novel retrieval framework”"
+    },
+    {
+      "name": "Personalized PageRank",
+      "evidence": "“runs the Personalized PageRank (PPR) algorithm [30] on the KG”"
+    }
+  ]
+}

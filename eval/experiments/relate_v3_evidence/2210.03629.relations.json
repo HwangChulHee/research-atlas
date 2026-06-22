@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "chain-of-thought prompting",
+      "evidence": "“reasoning (e.g. chain-of-thought prompting) and acting”"
+    },
+    {
+      "name": "pre-trained language models for planning and acting in interactive environments",
+      "evidence": "“recent work has explored the use of pre-trained language models for planning and acting in interactive environments”"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "builds_on": [
+    {
+      "name": "prompting",
+      "evidence": "“we explore the ability of language models to perform few-shot prompting for reasoning tasks”"
+    },
+    {
+      "name": "few-shot learning",
+      "evidence": "“in-context few-shot learning via prompting”"
+    },
+    {
+      "name": "natural language rationales",
+      "evidence": "“techniques for arithmetic reasoning can beneﬁt from generating natural language rationales that lead to the ﬁnal answer”}]}]}} Please note: "
+    },
+    {
+      "name": "prompting",
+      "evidence": "“we refer to this approach as chain-of-thought prompting”"
+    }
+  ]
+}

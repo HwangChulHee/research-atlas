@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "Retrieval-Augmented Generation",
+      "evidence": "RAG has recently emerged as a method to extend beyond the pre-trained knowledge of Large Language Models"
+    },
+    {
+      "name": "Information Retrieval",
+      "evidence": "the retrieval component of RAG systems, be it dense or sparse, deserves increased attention from the research community"
+    }
+  ]
+}

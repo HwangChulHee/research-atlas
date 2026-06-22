@@ -1,0 +1,20 @@
+{
+  "builds_on": [
+    {
+      "name": "retrieval-augmented language models",
+      "evidence": "“We introduce REPLUG, a retrieval-augmented language modeling framework”"
+    },
+    {
+      "name": "black-box language models",
+      "evidence": "“REPLUG treats the language model as a black box”"
+    },
+    {
+      "name": "retrieval model",
+      "evidence": "“augments it with a tuneable retrieval model”"
+    },
+    {
+      "name": "REPLUG LSR",
+      "evidence": "“We also introduce REPLUG LSR (REPLUG with LM-Supervised Retrieval)”"
+    }
+  ]
+}

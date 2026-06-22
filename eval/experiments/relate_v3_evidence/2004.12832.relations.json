@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "BERT",
+      "evidence": "“a novel ranking model that adapts deep LMs (in particular, BERT) for efficient retrieval”"
+    },
+    {
+      "name": "late interaction",
+      "evidence": "“ColBERT, a ranking model based on contextualized late interaction over BERT”"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "builds_on": [
+    {
+      "name": "Retrieval-Augmented Generation",
+      "evidence": "Retrieval-Augmented Generation (RAG) has become a standard architectural pattern"
+    },
+    {
+      "name": "RAGAS",
+      "evidence": "we adopt existing metric definitions for context relevance, answer faithfulness [9, 32]"
+    },
+    {
+      "name": "TruLens",
+      "evidence": "automated RAG evaluation systems like RAGAS [9] and TruLens [36] have emerged"
+    },
+    {
+      "name": "ARES",
+      "evidence": "ARES [32] and RAGAS [9] define a context relevance metric"
+    }
+  ]
+}

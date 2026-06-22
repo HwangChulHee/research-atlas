@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "retrieve-then-read",
+      "evidence": "\"instead of the previous retrieve-then-read\""
+    },
+    {
+      "name": "retrieval-augmented LLMs",
+      "evidence": "\"a new framework for retrieval-augmented LLMs from the perspective of the query rewriting\""
+    }
+  ]
+}

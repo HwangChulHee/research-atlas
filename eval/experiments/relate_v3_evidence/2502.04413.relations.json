@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "Retrieval-augmented generation (RAG)",
+      "evidence": "“We proposed a novel RAG approach enhanced by KG-elicited reasoning”"
+    },
+    {
+      "name": "knowledge graph (KG)-elicited reasoning",
+      "evidence": "“MedRAG, a RAG model enhanced by knowledge graph (KG)-elicited reasoning”"
+    }
+  ]
+}

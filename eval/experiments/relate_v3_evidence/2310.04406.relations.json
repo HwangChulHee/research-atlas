@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "ReAct",
+      "evidence": "expanding ReAct (Yao et al., 2023b) into a search over a combinatorial space of possible reasoning and acting steps"
+    },
+    {
+      "name": "Monte Carlo Tree Search",
+      "evidence": "adapting Monte Carlo Tree Search (MCTS)"
+    }
+  ]
+}

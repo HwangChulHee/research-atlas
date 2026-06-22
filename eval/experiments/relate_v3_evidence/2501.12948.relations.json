@@ -1,0 +1,20 @@
+{
+  "builds_on": [
+    {
+      "name": "DeepSeek-V3-Base",
+      "evidence": "we build upon DeepSeek-V3-Base (DeepSeek-AI, 2024b)"
+    },
+    {
+      "name": "Group Relative Policy Optimization",
+      "evidence": "employ Group Relative Policy Optimization (GRPO) (Shao et al., 2024) as our RL framework"
+    },
+    {
+      "name": "supervised fine-tuning",
+      "evidence": "we bypass the conventional supervised fine-tuning (SFT) phase before RL training"
+    },
+    {
+      "name": "rejection sampling",
+      "evidence": "a multi-stage learning framework that integrates rejection sampling, reinforcement learning, and supervised fine-tuning"
+    }
+  ]
+}

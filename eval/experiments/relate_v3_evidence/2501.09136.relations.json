@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "Retrieval-Augmented Generation (RAG)",
+      "evidence": "“Agentic Retrieval-Augmented Generation (Agentic RAG) transcends these limitations by embedding autonomous AI agents into the RAG pipeline.”"
+    },
+    {
+      "name": "graph-based RAG",
+      "evidence": "“including naïve, modular, and graph-based RAG [17], and their transition toward agentic systems.”"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "BERT",
+      "evidence": "“we leverage the now standard BERT pretrained model (Devlin et al., 2019)”"
+    },
+    {
+      "name": "dual-encoder architecture",
+      "evidence": "“a dual-encoder architecture (Bromley et al., 1994)”"
+    }
+  ]
+}

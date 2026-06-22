@@ -1,0 +1,16 @@
+{
+  "builds_on": [
+    {
+      "name": "Retrieval-Augmented Generation",
+      "evidence": "\"enhancing retrieval-augmented generation (RAG) with reasoning\""
+    },
+    {
+      "name": "Markov Decision Process",
+      "evidence": "\"modeling retrieval-augmented reasoning as a Markov Decision Process (MDP)\""
+    },
+    {
+      "name": "Iterative retrieval",
+      "evidence": "\"Iterative retrieval has been proposed as a solution to continuously update retrieval results\""
+    }
+  ]
+}

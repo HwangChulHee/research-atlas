@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "StarPO",
+      "evidence": "Built on top of StarPO, we develop RAGEN"
+    },
+    {
+      "name": "State-Thinking-Actions-Reward Policy Optimization",
+      "evidence": "We propose StarPO (State-Thinking-Actions-Reward Policy Optimization), a general framework for trajectory-level agent RL"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "retrieval-augmented generation (RAG)",
+      "evidence": "“Search-o1, which integrates the reasoning process of LRMs with two core components: an agentic retrieval-augmented generation (RAG) mechanism”"
+    },
+    {
+      "name": "agentic RAG",
+      "evidence": "“Unlike them, Search-o1 employs an agentic RAG technique that guides the model to actively decode search queries when facing knowledge shortages”"
+    }
+  ]
+}

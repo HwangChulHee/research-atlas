@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "Retrieval Augmented Generation (RAG)",
+      "evidence": "\"Retrieval Augmented Generation (RAG) systems present a viable solution to hallucinations\""
+    },
+    {
+      "name": "dense retrieval",
+      "evidence": "\"Modern NLP tasks increasingly rely on dense retrieval methods\""
+    }
+  ]
+}

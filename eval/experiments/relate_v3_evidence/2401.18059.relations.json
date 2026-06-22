@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "retrieval augmentation",
+      "evidence": "“retrieval augmentation”, Lewis et al., 2020; Izacard et al., 2022; Min et al., 2023; Ram et al., 2023"
+    },
+    {
+      "name": "open domain question answering systems",
+      "evidence": "An alternative approach, pioneered in open domain question answering systems (Chen et al., 2017; Yu et al., 2018), is to index large quantities of text"
+    }
+  ]
+}

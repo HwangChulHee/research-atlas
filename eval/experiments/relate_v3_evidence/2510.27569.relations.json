@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "RAG",
+      "evidence": "“we propose MARAG-R1, a reinforcement-learned multi-tool RAG framework”"
+    },
+    {
+      "name": "GraphRAG",
+      "evidence": "“Instead of relying on a single retriever or static graph abstraction”"
+    }
+  ]
+}

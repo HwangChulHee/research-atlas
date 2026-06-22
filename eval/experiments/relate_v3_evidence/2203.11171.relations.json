@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "chain-of-thought prompting",
+      "evidence": "\"we introduce a novel decoding strategy called self-consistency to replace the greedy decoding strategy used in chain-of-thought prompting\""
+    },
+    {
+      "name": "greedy decoding",
+      "evidence": "\"to replace the greedy decoding strategy used in chain-of-thought prompting\""
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "builds_on": [
+    {
+      "name": "RAG",
+      "evidence": "“we propose HyperGraphRAG, a novel graph-based RAG method”"
+    },
+    {
+      "name": "GraphRAG",
+      "evidence": "“existing graph-based RAG approaches”"
+    },
+    {
+      "name": "graph-based RAG",
+      "evidence": "“HyperGraphRAG, a novel graph-based RAG method built upon hypergraph-structured knowledge representation”"
+    }
+  ]
+}

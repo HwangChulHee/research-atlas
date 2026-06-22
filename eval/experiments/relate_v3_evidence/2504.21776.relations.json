@@ -1,0 +1,16 @@
+{
+  "builds_on": [
+    {
+      "name": "retrieval-augmented generation (RAG)",
+      "evidence": "existing open-source deep search agents typically employ retrieval-augmented generation (RAG) techniques with predefined workflows"
+    },
+    {
+      "name": "online Direct Preference Optimization (DPO)",
+      "evidence": "we construct preference pairs for online DPO training"
+    },
+    {
+      "name": "large reasoning models (LRMs)",
+      "evidence": "we propose WebThinker, an autonomous deep research agent entirely powered by large reasoning models"
+    }
+  ]
+}

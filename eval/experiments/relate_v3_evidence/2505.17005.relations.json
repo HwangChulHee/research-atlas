@@ -1,0 +1,16 @@
+{
+  "builds_on": [
+    {
+      "name": "Retrieval-Augmented Generation (RAG)",
+      "evidence": "“Retrieval-Augmented Generation (RAG) helps by injecting external information”"
+    },
+    {
+      "name": "supervised fine-tuning (SFT)",
+      "evidence": "“an initial SFT Cold-start phase for preliminary format learning”"
+    },
+    {
+      "name": "reinforcement learning (RL)",
+      "evidence": "“followed by RL for Dynamic Knowledge Acquisition”"
+    }
+  ]
+}

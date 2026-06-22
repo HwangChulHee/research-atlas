@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "Retrieval-Augmented Generation (RAG)",
+      "evidence": "“Self-Reflective Retrieval-Augmented Generation (SELF-RAG)”"
+    },
+    {
+      "name": "control tokens",
+      "evidence": "“our trained LM uses critique tokens to assess its own predictions after each generated segment as an integral part of the generation output”"
+    }
+  ]
+}

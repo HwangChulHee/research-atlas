@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "RAG",
+      "evidence": "“We propose Bi-RAR, a novel retrieval-augmented reasoning framework”"
+    },
+    {
+      "name": "Search-R1",
+      "evidence": "“A representative paradigm is Search-R1 (Jin et al. 2025)”},{"
+    }
+  ]
+}

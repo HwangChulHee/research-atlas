@@ -1,0 +1,16 @@
+{
+  "builds_on": [
+    {
+      "name": "Retrieval-Augmented Generation",
+      "evidence": "we propose GraphRAG, a graph-based approach to question answering over private text corpora"
+    },
+    {
+      "name": "vector RAG",
+      "evidence": "To combine the strengths of these contrasting methods, we propose GraphRAG"
+    },
+    {
+      "name": "LLM-as-a-judge",
+      "evidence": "we developed a novel application of the LLM-as-a-judge technique"
+    }
+  ]
+}

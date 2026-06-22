@@ -1,0 +1,20 @@
+{
+  "builds_on": [
+    {
+      "name": "RAG",
+      "evidence": "“Retrieval-Augmented Generation (RAG) enables large language models (LLMs) to access and reason over external knowledge”"
+    },
+    {
+      "name": "Active RAG",
+      "evidence": "“Active RAG techniques ... interleaved query generation, retrieval, and reasoning in a multi-turn loop.”"
+    },
+    {
+      "name": "Self-RAG",
+      "evidence": "“Self-RAG ... distilled such behaviors from larger models into smaller ones via supervised fine-tuning”"
+    },
+    {
+      "name": "RLVR",
+      "evidence": "“the recent emergence of reinforcement learning with verifiable rewards (RLVR)”"
+    }
+  ]
+}

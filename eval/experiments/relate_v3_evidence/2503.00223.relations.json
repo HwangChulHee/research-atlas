@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "reinforcement learning",
+      "evidence": "\"we introduce DeepRetrieval, a reinforcement learning (RL) approach that trains LLMs for query generation\""
+    },
+    {
+      "name": "Large Language Models",
+      "evidence": "\"we introduce DeepRetrieval, a reinforcement learning (RL) approach that trains LLMs for query generation\""
+    }
+  ]
+}

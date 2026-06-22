@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "reinforcement learning",
+      "evidence": "we directly scale RL training for deep research with only outcome rewards"
+    },
+    {
+      "name": "Retrieval-Augmented Generation",
+      "evidence": "current open-source efforts to integrate RL with information retrieval, such as Search-R1, R1-Searcher, and ReSearch, have primarily focused on Retrieval-Augmented Generation (RAG) using static, local text corpora"
+    }
+  ]
+}

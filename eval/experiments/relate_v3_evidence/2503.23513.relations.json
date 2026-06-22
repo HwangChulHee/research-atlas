@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "Retrieval-Augmented Generation",
+      "evidence": "“P1. Naked Open-book Exam: Retrieval-augmented generation (RAG) methods”"
+    },
+    {
+      "name": "RAG",
+      "evidence": "“We propose Retrieval-Augmented Reasoning Modeling (RARE)”"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "Retrieval-Augmented Generation",
+      "evidence": "This capability, often referred to as Retrieval-Augmented Generation (RAG)"
+    },
+    {
+      "name": "DeepSeek-R1",
+      "evidence": "the reasoning chain in this framework is not only composed of text-based thinking (i.e., enclosed by <think> </think>) as DeepSeek-R1"
+    }
+  ]
+}

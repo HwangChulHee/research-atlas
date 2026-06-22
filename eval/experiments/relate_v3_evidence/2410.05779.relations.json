@@ -1,0 +1,12 @@
+{
+  "builds_on": [
+    {
+      "name": "Retrieval-Augmented Generation (RAG)",
+      "evidence": "“we propose LightRAG, which incorporates graph structures into text indexing and retrieval processes”"
+    },
+    {
+      "name": "RAG",
+      "evidence": "“we propose LightRAG, a model that seamlessly integrates a graph-based text indexing paradigm with a dual-level retrieval framework”"
+    }
+  ]
+}
