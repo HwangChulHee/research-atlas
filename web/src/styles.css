@@ -528,6 +528,61 @@ body.resizing-pane {
   background: var(--accent);
   color: var(--accent-fg);
 }
+
+/* --- [사용법] 페이지 --- */
+.usage-page {
+  flex: 1;
+  overflow: auto;
+  padding: 24px 28px;
+  max-width: 960px;
+}
+.usage-intro {
+  font-size: 15px;
+  color: var(--muted);
+  margin: 0 0 18px;
+  line-height: 1.6;
+}
+.usage-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.usage-table th,
+.usage-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.usage-table th {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 600;
+}
+.usage-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.usage-chip {
+  border-radius: 14px;
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--panel);
+  font-size: 13px;
+  padding: 4px 12px;
+}
+.usage-chip:hover {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+.usage-chip.collect {
+  border-color: var(--muted);
+  color: var(--muted);
+}
+.usage-chip.collect:hover {
+  background: var(--muted);
+  color: var(--panel);
+}
 .chat-bubble {
   max-width: 85%;
   padding: 6px 10px;

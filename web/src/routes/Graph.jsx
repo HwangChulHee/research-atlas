@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as d3 from "d3";
 import {
   getGraph,
@@ -90,6 +91,12 @@ export default function Graph() {
   const [reviseText, setReviseText] = useState("");
   const EXTRACT_TIMEOUT_MS = 120000;
 
+  // [사용법] 페이지에서 넘어온 질의 자동 실행용. apiRef 준비(ready) 후 1회만 소비.
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [ready, setReady] = useState(false);
+  const consumedRef = useRef(false);
+
   // 최초 로드 + "논문 보기" 토글 시 재로드/재렌더. 토글은 개념 강조/선택을 초기화.
   useEffect(() => {
     setSelected(null);
@@ -98,6 +105,7 @@ export default function Graph() {
       .then((data) => {
         dataRef.current = data;
         apiRef.current = render(areaRef.current, svgRef.current, data, setSelected);
+        setReady(true); // apiRef 준비 완료 → 들어온 질의 자동 실행 가능
       })
       .catch((e) => setError(e.message));
     return () => apiRef.current && apiRef.current.sim.stop();
@@ -144,6 +152,24 @@ export default function Graph() {
       .catch(() => localStorage.removeItem("collectThread"));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // [사용법]에서 넘어온 질의 자동 실행 — 그래프 준비(ready) 후 1회. state는 비워 재실행 방지.
+  // run 계열은 읽기전용 하이라이트라 즉시 실행. collect는 destructive라 주제만 prefill(자동 시작 X).
+  useEffect(() => {
+    if (!ready || consumedRef.current) return;
+    const st = location.state || {};
+    if (st.run) {
+      consumedRef.current = true;
+      runCommand(st.run);
+      navigate("/graph", { replace: true, state: null });
+    } else if (st.collectTopic) {
+      consumedRef.current = true;
+      setActiveTab("collect");
+      setCollectInput(st.collectTopic); // 수집 입력창 prefill, 사람이 [시작] 눌러야 함
+      navigate("/graph", { replace: true, state: null });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready, location.state]);
 
   // divider 드래그: chat 폭 = 창 오른쪽 끝 − 마우스X. mouseup에 리스너 해제.
   function onDividerDown(e) {

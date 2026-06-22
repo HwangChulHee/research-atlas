@@ -577,3 +577,19 @@ frozen 정답지 50편 vs 파이프라인 출력(`data/outputs/{id}.relations.js
 - `web/src/styles.css`: .chat-tabs/.chat-tab/.active/.tab-dot (기존 .nav 톤 재사용).
 
 **검증**: 라우팅 스모크 6/6 PASS(#4 None, 1·6 semantic_search). 라이브: "모아줘"→tool:null + "[수집] 탭에서 진행하세요" 안내. "검색하면서 추론"→semantic_search(개념8·논문8). collect/start→interpret interrupt 정상(thread_id+actions). web build 통과. 복원 자동 전환/탭 이력 분리는 코드 경로 확인(수동 UI 확인 권장).
+
+## 2026-06-22 — 질의 탭 → 클릭형 [사용법] 페이지로 교체
+
+어긋난 placeholder `질의` 탭(/search, "준비 중")을 [사용법] 페이지로 교체. 처음 보는 사람이 "뭘 물어볼 수 있나"를 평범한 말 표로 보고, 예시 칩을 누르면 지형도로 이동해 그 질문이 자동 실행(맵 반응). 도구 이름 노출 없음. 프론트 전용 — 백엔드/파이프라인 무수정.
+
+**변경(프론트 5파일)**:
+- `web/src/routes/Usage.jsx`(신규, Search.jsx 대체): 안내 한 줄 + 6행 표. "이렇게 물어보세요" 칸 문구가 클릭 칩. run 칩→`navigate("/graph",{state:{run}})`, collect 칩→`{state:{collectTopic}}`. useNavigate.
+- `web/src/App.jsx`: import/라우트/NavLink Search→Usage, `/search`→`/usage`, 라벨 질의→사용법. Search.jsx 삭제.
+- `web/src/routes/Graph.jsx`: useLocation/useNavigate. ready 상태(데이터 로드 effect에서 apiRef 세팅 직후 setReady(true)) + consumedRef로 들어온 state 1회 소비. run→runCommand 즉시 실행, collectTopic→수집 탭 전환+setCollectInput prefill(자동 시작 X, destructive라 사람이 [시작]). 실행 후 navigate replace state:null로 재실행 방지.
+- `web/src/styles.css`: .usage-page/intro/table/chips/chip(+collect). 기존 example-chip/nav 톤 재사용.
+
+**라이브 검증(API+그래프로 클라 하이라이트 로직 재현, 11칩 전부 >0 확인)**:
+- 깨진 칩 2개 교체: "지식그래프로 답 보강하는 연구"(semantic 0)→"그래프 기반 검색 증강 생성"(c8+p8). "Self-RAG"→"GraphRAG"(focus_lineage 6) — Self-RAG는 rk='self rag'(하이픈→공백)인데 chat은 canonical 'Self-RAG'로 라우팅→클라 nodes[rk] 미스(기존 하이픈 키 불일치, 범위 밖). clean rk 이름으로 교체.
+- 결과: 검색16 / 그래프검색16 / RAG계보36 / ReAct계보2 / CoT계보8 / 2024+ 54 / 의료 3 / GraphRAG 6 / Toolformer 1 / 다보여줘 reset / 모아줘 collect칩(수집탭 prefill). web build 통과.
+
+**남은 사전 이슈(기록만)**: focus_lineage가 backend는 canonical로 검증하나 client lineageSets는 rk(노드 id)로 조회 → 하이픈/공백 들어간 이름(Self-RAG 등)은 chat 계보 명령이 클라에서 미스. 별도 수정 대상.
