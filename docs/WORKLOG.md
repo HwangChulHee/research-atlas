@@ -682,3 +682,14 @@ UI 가독성: 전반적으로 글자가 작다는 피드백 → base 14→15px +
 - @media(820/520) reflow 블록 삭제. 대신 #root min-width:1024px + body overflow-x:auto → 좁으면 레이아웃 무너지지 않고 가로 스크롤. (reduced-motion은 유지.)
 - 지형도 하단 필터 바: 라벨이 두 줄로 깨지던 문제 → flex-nowrap + 항목 flex:0 0 auto + 라벨 white-space:nowrap, 셀렉트 폭 축소, 넘치면 바 안 가로 스크롤. 중복되던 '필터' 텍스트 라벨 제거(셀렉트 placeholder가 이미 '유형 전체' 등으로 라벨 역할).
 - web build 통과.
+
+## 2026-06-22 — HITL 검토 도우미(제안만, 결정 안 함)
+
+검토 노동 증폭 — 도우미는 분류·근거·정렬·일괄제안만, approve/reject/merge는 사람 최종 클릭. lexicon.json 무변경(순수 제안 리포트). "기계가 뽑고 사람이 검증" 신뢰 보존(LLM이 LLM 검증 안 함).
+- scripts/review_helper.py (read-only): 검토대기 97개(pending71+unreviewed26)마다 리뷰 카드(evidence+category+action+confidence). normalize_core resolve/status_of/load_lex_state 재사용(수기 alias 금지). 근거=정의/정의논문/조상인용(builds_on). model=MODEL_RELATE(full, +0.20 판단), temp=0, ThreadPool 8.
+- 루브릭: lineage→approve / component·generic·substrate·author_year·umbrella→reject / duplicate→merge. 가드: 이름만으로 substrate/generic 단정 금지(evidence 읽기), builds_on 조상 인용=계보 신호, 애매하면 confidence=low+보수적.
+- find_similar는 approved 대상만(미검토끼리 merge 방지 → GRPO 같은 부품은 reject로 판단).
+- 출력: eval/reports/review_suggestions.{json,md}. md는 low-confidence 먼저(사람 주목), high는 category별 일괄.
+- 스모크 5/5: GRPO→component/reject, DeepSeek-R1→lineage/approve, Dense Passage Retriever→merge_into:DPR, **DeepSeek-V3-Base·Active RAG→high-reject 아님(이름판정 함정 가드)**.
+- 전체 97개: approve 38·reject 50·merge 9·확신낮음 20. lexicon.json md5 무변경 검증.
+- 범위 밖: 자동적용(쓰기)·UI배선·제안vs사람 일치율·임베딩 merge(다음 단계).
