@@ -189,6 +189,25 @@ def review_suggestions():
     return {"cards": json.loads(p.read_text())}  # .json은 카드 리스트
 
 
+@app.get("/api/paper/{pid}")
+def paper_detail(pid: str):
+    """노드 클릭 시 보여줄 논문 정보 — 제목·문제·초록(발췌). parsed/concepts.json에서 읽음."""
+    out = DATA_DIR / "outputs"
+    cp = out / f"{pid}.concepts.json"
+    pp = out / f"{pid}.parsed.json"
+    if not cp.exists() and not pp.exists():
+        raise HTTPException(404, f"논문 없음: {pid}")
+    title, problem, abstract = pid, "", ""
+    if cp.exists():
+        c = json.loads(cp.read_text())
+        title = c.get("title", pid)
+        problem = c.get("problem", "")
+    if pp.exists():
+        txt = json.loads(pp.read_text()).get("text", "")
+        abstract = txt[:1800].strip()  # 초록+도입 발췌
+    return {"id": pid, "title": title, "problem": problem, "abstract": abstract}
+
+
 @app.post("/api/review_suggestions/regenerate")
 def regenerate_review_suggestions():
     """검토 도우미를 증분 실행 — 카드 없는 신규 검토대기 개념만 제안 생성(LLM).

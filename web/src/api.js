@@ -45,6 +45,10 @@ export const postReviewed = (id, reviewed) =>
     body: JSON.stringify({ id, reviewed }),
   }).then(jsonOrThrow);
 
+// 노드 클릭 시 관련 논문 초록(발췌) 조회
+export const getPaper = (id) =>
+  fetch(`/api/paper/${encodeURIComponent(id)}`).then(jsonOrThrow);
+
 export const postCommand = (text) =>
   fetch("/api/command", {
     method: "POST",

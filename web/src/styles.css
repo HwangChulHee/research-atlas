@@ -813,35 +813,71 @@ textarea {
   fill: var(--text);
   pointer-events: none;
 }
+/* 노드 디테일 — 오른쪽 한 면 전체(도킹) */
 .graph-panel {
   position: absolute;
-  top: 56px;
-  right: 12px;
-  width: 300px;
-  max-height: calc(100% - 200px);
-  padding: 14px 16px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 380px;
+  max-width: 42%;
+  padding: 18px 20px;
   background: var(--panel);
   overflow: auto;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  box-shadow: var(--shadow);
-  line-height: 1.5;
-  z-index: 9;
+  border-left: 1px solid var(--border);
+  box-shadow: -2px 0 12px rgba(0, 0, 0, 0.06);
+  line-height: 1.55;
+  z-index: 12;
 }
-.graph-search {
+/* 좌상단 통합 도구 패널(전체보기 + 검색·필터) */
+.graph-tools {
   position: absolute;
   top: 12px;
   left: 12px;
+  width: 270px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  z-index: 10;
+  overflow: hidden;
+}
+.graph-tools-head {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  padding: 6px;
+}
+.graph-tools-toggle {
+  flex: 1;
+  font-weight: 600;
+  text-align: left;
+}
+.graph-tools-toggle.open {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.graph-tools-fit {
+  flex: 0 0 auto;
+}
+.graph-tools-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 10px 10px;
+}
+.graph-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.graph-filters select {
+  width: 100%;
+}
+.graph-search {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  width: 260px;
-  padding: 8px 10px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  box-shadow: var(--shadow);
-  z-index: 10;
 }
 .graph-search input {
   width: 100%;
@@ -1034,6 +1070,30 @@ textarea {
 }
 .detail-papers a:hover {
   text-decoration: underline;
+}
+.detail-abstract {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.detail-abstract-h {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.detail-abstract-h a {
+  color: var(--accent);
+  font-weight: 400;
+}
+.detail-abstract p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  white-space: pre-wrap;
 }
 
 .center-msg {

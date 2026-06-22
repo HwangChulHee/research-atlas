@@ -8,6 +8,7 @@ import {
   collectResume,
   collectGetState,
   postReviewed,
+  getPaper,
 } from "../api.js";
 
 // 대화 이력 localStorage 복원(chatWidth 패턴). 파싱 실패 시 빈 배열.
@@ -98,6 +99,8 @@ export default function Graph() {
   const navigate = useNavigate();
   const [ready, setReady] = useState(false);
   const consumedRef = useRef(false);
+  const [toolsOpen, setToolsOpen] = useState(false); // 검색·필터 패널 펼침(기본 접힘 — 깔끔)
+  const [paperDetail, setPaperDetail] = useState(null); // 선택 노드 관련 논문 초록 {loading|id,title,abstract}
 
   // 최초 로드 + "논문 보기" 토글 시 재로드/재렌더. 토글은 개념 강조/선택을 초기화.
   useEffect(() => {
@@ -114,6 +117,30 @@ export default function Graph() {
       .catch((e) => setError(e.message));
     return () => apiRef.current && apiRef.current.sim.stop();
   }, [showPapers]);
+
+  // 노드 선택 시 관련 논문 초록 로드. 논문 노드 → 자기 자신, 개념 노드 → 첫 등장 논문.
+  useEffect(() => {
+    if (!selected) {
+      setPaperDetail(null);
+      return;
+    }
+    const pid =
+      selected.type === "paper"
+        ? selected.id.replace("paper:", "")
+        : (selected.papers || [])[0];
+    if (!pid) {
+      setPaperDetail(null);
+      return;
+    }
+    let alive = true;
+    setPaperDetail({ loading: true });
+    getPaper(pid)
+      .then((d) => alive && setPaperDetail(d))
+      .catch(() => alive && setPaperDetail(null));
+    return () => {
+      alive = false;
+    };
+  }, [selected]);
 
   // 그래프 영역 크기 변화(패널 접기/펴기, 윈도우 리사이즈) → svg/force 갱신
   useEffect(() => {
@@ -561,13 +588,126 @@ export default function Graph() {
             <span className="spinner" /> 지형도 불러오는 중…
           </div>
         )}
-        <button
-          className="graph-fit"
-          title="전체 보기"
-          onClick={() => apiRef.current && apiRef.current.fitView()}
-        >
-          ⤢ 전체 보기
-        </button>
+        {/* 좌상단 통합 도구 패널 — 전체보기 + 검색·필터(접이식) */}
+        <div className="graph-tools">
+          <div className="graph-tools-head">
+            <button
+              className={`graph-tools-toggle${toolsOpen ? " open" : ""}`}
+              onClick={() => setToolsOpen((v) => !v)}
+              title="검색·필터 열기/닫기"
+            >
+              🔍 검색 · 필터 {toolsOpen ? "▴" : "▾"}
+            </button>
+            <button
+              className="graph-tools-fit"
+              title="전체 보기"
+              onClick={() => apiRef.current && apiRef.current.fitView()}
+            >
+              ⤢ 전체
+            </button>
+          </div>
+          {toolsOpen && (
+            <div className="graph-tools-body">
+              <form className="graph-search" onSubmit={runSearch}>
+                <input
+                  placeholder="이름으로 검색 (예: RLHF)…"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+                {searchMsg && <div className="muted">{searchMsg}</div>}
+                {matches.length > 1 && (
+                  <div className="match-list">
+                    {matches.map((m, i) => (
+                      <button
+                        type="button"
+                        key={m.id}
+                        className={i === matchIdx ? "active" : ""}
+                        onClick={() => goTo(m.id, matches, i)}
+                      >
+                        {m.canonical}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </form>
+              <div className="graph-filters">
+                <select
+                  value={filterState.ptype || ""}
+                  onChange={(e) =>
+                    setFilter({ ...filterState, ptype: e.target.value || undefined })
+                  }
+                  title="유형으로 필터"
+                >
+                  <option value="">유형 전체</option>
+                  {ptypeOpts.map((t) => (
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  value={filterState.domain || ""}
+                  onChange={(e) =>
+                    setFilter({ ...filterState, domain: e.target.value || undefined })
+                  }
+                  title="분야로 필터"
+                >
+                  <option value="">분야 전체</option>
+                  {domainOpts.map((d) => (
+                    <option key={d} value={d}>
+                      {d}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  value={filterState.date_after || ""}
+                  onChange={(e) =>
+                    setFilter({ ...filterState, date_after: e.target.value || undefined })
+                  }
+                  title="시점으로 필터"
+                >
+                  <option value="">시점 전체</option>
+                  {yearOpts.map((y) => (
+                    <option key={y} value={`${y}-01`}>
+                      {y} 이후
+                    </option>
+                  ))}
+                </select>
+                <label
+                  className="graph-controls-toggle"
+                  title="검토함 표시한 개념은 숨김(나에게 새로운 것만)"
+                >
+                  <input
+                    type="checkbox"
+                    checked={!!filterState.unreviewed_only}
+                    onChange={(e) =>
+                      setFilter({
+                        ...filterState,
+                        unreviewed_only: e.target.checked || undefined,
+                      })
+                    }
+                  />
+                  안 본 것만
+                </label>
+                <label className="graph-controls-toggle" title="논문 노드도 함께 표시">
+                  <input
+                    type="checkbox"
+                    checked={showPapers}
+                    onChange={(e) => setShowPapers(e.target.checked)}
+                  />
+                  논문 보기
+                </label>
+                <button
+                  className="graph-controls-reset"
+                  onClick={() => setFilter({})}
+                  title="필터·강조 초기화"
+                >
+                  초기화
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
         {chips.length > 0 && (
           <div className="graph-chips">
             {chips.map((c) => (
@@ -593,104 +733,6 @@ export default function Graph() {
             </span>
           </div>
         )}
-        <form className="graph-search" onSubmit={runSearch}>
-          <input
-            placeholder="노드 검색 (예: RLHF)…"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          {searchMsg && <div className="muted">{searchMsg}</div>}
-          {matches.length > 1 && (
-            <div className="match-list">
-              {matches.map((m, i) => (
-                <button
-                  type="button"
-                  key={m.id}
-                  className={i === matchIdx ? "active" : ""}
-                  onClick={() => goTo(m.id, matches, i)}
-                >
-                  {m.canonical}
-                </button>
-              ))}
-            </div>
-          )}
-        </form>
-        <div className="graph-controls">
-          <select
-            value={filterState.ptype || ""}
-            onChange={(e) =>
-              setFilter({ ...filterState, ptype: e.target.value || undefined })
-            }
-            title="유형으로 필터"
-          >
-            <option value="">유형 전체</option>
-            {ptypeOpts.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
-            ))}
-          </select>
-          <select
-            value={filterState.domain || ""}
-            onChange={(e) =>
-              setFilter({ ...filterState, domain: e.target.value || undefined })
-            }
-            title="분야로 필터"
-          >
-            <option value="">분야 전체</option>
-            {domainOpts.map((d) => (
-              <option key={d} value={d}>
-                {d}
-              </option>
-            ))}
-          </select>
-          <select
-            value={filterState.date_after || ""}
-            onChange={(e) =>
-              setFilter({ ...filterState, date_after: e.target.value || undefined })
-            }
-            title="시점으로 필터"
-          >
-            <option value="">시점 전체</option>
-            {yearOpts.map((y) => (
-              <option key={y} value={`${y}-01`}>
-                {y} 이후
-              </option>
-            ))}
-          </select>
-          <button
-            className="graph-controls-reset"
-            onClick={() => setFilter({})}
-            title="필터·강조 초기화"
-          >
-            초기화
-          </button>
-          <span className="gc-sep" />
-          <label
-            className="graph-controls-toggle"
-            title="검토함 표시한 개념은 숨김(나에게 새로운 것만)"
-          >
-            <input
-              type="checkbox"
-              checked={!!filterState.unreviewed_only}
-              onChange={(e) =>
-                setFilter({
-                  ...filterState,
-                  unreviewed_only: e.target.checked || undefined,
-                })
-              }
-            />
-            안 본 것만
-          </label>
-          <label className="graph-controls-toggle" title="논문 노드도 함께 표시">
-            <input
-              type="checkbox"
-              checked={showPapers}
-              onChange={(e) => setShowPapers(e.target.checked)}
-            />
-            논문 보기
-          </label>
-        </div>
         <div className="graph-legend">
           <div>
             <span className="dot" style={{ background: TYPE_COLOR.technique }} />
@@ -819,6 +861,31 @@ export default function Graph() {
                   ))}
                 </div>
               </>
+            )}
+            {paperDetail && (
+              <div className="detail-abstract">
+                <div className="detail-abstract-h">
+                  초록·도입 발췌
+                  {paperDetail.id && (
+                    <a
+                      href={`https://arxiv.org/abs/${paperDetail.id}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {paperDetail.id}
+                    </a>
+                  )}
+                </div>
+                {paperDetail.loading ? (
+                  <div className="muted">
+                    <span className="spinner" /> 불러오는 중…
+                  </div>
+                ) : paperDetail.abstract ? (
+                  <p>{paperDetail.abstract}</p>
+                ) : (
+                  <p className="muted">초록 없음</p>
+                )}
+              </div>
             )}
           </div>
         )}
