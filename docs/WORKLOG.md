@@ -593,3 +593,11 @@ frozen 정답지 50편 vs 파이프라인 출력(`data/outputs/{id}.relations.js
 - 결과: 검색16 / 그래프검색16 / RAG계보36 / ReAct계보2 / CoT계보8 / 2024+ 54 / 의료 3 / GraphRAG 6 / Toolformer 1 / 다보여줘 reset / 모아줘 collect칩(수집탭 prefill). web build 통과.
 
 **남은 사전 이슈(기록만)**: focus_lineage가 backend는 canonical로 검증하나 client lineageSets는 rk(노드 id)로 조회 → 하이픈/공백 들어간 이름(Self-RAG 등)은 chat 계보 명령이 클라에서 미스. 별도 수정 대상.
+
+## 2026-06-22 — [사용법] UI 다듬기 + 기본 페이지화 + 로고 클릭
+
+직전 사용법 페이지가 "대충한 느낌"(밋밋한 표)이라 폴리시. 기능/칩 검증값은 동일, 표현만 개선.
+- `App.jsx`: 기본 라우트 `/`→`/usage`(온보딩), 로고를 `<Link to="/usage">`로(클릭 시 사용법). nav 순서 사용법/지형도/사전.
+- `routes/Usage.jsx`: 표→카드 그리드. 히어로(h1 "이렇게 물어보세요" + 설명), 카드마다 제목+힌트+보기/수집 배지+칩+효과(→ 화살표). collect 카드는 점선·그라데이션으로 구분.
+- `styles.css`: usage-hero/grid/card/badge/hint/chip/effect 신규. 칩은 pill+hover fill, 카드 hover lift+shadow, color-mix로 accent 톤. 로고 hover opacity.
+- 검증: web build 통과. (브라우저 스크린샷 툴 없어 클래스 매칭+빌드로 확인 — 실물은 dev.sh 권장.)
