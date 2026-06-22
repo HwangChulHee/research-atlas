@@ -637,3 +637,11 @@ focus_lineage가 canonical("Self-RAG")로 들어오는데 lineageSets가 toLower
 - 노드클릭 계보: 개념 디테일 패널에 [조상][자손][양쪽] → runLineageFromNode(selected.id, dir). selected.id는 rk라 하이픈 무관. 논문 패널엔 없음.
 - 칩 ✕/명령탭 비우기도 filterState 리셋 동기.
 - 검증(API+그래프 재현): 옵션 동적(ptype 3·domain 6·year 2017~2026), medical=3, 2024이후=54, technique+2024 AND=52. web build 통과.
+
+## 2026-06-22 — [사전] 상태 설명 + 페이징 + 검색 동작 개선
+
+- 상태 설명 추가: 헤더에 "상태 설명 ▾" 토글(기본 펼침) + 범례 — approved/unreviewed/pending/rejected 각 의미와 그래프 표시여부(NODE_OK=approved/unreviewed) 명시. 코드 근거: normalize_core(정의→unreviewed, 참조→pending, NODE_OK만 노드).
+- 페이징: PAGE_SIZE=50. filtered→정렬→슬라이스. 필터/검색/정렬 바뀌면 1페이지로. pager 행("a–b / N", ‹이전 X/Y 다음›). safePage로 항목 감소 시 클램프.
+- 검색 동작 변경: 기존 "강조+스크롤"(matchSet/firstMatchRef) → 목록 좁히기(filter). 페이징과 자연 결합. firstMatch 스크롤 머신/ useRef 제거. matched 행 강조 제거.
+- 카운트: 검색 시 "N건", 우측 "총 N개 · 조건 M".
+- web build 통과.
