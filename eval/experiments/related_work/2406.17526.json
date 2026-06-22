@@ -1,0 +1,14 @@
+{
+  "paper_id": "2406.17526",
+  "related_work_text": "Background\nThe retrieval granularity at which a document is\nsegmented plays an essential role as ineffective\nchunking strategies can lead to chunks with incom-\nplete context or excessive irrelevant information,\nwhich damage the performance of retriever models\n(Yu et al., 2023).\nBeyond typical granularity levels like sentences\nor paragraphs (Gao et al., 2023), other advanced\nmethods can be employed. Recursive character\nsplitting (Langchain, 2023) segments text based\non a hierarchy of separators such as paragraph\nbreaks, new lines, spaces, and individual charac-\nters. While this method better respects the doc-\nument’s structure, it may lack contextual under-\nstanding. To address this, semantic-based splitting\n(Kamradt, 2024) utilizes embeddings to cluster se-\nmantically similar text segments. This approach\nensures that chunks maintain meaningful context\nand coherence by identifying breakpoints based on\nsignificant changes in embedding distances.\nThe recent research by Chen et al. (2023) intro-\nduces a novel retrieval granularity termed propo-\nsitions - minimal textual units, each conveying an\nindividual fact in a clear, self-sufficient natural lan-\nguage format. While this concept is valid for con-\ntexts with fact-based information, like Wikipedia,\nit may be less effective for narrative texts where\nthe flow and contextual continuity play a critical\nrole (as illustrated in Appendix A).\nRetrieval granularity is often viewed at the doc-\nument level, but it can also involve adjusting the\nquery itself. Gao et al. (2022) suggests the Hypo-\nthetical Document Embeddings (HyDE) method,\nwhere an LLM transforms the query into a potential\nanswer document.\n",
+  "source_len": 37704,
+  "reason": "ok",
+  "signals": {
+    "heading_found": true,
+    "char_count": 1670,
+    "citation_density": 1.2,
+    "verbatim_match": true
+  },
+  "verdict": "trusted",
+  "broken": []
+}

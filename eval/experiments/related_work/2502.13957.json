@@ -1,0 +1,14 @@
+{
+  "paper_id": "2502.13957",
+  "related_work_text": "",
+  "source_len": 65176,
+  "reason": "no_section",
+  "signals": {
+    "heading_found": false,
+    "char_count": 0,
+    "citation_density": 0.0,
+    "verbatim_match": false
+  },
+  "verdict": "no_section",
+  "broken": []
+}

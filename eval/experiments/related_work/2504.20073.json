@@ -1,0 +1,14 @@
+{
+  "paper_id": "2504.20073",
+  "related_work_text": "5. Related Work\nRecent work has explored fine-tuning LLMs for multi-step reasoning through reinforcement\nlearning (RL), and developing agent frameworks to structure decision-making tasks. For\nreasoning, techniques range from classical PPO (Schulman et al., 2017) and actor-critic meth-\nods (Haarnoja et al., 2018) to structured prompting via meta tokens (Goyal et al., 2024; Herel\nand Mikolov, 2024). Policy variants such as RLOO (Kool et al., 2019), GRPO (DeepSeek-AI et al.,\n2025) and DAPO (Yu et al., 2025) could stabilize training and improve sample efficiency. Parallel\nefforts like STaR (Zelikman et al., 2022) and MCTS-based reasoning (Hao et al., 2023a) promote\nstep-by-step reasoning with minimal supervision.\nOn the agent side, systems have evolved from early reactive planning (Xu et al., 2023; Yao\net al., 2022b) to modularized decision pipelines (Liu et al., 2023; Wu et al., 2023), multi-agent\ncooperation (Li et al., 2023; Wang et al., 2024a), and embodied interaction (Li et al., 2025; Lin et al.,\n2024b). Benchmarks like Sokoban (Junghanns and Schaeffer, 2001), FrozenLake (Dell’Aversana,\n2021), and WebShop (Yao et al., 2022a) provide controlled testbeds for evaluating reasoning\nunder different dynamics. Our work builds on these advances, aiming to unify RL-based\nreasoning with structured agent training across symbolic and language-centric tasks. We\nsummarize more related works in Appendix B.\n",
+  "source_len": 98753,
+  "reason": "ok",
+  "signals": {
+    "heading_found": true,
+    "char_count": 1416,
+    "citation_density": 3.53,
+    "verbatim_match": true
+  },
+  "verdict": "trusted",
+  "broken": []
+}

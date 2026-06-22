@@ -1,0 +1,14 @@
+{
+  "paper_id": "2504.14870",
+  "related_work_text": "Related Work\nTool Utilization for LLMs.\nTeaching LLMs to use tools enables them to interact with external\nenvironments while overcoming several inherent limitations such as restricted access to up-to-date\nor domain-specific knowledge and poor mathmatical operation capabilities. There are three major\nmethods which can achieve this goal: 1) prompting engineering [21–26], which guides the model’s\nbehavior through carefully designed input templates or few-shot examples without modifying model\nweights; 2) supervised finetuning on tool-integrated reasoning datasets [27, 9, 28, 29, 12], where the\nmodel learns from annotated trajectories that demonstrate when and how to use tools in context; and\n3) reinforcement learning [14, 15, 30, 31], which allows the model to directly learn tool-use strategies\nby interacting with an environment and optimizing long-term rewards, enabling more adaptive and\ngoal-directed behaviors. While prompting and supervised fine-tuning have shown promising results,\nthey rely heavily on expert-designed prompts and tool-integrated annotations, which limits their\nscalability and generalization. As a result, recent efforts have shifted toward reinforcement learning,\nwhich demonstrates improved performance and generalization through simple rule-based rewards.\nTool-integrated Reasoning Efficiency.\nOnly few of studies from prompting engineering and\nsupervised fine-tuning attention on tool-integrated reasoning efficiency issues in terms of the cost of\ntool usages during the reasoning [26, 32, 12]. In detail, Wang et al. [26] first propose a prompting-\nbased framework: Self Divide-and-Conquer (SelfDC) to leverage the self-aware confidence score\nof LLMs to decide whether or not need to call tools during reasoning, achieving better trade-off\n3All such trajectories incur unnecessary tool usage and are thus less efficient.\n3\nbetween effectiveness and efficiency in the context of RAG. Furthermore, several works follow this\ndirection and explore more boarder applications and larger tool spaces [12, 32, 33]. For example,\nSMART [12] collect the well-designed dataset to finetune the model to only call tools when the\nknowledge is outside the inherent parametric knowledge of LLMs. Despite these advancements,\nmost existing approaches still rely on complex prompt engineering or annotated datasets, which\nhinders their adaptability and scalability to new scenarios. In contrast, the efficiency of tool-integrated\nreasoning within reinforcement learning frameworks remains largely underexplored.\n3\n",
+  "source_len": 64562,
+  "reason": "ok",
+  "signals": {
+    "heading_found": true,
+    "char_count": 2531,
+    "citation_density": 2.37,
+    "verbatim_match": true
+  },
+  "verdict": "trusted",
+  "broken": []
+}

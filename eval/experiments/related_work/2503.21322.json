@@ -1,0 +1,14 @@
+{
+  "paper_id": "2503.21322",
+  "related_work_text": "Related Work\nGraph-based RAG. GraphRAG [2] is the first graph-based RAG method that improves LLM\ngeneration via graph-based retrieval. Based on GraphRAG, several methods [26, 22, 11, 4, 23] focus\non building graph-based RAG for different applications. LightRAG [7] enhances efficiency via graph\nindexing and updates. PathRAG [1] and HippoRAG2 [8] refine retrieval with path pruning and\nPersonalized PageRank. However, all rely on binary relations, limiting knowledge expressiveness. In\nthis work, we propose HyperGraphRAG, the first graph-based RAG method via hypergraph-structured\nknowledge representation. We compare several existing methods with HyperGraphRAG in Table 1.\nHypergraph Representation. Hypergraph-structured knowledge representation aims to overcome\nordinary graph’s limitations in modeling n-ary relations [15]. Early methods [25, 27, 12, 21] employ\nvarious embedding techniques to represent n-ary relational entities. Later methods [5, 24, 14] utilize\nGNN or attention to enhance embedding. However, existing methods mainly focus on link prediction,\nwhile hypergraphs also show potential for enhancing knowledge representation in graph-based RAG.\n2\nTable 1: Comparison of knowledge construction and retrieval methods for NaiveGeneration, Stan-\ndardRAG, partial GraphRAG baselines, and our proposed HyperGraphRAG, where K represents the\noverall constructed knowledge, and K∗\nq represents retrieved knowledge when given a user question q.\nMethod\nKnowledge Construction\nKnowledge Retrieval\nNaiveGeneration\nK = ∅.\nK∗\nq = ∅.\nStandardRAG\nK = {ci}N\ni=1, where ci is a chunk.\nK∗\nq = Kchunk = Topk{ c ∈K | sim(hq, hc) }\nGraphRAG [2]\nK = S = {sg | g ∈Community(G)},\nwhere S is the community summary set.\nK∗\nq = Detect{sg ∈S | q},\nwhere detected community summaries are retrieved.\nLightRAG [7]\nK = G = (V, E),\nwhere V & E are entity & relation sets.\nK∗\nq = F{v ∈V, e ∈E | q} ∪Kchunk,\nwhere entities & relations are retrieved with chunks.\nPathRAG [1]\nK = G = (V, E),\nwhere G is the same as LightRAG’s.\nK∗\nq = Prune{p ∈Pq | q},\nwhere relational paths are retrieved via pruning.\nHippoRAG2 [8]\nK = G = (V ∪M, E),\nwhere V & M are phrase & passage nodes.\nK∗\nq = PageRank{m ∈M | q},\nwhere passages are retrieved via Personalized PageRank.\nHyperGraphRAG\n(ours)\nK = GH = (V, EH),\nwhere GH is structured as a hypergraph.\nK∗\nq = Fn{v ∈V | q} ∪Fn{e ∈EH | q} ∪Kchunk,\nwhere n-ary relational facts are retrieved with chunks.\n",
+  "source_len": 84459,
+  "reason": "ok",
+  "signals": {
+    "heading_found": true,
+    "char_count": 2418,
+    "citation_density": 4.96,
+    "verbatim_match": true
+  },
+  "verdict": "trusted",
+  "broken": []
+}

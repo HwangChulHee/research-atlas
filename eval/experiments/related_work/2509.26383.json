@@ -1,0 +1,14 @@
+{
+  "paper_id": "2509.26383",
+  "related_work_text": "Related Work\nKnowledge Graph Retrieval-Augmented Generation (KG-RAG). KG-RAG augments LLMs with\nstructured KGs to improve quality and compositional reasoning. Early work grounds LLMs’ genera-\ntion by translating natural-language questions into executable graph queries (e.g., SPARQL/Cypher),\nretrieving relevant subgraphs or answers, and feeding them back to the model [15, 9]. More recent\napproaches adopt a modular LLM pipeline over KGs, interleaving natural language reasoning with\nmulti-stage planning, path search, and execution, where each stage uses a prompted or fine-tuned\nLLM [3, 2, 16, 4]. Despite these advances, most systems rely on hand-engineered modules or prompt\nheuristics tied to a specific KG schema, which induce cost inefficiency and limit generalization.\nThese challenges motivate our KG-R1 framework: a single-agent KG-RAG approach that improves\nefficiency and transfers well to new KGs.\nMulti-turn RL for LLMs. Reinforcement learning (RL) has become central to equipping LLMs with\nstep-by-step (chain-of-thought) reasoning behavior [17, 14]. RL-enhanced models yield substantial\ngains in math and coding [18, 19], and broader complex reasoning tasks. More recently, RL has been\napplied to agentic LLMs that invoke external tools (e.g., bash terminals and APIs) or interact with\nknowledge bases, improving tool use [20] and retrieval-augmented generation (RAG) [12, 21] to\nfacilitate tool use or RAG. Building on these advances, our work, KG-R1 adopts end-to-end RL as\nthe core optimization algorithm for an agentic KG-RAG framework.\n",
+  "source_len": 103219,
+  "reason": "ok",
+  "signals": {
+    "heading_found": true,
+    "char_count": 1558,
+    "citation_density": 3.85,
+    "verbatim_match": true
+  },
+  "verdict": "trusted",
+  "broken": []
+}

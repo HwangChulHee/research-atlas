@@ -1,0 +1,14 @@
+{
+  "paper_id": "2408.04187",
+  "related_work_text": "Related Work\n4.1\nLLM for Medicine\nLarge language models (LLMs) built on Trans-\nformer architectures have advanced rapidly, lead-\ning to specialized medical LLMs such as BioGPT\n(Luo et al., 2022), PMC-LLaMA (Wu et al., 2023),\nBioMedLM (Bolton et al., 2022), and Med-PaLM\n2 (Singhal et al., 2023). While many are fine-tuned\nby large organizations, recent research has focused\non cost-efficient, non-fine-tuned approaches, pri-\nmarily using prompt engineering (Saab et al., 2024;\nWang et al., 2023; Savage et al., 2024). RAG, as\nanother non-finetuning approach, is rarely explored\nfor medical applications (Miao et al., 2024; Xiong\net al., 2024; Long et al., 2024) and lacks support for\nevidence-based responses and term explanations\nrequired in clinical settings.\n4.2\nRetrieval-augmented generation\nRAG (Lewis et al., 2021) enables models to use\nspecific datasets without additional training, im-\nproving response accuracy and reducing hallucina-\ntions (Guu et al., 2020). RAG has shown strong\nresults across various tasks, including generating\nresponses with citations (Gao et al., 2023b; Slobod-\nkin et al., 2024; Qi et al., 2024; Nakano et al., 2021;\nBohnet et al., 2022; Gao et al., 2023a,c; Schiman-\nski et al., 2024; Zhang et al., 2024). GraphRAG\n(Hu et al., 2024) further enhances complex reason-\ning by constructing knowledge graphs, but lacks\nspecific design features for generating attributed\nresponses, and its application in medical special-\nization remains limited.\n",
+  "source_len": 40716,
+  "reason": "ok",
+  "signals": {
+    "heading_found": true,
+    "char_count": 1477,
+    "citation_density": 4.74,
+    "verbatim_match": true
+  },
+  "verdict": "trusted",
+  "broken": []
+}

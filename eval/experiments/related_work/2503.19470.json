@@ -1,0 +1,14 @@
+{
+  "paper_id": "2503.19470",
+  "related_work_text": "Related Work\n4.1\nReinforcement Learning with LLMs\nReinforcement learning [30], which aims to maximize the expected return of an agent’s policy through\ninteractions with the environment, has emerged as a crucial technique for LLMs, from aligning with\nhuman values to enhancing reasoning capabilities. A significant development was Reinforcement\nLearning from Human Feedback (RLHF) [18], which uses Proximal Policy Optimization (PPO)\n[22] with reward models trained on human preferences. Several methods have since improved upon\nPPO, including Direct Preference Optimization (DPO) [20], Simulated Preference Optimization\n(SimPO) [15], and Group Relative Policy Optimization (GRPO) [24]. Recently, reinforcement\nlearning has demonstrated remarkable success in enhancing reasoning capabilities, as evidenced by\nnotable achievements such as OpenAI-o1 [17], DeepSeek-R1 [5], and Kimi k1.5 [31]. However, the\nreasoning capabilities of LLMs under RAG settings remain largely unexplored. Meanwhile, several\nconcurrent works have also begun to investigate reinforcement learning for enhancing LLM reasoning\nwith tool use [9, 29].\n4.2\nRetrieval-Augmented Generation for LLMs\nRAG techniques [8, 12] augment LLMs by retrieving external knowledge and incorporating it into the\ngeneration process. Extensive research has been conducted in this area, encompassing various aspects\nsuch as retriever optimization [27, 38], query refinement [3], and self-reflection mechanisms [2].\nFor more complex scenarios, particularly in addressing multi-hop questions, iterative RAG models\n[23, 33] have been developed that alternately perform retrieval-enhanced generation and generation-\nenhanced retrieval. Additionally, supervised learning approaches have been explored using annotated\ntrajectories of multi-step retrieval [21, 35]. Despite these advances, the application of reinforcement\nlearning to enhance reasoning capabilities within RAG-style tool-augmented environments remains\nan open and under-explored research direction.\n",
+  "source_len": 48179,
+  "reason": "ok",
+  "signals": {
+    "heading_found": true,
+    "char_count": 2007,
+    "citation_density": 7.97,
+    "verbatim_match": true
+  },
+  "verdict": "trusted",
+  "broken": []
+}

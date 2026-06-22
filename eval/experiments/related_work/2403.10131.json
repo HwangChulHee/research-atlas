@@ -1,0 +1,14 @@
+{
+  "paper_id": "2403.10131",
+  "related_work_text": "Related Works\nRetrieval-Augmented Language Models Retrieval-Augmented Language Models (RALMs)\nenhance LLMs by integrating a retrieval module that sources relevant information from\nexternal knowledge bases, significantly improving performance across various NLP tasks,\nincluding language modeling (Guu et al., 2020; Borgeaud et al., 2022; Khandelwal et al.,\n2019; Shi et al., 2023d; Lin et al., 2023b; Shi et al., 2023c; Asai et al., 2023; Xu et al., 2023;\nWang et al., 2023) and open-domain question answering (Izacard et al., 2023; Lewis et al.,\n2020). For instance, Atlas (Izacard et al., 2023) fine-tunes T5 models with the retriever,\ntreating documents as latent variables, while RETRO (Borgeaud et al., 2022) modifies the\ndecoder-only architecture to include retrieved texts and conducts pre-training from scratch.\nkNN-LM (Khandelwal et al., 2019) interpolates between the LM’s next token distribution\nand distributions computed from retrieved tokens at inference. (Shi et al., 2023d; Ram\net al., 2023) assume black-box access to an LLM, combining it with either off-the-shelf or\nfine-tuned retriever.\nMemorization A key question around large neural language models is whether they truly\n“understand” text (Feldman, 2020; Power et al., 2022) or simply rely on surface pattern\nmemorization (Carlini et al., 2019; Tänzer et al., 2022). (Feldman, 2020; Carlini et al., 2019;\n2022) develop methodologies to quantify the extent of memorization in neural models.\n(Brown et al., 2020; Power et al., 2022; Liu et al., 2022) further explored how memorization\nimpacts the models’ generalization capabilities. (Carlini et al., 2021; Shi et al., 2023b)\ndemonstrated the ability of language models to memorize and regurgitate training data,\nraising significant privacy concerns (Kandpal et al., 2022; Pan et al., 2020).\nFinetuning for RAG More recently, several papers have been exploring the idea of fine-\ntuning a pretrained LLM to be better at RAG tasks (Lin et al., 2023a; Wang et al., 2023; Xu\n9\nPreprint, Under Review\net al., 2023; Liu et al., 2024). These works focus on constructing a combination of finetuning\ndataset for RAG and train a model to perform well on these tasks. In particular, in their\nsettings, at test time, the domain or documents can be different than the training time;\nwhereas our paper studies a slightly opposite scenario where we only care about testing the\nLLM on the same set of documents.\n",
+  "source_len": 41430,
+  "reason": "ok",
+  "signals": {
+    "heading_found": true,
+    "char_count": 2416,
+    "citation_density": 1.24,
+    "verbatim_match": true
+  },
+  "verdict": "trusted",
+  "broken": []
+}

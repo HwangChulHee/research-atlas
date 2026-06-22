@@ -1,0 +1,16 @@
+{
+  "paper_id": "2002.08909",
+  "related_work_text": "5. Discussion and Related Work\nWe previously discussed related methods for Open-QA.\nHere we present several alternate ways of viewing REALM\nthat connect it to a broader set of ideas beyond Open-QA:\nLanguage modeling with corpus as context\nLanguage\nrepresentation models have been incorporating contexts of\nincreasingly large scope when making predictions.\nEx-\namples of this progression include models that condi-\ntion on surrounding words (Mikolov et al., 2013a;b), sen-\ntences (Kiros et al., 2015; Peters et al., 2018), and para-\ngraphs (Radford et al., 2018; Devlin et al., 2018). We can\nview REALM as a generalization of the above work to the\nnext level of scope: the entire text corpus.\nRetrieve-and-edit with learned retrieval\nIn order to\nbetter explain the variance in the input text and en-\nable controllable generation, Guu et al. (2018) proposed\na language model with\nthe retrieve-and-edit frame-\nwork (Hashimoto et al., 2018) that conditions on text with\nhigh lexical overlap. REALM has a similar approach, ex-\ncept that the model learns for itself which texts are most\nuseful for reducing perplexity. By jointly learning the re-\ntriever, REALM has the capacity to depend on information\nbeyond lexical overlap.\nScalable grounded neural memory\nThe document in-\ndex can be viewed as a memory where the keys are\nthe document embeddings.\nFrom this view, our work\nshare motivations with works such as product key mem-\nory (Lample et al., 2019), which enables sub-linear mem-\nory access in a memory network (Weston et al., 2014;\nGraves et al., 2014; Sukhbaatar et al., 2015),\nallowing\nthese scalable memory layers to be integrated into large\nlanguage models. One main difference is that our memo-\nries are grounded—each memory is associated with a docu-\nment rather than unnamed value vectors. This level of inter-\npretability is crucial for applications like Open-QA, where\nusers would require provenance for a predicted answer to\nbe trustworthy.\nUnsupervised\nCorpus\nAlignment\nIn\nsequence-to-\nsequence models with attention (Bahdanau et al., 2014),\nREALM: Retrieval-Augmented Language Model Pre-Training\ntext is generated with latent selection of relevant tokens.\nThis results in a set of model-centric unsupervised align-\nments between target and source tokens.\nAnalogously,\nREALM also generates text with latent selection of\nrelevant documents. A by-product of our method is that\nwe offer a set of model-centric unsupervised alignments\nbetween text in the pre-training corpus X and knowledge\ncorpus Z.\n",
+  "source_len": 50195,
+  "reason": "ok",
+  "signals": {
+    "heading_found": false,
+    "char_count": 2510,
+    "citation_density": 1.2,
+    "verbatim_match": true
+  },
+  "verdict": "suspect",
+  "broken": [
+    "heading 없음 + 인용밀도 1.2<3.0(엉뚱 섹션 의심)"
+  ]
+}

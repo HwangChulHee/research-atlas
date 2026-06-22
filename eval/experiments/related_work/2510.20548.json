@@ -1,0 +1,14 @@
+{
+  "paper_id": "2510.20548",
+  "related_work_text": "Related Work\nRetrieval-Augmented Generation for Multi-hop\nQA. Multi-hop QA requires multi-step reasoning\nover evidence from multiple sources (Li and Du,\n2023; Zhang et al., 2024; Cheng et al., 2025).\nRetrieval-augmented generation (RAG) addresses\nthis challenge by coupling retrieval with genera-\ntion (Ji et al., 2023; Feng et al., 2024; Shi et al.,\n2024). Existing RAG methods for multi-hop QA\nmainly fall into two categories. Graph-structured\napproaches (Gutiérrez et al., 2025; Gutiérrez et al.,\n2025; Fang et al., 2025) organize textual knowledge\ninto entity–relation graphs and aggregate evidence\nalong multi-hop paths, but require explicit graph\nconstruction and maintenance (Gutiérrez et al.,\n2025; Gutiérrez et al., 2025). Iterative RAG ap-\nproaches (Trivedi et al., 2023; Shao et al., 2023;\nLiu et al., 2024; Jiang et al., 2025; Li et al., 2025)\nperform retrieval and reasoning in multiple steps\n(e.g., IRCOT (Trivedi et al., 2023), Search-o1 (Li\net al., 2025)), yet heavily rely on LLM-generated\nintermediate thoughts and are thus prone to halluci-\nnation (Liu et al., 2024; Jiang et al., 2025). In con-\ntrast, GlobalRAG leverages reinforcement learning\nto enhance global planning and coordinated reason-\ning, enabling more accurate evidence localization\nand integration for multi-hop QA.\nLarge Language Models and Reinforcement\nLearning.\nReinforcement learning has sub-\nstantially improved complex reasoning and self-\nverification in LLM post-training (OpenAI et al.,\n2024; Guo et al., 2025; Dong et al., 2025; Lai\net al., 2025), and has recently been extended to\nRAG (Jin et al., 2025a; Chen et al., 2025; Song\net al., 2025a; Wang et al., 2025). Search-R1 (Jin\net al., 2025a) adopts outcome-based rewards to en-\ncourage retriever usage, while StepSearch (Wang\net al., 2025) scores per-step retrieval quality via in-\nformation gain and redundancy penalties. However,\nlacking explicit global planning and suffering from\nunfaithful execution, these methods remain subop-\ntimal for multi-hop QA (Jin et al., 2025a; Wang\net al., 2025). By contrast, we introduce a Plan-\nning Quality Reward and a Subgoal Completion\nReward to explicitly reinforce global reasoning and\nstructured progress in multi-hop QA.\n3\n",
+  "source_len": 93678,
+  "reason": "ok",
+  "signals": {
+    "heading_found": true,
+    "char_count": 2214,
+    "citation_density": 0.45,
+    "verbatim_match": true
+  },
+  "verdict": "trusted",
+  "broken": []
+}

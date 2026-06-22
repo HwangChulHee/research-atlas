@@ -1,0 +1,14 @@
+{
+  "paper_id": "2201.11903",
+  "related_work_text": "Related Work\nThis work is inspired by many research areas, which we detail in an extended related work section\n(Appendix C). Here we describe two directions and associated papers that are perhaps most relevant.\nThe ﬁrst relevant direction is using intermediate steps to solve reasoning problems. Ling et al. (2017)\npioneer the idea of using natural language rationales to solve math word problems through a series\nof intermediate steps. Their work is a remarkable contrast to the literature using formal languages\nto reason (Roy et al., 2015; Chiang and Chen, 2019; Amini et al., 2019; Chen et al., 2019). Cobbe\net al. (2021) extend Ling et al. (2017) by creating a larger dataset and using it to ﬁnetune a pretrained\nlanguage model rather than training a model from scratch. In the domain of program synthesis,\nNye et al. (2021) leverage language models to predict the ﬁnal outputs of Python programs via\nﬁrst line-to-line predicting the intermediate computational results, and show that their step-by-step\nprediction method performs better than directly predicting the ﬁnal outputs.\nNaturally, this paper also relates closely to the large body of recent work on prompting. Since the\npopularization of few-shot prompting as given by Brown et al. (2020), several general approaches\nhave improved the prompting ability of models, such as automatically learning prompts (Lester et al.,\n2021) or giving models instructions describing a task (Wei et al., 2022a; Sanh et al., 2022; Ouyang\net al., 2022). Whereas these approaches improve or augment the input part of the prompt (e.g.,\ninstructions that are prepended to inputs), our work takes the orthogonal direction of augmenting the\noutputs of language models with a chain of thought.\n8\n",
+  "source_len": 135670,
+  "reason": "ok",
+  "signals": {
+    "heading_found": true,
+    "char_count": 1735,
+    "citation_density": 0.0,
+    "verbatim_match": true
+  },
+  "verdict": "trusted",
+  "broken": []
+}
