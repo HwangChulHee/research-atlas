@@ -13,7 +13,6 @@ function parseAction(s) {
   if (s && s.startsWith("merge_into:")) return ["merge", s.slice(11)];
   return [s, null];
 }
-const CONF_RANK = { low: 0, med: 1, high: 2 };
 
 const STATUSES = ["approved", "unreviewed", "pending", "rejected"];
 const FILTERS = ["pending", "unreviewed", "approved", "rejected", "all"];
@@ -189,27 +188,12 @@ export default function Lexicon() {
   const safePage = Math.min(page, pageCount);
   const paged = filtered.slice((safePage - 1) * pageSize, safePage * pageSize);
 
-  // 검토 도우미: 아직 pending/unreviewed인 개념의 카드만(처리된 건 자동으로 빠짐).
-  const statusByName = useMemo(() => {
+  // 검토 도우미 제안을 개념명으로 인덱싱 → 테이블 행에 인라인 표시.
+  const cardByName = useMemo(() => {
     const m = {};
-    for (const it of items) m[it.name] = it.status;
+    for (const c of reviewCards) m[c.concept] = c;
     return m;
-  }, [items]);
-  const liveCards = useMemo(
-    () =>
-      reviewCards.filter((c) =>
-        ["pending", "unreviewed"].includes(statusByName[c.concept])
-      ),
-    [reviewCards, statusByName]
-  );
-  const approvedNames = useMemo(
-    () =>
-      items
-        .filter((it) => it.status === "approved")
-        .map((it) => it.name)
-        .sort(),
-    [items]
-  );
+  }, [reviewCards]);
 
   // 정렬 가능한 헤더 셀
   const th = (key, label, width) => (
@@ -252,17 +236,6 @@ export default function Lexicon() {
         )}
       </header>
 
-      {(counts.pending || 0) + (counts.unreviewed || 0) > 0 && (
-        <ReviewPanel
-          cards={liveCards}
-          approvedNames={approvedNames}
-          onDecision={applyDecision}
-          onRebuild={doRebuild}
-          rebuilding={rebuilding}
-          onRegenerate={doRegenerate}
-          regenerating={regenerating}
-        />
-      )}
       <div className="lex-toolbar">
         <div className="lex-filters">
           {FILTERS.map((f) => (
@@ -284,6 +257,16 @@ export default function Lexicon() {
         />
         {q && <span className="muted">{filtered.length}건</span>}
         <span className="spacer" />
+        <button
+          onClick={doRegenerate}
+          disabled={regenerating}
+          title="카드 없는 신규 검토대기 개념만 제안 생성(LLM)"
+        >
+          {regenerating ? "제안 생성 중…" : "✦ 제안 새로고침"}
+        </button>
+        <button onClick={doRebuild} disabled={rebuilding} title="pending 승인분을 노드로 반영">
+          {rebuilding ? "재빌드 중…" : "↻ 재빌드"}
+        </button>
         <select
           className="lex-pagesize"
           value={pageSize}
@@ -332,7 +315,9 @@ export default function Lexicon() {
               <Row
                 key={it.name}
                 item={it}
+                card={cardByName[it.name]}
                 onPatch={applyPatch}
+                onDecision={applyDecision}
                 onMerge={setMergeFrom}
               />
             ))}
@@ -445,10 +430,28 @@ function MergeModal({ from, items, onCancel, onConfirm }) {
   );
 }
 
-function Row({ item, onPatch, onMerge }) {
+function Row({ item, card, onPatch, onDecision, onMerge }) {
   const [newAlias, setNewAlias] = useState("");
   const [def, setDef] = useState(item.definition || "");
   const defDirty = def !== (item.definition || "");
+
+  // 도우미 제안은 아직 검토 대기(pending/unreviewed)인 행에만 인라인 표시.
+  const sugg =
+    card && ["pending", "unreviewed"].includes(item.status) ? card.suggestion : null;
+  const evidenceTip = () => {
+    if (!card) return "";
+    const e = card.evidence || {};
+    const parts = [sugg.reason];
+    if (e.cited_in?.length) parts.push(`조상 인용: ${e.cited_in.join(", ")}`);
+    if (e.defined_in?.length)
+      parts.push(`정의 논문: ${e.defined_in.map((d) => d.paper).join(", ")}`);
+    return parts.join("\n");
+  };
+  function applySuggestion() {
+    const [act, tgt] = parseAction(sugg.action);
+    if (act === "merge" && !tgt) onMerge(item.name); // target 모르면 모달로
+    else onDecision(item.name, act, tgt);
+  }
 
   function addAlias() {
     const a = newAlias.trim();
@@ -514,11 +517,22 @@ function Row({ item, onPatch, onMerge }) {
       <td className="muted">{item.source}</td>
       <td className="muted">{item.first_seen}</td>
       <td>
+        {sugg && (
+          <div className="lex-sugg" title={evidenceTip()}>
+            <span className={`rv-conf rv-${sugg.confidence}`}>{sugg.confidence}</span>
+            <span className="muted">
+              제안 {sugg.category}·{sugg.action}
+            </span>
+            <button className="lex-sugg-apply" onClick={applySuggestion}>
+              이대로
+            </button>
+          </div>
+        )}
         <div className="lex-actions">
           <button
             className="lex-approve"
             disabled={item.status === "approved"}
-            onClick={() => onPatch(item.name, { status: "approved" })}
+            onClick={() => onDecision(item.name, "approve", null)}
             title="승인 → 그래프에 표시"
           >
             ✓ 승인
@@ -526,7 +540,7 @@ function Row({ item, onPatch, onMerge }) {
           <button
             className="lex-reject"
             disabled={item.status === "rejected"}
-            onClick={() => onPatch(item.name, { status: "rejected" })}
+            onClick={() => onDecision(item.name, "reject", null)}
             title="거부 → 그래프에서 제거"
           >
             ✕ 거부
@@ -541,205 +555,5 @@ function Row({ item, onPatch, onMerge }) {
         </div>
       </td>
     </tr>
-  );
-}
-
-// 검토 도우미 패널 — 제안 카드(정적 스냅샷)를 큐로 띄우고 카드별/일괄 적용.
-// 적용은 onDecision(applyDecision) 하나로 dispatch. low/med는 개별만, high는 일괄 가능.
-function ReviewPanel({
-  cards,
-  approvedNames,
-  onDecision,
-  onRebuild,
-  rebuilding,
-  onRegenerate,
-  regenerating,
-}) {
-  const [open, setOpen] = useState(true);
-  const [showHigh, setShowHigh] = useState(false);
-  const [selected, setSelected] = useState(() => new Set());
-  const [targets, setTargets] = useState({});
-  const [busy, setBusy] = useState(false);
-
-  const sorted = [...cards].sort(
-    (a, b) =>
-      CONF_RANK[a.suggestion.confidence] - CONF_RANK[b.suggestion.confidence]
-  );
-  const lowMed = sorted.filter((c) => c.suggestion.confidence !== "high");
-  const high = sorted.filter((c) => c.suggestion.confidence === "high");
-
-  const targetOf = (c) =>
-    targets[c.concept] !== undefined ? targets[c.concept] : c.similar_existing || "";
-
-  const applySuggestion = (c) => {
-    const [act, tgt] = parseAction(c.suggestion.action);
-    onDecision(c.concept, act, act === "merge" ? tgt : null);
-  };
-
-  function toggleSel(name) {
-    setSelected((s) => {
-      const n = new Set(s);
-      if (n.has(name)) n.delete(name);
-      else n.add(name);
-      return n;
-    });
-  }
-
-  async function applyBatch() {
-    const chosen = high.filter((c) => selected.has(c.concept));
-    if (chosen.length === 0) return;
-    const counts = { approve: 0, reject: 0, merge: 0 };
-    chosen.forEach((c) => (counts[parseAction(c.suggestion.action)[0]] += 1));
-    if (
-      !window.confirm(
-        `approve ${counts.approve} · reject ${counts.reject} · merge ${counts.merge} 적용할까요?`
-      )
-    )
-      return;
-    setBusy(true);
-    for (const c of chosen) {
-      const [act, tgt] = parseAction(c.suggestion.action);
-      // eslint-disable-next-line no-await-in-loop
-      await onDecision(c.concept, act, act === "merge" ? tgt : null);
-    }
-    setSelected(new Set());
-    setBusy(false);
-  }
-
-  const evidence = (c) => {
-    const e = c.evidence || {};
-    const empty =
-      !e.definition && !(e.defined_in || []).length && !(e.cited_in || []).length;
-    return (
-      <div className="rv-evidence">
-        {e.definition && <div>정의: {e.definition.slice(0, 220)}</div>}
-        {(e.defined_in || []).length > 0 && (
-          <div>정의 논문: {e.defined_in.map((d) => d.paper).join(", ")}</div>
-        )}
-        {(e.cited_in || []).length > 0 && (
-          <div>조상 인용: {e.cited_in.join(", ")}</div>
-        )}
-        {empty && <div className="muted">근거 없음(이름만) — 확인 필요</div>}
-      </div>
-    );
-  };
-
-  const controls = (c, primary) => (
-    <div className="rv-controls">
-      <button
-        className={`rv-apply${primary ? " primary" : ""}`}
-        onClick={() => applySuggestion(c)}
-      >
-        이대로 적용 · {c.suggestion.action}
-      </button>
-      <span className="rv-manual">
-        <button onClick={() => onDecision(c.concept, "approve", null)}>승인</button>
-        <button onClick={() => onDecision(c.concept, "reject", null)}>거부</button>
-        <button
-          onClick={() => onDecision(c.concept, "merge", targetOf(c))}
-          disabled={!targetOf(c)}
-        >
-          병합→
-        </button>
-        <select
-          value={targetOf(c)}
-          onChange={(e) => setTargets((t) => ({ ...t, [c.concept]: e.target.value }))}
-        >
-          <option value="">(대상)</option>
-          {approvedNames.map((n) => (
-            <option key={n} value={n}>
-              {n}
-            </option>
-          ))}
-        </select>
-      </span>
-    </div>
-  );
-
-  const cardRow = (c, batch) => (
-    <div className="rv-card" key={c.concept}>
-      <div className="rv-head">
-        {batch && (
-          <input
-            type="checkbox"
-            checked={selected.has(c.concept)}
-            onChange={() => toggleSel(c.concept)}
-          />
-        )}
-        <b>{c.concept}</b>
-        <span className={`badge st-${c.status}`}>{c.status}</span>
-        <span className={`rv-conf rv-${c.suggestion.confidence}`}>
-          {c.suggestion.confidence}
-        </span>
-      </div>
-      {evidence(c)}
-      <div className="rv-sugg">
-        제안: <b>{c.suggestion.category}</b> — {c.suggestion.reason}
-      </div>
-      {controls(c, c.suggestion.confidence !== "low")}
-    </div>
-  );
-
-  return (
-    <section className="rv-panel">
-      <div className="rv-panel-head">
-        <button className="rv-toggle" onClick={() => setOpen((v) => !v)}>
-          검토 도우미 제안 {cards.length}개 {open ? "▴" : "▾"}
-        </button>
-        <span className="muted">제안일 뿐 — 적용은 당신의 클릭</span>
-        <span className="spacer" />
-        <button
-          onClick={onRegenerate}
-          disabled={regenerating}
-          title="카드 없는 신규 검토대기 개념만 제안 생성(LLM)"
-        >
-          {regenerating ? "제안 생성 중…" : "✦ 제안 새로고침"}
-        </button>
-        <button onClick={onRebuild} disabled={rebuilding} title="pending 승인분을 노드로 반영">
-          {rebuilding ? "재빌드 중…" : "↻ 재빌드"}
-        </button>
-      </div>
-      {open && (
-        <>
-          {cards.length === 0 && (
-            <div className="muted rv-empty">
-              제안 카드가 없습니다. 새 개념이 들어왔다면 [✦ 제안 새로고침]으로 생성하세요.
-            </div>
-          )}
-          {cards.length > 0 && (
-            <div className="rv-section-title">
-              ⚠️ 확신 낮음·중간 — 한 장씩 검토 ({lowMed.length})
-            </div>
-          )}
-          {cards.length > 0 && lowMed.length === 0 && (
-            <div className="muted rv-empty">없음</div>
-          )}
-          {lowMed.map((c) => cardRow(c, false))}
-
-          {high.length > 0 && (
-          <div className="rv-high">
-            <button className="rv-toggle" onClick={() => setShowHigh((v) => !v)}>
-              ✅ 확신 높음 {high.length}개 {showHigh ? "접기 ▴" : "펼치기 ▾"}
-            </button>
-            {showHigh && (
-              <>
-                <div className="rv-batchbar">
-                  <button
-                    className="primary"
-                    disabled={busy || selected.size === 0}
-                    onClick={applyBatch}
-                  >
-                    선택 적용 ({selected.size})
-                  </button>
-                  <span className="muted">체크 후 일괄. low/med는 일괄 대상이 아니에요.</span>
-                </div>
-                {high.map((c) => cardRow(c, true))}
-              </>
-            )}
-          </div>
-          )}
-        </>
-      )}
-    </section>
   );
 }

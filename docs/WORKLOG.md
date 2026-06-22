@@ -712,3 +712,12 @@ UI 가독성: 전반적으로 글자가 작다는 피드백 → base 14→15px +
 - api.js: regenerateReviewSuggestions.
 - Lexicon.jsx: ReviewPanel 헤더에 '✦ 제안 새로고침' 버튼(regenerating 상태) → setReviewCards 갱신. 패널 렌더 조건을 liveCards>0 → 검토대기(pending+unreviewed) 존재로 변경(카드 0이어도 새로고침 도달 가능), 카드 0 빈 상태 안내. 비용은 사람 클릭으로 통제(자동 LLM 호출 안 함 — '사람이 결정' 원칙).
 - 검증: --incremental(카드1 제거→신규1만 생성→97 복귀), POST 엔드포인트 97카드 반환, web build 통과. 스냅샷은 테스트 후 git 복원.
+
+## 2026-06-22 — 검토 도우미를 테이블에 통합(별도 패널 제거)
+
+별도 ReviewPanel + 전체 테이블이 둘 다 떠서 산만 → 패널 제거하고 제안을 테이블 행에 인라인 통합(한 화면).
+- ReviewPanel 컴포넌트·렌더 삭제(배치 다중선택도 함께 제거 — 단순화). 제안 새로고침·재빌드 버튼은 toolbar로 이동.
+- Row: card(제안) prop 추가. 검토대기(pending/unreviewed) 행에만 액션칼럼에 인라인 제안 표시(confidence 배지 + category·action + [이대로] + 근거 tooltip). [이대로]=parseAction→applyDecision(merge target 모르면 모달). 행 승인/거부도 applyDecision 경유로 통일(pending 승인 시 '재빌드 시 노드화' 토스트).
+- cardByName 맵으로 인덱싱. liveCards/approvedNames/CONF_RANK 제거.
+- styles: .lex-sugg/.lex-sugg-apply 추가(rv-conf 배지 재사용). rv-* 패널 CSS는 무해해 잔존.
+- web build 통과(JS 축소).

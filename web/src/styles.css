@@ -410,6 +410,24 @@ textarea {
   padding: 24px;
   color: var(--muted);
 }
+/* 행 인라인 도우미 제안 */
+.lex-sugg {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+.lex-sugg-apply {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.lex-sugg-apply:hover:not(:disabled) {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
 /* 행 액션 — 승인/거부/병합 */
 .lex-actions {
   display: flex;
