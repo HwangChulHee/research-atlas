@@ -82,6 +82,7 @@ export default function Graph() {
   const [collectInput, setCollectInput] = useState("");
   const [pending, setPending] = useState(false);
   const [chips, setChips] = useState([]); // 활성 조건 칩 라벨들
+  const [filterState, setFilterState] = useState({}); // filter 차원의 단일 진실원 {ptype?,domain?,date_after?}
   const msgEndRef = useRef(null);
 
   // --- 수집 에이전트 흐름 상태 ---
@@ -289,14 +290,6 @@ export default function Graph() {
     return { ids, key, ancestors: ancestors.size, descendants: descendants.size };
   }
 
-  function filterSummary(args) {
-    const parts = [];
-    if (args.ptype) parts.push(args.ptype);
-    if (args.domain) parts.push(args.domain);
-    if (args.date_after) parts.push(`${args.date_after} 이후`);
-    return parts.join(" · ") || "전체";
-  }
-
   function filterChips(args) {
     const c = [];
     if (args.ptype) c.push(`ptype=${args.ptype}`);
@@ -307,6 +300,39 @@ export default function Graph() {
 
   function addAgent(text) {
     setMessages((m) => [...m, { role: "agent", text }]);
+  }
+
+  // filter 차원의 단일 진실원. 드롭다운·채팅 filter·초기화 모두 이걸 호출(effect 경쟁 회피).
+  // 빈 값(undefined) 키는 정리해서, 모두 비면 전체 복원으로 취급.
+  function setFilter(next) {
+    const clean = {};
+    if (next.ptype) clean.ptype = next.ptype;
+    if (next.domain) clean.domain = next.domain;
+    if (next.date_after) clean.date_after = next.date_after;
+    setFilterState(clean);
+    if (Object.keys(clean).length === 0) {
+      apiRef.current && apiRef.current.highlight(null);
+      setChips([]);
+      return;
+    }
+    const ids = applyFilter(clean);
+    if (ids.size === 0) {
+      addAgent("조건에 맞는 노드가 없음"); // 강조 변경 없이 유지
+      return;
+    }
+    apiRef.current.highlight(ids);
+    setChips(filterChips(clean));
+  }
+
+  // 노드 클릭 → 디테일 패널의 계보 버튼. selected.id는 이미 rk(노드 id)라 하이픈 이슈 무관.
+  function runLineageFromNode(id, dir) {
+    const r = lineageSets(id, dir);
+    if (!r) return;
+    apiRef.current.highlight(r.ids);
+    const canonical = dataRef.current.nodes[r.key].canonical;
+    setChips([`lineage=${canonical}`]);
+    setFilterState({}); // 드롭다운 표시만 비움(highlight는 위에서 직접 세팅 — effect 안 터짐)
+    addAgent(`'${canonical}' 계보 강조 (조상 ${r.ancestors} · 자손 ${r.descendants})`);
   }
 
   // 수집 탭 전용 에이전트 메시지(명령 탭 이력과 분리).
@@ -320,14 +346,7 @@ export default function Graph() {
       return;
     }
     if (res.tool === "filter") {
-      const ids = applyFilter(res.args || {});
-      if (ids.size === 0) {
-        addAgent("조건에 맞는 노드가 없음"); // 강조 변경 없이 유지
-        return;
-      }
-      apiRef.current.highlight(ids);
-      setChips(filterChips(res.args || {}));
-      addAgent(`${filterSummary(res.args || {})} · ${ids.size}개 강조`);
+      setFilter(res.args || {}); // 드롭다운과 단일 진실원 공유
       return;
     }
     if (res.tool === "focus_lineage") {
@@ -340,15 +359,14 @@ export default function Graph() {
       apiRef.current.highlight(r.ids);
       const canonical = dataRef.current.nodes[r.key].canonical;
       setChips([`lineage=${canonical}`]);
+      setFilterState({}); // 드롭다운 표시 동기(highlight는 위에서 직접 세팅)
       addAgent(
         `'${canonical}' 계보 강조 (조상 ${r.ancestors} · 자손 ${r.descendants})`
       );
       return;
     }
     if (res.tool === "reset") {
-      apiRef.current.highlight(null);
-      setChips([]);
-      addAgent("전체 표시로 복원");
+      setFilter({}); // 필터·계보·의미검색 강조 모두 해제
       return;
     }
     if (res.tool === "semantic_search") {
@@ -365,6 +383,7 @@ export default function Graph() {
       }
       apiRef.current.highlight(ids);
       setChips([`검색="${a.query}"`]);
+      setFilterState({}); // 드롭다운 표시 동기
       addAgent(`'${a.query}' 의미검색 · 개념 ${concepts.length} · 논문 ${papers.length} 강조`);
       // 논문 hit가 있는데 논문 표시가 꺼져 있으면 안내(토글은 사용자 몫 — 자동 변경 안 함).
       if (papers.length > 0 && !showPapers) {
@@ -466,8 +485,7 @@ export default function Graph() {
   }
 
   function clearHighlight() {
-    apiRef.current && apiRef.current.highlight(null);
-    setChips([]);
+    setFilter({}); // 전체 복원 — highlight·chips·드롭다운 모두 해제
   }
 
   // 탭별 비우기. 명령 탭: messages+chips+highlight 초기화. 수집 탭: collectMessages+흐름 초기화.
@@ -476,6 +494,7 @@ export default function Graph() {
     if (activeTab === "command") {
       setMessages([]);
       setChips([]);
+      setFilterState({});
       apiRef.current && apiRef.current.highlight(null);
       localStorage.removeItem("chatMessages");
     } else {
@@ -487,6 +506,23 @@ export default function Graph() {
       localStorage.removeItem("collectThread");
     }
   }
+
+  // filter 드롭다운 옵션 — 로드된 개념 노드에서 동적 생성(그래프 실제 값과 항상 일치).
+  const concepts = Object.values(dataRef.current?.nodes || {}).filter(
+    (n) => n.type !== "paper"
+  );
+  const ptypeOpts = [...new Set(concepts.map((n) => n.ptype).filter(Boolean))].sort();
+  const domainOpts = [...new Set(concepts.map((n) => n.domain).filter(Boolean))].sort();
+  const yearOpts = [
+    ...new Set(
+      concepts
+        .map((n) => {
+          const ym = nodeMonth(n);
+          return ym ? ym.slice(0, 4) : null;
+        })
+        .filter(Boolean)
+    ),
+  ].sort();
 
   return (
     <div className="graph-page">
@@ -533,6 +569,57 @@ export default function Graph() {
             </div>
           )}
         </form>
+        <div className="graph-controls">
+          <select
+            value={filterState.ptype || ""}
+            onChange={(e) =>
+              setFilter({ ...filterState, ptype: e.target.value || undefined })
+            }
+            title="유형으로 필터"
+          >
+            <option value="">유형 전체</option>
+            {ptypeOpts.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </select>
+          <select
+            value={filterState.domain || ""}
+            onChange={(e) =>
+              setFilter({ ...filterState, domain: e.target.value || undefined })
+            }
+            title="분야로 필터"
+          >
+            <option value="">분야 전체</option>
+            {domainOpts.map((d) => (
+              <option key={d} value={d}>
+                {d}
+              </option>
+            ))}
+          </select>
+          <select
+            value={filterState.date_after || ""}
+            onChange={(e) =>
+              setFilter({ ...filterState, date_after: e.target.value || undefined })
+            }
+            title="시점으로 필터"
+          >
+            <option value="">시점 전체</option>
+            {yearOpts.map((y) => (
+              <option key={y} value={`${y}-01`}>
+                {y} 이후
+              </option>
+            ))}
+          </select>
+          <button
+            className="graph-controls-reset"
+            onClick={() => setFilter({})}
+            title="필터·강조 초기화"
+          >
+            초기화
+          </button>
+        </div>
         <div className="graph-legend">
           <div>
             <span className="dot" style={{ background: TYPE_COLOR.technique }} />
@@ -622,6 +709,18 @@ export default function Graph() {
                   {selected.domain && selected.domain !== "general" && (
                     <span className="muted">domain: {selected.domain}</span>
                   )}
+                </div>
+                <div className="detail-lineage">
+                  <span className="muted">계보</span>
+                  <button onClick={() => runLineageFromNode(selected.id, "ancestors")}>
+                    조상
+                  </button>
+                  <button onClick={() => runLineageFromNode(selected.id, "descendants")}>
+                    자손
+                  </button>
+                  <button onClick={() => runLineageFromNode(selected.id, "both")}>
+                    양쪽
+                  </button>
                 </div>
                 <div className="detail-def">
                   {selected.definition ||

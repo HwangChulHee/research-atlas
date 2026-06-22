@@ -627,3 +627,13 @@ focus_lineage가 canonical("Self-RAG")로 들어오는데 lineageSets가 toLower
 - 상태 필터를 세그먼티드 컨트롤로(--hover 배경 그룹 + 활성칩 패널+그림자). 검색창 폭, 우측에 "총 N개 · 표시 M" 카운트(재빌드 자리 대체).
 - web build 통과. (스크린샷 툴 없어 빌드/코드 확인 — 실물 dev.sh 권장.)
 - 참고: 재빌드 버튼 제거로, pending→approved 승인이 그래프에 반영되려면 CLI 재빌드(normalize_v2→load) 필요. reject/정의수정/병합은 기존대로 증분 동기화됨.
+
+## 2026-06-22 — 지형도 수동 컨트롤(filter 드롭다운 + 노드클릭 계보 + 초기화)
+
+채팅으로만 되던 조작을 수동 UI로도. 새 기능 아님 — 기존 applyFilter/lineageSets/highlight에 수동 진입점만 추가. 프론트 전용(Graph.jsx+styles.css).
+- 상태모델: filterState({ptype?,domain?,date_after?})를 filter 차원 단일 진실원. setFilter(next)가 정리→빈값이면 전체복원, 아니면 applyFilter→highlight+chips. 드롭다운·채팅 filter·초기화 모두 setFilter 경유(effect 경쟁 없음). lineage/semantic은 자기 highlight 직접 세팅+setFilterState({})(표시만 동기, effect 안 터짐).
+- handleResult: filter→setFilter(args), reset→setFilter({}) 로 교체(중복 제거, filterSummary 삭제). focus_lineage/semantic_search 끝에 setFilterState({}).
+- 컨트롤 바(하단중앙 플로팅): 유형/분야/시점 드롭다운(옵션은 로드된 개념노드에서 동적 생성 — 하드코딩 없음) + 초기화. filterState로 controlled → 채팅↔드롭다운 양방향 동기.
+- 노드클릭 계보: 개념 디테일 패널에 [조상][자손][양쪽] → runLineageFromNode(selected.id, dir). selected.id는 rk라 하이픈 무관. 논문 패널엔 없음.
+- 칩 ✕/명령탭 비우기도 filterState 리셋 동기.
+- 검증(API+그래프 재현): 옵션 동적(ptype 3·domain 6·year 2017~2026), medical=3, 2024이후=54, technique+2024 AND=52. web build 통과.

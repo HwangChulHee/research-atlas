@@ -416,6 +416,45 @@ textarea {
   box-shadow: var(--shadow);
 }
 
+/* 수동 filter 컨트롤 바 — 하단 중앙 플로팅 */
+.graph-controls {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  z-index: 10;
+}
+.graph-controls select {
+  min-width: 96px;
+  max-width: 150px;
+}
+.graph-controls-reset {
+  color: var(--muted);
+}
+/* 디테일 패널 계보 버튼 */
+.detail-lineage {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+}
+.detail-lineage span {
+  font-size: 12px;
+  margin-right: 2px;
+}
+.detail-lineage button {
+  padding: 3px 10px;
+  font-size: 12px;
+}
+
 /* --- 노드 디테일 패널 --- */
 .graph-panel h3 {
   margin: 0 0 8px;
