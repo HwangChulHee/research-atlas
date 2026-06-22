@@ -1,0 +1,8 @@
+{
+  "builds_on": [
+    "Retrieval-Augmented Generation",
+    "RAGAS",
+    "TruLens",
+    "ARES"
+  ]
+}

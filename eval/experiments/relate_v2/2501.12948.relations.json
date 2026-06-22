@@ -1,0 +1,9 @@
+{
+  "builds_on": [
+    "DeepSeek-V3-Base",
+    "Group Relative Policy Optimization",
+    "supervised fine-tuning",
+    "reinforcement learning",
+    "rejection sampling"
+  ]
+}
