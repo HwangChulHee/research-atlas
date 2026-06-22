@@ -484,22 +484,6 @@ function ConceptCard({ item, card, onPatch, onDecision, onSetStatus, onMerge }) 
         </select>
         <span className="cc-spacer" />
         <div className="cc-actions">
-          <button
-            className="cc-approve"
-            disabled={item.status === "approved"}
-            onClick={() => onDecision(item.name, "approve", null)}
-            title="승인 → 그래프에 표시"
-          >
-            ✓ 승인
-          </button>
-          <button
-            className="cc-reject"
-            disabled={item.status === "rejected"}
-            onClick={() => onDecision(item.name, "reject", null)}
-            title="거부 → 그래프에서 제거"
-          >
-            ✕ 거부
-          </button>
           <button onClick={() => onMerge(item.name)} title="다른 개념의 alias로 병합">
             ⤳ 병합
           </button>
@@ -509,7 +493,9 @@ function ConceptCard({ item, card, onPatch, onDecision, onSetStatus, onMerge }) 
       {/* 근거 — 항상 보임(판단 1초) */}
       <div className="cc-evidence">
         {definition ? (
-          <p className="cc-def">{definition}</p>
+          <p className="cc-def" title={definition}>
+            {definition}
+          </p>
         ) : (
           <p className="cc-def muted">정의 없음(원논문 미수록)</p>
         )}

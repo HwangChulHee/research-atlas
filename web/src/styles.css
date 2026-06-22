@@ -166,7 +166,16 @@ textarea {
   flex: 1;
   min-height: 0;
   overflow: auto;
-  padding: 16px;
+  padding: 24px;
+}
+/* 넓은 화면에서 줄 길이 제한(가독) — 주요 블록 중앙정렬 */
+.lex-header,
+.lex-toolbar,
+.lex-pager,
+.lex-list {
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .lex-header {
   margin-bottom: 14px;
@@ -474,6 +483,11 @@ textarea {
 }
 .cc-def {
   margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .cc-papers {
   margin-top: 3px;
@@ -1419,6 +1433,7 @@ body.resizing-pane {
   justify-content: center;
   gap: 10px;
   color: var(--muted);
+  background: var(--bg); /* 안정 전 휘날리는 그래프를 가림 */
   z-index: 8;
 }
 

@@ -741,3 +741,13 @@ UI 가독성: 전반적으로 글자가 작다는 피드백 → base 14→15px +
 ## 2026-06-22 — 사전 수동 상태 변경 복원
 
 카드 상단 상태 배지를 편집 가능한 select로 — 4개 상태(approved/unreviewed/pending/rejected) 수동 변경(특히 pending/unreviewed로 되돌리기). setStatus 라우팅: approved/rejected는 applyDecision(토스트·Neo4j 동기), pending/unreviewed는 status 패치. 빠른 승인/거부 버튼은 triage용으로 유지. web build 통과.
+
+## 2026-06-22 — 지형도 시작 안정화 + 사전 카드 정리(로고도 키움)
+
+로고: 워드마크 18→22, 마크 22→28.
+지형도 "시작 시 정신없음": force 시뮬레이션 휘날림을 가림 — 로딩 오버레이를 불투명(var(--bg))으로, ready를 데이터로드 직후가 아니라 **시뮬레이션 안정(sim end) 후**로 미뤄 정돈된 그래프만 노출(안전타임아웃 4s). 안정 시 즉시 fitView(애니 없이). 엣지 옅게(opacity 0.65→0.42, width 1.8→1.4). showPapers 토글 때도 동일.
+사전(#5/#6/#3):
+- #5 상태 select ↔ 승인/거부 버튼 중복 → 승인/거부 버튼 제거. 상태 select(4개)가 단일 상태 컨트롤, 빠른 적용은 제안의 [이대로]. 병합 버튼 유지.
+- #6 긴 정의 3줄 클램프(-webkit-line-clamp) + 전체는 title 툴팁.
+- #3 넓은 화면 줄길이 제한 — 주요 블록 max-width 1080 중앙정렬.
+web build 통과.

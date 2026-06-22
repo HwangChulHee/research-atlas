@@ -103,11 +103,13 @@ export default function Graph() {
   useEffect(() => {
     setSelected(null);
     setChips([]);
+    setReady(false); // 안정될 때까지 로딩 오버레이로 가림(휘날리는 모션 숨김)
     getGraph(showPapers)
       .then((data) => {
         dataRef.current = data;
-        apiRef.current = render(areaRef.current, svgRef.current, data, setSelected);
-        setReady(true); // apiRef 준비 완료 → 들어온 질의 자동 실행 가능
+        // ready는 시뮬레이션이 안정(settle)된 뒤에 — 그제서야 정돈된 그래프를 보여줌.
+        apiRef.current = render(areaRef.current, svgRef.current, data, setSelected,
+          () => setReady(true));
       })
       .catch((e) => setError(e.message));
     return () => apiRef.current && apiRef.current.sim.stop();
@@ -1079,7 +1081,7 @@ function CollectCard({ collect, onResume, reviseOpen, setReviseOpen, reviseText,
   return null;
 }
 
-function render(container, svgEl, data, setSelected) {
+function render(container, svgEl, data, setSelected, onSettled) {
   const W = container.clientWidth;
   const H = container.clientHeight;
   const isPaper = (d) => d.type === "paper";
@@ -1151,8 +1153,8 @@ function render(container, svgEl, data, setSelected) {
     .attr("stroke", (d) =>
       d.kind === "builds_on" ? TYPE_COLOR[d.from_type] || "#888" : "#cbd5e1"
     )
-    .attr("stroke-width", (d) => (d.kind === "builds_on" ? 1.8 : 1))
-    .attr("stroke-opacity", (d) => (d.kind === "builds_on" ? 0.65 : 0.5))
+    .attr("stroke-width", (d) => (d.kind === "builds_on" ? 1.4 : 1))
+    .attr("stroke-opacity", (d) => (d.kind === "builds_on" ? 0.42 : 0.4))
     .attr("stroke-dasharray", (d) => (d.kind === "builds_on" ? null : "2 3"))
     .attr("marker-end", (d) =>
       d.kind === "builds_on" ? `url(#arr-${d.from_type || "technique"})` : null
@@ -1244,14 +1246,23 @@ function render(container, svgEl, data, setSelected) {
     (animate ? svg.transition().duration(500) : svg).call(zoom.transform, t);
   }
 
-  // 초기 시뮬레이션이 안정되면(약 2초) 전체가 보이도록 자동 맞춤.
+  // 초기 시뮬레이션이 안정되면(약 2초) 전체가 보이도록 자동 맞춤 + onSettled로 노출 신호.
   // 드래그 후 재안정 때는 재맞춤하지 않음(사용자 시점 보존).
   let didFit = false;
   sim.on("end", () => {
     if (didFit) return;
     didFit = true;
-    fitView();
+    fitView(false); // 즉시 맞춤(애니메이션 없이) — 노출 직전이라 부드럽게
+    onSettled && onSettled();
   });
+  // 안전장치: 혹시 end가 안 와도 일정 시간 뒤 노출(무한 로딩 방지)
+  setTimeout(() => {
+    if (!didFit) {
+      didFit = true;
+      fitView(false);
+    }
+    onSettled && onSettled();
+  }, 4000);
 
   // 검색→포커스: 노드를 화면 중앙으로 이동(transition)하고 강조
   const nodeById = new Map(nodes.map((n) => [n.id, n]));
@@ -1290,7 +1301,7 @@ function render(container, svgEl, data, setSelected) {
     resetStrokes();
     if (!ids) {
       node.attr("opacity", 1);
-      link.style("display", null).attr("stroke-opacity", 0.65);
+      link.style("display", null).attr("stroke-opacity", 0.42);
       return;
     }
     node.attr("opacity", (d) => (ids.has(d.id) ? 1 : 0.18));
