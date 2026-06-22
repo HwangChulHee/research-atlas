@@ -74,14 +74,35 @@ TOOLS = [
         "type": "function",
         "function": {
             "name": "collect",
-            "description": "arXiv에서 특정 주제의 논문을 검색·수집해 지도에 추가하려는 요청. "
-                           "'~논문 가져와/수집해/찾아와/모아줘' 류. 화면 조작(보여줘/강조)과 구분된다.",
+            "description": "arXiv에서 특정 주제의 논문을 *새로* 검색·수집해 지도에 추가하려는 요청. "
+                           "'~논문 가져와/수집해/긁어와/모아줘/추가' 류(명시적 신규 수집 동사일 때만). "
+                           "화면 조작(보여줘/강조)이나 기존 노드 검색(semantic_search)과 구분된다.",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "topic_text": {"type": "string", "description": "수집 요청 원문(그대로)"},
                 },
                 "required": ["topic_text"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "semantic_search",
+            "description": (
+                "사용자가 찾고 싶은 주제·아이디어·문제를 자유 문장으로 대충 묘사하면, "
+                "의미(임베딩) 유사도로 지도에 *이미 있는* 개념·논문을 찾아 강조한다. "
+                "정확한 노드 이름을 모를 때 쓴다. 예: '검색증강하면서 추론하는 방법 있어?', "
+                "'~비슷한 논문 찾아줘', '이런 주제 뭐 있지?'. "
+                "arXiv에서 새로 가져오지 않는다(그건 collect)."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {"type": "string", "description": "찾고 싶은 주제 묘사(원문 그대로)"},
+                },
+                "required": ["query"],
             },
         },
     },
@@ -94,13 +115,28 @@ def load_node_names():
     return concept_names()
 
 
-SMOKE_QUERIES = [
-    "벤치마크만 보여줘",                  # 기대: filter(ptype=benchmark)
-    "RAG 계보만 보여줘",                  # 기대: focus_lineage(node=RAG계열 canonical)
-    "2024년 이후 나온 것만",              # 기대: filter(date_after=2024-01)
-    "medical 도메인 기법만",              # 기대: filter(ptype=technique, domain=medical)
-    "다 보여줘",                          # 기대: reset()
+# 라우팅 스모크 (Type B). (입력, 기대 tool). 1·6은 절대 collect로 새면 안 되는 하드 기준.
+SMOKE_CASES = [
+    ("검색증강 생성하면서 추론하는 방법 있어?", "semantic_search"),  # 자유 묘사, 정확 노드명 없음
+    ("RAG 계보 보여줘", "focus_lineage"),                          # 정확 노드 + '계보' 신호
+    ("2024년 이후 medical 논문만", "filter"),                       # 연도+분야 구조 속성
+    ("그 주제 논문 더 모아줘", "collect"),                          # '모아줘' = arXiv 신규 수집
+    ("전체 다시 보여줘", "reset"),                                  # 필터 해제
+    ("RAG 관련 논문 찾아줘", "semantic_search"),                    # '찾아줘'=기존 중 찾기 (counter)
 ]
+
+
+def route_one(system, q):
+    """질의 1개 → 호출된 tool 이름(없으면 None)."""
+    resp = client.chat.completions.create(
+        model=MODEL,
+        messages=[{"role": "system", "content": system}, {"role": "user", "content": q}],
+        tools=TOOLS,
+    )
+    msg = resp.choices[0].message
+    if msg.tool_calls:
+        return msg.tool_calls[0].function.name
+    return None
 
 
 def main():
@@ -108,18 +144,14 @@ def main():
     system = build_system_prompt(names)
     print(f"노드 {len(names)}개 로드, 시스템 프롬프트 {len(system)}자\n")
 
-    for q in SMOKE_QUERIES:
-        resp = client.chat.completions.create(
-            model=MODEL,
-            messages=[{"role": "system", "content": system}, {"role": "user", "content": q}],
-            tools=TOOLS,
-        )
-        msg = resp.choices[0].message
-        if msg.tool_calls:
-            for tc in msg.tool_calls:
-                print(f'"{q}"\n  -> {tc.function.name}({tc.function.arguments})\n')
-        else:
-            print(f'"{q}"\n  -> [tool call 없음] {msg.content[:80]}\n')
+    npass = 0
+    for q, expect in SMOKE_CASES:
+        got = route_one(system, q)
+        ok = got == expect
+        npass += ok
+        print(f'[{"PASS" if ok else "FAIL"}] "{q}"\n        기대={expect}  실제={got}')
+    print(f"\n스모크: {npass}/{len(SMOKE_CASES)} PASS", "✅" if npass == len(SMOKE_CASES) else "❌")
+    sys.exit(0 if npass == len(SMOKE_CASES) else 1)
 
 
 if __name__ == "__main__":

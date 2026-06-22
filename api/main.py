@@ -300,6 +300,25 @@ load_dotenv(ROOT / ".env")
 _oai = OpenAI()
 COMMAND_MODEL = "gpt-5.4-mini"
 
+# 의미검색용 임베딩 행렬 캐시(1회 로드). agent_collect의 검증된 부품 재사용 — 코사인/임베딩 재구현 없음.
+from agent_collect import load_embeddings, embed_query, match  # noqa: E402
+
+_EMB = None
+
+
+def _emb():
+    global _EMB
+    if _EMB is None:
+        _EMB = load_embeddings()  # (model, norm, (ckeys,cmat), (pkeys,pmat))
+    return _EMB
+
+
+def _to_front_id(hit_key: str) -> str:
+    """매칭 키(concept:<rk> / paper:<id>) → 프론트 graph_view 노드 id."""
+    if hit_key.startswith("concept:"):
+        return hit_key.split("concept:", 1)[1]  # 개념은 접두사 제거(프론트는 rk로 키)
+    return hit_key                               # 논문은 paper:<id> 그대로
+
 
 @app.post("/api/command")
 def command(payload: dict = Body(...)):
@@ -333,6 +352,28 @@ def command(payload: dict = Body(...)):
         args = json.loads(tc.function.arguments or "{}")
     except json.JSONDecodeError:
         raise HTTPException(502, f"tool 인자 파싱 실패: {tc.function.arguments}")
+
+    # semantic_search: 백엔드에서 임베딩 매칭까지 끝내고 하이라이트할 id 목록을 돌려준다.
+    # (프론트엔 임베딩이 없음.) 키 매핑 후 라이브 그래프에 실재하는 id만 — 유령 노드 방지.
+    if tc.function.name == "semantic_search":
+        query = (args.get("query") or text).strip()
+        model, _norm, (ckeys, cmat), (pkeys, pmat) = _emb()
+        q = embed_query(query, model)
+        chits = match(q, ckeys, cmat, top=8, floor=0.30)   # 개념
+        phits = match(q, pkeys, pmat, top=8, floor=0.30)   # 논문
+        # 검증용 노드셋은 논문 포함(papers=True). 기본 view는 papers=False라 논문 id가 없음.
+        live_nodes = graph_view_neo4j(include_papers=True)["nodes"]
+
+        def pack(hits):
+            out = []
+            for k, s in hits:
+                fid = _to_front_id(k)
+                if fid in live_nodes:
+                    out.append({"id": fid, "score": round(s, 3)})
+            return out
+
+        return {"tool": "semantic_search",
+                "args": {"query": query, "concepts": pack(chits), "papers": pack(phits)}}
 
     # focus_lineage의 node가 실재하는지 백엔드에서 한 번 더 검증
     if tc.function.name == "focus_lineage":

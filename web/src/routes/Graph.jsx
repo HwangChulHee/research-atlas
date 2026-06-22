@@ -293,6 +293,27 @@ export default function Graph() {
       addAgent("전체 표시로 복원");
       return;
     }
+    if (res.tool === "semantic_search") {
+      const a = res.args || {};
+      const concepts = a.concepts || [];
+      const papers = a.papers || [];
+      const ids = new Set([
+        ...concepts.map((h) => h.id),
+        ...papers.map((h) => h.id),
+      ]);
+      if (ids.size === 0) {
+        addAgent(`'${a.query}'와(과) 유사한 노드 없음`);
+        return;
+      }
+      apiRef.current.highlight(ids);
+      setChips([`검색="${a.query}"`]);
+      addAgent(`'${a.query}' 의미검색 · 개념 ${concepts.length} · 논문 ${papers.length} 강조`);
+      // 논문 hit가 있는데 논문 표시가 꺼져 있으면 안내(토글은 사용자 몫 — 자동 변경 안 함).
+      if (papers.length > 0 && !showPapers) {
+        addAgent(`논문 ${papers.length}개도 매칭됨 — '논문 보기'를 켜면 보입니다.`);
+      }
+      return;
+    }
     addAgent(`알 수 없는 도구: ${res.tool}`);
   }
 

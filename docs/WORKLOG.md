@@ -547,3 +547,21 @@ frozen 정답지 50편 vs 파이프라인 출력(`data/outputs/{id}.relations.js
 **mini→full 변화**: builds_on 집합 변경 69/91편, 엣지 총합 196→137. full이 더 보수적·정밀(선조 나열 FP 제거 = 정밀도 +0.20 출처). 예: Attention paper builds_on []로.
 
 산출물: src/config·extract·relate, data/outputs/*.relations.json(91 교체), normalized_v2.json, node_embeddings_v2.json, Neo4j 적재, eval/reports/full_promotion.md, eval/run_relate_full.py, eval/runs/score_buildson_20260622-171113.*.
+
+## 2026-06-22 — 의미검색을 명령창 오케스트레이터에 배선
+
+지형도 명령창에 사용자가 주제를 자유 문장으로 묘사하면, 필터 에이전트가 임베딩 유사도로 지도에 *이미 있는* 개념·논문을 찾아 하이라이트. 새 탭 없음, collect(arXiv 신규 수집)와 구분. **읽기 전용 + 배선** — 코사인/임베딩 로직 재구현 없이 agent_collect의 검증 부품(load_embeddings/embed_query/match) 재사용.
+
+**변경 4파일**:
+- `agent_filter.py`: TOOLS에 `semantic_search` 추가. 스모크를 Type B 6케이스 PASS/FAIL로 교체(1·6은 collect로 새면 안 되는 하드 기준).
+- `prompts/filter/command.py`: 라우팅 경계 명시 — filter는 구조속성(type/domain/year)만이며 인자 못 채우면 금지(자유 주제 묘사 → semantic_search), 명시적 fetch 동사(모아줘/수집/긁어와/추가)는 collect로 decisive, 그 외 애매하면 semantic_search 기본.
+- `api/main.py`: 임베딩 행렬 1회 캐시(`_emb`) + 키매핑(`_to_front_id`: concept:rk→rk, paper:는 그대로). `/api/command`에 semantic_search 분기 — 매칭(top8/floor0.30) 후 **라이브 그래프(papers=True 노드셋)에 실재하는 id만** 반환(유령노드 방지). 논문 검증은 papers=False 기본뷰엔 논문이 없어 papers=True로 별도 조회.
+- `web/src/routes/Graph.jsx`: handleResult에 semantic_search 분기 — 기존 `highlight(ids)` 재사용, 칩 `검색="..."`, 무매칭 시 "유사한 노드 없음", 논문 hit 있는데 '논문 보기' 꺼져있으면 안내(자동 토글 안 함).
+
+**핵심 함정(키 공간 2개)**: 매칭은 `concept:rk`/`paper:id`, 프론트 graph_view는 개념을 접두사 없이(rk), 논문은 `paper:id`. 접두사 제거 매핑 + 실재 노드 검증.
+
+**열린 판단**: semantic_search vs collect 애매 시 기본=semantic_search 유지(수집은 비용·파괴적). 단 명시적 fetch 동사는 collect 우선(스모크 #4 보장).
+
+**검증**: 라우팅 스모크 6/6 PASS. 라이브 "검색하면서 추론하는 방법 있어?" → semantic_search, 개념6+논문6 실제 id 하이라이트. off-topic "양자컴퓨터…" → 빈 결과(→유사 노드 없음). web build 통과.
+
+실행: `uv run python agent_filter.py`(라우팅 스모크). 라이브: dev.sh.
