@@ -95,11 +95,18 @@ a {
 }
 .nav a {
   color: var(--muted);
-  padding: 4px 2px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.nav a:hover {
+  color: var(--text);
+  background: var(--hover);
 }
 .nav a.active {
-  color: var(--text);
-  border-bottom: 2px solid var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
 }
 
 /* --- generic --- */
@@ -112,6 +119,24 @@ button {
   font-family: inherit;
   font-size: 14px;
   cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+input,
+select,
+textarea {
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+/* 키보드 포커스 표시(접근성) — 마우스 클릭엔 안 뜨고 탭 이동 때만 */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 28%, transparent);
 }
 button:hover:not(:disabled) {
   border-color: var(--accent);
@@ -977,4 +1002,77 @@ body.resizing-pane {
 .chat-input button:hover:not(:disabled) {
   background: var(--accent);
   filter: brightness(0.95);
+}
+
+/* --- 지형도 로딩 오버레이 --- */
+.graph-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--muted);
+  z-index: 8;
+}
+
+/* --- 반응형 --- */
+@media (max-width: 820px) {
+  .nav {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    padding: 8px 12px;
+  }
+  .nav .brand {
+    margin-right: 8px;
+  }
+  /* 지형도: 그래프 위 / 채팅 아래로 세로 적층 */
+  .graph-page {
+    flex-direction: column;
+  }
+  .graph-area {
+    flex: 1 1 55%;
+    min-height: 280px;
+  }
+  .pane-divider {
+    display: none;
+  }
+  .chat-panel {
+    flex: 1 1 45%;
+    width: 100% !important;
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+  /* 사전 테이블: 가로 스크롤 보장 */
+  .lex-table {
+    min-width: 720px;
+  }
+  /* 사용법: 카드 1열 */
+  .usage-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 520px) {
+  .graph-search {
+    width: calc(100% - 24px);
+  }
+  .graph-controls {
+    flex-wrap: wrap;
+    max-width: calc(100% - 24px);
+    justify-content: center;
+  }
+  .graph-panel {
+    width: calc(100% - 24px);
+  }
+}
+
+/* --- 모션 민감 사용자 배려 --- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

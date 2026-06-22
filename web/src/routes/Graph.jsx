@@ -528,6 +528,11 @@ export default function Graph() {
     <div className="graph-page">
       <div className="graph-area" ref={areaRef}>
         <svg id="graph-svg" ref={svgRef} />
+        {!ready && !error && (
+          <div className="graph-loading">
+            <span className="spinner" /> 지형도 불러오는 중…
+          </div>
+        )}
         <button
           className="graph-fit"
           title="전체 보기"
