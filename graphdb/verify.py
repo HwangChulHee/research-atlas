@@ -154,7 +154,7 @@ def audit() -> int:
       E 노드 드리프트            (재빌드 오라클 개념집합 ↔ Neo4j 개념집합 불일치; row2 '있어야/없어야' 포함)
     자동수정 금지 — 위상 정확도가 정체성. 사람이 보고 판단. 발견 시 exit 1.
     """
-    import normalize_core as nc
+    from src import normalize_core as nc
     from graphdb.conn import get_driver
 
     lex = json.loads((config.DATA_DIR / "lexicon.json").read_text())["techniques"]
