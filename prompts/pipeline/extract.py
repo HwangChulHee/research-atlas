@@ -24,7 +24,7 @@ from prompts.paper_type_criteria import PAPER_TYPE_CRITERIA
 #   (여기에 PAPER_TYPE_CRITERIA 5개 유형 정의가 들어감)
 #
 #   예시 (MedGraphRAG — GraphRAG의 의료 응용):
-#   { ... title/task/defines/uses/problem/domain 예시 ... }
+#   { ... title/task/defines/uses/problem/domain/paper_type 예시 ... }
 # ──────────────────────────────────────────────────────
 EXTRACT_SYSTEM = """You extract the CONTENT of an LLM/NLP/RAG/agent paper.
 Given title, abstract, introduction, extract these fields. Do NOT judge relations to other papers here.
@@ -48,7 +48,8 @@ Example (MedGraphRAG — a medical application of GraphRAG):
   "defines": [{"name": "MedGraphRAG", "definition": "A graph-based RAG framework for the medical domain using triple graph construction and U-retrieval."}],
   "uses": ["triple graph construction", "U-retrieval"],
   "problem": "General RAG lacks the safety and evidence grounding needed for clinical use.",
-  "domain": "medical"
+  "domain": "medical",
+  "paper_type": "technique"
 }
 """
 
@@ -97,4 +98,3 @@ EXTRACT_SCHEMA = {
         "additionalProperties": False,
     },
 }
-
