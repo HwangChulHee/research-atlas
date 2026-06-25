@@ -1,0 +1,527 @@
+paper_name,arxiv_id,survey_source,section_tag,in_corpus
+AVATAR: Optimizing LLM Agents for Tool Usage via Contrastive Reasoning,,s1,RAG강화추론,no
+Beyond Single-Shot: Multi-Step Tool Retrieval via Query Planning,2601.07782,s1,RAG강화추론,no
+D2Plan: A Dual-Agent Framework for Dynamic Global Planning in Web Search,,s1,RAG강화추론,no
+Distillation and Refinement of Reasoning in Small Language Models for Document Re-ranking,2504.03947,s1,RAG강화추론,no
+Dr.ICL: Demonstration-Retrieved In-context Learning,2305.14128,s1,RAG강화추론,no
+Efficient Tool Use with Chain-of-Abstraction Reasoning,,s1,RAG강화추론,no
+FRVA: Fact-Retrieval and Verification Augmented Entailment Tree Generation for Explainable Question Answering,,s1,RAG강화추론,no
+HiPRAG: A Hybrid Inference Framework for Retrieval-Augmented Generation,2510.07794,s1,RAG강화추론,yes
+Large Language Models As Tool Makers,2305.17126,s1,RAG강화추론,no
+Learning to Retrieve In-Context Examples for Large Language Models,,s1,RAG강화추론,no
+Making Language Models Better Tool Learners with Execution Feedback,,s1,RAG강화추론,no
+Meta-Reasoning Improves Tool Use in Large Language Models,2411.04535,s1,RAG강화추론,no
+Mixture of Demonstrations for In-Context Learning,,s1,RAG강화추론,no
+MORE: Multi-mOdal REtrieval Augmented Generative Commonsense Reasoning,,s1,RAG강화추론,no
+OPEN-RAG: Enhanced Retrieval-Augmented Reasoning with Open-Source Large Language Models,,s1,RAG강화추론,no
+OpenRAG: Optimizing RAG End-to-End viaIn-ContextRetrievalLearning,,s1,RAG강화추론,no
+PACAR: Automated Fact-Checking with Planning and Customized Action Reasoning using Large Language Models,,s1,RAG강화추론,no
+PERC: Plan-As-Query Example Retrieval for Underrepresented Code Generation,,s1,RAG강화추론,no
+Q-RAG: Long Context Multi-Step Retrieval,2511.07328,s1,RAG강화추론,no
+"Ragar, your falsehood radar: Rag-augmented reasoning for political fact-checking using multimodal large language models",2404.12065,s1,RAG강화추론,no
+RAR: Retrieval-augmented retrieval for code generation in low-resource languages,,s1,RAG강화추론,no
+Re-Invoke: Tool Invocation Rewriting for Zero-Shot Tool Retrieval,,s1,RAG강화추론,no
+"Recall, Retrieve and Reason: Towards Better In-Context Relation Extraction",,s1,RAG강화추론,no
+SCIAGENT: Tool-augmented Language Models for Scientific Reasoning,,s1,RAG강화추론,no
+Self-Training Large Language Models for Tool-Use Without Demonstrations,2502.05867,s1,RAG강화추론,no
+Step-by-Step Fact Verification System for Medical Claims with Explainable Reasoning,,s1,RAG강화추론,no
+Tool-to-Agent Retrieval: Bridging Tools and Agents for Scalable LLM Multi-Agent Systems,2511.01854,s1,RAG강화추론,no
+ToolkenGPT: Augmenting Frozen Language Models with Massive Tools via Tool Embeddings,,s1,RAG강화추론,no
+ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs,,s1,RAG강화추론,no
+"Towards Autonomous Tool Utilization in Language Models: A Unified, Efficient and Scalable Framework",,s1,RAG강화추론,no
+UPRISE: Universal Prompt Retrieval for Improving Zero-Shot Evaluation,,s1,RAG강화추론,no
+Web Retrieval Agents for Evidence-Based Misinformation Detection,,s1,RAG강화추론,no
+Assisting Mathematical Formalization with A Learning-based Premise Retriever,2501.13959,s1,그래프RAG,no
+CBR-RAG: Case-Based Reasoning for Retrieval Augmented Generation in LLMs for Legal Question Answering,,s1,그래프RAG,no
+CRP-RAG: A Retrieval-Augmented Generation Framework for Supporting Complex Logical Reasoning and Knowledge Planning,,s1,그래프RAG,no
+DALK: Dynamic Co-Augmentation of LLMs and KG to answer Alzheimer's Disease Questions with Scientific Literature,2405.04819,s1,그래프RAG,no
+Empowering Language Models with Knowledge Graph Reasoning for Question Answering,2211.08380,s1,그래프RAG,no
+From Local to Global: A GraphRAG Approach to Query-Focused Summarization,2404.16130,s1,그래프RAG,yes
+From RAG to Memory: Non-Parametric Continual Learning for Large Language Models,2502.14802,s1,그래프RAG,yes
+G-Retriever: Retrieval-Augmented Generation for Textual Graph Understanding and Question Answering,2402.07630,s1,그래프RAG,no
+Graph Chain-of-Thought: Augmenting Large Language Models by Reasoning on Graphs,2404.07103,s1,그래프RAG,no
+GraphReader: Building Graph-based Agent to Enhance Long-Context Abilities of Large Language Models,2406.14550,s1,그래프RAG,no
+GreaseLM: Graph REASoning Enhanced Language Models for Question Answering,2201.08860,s1,그래프RAG,no
+HippoRAG: Neurobiologically Inspired Long-Term Memory for Large Language Models,2405.14831,s1,그래프RAG,yes
+HyKGE: A Hypothesis Knowledge Graph Enhanced Framework for Accurate and Reliable Medical LLMs Responses,2312.15883,s1,그래프RAG,no
+Kag: Boosting llms in professional domains via knowledge augmented generation,2409.13731,s1,그래프RAG,no
+KBLaM: Knowledge Base augmented Language Model,2410.10450,s1,그래프RAG,no
+KG-RAG: Bridging the Gap Between Knowledge and Creativity​,2405.12035,s1,그래프RAG,no
+Knowledge Graph Prompting for Multi-Document Question Answering,2308.11730,s1,그래프RAG,no
+KnowledgeNavigator: Leveraging Large Language Models for Enhanced Reasoning over Knowledge Graph,2312.15880,s1,그래프RAG,no
+LightRAG: Simple and Fast Retrieval-Augmented Generation,2410.05779,s1,그래프RAG,yes
+LLM-based and Retrieval-Augmented Control Code Generation,,s1,그래프RAG,no
+Mitigating Hallucinations in Large Language Models via Self-Refinement-Enhanced Knowledge Retrieval,2405.06545,s1,그래프RAG,no
+MultiHop-RAG: Benchmarking Retrieval-Augmented Generation for Multi-Hop Queries,2401.15391,s1,그래프RAG,no
+PIKE-RAG: sPecIalized KnowledgE and Rationale Augmented Generation,2501.11551,s1,그래프RAG,no
+PullNet: Open Domain Question Answering with Iterative Retrieval on Knowledge Bases and Text,1904.09537,s1,그래프RAG,no
+QA-GNN: Reasoning with Language Models and Knowledge Graphs for Question Answering,2104.06378,s1,그래프RAG,no
+ReaRAG: Knowledge-guided Reasoning Enhances Factuality of Large Reasoning Models with Iterative Retrieval Augmented Generation,2503.21729,s1,그래프RAG,no
+Reasoning of Large Language Models over Knowledge Graphs with Super-Relations,,s1,그래프RAG,no
+Reasoning on Graphs: Faithful and Interpretable LLM Reasoning (RoG),2310.01061,s1,그래프RAG,no
+Retrieval-Augmented Generation with Knowledge Graphs for Customer Service Question Answering,,s1,그래프RAG,no
+Retrieve-Rewrite-Answer: A KG-to-Text Enhanced LLMs Framework for Knowledge Graph Question Answering,2309.11206,s1,그래프RAG,no
+"Scaling Test-Time Inference with Policy-Optimized, Dynamic Retrieval-Augmented Generation via KV Caching and Decoding",2504.01281,s1,그래프RAG,no
+Simple is Effective: The Roles of Graphs and LLMs in Knowledge-Graph-Based RAG,2410.20724,s1,그래프RAG,no
+StructRAG: Boosting Knowledge Intensive Reasoning of LLMs via Inference-time Hybrid Information Structurization,2410.08815,s1,그래프RAG,no
+Subgraph Retrieval Enhanced Model for Multi-hop KBQA,2202.13296,s1,그래프RAG,no
+T-GRAG: A Dynamic GraphRAG Framework for Resolving Temporal Conflicts and Redundancy in Knowledge Retrieval,2508.01680,s1,그래프RAG,no
+Think-on-Graph 2.0: Deep and Faithful Large Language Model Reasoning with Knowledge-guided Retrieval Augmented Generation,2407.10805,s1,그래프RAG,no
+Think-on-Graph: Deep and Responsible Reasoning of Large Language Model on Knowledge Graph,2307.07697,s1,그래프RAG,no
+"""My agent understands me beter"": Integrating Dynamic Human-like Memory Recall and Consolidation in LLM-Based",,s1,메모리,no
+CoPS: Empowering LLM Agents with Provable Cross-Task Experience Sharing,,s1,메모리,no
+Human-like Episodic Memory for Infinite Context LLMs,,s1,메모리,no
+JARVIS-1: Open-World Multi-Task Agents With Memory-Augmented Multimodal Language Models,,s1,메모리,no
+Large Language Models Orchestrating Structured Reasoning Achieve Kaggle Grandmaster Level,2411.03562,s1,메모리,no
+Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning,2410.19258,s1,메모리,no
+RAP: Retrieval-Augmented Planning with Contextual Memory for Multimodal LLM Agents,2402.03610,s1,메모리,no
+Reasoning Under 1 Billion: Memory-Augmented Reinforcement Learning for Large Language Models,2504.02273,s1,메모리,no
+"Review of Case-Based Reasoning for LLM Agents: Theoretical Foundations, Architectural Components, and Cognitive Integration",2504.06943,s1,메모리,no
+Structured Episodic Event Memory for LLM Agents,2601.06411,s1,메모리,no
+SwiftMem: Continual Memory Learning for Large Language Models,2601.08160,s1,메모리,no
+Synapse: An LLM-Based Cognitive Memory Architecture,2601.02744,s1,메모리,no
+AlignRAG: Leveraging Critique Learning for Evidence-Sensitive Retrieval-Augmented Reasoning,2504.14858,s1,생성,no
+Disco-RAG: Discourse-Aware Retrieval-Augmented Generation for Long-Form Question Answering,2601.04377,s1,생성,no
+EviOmni: Learning to Extract Rational Evidence via Reinforcement Learning for Retrieval-Augmented Generation,2507.15586,s1,생성,no
+Improving Retrieval Augmented Language Model with Self-Reasoning,,s1,생성,no
+Open-RAG: Enhanced Retrieval Augmented Reasoning with Open-Source Large Language Models,,s1,생성,no
+RAG-Critic: Leveraging Automated Critic-Guided Agentic Workflow for Retrieval Augmented Generation,,s1,생성,no
+RARE: Retrieval-Augmented Reasoning Enhancement for Large Language Models,2503.23513,s1,생성,yes
+TRACE the evidence: Constructing knowledge-grounded reasoning chains for retrieval-augmented generation,2406.11460,s1,생성;추론워크플로우,no
+A Collaborative Multi-Agent Approach to Retrieval-Augmented Generation Across Diverse Data,2412.05838,s1,에이전트오케스트레이션,no
+A fine-tuning enhanced RAG system with quantized influence measure as AI judge,,s1,에이전트오케스트레이션,no
+A Hybrid RAG System with Comprehensive Enhancement on Complex Reasoning,2408.05141,s1,에이전트오케스트레이션,no
+Agentic Information Retrieval,2410.09713,s1,에이전트오케스트레이션,no
+Agentic Reasoning: Reasoning LLMs with Tools for the Deep Research,2502.04644,s1,에이전트오케스트레이션,no
+Chain of Agents: Large Language Models Collaborating on Long-Context Tasks,,s1,에이전트오케스트레이션,no
+Enhancing Retrieval Systems with Inference-Time Logical Reasoning,2503.17860,s1,에이전트오케스트레이션,no
+Enterprise Deep Research: Steerable MultiAgent Deep Research for Enterprise Analytics,2510.17797,s1,에이전트오케스트레이션,no
+HM-RAG: Hierarchical Multi-Agent Multimodal Retrieval Augmented Generation,2504.12330,s1,에이전트오케스트레이션,no
+InstructRetro: Instruction Tuning post Retrieval-Augmented Pretraining,2310.07713,s1,에이전트오케스트레이션,no
+INTERS: Unlocking the Power of Large Language Models in Search with Instruction Tuning,2401.06532,s1,에이전트오케스트레이션,no
+Knowledge-Aware Iterative Retrieval for Multi-Agent Systems,2503.13275,s1,에이전트오케스트레이션,no
+M-RAG: Reinforcing Large Language Model Performance through Retrieval-Augmented Generation with Multiple Partitions,2405.16420,s1,에이전트오케스트레이션,no
+MANTRA: Enhancing Automated Method-Level Refactoring with Contextual RAG and Multi-Agent LLM Collaboration,2503.14340,s1,에이전트오케스트레이션,no
+MDocAgent: A Multi-Modal Multi-Agent Framework for Document Understanding,2503.13964,s1,에이전트오케스트레이션,no
+MindSearch: Mimicking Human Minds Elicits Deep AI Searcher,2407.20183,s1,에이전트오케스트레이션,no
+Open Deep Search: Democratizing Search with Open-source Reasoning Agents,2503.20201,s1,에이전트오케스트레이션,no
+Plan∗RAG: Efficient Test-Time Planning for Retrieval Augmented Generation,2410.20753,s1,에이전트오케스트레이션,no
+Ra-dit: Retrieval-augmented dual instruction tuning,,s1,에이전트오케스트레이션,no
+RAG-KG-IL: A Multi-Agent Hybrid Framework for Reducing Hallucinations and Enhancing LLM Reasoning through RAG and Incremental Knowledge Graph Learning Integration,2503.13514,s1,에이전트오케스트레이션,no
+RAG-RL: Advancing Retrieval-Augmented Generation via RL and Curriculum Learning,2503.12759,s1,에이전트오케스트레이션,no
+RAG-Studio: Towards In-Domain Adaptation of Retrieval Augmented Generation Through Self-Alignment,,s1,에이전트오케스트레이션,no
+REAR: A Relevance-Aware Retrieval-Augmented Framework for Open-Domain Question Answering,2402.17497,s1,에이전트오케스트레이션,no
+ReARTeR: Retrieval-Augmented Reasoning with Trustworthy Process Rewarding,2501.07861,s1,에이전트오케스트레이션,no
+Self-Taught Agentic Long-Context Understanding,2502.15920,s1,에이전트오케스트레이션,no
+SFR-RAG: Towards Contextually Faithful LLMs,2409.09916,s1,에이전트오케스트레이션,no
+SLA Management in Reconfigurable Multi-Agent RAG: A Systems Approach to Question Answering,2503.10265,s1,에이전트오케스트레이션,no
+Talk to Right Specialists: Routing and Planning in Multi-agent System for Question Answering,2501.07813,s1,에이전트오케스트레이션,no
+Toolformer: Language Models Can Teach Themselves to Use Tools,2302.04761,s1,에이전트오케스트레이션,yes
+Universal Deep Research: Bring Your Own Model and Strategy,2509.00244,s1,에이전트오케스트레이션,no
+WebGPT: Browser-assisted question-answering with human feedback,2112.09332,s1,에이전트오케스트레이션,no
+BeamAggR: Beam Aggregation Reasoning over Multi-source Knowledge for Multi-hop Question Answering,,s1,정보필터링,no
+DualRAG: A Dual-Process Approach to Integrate Reasoning and Retrieval for Multi-Hop Question Answering,2504.18243,s1,정보필터링,no
+Making Retrieval-Augmented Language Models Robust to Irrelevant Context,,s1,정보필터링,no
+Probing Latent Knowledge Conflict for Faithful Retrieval-Augmented Generation,,s1,정보필터링,no
+Retrieval-Augmented Generation with Conflicting Evidence (RAMDocs + MADAM-RAG),2504.13079,s1,정보필터링,no
+SEER: Self-Aligned Evidence Extraction for Retrieval-Augmented Generation,,s1,정보필터링,no
+TruthfulRAG: Resolving Factual-level Conflicts in Retrieval-Augmented Generation,2511.10375,s1,정보필터링,no
+Can Query Expansion Improve Generalization of Strong Cross-Encoder Rankers?,2311.09175,s1,질의계획,no
+Credible plan-driven rag method for multi-hop question answering,2504.16787,s1,질의계획,no
+FIND: Fine-grained Information Density Guided Adaptive Retrieval-Augmented Generation for Disease Diagnosis,2502.14614,s1,질의계획,no
+Graph-Guided Concept Selection for Efficient Retrieval-Augmented Generation,2510.24120,s1,질의계획,no
+Learning to Plan for Retrieval-Augmented Large Language Models from Knowledge Graphs,,s1,질의계획,no
+LLM-Independent Adaptive RAG: Let the Question Speak for Itself,2505.04253,s1,질의계획,no
+MaFeRw: Query Rewriting with Multi-Aspect Feedbacks for Retrieval-Augmented Large Language Models,,s1,질의계획,no
+Query Suggestion for Retrieval-Augmented Generation via Dynamic In-Context Learning,2601.08105,s1,질의계획,no
+R3: Optimizing Retrieval for RAG via Reinforcement Learning,2510.24652,s1,질의계획,no
+RADCoT: Retrieval-Augmented Distillation to Specialization Models for Generating Chain-of-Thoughts in Query Expansion,,s1,질의계획,no
+Retrieval and Reasoning on KGs: Integrate Knowledge Graphs into Large Language Models for Complex Question Answering,,s1,질의계획,no
+RuleRAG: Rule-Guided Retrieval-Augmented Generation with Language Models for Question Answering,2410.22353,s1,질의계획,no
+GNN-RAG: Graph Neural Retrieval for Large Language Model Reasoning,2405.20139,s1,질의계획;그래프RAG,no
+Collab-RAG: Boosting Retrieval-Augmented Generation for Complex Question Answering via White-Box and Black-Box LLM Collaboration,2504.04915,s1,질의계획;에이전트오케스트레이션,no
+Airrag: Activating intrinsic reasoning for retrieval augmented generation via tree-based search,2501.10053,s1,추론워크플로우,no
+ARise: Towards Knowledge-Augmented Reasoning via Risk-Adaptive Search,2504.10893,s1,추론워크플로우,no
+Chain-of-Retrieval Augmented Generation,2501.14342,s1,추론워크플로우,no
+CORAG: A Cost-Constrained Retrieval Optimization System for Retrieval-Augmented Generation,2411.00744,s1,추론워크플로우,no
+CoT-RAG: Integrating Chain of Thought and Retrieval-Augmented Generation to Enhance Reasoning in Large Language Models,2504.13534,s1,추론워크플로우,no
+Grove: a retrieval-augmented complex story generation framework with a forest of evidence,2310.05388,s1,추론워크플로우,no
+Long-context llms meet rag: Overcoming challenges for long inputs in rag,,s1,추론워크플로우,no
+Rat: Retrieval augmented thoughts elicit context-aware reasoning in long-horizon generation,2403.05313,s1,추론워크플로우,no
+RATT: A Thought Structure for Coherent and Correct LLM Reasoning,,s1,추론워크플로우,no
+"Retrieving, Rethinking and Revising: The Chain-of-Verification Can Improve Retrieval Augmented Generation",2410.05801,s1,추론워크플로우,no
+SeRTS: Self-Rewarding Tree Search for Biomedical Retrieval-Augmented Generation,2406.11258,s1,추론워크플로우,no
+Tree of clarifications: Answering ambiguous questions with retrieval-augmented large language models,,s1,추론워크플로우,no
+Tree-based RAG-Agent Recommendation System: A Case Study in Medical Test Data,2501.02727,s1,추론워크플로우,no
+Raft: Adapting language model to domain specific rag,,s1,추론워크플로우;에이전트오케스트레이션,no
+Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions,2212.10509,s1;s2,검색시점;추론워크플로우;에이전트오케스트레이션,no
+Chain-of-note: Enhancing robustness in retrieval-augmented language models,2311.09210,s1;s2,정보필터링;추론워크플로우,no
+Rankcot: Refining knowledge for retrieval-augmented generation through ranking chain-of-thoughts,2502.17888,s1;s2,정보필터링;추론워크플로우,no
+Chain-of-Verification Reduces Hallucination in Large Language Models,2309.11495,s1;s2,질의계획,no
+DeepRAG: Thinking to Retrieval Step by Step for Large Language Models,2502.01142,s1;s2;s3,질의계획;검색시점;에이전트오케스트레이션,yes
+ZeroSearch: Incentivize the Search Capability of LLMs without Searching,2505.04588,s1;s2;s3,질의계획;검색시점;에이전트오케스트레이션;학습형RL,no
+Improving Retrieval-Augmented Generation through Multi-Agent Reinforcement Learning,2501.15228,s1;s2;s3,질의계획;에이전트오케스트레이션,no
+DeepResearcher: Scaling Deep Research via Reinforcement Learning in Real-world Environments,2504.03160,s1;s2;s3;s4,검색시점;에이전트오케스트레이션;학습형RL,yes
+DeepRetrieval: Hacking Real Search Engines and Retrievers with Large Language Models via Reinforcement Learning,2503.00223,s1;s2;s3;s4,질의계획,yes
+R1-Searcher: Incentivizing the Search Capability in LLMs via Reinforcement Learning,2503.05592,s1;s2;s3;s4,질의계획;검색시점;에이전트오케스트레이션;학습형RL,no
+Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning,2503.09516,s1;s2;s3;s4,질의계획;검색시점;에이전트오케스트레이션;학습형RL,yes
+ReAct: Synergizing Reasoning and Acting in Language Models,2210.03629,s1;s2;s4,검색시점;에이전트오케스트레이션,yes
+Search-o1: Agentic Search-Enhanced Large Reasoning Models,2501.05366,s1;s2;s4,검색시점;에이전트오케스트레이션,yes
+"Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection",2310.11511,s1;s2;s4,검색시점;정보필터링;에이전트오케스트레이션,yes
+ReSearch: Learning to Reason with Search for LLMs via Reinforcement Learning,2503.19470,s1;s3,검색시점;에이전트오케스트레이션,yes
+O-Researcher: An Open Ended Deep Research Model via Multi-Agent Distillation and Agentic RL,2601.03743,s1;s3,검색시점;에이전트오케스트레이션;RAG강화추론,no
+TreePS-RAG: Tree-based Process Supervision for Reinforcement Learning in Agentic RAG,2601.06922,s1;s3,생성;학습형RL,no
+Search Self-play: Pushing the Frontier of Agent Capability without Supervision,2510.18821,s1;s3,에이전트오케스트레이션;학습형RL,no
+SmartSearch: Enhancing Dense Retrieval with Dynamic LLM-Guided Iterative Search,2601.04888,s1;s3,질의계획;RAG강화추론,no
+RL-QR: Generalized Reinforcement Learning for Retriever-Specific Query Rewriter with Unstructured Real-World Documents,2507.23242,s1;s3,질의계획;검색시점,no
+RAGShaper: Eliciting Sophisticated Agentic RAG Skills via Automated Data Synthesis,2601.08699,s1;s3,질의계획;생성;RAG강화추론,no
+Measuring and Narrowing the Compositionality Gap in Language Models,2210.03350,s1;s4,검색시점;에이전트오케스트레이션,no
+Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity,2403.14403,s1;s4,질의계획;검색시점,no
+MCTS-RAG: Enhance Retrieval-Augmented Generation with Monte Carlo Tree Search,2503.20757,s1;s4,추론워크플로우,no
+Active Retrieval Augmented Generation,2305.06983,s2,검색시점,yes
+CtrlA: Adaptive Retrieval-Augmented Generation via Inherent Control,2405.18727,s2,검색시점,no
+DRAGIN: Dynamic Retrieval Augmented Generation based on the Information Needs of Large Language Models,2403.10081,s2,검색시점,no
+Retrieve Only When It Needs: Adaptive Retrieval Augmentation for Hallucination Mitigation in Large Language Models,2402.10612,s2,검색시점,no
+Unified active retrieval for retrieval augmented generation,2406.12534,s2,검색시점,no
+When Do LLMs Need Retrieval Augmentation? Mitigating LLMs' Overconfidence Helps Retrieval Augmentation,,s2,검색시점,no
+Coarse-to-Fine Grounded Memory for LLM Agent Planning,,s2,메모리,no
+ComoRAG: A Cognitive-Inspired Memory-Organized RAG for Stateful Long Narrative Reasoning,2508.10419,s2,메모리,no
+H-MEM: Hierarchical Memory for High-Efficiency Long-Term Reasoning in LLM Agents,2507.22925,s2,메모리,no
+In Prospect and Retrospect: Reflective Memory Management for Long-term Personalized Dialogue Agents,,s2,메모리,no
+Learn to Memorize: Optimizing LLM-based Agents with Adaptive Memory Framework,2508.16629,s2,메모리,no
+MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents,2506.15841,s2,메모리,no
+Mem: Agentic Memory for LLM Agents,2502.12110,s2,메모리,no
+MemAgent: Reshaping Long-Context LLM with Multi-Conv RL-based Memory Agent,2507.02259,s2,메모리,no
+Memento: Fine-tuning LLM Agents without Fine-tuning LLMs,2508.16153,s2,메모리,no
+MemGPT: Towards LLMs as Operating Systems,2310.08560,s2,메모리,no
+MemGuide: Intent-Driven Memory Selection for Goal-Oriented Multi-Session LLM Agents,2505.20231,s2,메모리,no
+MemO: Building Production-Ready AI Agents with Scalable Long-Term Memory,2504.19413,s2,메모리,no
+"Memory Decoder: A Pretrained, Plug-and-Play Memory for Large Language Models",2508.09874,s2,메모리,no
+Memory-augmented Query Reconstruction for LLM-based Knowledge Graph Reasoning,,s2,메모리,no
+Memory-R1: Enhancing Large Language Model Agents to Manage and Utilize Memories via RL,2508.19828,s2,메모리,no
+MIRIX: Multi-Agent Memory System for LLM-Based Agents,2507.07957,s2,메모리,no
+MLP Memory: A Retriever-Pretrained Memory for Large Language Models,2508.01832,s2,메모리,no
+Multiple Memory Systems for Enhancing the Long-term Memory of Agents,2508.15294,s2,메모리,no
+Nemori: Self-Organizing Agent Memory Inspired by Cognitive Science,2508.03341,s2,메모리,no
+PaRT: Enhancing Proactive Social Chatbots with Personalized Real-Time Retrieval,2504.20624,s2,메모리,no
+PersonaAgent: When Large Language Model Agents Meet Personalization at Test Time,2506.06254,s2,메모리,no
+Recursive Question Understanding for Complex Question Answering over Heterogeneous Personal Data,2505.11900,s2,메모리,no
+"Seeing, Listening, Remembering, and Reasoning: A Multimodal Agent with Long-Term Memory",2508.09736,s2,메모리,no
+Think-in-Memory: Recalling and Post-thinking Enable LLMs with Long-Term Memory,2311.08719,s2,메모리,no
+Zep: A Temporal Knowledge Graph Architecture for Agent Memory,2501.13956,s2,메모리,no
+Any-to-Any Generation via Composable Diffusion,,s2,생성,no
+ChartGPT: Leveraging LLMs to Generate Charts from Abstract Natural Language,,s2,생성,no
+LIDA: A Tool for Automatic Generation of Grammar-Agnostic Visualizations and Infographics Using LLMs,,s2,생성,no
+"LongWriter: Unleashing 10,000+ Word Generation from Long-Context LLMs",,s2,생성,no
+Paper2Video: Automatic Video Generation from Scientific Papers,2510.05096,s2,생성,no
+PresentAgent: Multimodal Agent for Presentation Video Generation,,s2,생성,no
+SuperWriter: Reflection-Driven Long-Form Generation with LLMs,2506.04180,s2,생성,no
+Towards Visual-Prompt Temporal Answer Grounding in Instructional Video,,s2,생성,no
+Paper2Poster: Towards Multimodal Poster Automation from Scientific Papers,2505.21497,s2,생성;평가,no
+PosterGen: Aesthetic-Aware Paper-to-Poster Generation via Multi-Agent LLMs,2508.17188,s2,생성;평가,no
+PPTAgent: Generating and Evaluating Presentations Beyond Text-to-Slides,2501.03936,s2,생성;평가,no
+An Information Bottleneck Perspective for Effective Noise Filtering on Retrieval-Augmented Generation,2406.01549,s2,정보필터링,no
+BIDER: Bridging Knowledge Inconsistency for Efficient Retrieval-Augmented LLMs via Key Supporting Evidence,2402.12174,s2,정보필터링,no
+Context Embeddings for Efficient Answer Generation in RAG,2407.09252,s2,정보필터링,no
+Dynamic Context Compression for Efficient RAG,2507.22931,s2,정보필터링,no
+HtmlRAG: HTML is Better Than Plain Text for Modeling Retrieved Knowledge in RAG Systems,2411.02959,s2,정보필터링,no
+In-context Autoencoder for Context Compression in a Large Language Model,2307.06945,s2,정보필터링,no
+InstructRAG: Instructing Retrieval-Augmented Generation via Self-Synthesized Rationales,2406.13629,s2,정보필터링,no
+Is ChatGPT Good at Search? Investigating Large Language Models as Re-Ranking Agents,2304.09542,s2,정보필터링,yes
+Large Language Models are Effective Text Rankers with Pairwise Ranking Prompting,2306.17563,s2,정보필터링,no
+ListT5: Listwise Reranking with Fusion-in-Decoder Improves Zero-shot Retrieval,2402.15838,s2,정보필터링,no
+Rank-R1: Enhancing Reasoning in LLM-based Document Rerankers via Reinforcement Learning,2503.06034,s2,정보필터링,no
+RankRAG: Unifying Context Ranking with Retrieval-Augmented Generation in LLMs,2407.02485,s2,정보필터링,no
+RECOMP: Improving Retrieval-Augmented LMs with Compression and Selective Augmentation,2310.04408,s2,정보필터링,no
+Retaining Key Information under High Compression Ratios: Query-Guided Compressor for LLMs,2406.02376,s2,정보필터링,no
+TableRAG: Million-Token Table Understanding with Language Model,2410.04739,s2,정보필터링,no
+TourRank: Utilizing Large Language Models for Documents Ranking with a Tournament-Inspired Strategy,2406.11678,s2,정보필터링,no
+Understand What LLM Needs: Dual Preference Alignment for Retrieval-Augmented Generation,2406.18676,s2,정보필터링,no
+xRAG: Extreme Context Compression for Retrieval-augmented Generation with One Token,2405.13792,s2,정보필터링,no
+Alignment for Honesty,2312.07000,s2,지식경계,no
+Annotation-Efficient Universal Honesty Alignment,2510.17509,s2,지식경계,no
+Calibration of Pre-trained Transformers,2003.07892,s2,지식경계,no
+Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs,2306.13063,s2,지식경계,no
+How Can We Know When Language Models Know? On the Calibration of Language Models for Question Answering,2012.00955,s2,지식경계,no
+Just Ask for Calibration: Strategies for Eliciting Calibrated Confidence Scores from Language Models Fine-Tuned with Human Feedback,2305.14975,s2,지식경계,no
+Language Models (Mostly) Know What They Know,2207.05221,s2,지식경계,no
+On Calibration of Modern Neural Networks,1706.04599,s2,지식경계,no
+R-Tuning: Instructing Large Language Models to Say ‘I Don’t Know’,2311.09677,s2,지식경계,no
+SAC3: Reliable Hallucination Detection in Black-Box Language Models via Semantic-aware Cross-check Consistency,2311.01740,s2,지식경계,no
+Selfcheckgpt: Zero-resource black-box hallucination detection for generative large language models,2303.08896,s2,지식경계,no
+Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation,2302.09664,s2,지식경계,no
+Shifting Attention to Relevance: Towards the Predictive Uncertainty Quantification of Free-Form Large Language Models,2307.01379,s2,지식경계,no
+Teaching Models to Express Their Uncertainty in Words,2205.14334,s2,지식경계,no
+The Internal State of an LLM Knows When It's Lying,2304.13734,s2,지식경계,no
+Towards Fully Exploiting LLM Internal States to Enhance Knowledge Boundary Perception,2502.11677,s2,지식경계,no
+CardRewriter: Leveraging Knowledge Cards for Long-Tail Query Rewriting on Short-Video Platforms,2510.10095,s2,질의계획,no
+DeepSieve: Information Sieving via LLM-as-a-Knowledge-Router,2507.22050,s2,질의계획,no
+Divide-Then-Aggregate: An Efficient Tool Learning Method via Parallel Tool Invocation,,s2,질의계획,no
+DRAGIN: Dynamic Retrieval Augmented Generation based on the Information Needs of LLMs,,s2,질의계획,no
+Generate-then-Ground in Retrieval-Augmented Generation for Multi-hop Question Answering,,s2,질의계획,no
+Least-to-Most Prompting Enables Complex Reasoning in Large Language Models,2205.10625,s2,질의계획,yes
+LLatrieval: LLM-Verified Retrieval for Verifiable Generation,,s2,질의계획,no
+Query Rewriting for Retrieval-Augmented Large Language Models,,s2,질의계획,no
+RAG-Star: Enhancing Deliberative Reasoning with Retrieval-Augmented Verification and Refinement,,s2,질의계획,no
+RAISE: Enhancing Scientific Reasoning in LLMs via Step-by-Step Retrieval,2506.08625,s2,질의계획,no
+"Retrieve, Summarize, Plan: Advancing Multi-hop QA with an Iterative Approach",,s2,질의계획,no
+Tree of Thoughts: Deliberate Problem Solving with Large Language Models,2305.10601,s2,질의계획,yes
+AI Idea Bench 2025: AI Research Idea Generation Benchmark,2504.14191,s2,평가,no
+AI-Researcher: Autonomous Scientific Innovation,2505.18705,s2,평가,no
+AssistantBench: Can Web Agents Solve Realistic and Time-Consuming Tasks?,2407.15711,s2,평가,no
+AutoPresent: Designing Structured Visuals from Scratch,2501.00912,s2,평가,no
+AutoSurvey: Large Language Models Can Automatically Write Surveys,2406.06366,s2,평가,no
+Benchmarking Data Science Agents,2402.17168,s2,평가,no
+Can Language Models Serve as Text-Based World Simulators?,2406.06485,s2,평가,no
+Can We Automate Scientific Reviewing?,2102.00176,s2,평가,no
+Characterizing Deep Research: A Benchmark and Formal Definition,2508.04183,s2,평가,no
+Commit0: Library Generation from Scratch,2412.01769,s2,평가,no
+CORE-Bench: Fostering the Credibility of Published Research Through a Computational Reproducibility Agent Benchmark,2409.11363,s2,평가,no
+Deep Research Comparator: A Platform for Fine-Grained Human Annotations of Deep Research Agents,2507.05495,s2,평가,no
+DeepReview: Improving LLM-based Paper Review with Human-like Deep Thinking Process,2503.08569,s2,평가,no
+DiscoveryWorld: A Virtual Environment for Scientific Discovery Agents,2406.06769,s2,평가,no
+DOC2PPT: Automatic Presentation Slides Generation from Scientific Documents,2101.11796,s2,평가,no
+DSBench: How Far Are Data Science Agents from Becoming Data Science Experts?,2409.07703,s2,평가,no
+"Fact, Fetch, and Reason: A Unified Evaluation of Retrieval-Augmented Generation",2409.12941,s2,평가,no
+InfoDeepSeek: Benchmarking Agentic Information Seeking for Retrieval-Augmented Generation,2505.15872,s2,평가,no
+Mind2Web: Towards a Generalist Agent for the Web,2306.06070,s2,평가,no
+MLE-bench: Evaluating Machine Learning Agents on Machine Learning Engineering,2410.07095,s2,평가,no
+MMInA: Benchmarking Multihop Multimodal Internet Agents,2404.09992,s2,평가,no
+OpenScholar: Synthesizing Scientific Literature with Retrieval-Augmented Language Models,2411.15276,s2,평가,no
+P2P: Automated Paper-to-Poster Generation and Fine-Grained Benchmark,2505.17104,s2,평가,no
+PaperBench: Evaluating AI’s Ability to Replicate AI Research,2504.01848,s2,평가,no
+ProxyQA: An Alternative Framework for Evaluating Long-Form Text Generation with LLMs,2401.15042,s2,평가,no
+RE-Bench: Evaluating frontier AI R&D capabilities of language model agents against human experts,2411.15114,s2,평가,no
+ResearcherBench: Evaluating Deep AI Research Systems on the Frontiers of Scientific Inquiry,2507.16280,s2,평가,no
+ScienceWorld: Is your Agent Smarter than a 5th Grader?,2203.07540,s2,평가,no
+Spider2-V: How Far Are Multimodal Agents From Automating Data Science and Engineering Workflows?,2407.10956,s2,평가,no
+SurveyGen: Quality-Aware Scientific Survey Generation with Large Language Models,2508.17647,s2,평가,no
+SWE-bench: Can Language Models Resolve Real-World GitHub Issues?,2310.06770,s2,평가,no
+Talk to Your Slides: Language-Driven Agents for Efficient Slide Editing,2505.11604,s2,평가,no
+Towards Personalized Deep Research: Benchmarks and Evaluations,2509.25106,s2,평가,no
+UnivEARTH: Towards LLM Agents for Earth Observation,2504.12110,s2,평가,no
+WebArena: A Realistic Web Environment for Building Autonomous Agents,2307.13854,s2,평가,no
+WebWalker: Benchmarking LLMs in Web Traversal,2501.07572,s2,평가,no
+WideSearch: Benchmarking Agentic Broad Info-Seeking,2508.07999,s2,평가,no
+Absolute Zero: Reinforced Self-Play Reasoning with Zero Data,2505.03335,s2,학습형RL,no
+Agentic Entropy-Balanced Policy Optimization,2510.14545,s2,학습형RL,no
+Agentic Reinforced Policy Optimization,2507.19849,s2,학습형RL,no
+An Empirical Study on RL for Reasoning-Search Interleaved LLM Agents,2505.15117,s2,학습형RL,no
+Graph-R1: Towards Agentic GraphRAG Framework via End-to-end RL,2507.21892,s2,학습형RL,no
+HierSearch: A Hierarchical Enterprise Deep Search Framework,2508.08088,s2,학습형RL,no
+Iterative Self-Incentivization Empowers Large Language Models as Agentic Searchers,2505.20128,s2,학습형RL,no
+Kimi k2: Open Agentic Intelligence,2507.20534,s2,학습형RL,no
+Pangu DeepDiver: Adaptive Search Intensity Scaling via Open-Web RL,,s2,학습형RL,no
+Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs,2509.25779,s2,학습형RL,no
+"Scaling Synthetic Data Creation with 1,000,000,000 Personas",2406.20094,s2,학습형RL,no
+Synthesizing Post-Training Data for LLMs through Multi-Agent Simulation,,s2,학습형RL,no
+"WebCoT: Enhancing Web Agent Reasoning by Reconstructing Chain-of-Thought in Reflection, Branching, and Rollback",,s2,학습형RL,no
+WebDancer: Towards Autonomous Information Seeking Agency,2505.22648,s2,학습형RL,no
+WebShaper: Agentically Data Synthesizing via Information-Seeking Formalization,2507.15061,s2,학습형RL,no
+WebSynthesis: World-Model-Guided MCTS for Efficient WebUI-Trajectory Synthesis,2507.04370,s2,학습형RL,no
+Search Wisely: Mitigating Sub-optimal Agentic Searches By Reducing Uncertainty,2505.17281,s2;s3,검색시점,no
+StepSearch: Igniting LLMs’ Search Ability via Step‑Wise Proximal Policy Optimization,2505.15107,s2;s3,검색시점,no
+WebSailor‑V2: Bridging the Chasm to Proprietary Agents via Synthetic Data and Scalable Reinforcement Learning,2509.13305,s2;s3,검색시점;학습형RL,no
+Chain-of-Agents: End-to-End Agent Foundation Models via Multi-Agent Distillation and Agentic RL,2508.13167,s2;s3,에이전트오케스트레이션;학습형RL,no
+s3: You Don’t Need That Much Data to Train a Search Agent via RL,2505.14146,s2;s3,질의계획,yes
+R1‑Searcher++: Incentivizing the Dynamic Knowledge Acquisition of LLMs via Reinforcement Learning,2505.17005,s2;s3,질의계획;검색시점;학습형RL,yes
+WebThinker: Empowering Large Reasoning Models with Deep Research Capability,2504.21776,s2;s3,질의계획;검색시점;학습형RL,yes
+AI‑SearchPlanner: Modular Agentic Search via Pareto‑Optimal Multi‑Objective Reinforcement Learning,2508.20368,s2;s3,질의계획;에이전트오케스트레이션;학습형RL,no
+MAO-ARAG: Multi-Agent Orchestration for Adaptive Retrieval-Augmented Generation,2508.01005,s2;s3,질의계획;에이전트오케스트레이션;학습형RL,no
+OPERA: A Reinforcement Learning–Enhanced Orchestrated Planner‑Executor Architecture for Reasoning‑Oriented Multi‑Hop Retrieval,2508.16438,s2;s3,질의계획;에이전트오케스트레이션;학습형RL,no
+ConvSearch‑R1: Enhancing Query Reformulation for Conversational Search with Reasoning via Reinforcement Learning,2505.15776,s2;s3,질의계획;학습형RL,no
+MaskSearch: A Universal Pre-Training Framework to Enhance Agentic Search Capability,2505.20285,s2;s3,질의계획;학습형RL,no
+Deep Research Bench: Evaluating AI Web Research Agents,2506.06287,s2;s3,평가,no
+"DeepResearchGym: A Free, Transparent, and Reproducible Evaluation Sandbox for Deep Research",2505.19253,s2;s3,평가,no
+Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge,2506.21506,s2;s3,평가,no
+ReportBench: Evaluating Deep Research Agents via Academic Survey Tasks,2508.15804,s2;s3,평가,no
+Beyond Ten Turns: Unlocking Long‑Horizon Agentic Search with Large‑Scale Asynchronous RL,2508.07976,s2;s3,학습형RL,no
+EvolveSearch: An Iterative Self-Evolving Search Agent,2505.22501,s2;s3,학습형RL,no
+O²‑Searcher: A Searching‑Based Agent Model for Open‑Domain Open‑Ended Question Answering,2505.16582,s2;s3,학습형RL,no
+R‑Search: Empowering LLM Reasoning with Search via Multi‑Reward Reinforcement Learning,2506.04185,s2;s3,학습형RL,no
+WebSailor: Navigating Super-human Reasoning for Web Agent,2507.02592,s2;s3,학습형RL,no
+DynaSearcher: Dynamic Knowledge Graph Augmented Search Agent via Multi‑Reward Reinforcement Learning,2507.17365,s2;s3,학습형RL;RAG강화추론,no
+MMSearch-R1: Incentivizing LMMs to Search,2506.20670,s2;s3,학습형RL;RAG강화추론,no
+Tool‑Star: Empowering LLM‑Brained Multi‑Tool Reasoner via Reinforcement Learning,2505.16410,s2;s3,학습형RL;RAG강화추론,no
+Agent‑R1: Training Powerful LLM Agents with End‑to‑End Reinforcement Learning,2511.14460,s3,RAG강화추론,no
+ARLArena: A Unified Framework for Stable Agentic Reinforcement Learning,2602.21534,s3,RAG강화추론,no
+AT$^2$PO: Agentic Turn-based Policy Optimization via Tree Search,2601.04767,s3,RAG강화추론,no
+Beyond Stochastic Exploration: What Makes Training Data Valuable for Agentic Search,2604.08124,s3,RAG강화추론,no
+CARL: Focusing Agentic Reinforcement Learning on Critical Actions,2512.04949,s3,RAG강화추론,no
+CuES: A Curiosity-driven and Environment-grounded Synthesis Framework for Agentic RL,2512.01311,s3,RAG강화추론,no
+Empowering LLM Tool Invocation with Tool-call Reward Model,,s3,RAG강화추론,no
+GRAIL: Learning to Interact with Large Knowledge Graphs for Retrieval‑Augmented Reasoning,2508.05498,s3,RAG강화추론,no
+GraphSearch: Agentic Search-Augmented Reasoning for Zero-Shot Graph Learning,2601.08621,s3,RAG강화추론,no
+Improving Search Agent with One Line of Code,2603.10069,s3,RAG강화추론,no
+MARAG-R1: Beyond Single Retriever via Reinforcement-Learned Multi-Tool Agentic Retrieval,2510.27569,s3,RAG강화추론,yes
+Maximizing Rollout Informativeness under a Fixed Budget: A Submodular View of Tree Search for Tool-Use Agentic Reinforcement Learning,2605.05262,s3,RAG강화추론,no
+MM-DeepResearch: A Simple and Effective Multimodal Agentic Search Baseline,2603.01050,s3,RAG강화추론,no
+MTA-Agent: An Open Recipe for Multimodal Deep Search Agents,2604.06376,s3,RAG강화추론,no
+On Group Relative Policy Optimization Collapse in Agent Search: The Lazy Likelihood-Displacement,2512.04220,s3,RAG강화추론,no
+OpenSearch-VL: An Open Recipe for Frontier Multimodal Search Agents,2605.05185,s3,RAG강화추론,no
+OpenTinker: Separating Concerns in Agentic Reinforcement Learning,2601.07376,s3,RAG강화추론,no
+ORBIT: Scalable and Verifiable Data Generation for Search Agents on a Tight Budget,2604.01195,s3,RAG강화추론,no
+PEARL: Plan Exploration and Adaptive Reinforcement Learning for Multihop Tool Use,2601.20439,s3,RAG강화추론,no
+ProMMSearchAgent: A Generalizable Multimodal Search Agent Trained with Process-Oriented Rewards,2604.20486,s3,RAG강화추론,no
+ProtRLSearch: A Multi-Round Multimodal Protein Search Agent with Large Language Models Trained via Reinforcement Learning,2603.01464,s3,RAG강화추론,no
+RAPO: Expanding Exploration for LLM Agents via Retrieval-Augmented Policy Optimization,2603.03078,s3,RAG강화추론,no
+Reasoning and Tool-use Compete in Agentic RL: From Quantifying Interference to Disentangled Tuning,2602.00994,s3,RAG강화추론,no
+RouteRAG: Efficient Retrieval-Augmented Generation from Text and Graph via Reinforcement Learning,2512.09487,s3,RAG강화추론,no
+SCRIBE: Structured Mid-Level Supervision for Tool-Using Language Models,2601.03555,s3,RAG강화추론,no
+SenseNova-MARS: Empowering Multimodal Agentic Reasoning and Search via Reinforcement Learning,2512.24330,s3,RAG강화추론,no
+SynPlanResearch-R1: Encouraging Tool Exploration for Deep Research with Synthetic Plans,2603.07853,s3,RAG강화추론,no
+Towards On-Policy Data Evolution for Visual-Native Multimodal Deep Search Agents,2605.10832,s3,RAG강화추론,no
+VerlTool: Towards Holistic Agentic Reinforcement Learning with Tool Use,2509.01055,s3,RAG강화추론,no
+Visual Agentic Reinforcement Fine‑Tuning,2505.14246,s3,RAG강화추론,no
+VRAG‑RL: Empower Vision‑Perception‑Based RAG for Visually Rich Information Understanding via Iterative Reasoning with RL,2505.22019,s3,RAG강화추론,no
+VSearcher: Long-Horizon Multimodal Search Agent via Reinforcement Learning,2603.02795,s3,RAG강화추론,no
+WebResearcher: Unleashing unbounded reasoning capability in Long‑Horizon Agents,2509.13309,s3,RAG강화추론,no
+WebWatcher: Breaking New Frontier of Vision‑Language Deep Research Agent,2508.05748,s3,RAG강화추론,no
+BioMedArena: An Open-source Toolkit for Building and Evaluating Biomedical Deep Research Agents,2605.06177,s3,RAG강화추론;평가,no
+HyperEyes: Dual-Grained Efficiency-Aware Reinforcement Learning for Parallel Multimodal Search Agents,2605.07177,s3,RAG강화추론;평가,no
+Agent-Omit: Training Efficient LLM Agents for Adaptive Thought and Observation Omission via Agentic Reinforcement Learning,2602.04284,s3,검색시점,no
+Agentic Conversational Search with Contextualized Reasoning via Reinforcement Learning,2601.13115,s3,검색시점,no
+Agentic-R: Learning to Retrieve for Agentic Search,2601.11888,s3,검색시점,no
+APEX-Searcher: Augmenting LLMs' Search Capabilities through Agentic Planning and Execution,2603.13853,s3,검색시점,no
+AutoSearch: Adaptive Search Depth for Efficient Agentic RAG via Reinforcement Learning,2604.17337,s3,검색시점,no
+BAPO: Boundary-Aware Policy Optimization for Reliable Agentic Search,2601.11037,s3,검색시점,no
+Beneficial Reasoning Behaviors in Agentic Search and Effective Post-training to Obtain Them,2510.06534,s3,검색시점,no
+CuSearch: Curriculum Rollout Sampling via Search Depth for Agentic RAG,2605.11611,s3,검색시점,no
+Deep Search with Hierarchical Meta-Cognitive Monitoring Inspired by Cognitive Neuroscience,2601.23188,s3,검색시점,no
+DeepDive: Advancing Deep Search Agents with Knowledge Graphs and Multi-Turn RL,2509.10446,s3,검색시점,no
+Effective Reinforcement Learning for Agentic Search by Recycling Zero-Variance Queries During Training,2606.10709,s3,검색시점,no
+"How to Train Your Deep Research Agent? Prompt, Reward, and Policy Optimization in Search-R1",2602.19526,s3,검색시점,no
+IntentRL: Training Proactive User-intent Agents for Open-ended Deep Research via Reinforcement Learning,2602.03468,s3,검색시점,no
+LongSeeker: Elastic Context Orchestration for Long-Horizon Search Agents,2605.05191,s3,검색시점,no
+"MemSearcher: Training LLMs to Reason, Search and Manage Memory via End-to-End Reinforcement Learning",2511.02805,s3,검색시점,no
+Meta-Reinforcement Learning with Self-Reflection for Agentic Search,2603.11327,s3,검색시점,no
+OffSeeker: Online Reinforcement Learning Is Not All You Need for Deep Research Agents,2601.18467,s3,검색시점,no
+OpenSeeker-v2: Pushing the Limits of Search Agents with Informative and High-Difficulty Trajectories,2605.04036,s3,검색시점,no
+Pangu DeepDiver: Adaptive Search Intensity Scaling via Open‑Web Reinforcement Learning,2505.24332,s3,검색시점,no
+REDSearcher: A Scalable and Cost-Efficient Framework for Long-Horizon Search Agents,2602.14234,s3,검색시점,no
+SAAS: Self-Aware Reinforcement Learning for Over-Search Mitigation in Agentic Search,2605.29796,s3,검색시점,no
+"Search More, Think Less: Rethinking Long-Horizon Agentic Search for Efficiency and Generalization",2602.22675,s3,검색시점,no
+"Search, Do not Guess: Teaching Small Language Models to Be Effective Search Agents",2604.04651,s3,검색시점,no
+SearchGym: Bootstrapping Real-World Search Agents via Cost-Effective and High-Fidelity Environment Simulation,2601.14615,s3,검색시점,no
+SimpleDeepSearcher: Deep Information Seeking via Web-Powered Reasoning Trajectory Synthesis,2505.16834,s3,검색시점,no
+SSRL: Self‑Search Reinforcement Learning,2508.10874,s3,검색시점,no
+Thinker: Training LLMs in Hierarchical Thinking for Deep Search via Multi-Turn Interaction,2511.07943,s3,검색시점,no
+To Search or Not to Search: Aligning the Decision Boundary of Deep Search Agents via Causal Intervention,2602.03304,s3,검색시점,no
+Towards Agentic Self-Learning LLMs in Search Environment,2510.14253,s3,검색시점,no
+Training Multi-Turn Search Agent via Contrastive Dynamic Branch Sampling,2602.03719,s3,검색시점,no
+UR²: Unify RAG and Reasoning through Reinforcement Learning,2508.06165,s3,검색시점,no
+DR-Venus: Towards Frontier Edge-Scale Deep Research Agents with Only 10K Open Data,2604.19859,s3,검색시점;RAG강화추론,no
+Harness-1: Reinforcement Learning for Search Agents with State-Externalizing Harnesses,2606.02373,s3,검색시점;RAG강화추론,no
+LiteResearcher: A Scalable Agentic RL Training Framework for Deep Research Agent,2604.17931,s3,검색시점;RAG강화추론,no
+Marco DeepResearch: Unlocking Efficient Deep Research Agents via Verification-Centric Design,2603.28376,s3,검색시점;RAG강화추론,no
+MedResearcher‑R1: Expert‑Level Medical Deep Researcher via a Knowledge‑Informed Trajectory Synthesis Framework,2508.14880,s3,검색시점;RAG강화추론,no
+KARL: Knowledge Agents via Reinforcement Learning,2603.05218,s3,검색시점;평가,no
+Adaptive Information Control for Search-Augmented LLM Reasoning,2602.01672,s3,검색시점;학습형RL,no
+"OThink-SRR1: Search, Refine and Reasoning with Reinforced Learning for Large Language Models",2604.19766,s3,검색시점;학습형RL,no
+Process vs. Outcome Reward: Which Is Better for Agentic RAG Reinforcement Learning,2505.14069,s3,검색시점;학습형RL,no
+SIGHT: Reinforcement Learning with Self-Evidence and Information-Gain Diverse Branching for Search Agent,2602.11551,s3,검색시점;학습형RL,no
+Synthetic Data Generation & Multi-Step RL for Reasoning & Tool Use,2504.04736,s3,검색시점;학습형RL,no
+Fathom-DeepResearch: Unlocking Long Horizon Information Retrieval and Synthesis for SLMs,2509.24107,s3,검색시점;학습형RL;RAG강화추론,no
+QUEST: Training Frontier Deep Research Agents with Fully Synthetic Tasks,2605.24218,s3,검색시점;학습형RL;RAG강화추론,no
+SciResearcher: Scaling Deep Research Agents for Frontier Scientific Reasoning,2605.01489,s3,검색시점;학습형RL;RAG강화추론,no
+VISOR: Agentic Visual Retrieval-Augmented Generation via Iterative Search and Over-horizon Reasoning,2604.09508,s3,검색시점;학습형RL;RAG강화추론,no
+Advancing Multi-Agent RAG Systems with Minimalist Reinforcement Learning,2505.17086,s3,에이전트오케스트레이션,no
+AgentGym‑RL: Training LLM Agents for Long‑Horizon Decision Making through Multi‑Turn Reinforcement Learning,2509.08755,s3,에이전트오케스트레이션,no
+Beyond Monolithic Architectures: A Multi-Agent Search and Knowledge Optimization Framework for Agentic Search,2601.04703,s3,에이전트오케스트레이션,no
+In-the-Flow Agentic System Optimization for Effective Planning and Tool Use,2510.05592,s3,에이전트오케스트레이션,no
+PRISMA: Reinforcement Learning Guided Two-Stage Policy Optimization in Multi-Agent Architecture for Open-Domain Multi-Hop Question Answering,2601.05465,s3,에이전트오케스트레이션,no
+SIRAG: Towards Stable and Interpretable RAG with a Process‑Supervised Multi‑Agent Framework,2509.18167,s3,에이전트오케스트레이션,no
+WideSeek-R1: Exploring Width Scaling for Broad Information Seeking via Multi-Agent Reinforcement Learning,2602.04634,s3,에이전트오케스트레이션,no
+Towards Verifiable Multimodal Deep Research: A Multi-Agent Harness for Interleaved Report Generation,2605.29861,s3,에이전트오케스트레이션;RAG강화추론;평가,no
+AgentDisCo: Towards Disentanglement and Collaboration in Open-ended Deep Research Agents,2605.11732,s3,에이전트오케스트레이션;평가,no
+Argus: Evidence Assembly for Scalable Deep Research Agents,2605.16217,s3,에이전트오케스트레이션;학습형RL,no
+AgenticRAG: Agentic Retrieval for Enterprise Knowledge Bases,2605.05538,s3,질의계획,no
+Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction,2605.05242,s3,질의계획,no
+CriticSearch: Fine-Grained Credit Assignment for Search Agents via a Retrospective Critic,2511.12159,s3,질의계획,no
+DeepNote: Note-Centric Deep Retrieval-Augmented Generation,2410.08821,s3,질의계획,no
+Learning to Retrieve from Agent Trajectories,2604.04949,s3,질의계획,no
+When should I search more: Adaptive Complex Query Optimization with Reinforcement Learning,2601.21208,s3,질의계획,no
+ParallelSearch: Train Your LLMs to Decompose Query and Search Sub‑Queries in Parallel with Reinforcement Learning,2508.09303,s3,질의계획;검색시점,no
+RAG‑R1: Incentivizing the Search and Reasoning Capabilities of LLMs through Multi‑Query Parallelism,2507.02962,s3,질의계획;검색시점,no
+WebExplorer: Explore and Evolve for Training Long‑Horizon Web Agents,2509.06501,s3,질의계획;에이전트오케스트레이션,no
+Rethinking Reasoning-Intensive Retrieval: Evaluating and Advancing Retrievers in Agentic Search Systems,2605.04018,s3,질의계획;평가,no
+CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search,2604.17555,s3,질의계획;학습형RL,no
+LatentRAG: Latent Reasoning and Retrieval for Efficient Agentic RAG,2605.06285,s3,질의계획;학습형RL,no
+Rethinking Agentic RAG: Toward LLM-Driven Logical Retrieval Beyond Embeddings,2605.27123,s3,질의계획;학습형RL,no
+A-RAG: Scaling Agentic Retrieval-Augmented Generation via Hierarchical Retrieval Interfaces,2602.03442,s3,질의계획;학습형RL;RAG강화추론,no
+GrepSeek: Training Search Agents for Direct Corpus Interaction,2605.29307,s3,질의계획;학습형RL;RAG강화추론,no
+A Rigorous Benchmark with Multidimensional Evaluation for Deep Research Agents: From Answers to Reports,2510.02190,s3,평가,no
+Agentic Reinforcement Learning for Search is Unsafe,2510.17431,s3,평가,no
+Agentic Search in the Wild: Intents and Trajectory Dynamics from 14M+ Real Search Requests,2601.17617,s3,평가,no
+AgentWebBench: Benchmarking Multi-Agent Coordination in Agentic Web,2604.10938,s3,평가,no
+arXiv,2009.02252,s3,평가,no
+Cited but Not Verified: Parsing and Evaluating Source Attribution in LLM Deep Research Agents,2605.06635,s3,평가,no
+CoQA,1808.07042,s3,평가,no
+Deep FinResearch Bench: Evaluating AI's Ability to Conduct Professional Financial Investment Research,2604.21006,s3,평가,no
+Deep Research in Physical Sciences: A Multi-Agent Framework and Comprehensive Benchmark,2606.18648,s3,평가,no
+Deep-Research Agents Can Be Poisoned via User-Generated Content,2605.24245,s3,평가,no
+DeepFact: Co-Evolving Benchmarks and Agents for Deep Research Factuality,2603.05912,s3,평가,no
+DeepResearch Bench II: Diagnosing Deep Research Agents via Rubrics from Expert Report,2601.08536,s3,평가,no
+DeepResearch-9K: A Challenging Benchmark Dataset of Deep-Research Agent,2603.01152,s3,평가,no
+DeepResearchEval: An Automated Framework for Deep Research Task Construction and Agentic Evaluation,2601.09688,s3,평가,no
+DeepScholar-Bench: A Live Benchmark and Automated Evaluation for Generative Research Synthesis,2508.20033,s3,평가,no
+DeepSearchQA: Bridging the Comprehensiveness Gap for Deep Research Agents,2601.20975,s3,평가,no
+DeepWeb-Bench: A Deep Research Benchmark Demanding Massive Cross-Source Evidence and Long-Horizon Derivation,2605.21482,s3,평가,no
+DR$^3$-Eval: Towards Realistic and Reproducible Deep Research Evaluation,2604.14683,s3,평가,no
+DR-Arena: an Automated Evaluation Framework for Deep Research Agents,2601.10504,s3,평가,no
+"DRACO: a Cross-Domain Benchmark for Deep Research Accuracy, Completeness, and Objectivity",2602.11685,s3,평가,no
+DREAM: Deep Research Evaluation with Agentic Metrics,2602.18940,s3,평가,no
+"Evaluating Deep Research Agents on Expert Consulting Work: A Benchmark with Verifiers, Rubrics, and Cognitive Traps",2605.17554,s3,평가,no
+Evaluating the Search Agent in a Parallel World,2603.04751,s3,평가,no
+FinDeepForecast: A Live Multi-Agent System for Benchmarking Deep Research Agents in Financial Forecasting,2601.05039,s3,평가,no
+IDRBench: Interactive Deep Research Benchmark,2601.06676,s3,평가,no
+InfoSeek,2302.11713,s3,평가,no
+InterLV-Search: Benchmarking Interleaved Multimodal Agentic Search,2605.07510,s3,평가,no
+LiveNewsBench: Evaluating LLM Web Search Capabilities with Freshly Curated News,2602.13543,s3,평가,no
+LocalSearchBench: Benchmarking Agentic Search in Real-World Local Life Services,2512.07436,s3,평가,no
+LongVidSearch: An Agentic Benchmark for Multi-hop Evidence Retrieval Planning in Long Videos,2603.14468,s3,평가,no
+MATH,2103.03874,s3,평가,no
+MERRIN: A Benchmark for Multimodal Evidence Retrieval and Reasoning in Noisy Web Environments,2604.13418,s3,평가,no
+MiroEval: Benchmarking Multimodal Deep Research Agents in Process and Outcome,2603.28407,s3,평가,no
+MMDeepResearch-Bench: A Benchmark for Multimodal Deep Research Agents,2601.12346,s3,평가,no
+NQ,1705.03551,s3,평가,no
+PaperScope: A Multi-Modal Multi-Document Benchmark for Agentic Deep Research Across Massive Scientific Papers,2604.11307,s3,평가,no
+Partial Evidence Bench: Benchmarking Authorization-Limited Evidence in Agentic Systems,2605.05379,s3,평가,no
+Revisiting Text Ranking in Deep Research,2602.21456,s3,평가,no
+SAGE: Benchmarking and Improving Retrieval for Deep Research Agents,2602.05975,s3,평가,no
+ScholarGym: Benchmarking Large Language Model Capabilities in the Information-Gathering Stage of Deep Research,2601.21654,s3,평가,no
+Search-Time Contamination in Deep Research Agents: Measuring Performance Inflation in Public Benchmark Evaluation,2606.05241,s3,평가,no
+Total Recall QA: A Verifiable Evaluation Suite for Deep Research Agents,2603.18516,s3,평가,no
+VisBrowse-Bench: Benchmarking Visual-Native Search for Multimodal Browsing Agents,2603.16289,s3,평가,no
+Vision-DeepResearch Benchmark: Rethinking Visual and Textual Search for Multimodal Large Language Models,2602.02185,s3,평가,no
+W&D: Scaling Parallel Tool Calling for Efficient Deep Research Agents,2602.07359,s3,평가,no
+WebQA,2109.00590,s3,평가,no
+Wiki Live Challenge: Challenging Deep Research Agents with Expert-Level Wikipedia Articles,2602.01590,s3,평가,no
+AceSearcher: Bootstrapping Reasoning and Search for LLMs via Reinforced Self-Play,2509.24193,s3,학습형RL,no
+Atom‑Searcher: Enhancing Agentic Deep Research via Fine‑Grained Atomic Thought Reward,2508.12800,s3,학습형RL,no
+Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards,2601.06021,s3,학습형RL,no
+D$^2$Plan: Dual-Agent Dynamic Global Planning for Complex Retrieval-Augmented Reasoning,2601.08282,s3,학습형RL,no
+DecEx-RAG: Boosting Agentic Retrieval-Augmented Generation with Decision and Execution Optimization via Process Supervision,2510.05691,s3,학습형RL,no
+Enhancing LLM-based Search Agents via Contribution Weighted Group Relative Policy Optimization,2604.14267,s3,학습형RL,no
+Evaluate-as-Action: Self-Evaluated Process Rewards for Retrieval-Augmented Agents,2603.09203,s3,학습형RL,no
+GlobalRAG: Enhancing Global Reasoning in Multi-hop Question Answering via Reinforcement Learning,2510.20548,s3,학습형RL,yes
+IG-Search: Step-Level Information Gain Rewards for Search-Augmented Reasoning,2604.15148,s3,학습형RL,no
+Information Gain-based Policy Optimization: A Simple and Effective Approach for Multi-Turn Search Agents,2510.14967,s3,학습형RL,no
+ProRAG: Process-Supervised Reinforcement Learning for Retrieval-Augmented Generation,2601.21912,s3,학습형RL,no
+RECON: Reasoning with Condensation for Efficient Retrieval‑Augmented Generation,2510.10448,s3,학습형RL,no
+ReSum: Unlocking Long‑Horizon Search Intelligence via Context Summarization,2509.13313,s3,학습형RL,no
+SD-Search: On-Policy Hindsight Self-Distillation for Search-Augmented Reasoning,2605.18299,s3,학습형RL,no
+SE-Search: Self-Evolving Search Agent via Memory and Dense Reward,2603.03293,s3,학습형RL,no
+Search and Refine During Think: Facilitating Knowledge Refinement for Improved Retrieval-Augmented Reasoning,2505.11277,s3,학습형RL,no
+Search-E1: Self-Distillation Drives Self-Evolution in Search-Augmented Reasoning,2605.22511,s3,학습형RL,no
+Search-P1: Path-Centric Reward Shaping for Stable and Efficient Agentic RAG Training,2602.22576,s3,학습형RL,no
+Search-R2: Enhancing Search-Integrated Reasoning via Actor-Refiner Collaboration,2602.03647,s3,학습형RL,no
+SFR‑DeepResearch: Towards Effective Reinforcement Learning for Autonomously Reasoning Single Agents,2509.06283,s3,학습형RL,no
+TeaRAG: A Token-Efficient Agentic Retrieval-Augmented Generation Framework,2511.05385,s3,학습형RL,no
+RubricEM: Meta-RL with Rubric-guided Policy Decomposition beyond Verifiable Rewards,2605.10899,s3,학습형RL;RAG강화추론,no
+ReZero: Enhancing LLM Search Ability by Trying One‑More‑Time,2504.11001,s3;s4,검색시점;학습형RL,no
+Corrective Retrieval Augmented Generation (CRAG),2401.15884,s4,검색시점,yes
+RAGate,,s4,검색시점,no
+Self-Route,,s4,검색시점,no
+Modular-RAG,2407.21059,s4,사전정의,no
+RAPTOR,2401.18059,s4,추론워크플로우,yes
