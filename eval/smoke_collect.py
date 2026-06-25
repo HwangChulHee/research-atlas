@@ -1,7 +1,7 @@
-"""수집 에이전트 스모크 — agent_collect의 부품을 호출만 하는 검증 진입점.
+"""수집 에이전트 스모크 — agents.collect의 부품을 호출만 하는 검증 진입점.
 
 각 스모크는 한 단계군을 돌려보고 하드 게이트(assert)로 회귀를 잡는다. 수집 로직·
-프롬프트·그래프 정의는 일절 건드리지 않고 agent_collect 의 기존 함수만 부른다.
+프롬프트·그래프 정의는 일절 건드리지 않고 agents.collect 의 기존 함수만 부른다.
 (라이브 모드 — collect_extract_smoke·graph_smoke 정상경로는 실제 추출/Neo4j 반영.
  eval 격리가 필요하면 eval/test_collect.py 를 쓴다.)
 
@@ -15,11 +15,11 @@ import json
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))  # 레포 루트(agent_collect)
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))  # 레포 루트(agents.collect)
 
 from langgraph.checkpoint.memory import MemorySaver  # noqa: E402
 
-from agent_collect import (  # noqa: E402
+from agents.collect import (  # noqa: E402
     DEFAULT_EXTRACT,
     EMBED_MODEL,
     PAPERS_LEDGER,

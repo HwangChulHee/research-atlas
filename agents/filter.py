@@ -2,7 +2,7 @@
 
 테스트 문장 5개를 LLM에 보내 의도한 tool call이 나오는지 검증한다.
 이 스키마가 확정되면 api/(2/3)와 프론트(3/3)가 이걸 기준으로 만들어진다.
-실행: uv run python agent_filter.py
+실행: uv run python -m agents.filter
 """
 import json
 import sys
@@ -10,10 +10,10 @@ from pathlib import Path
 from dotenv import load_dotenv
 from openai import OpenAI
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))  # prompts 패키지 — cwd 무관 import
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))  # prompts 패키지 — cwd 무관 import
 from prompts.filter.command import build_system_prompt
 
-load_dotenv(Path(__file__).resolve().parent / ".env")  # cwd 무관하게 루트 .env 명시
+load_dotenv(Path(__file__).resolve().parent.parent / ".env")  # cwd 무관하게 루트 .env 명시
 client = OpenAI()
 MODEL = "gpt-5.4-mini"
 

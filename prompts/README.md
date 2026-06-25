@@ -21,11 +21,11 @@ prompts/
 | `paper_type_criteria.py` | `PAPER_TYPE_CRITERIA` | (조각) `pipeline/extract`·`collect/gate`가 import | 공유 | — (단일 출처 조각) |
 | `pipeline/extract.py` | `EXTRACT_SYSTEM/USER/SCHEMA` | `src/extract.py: extract_one()` | ① 추출 파이프라인 | `uv run python src/extract.py` · ②의 추출 단계가 재사용 |
 | `pipeline/relate.py` | `RELATE_SYSTEM/USER/SCHEMA` | `src/relate.py: relate_one()` | ① 추출 파이프라인 | `uv run python src/relate.py` · ②의 추출 단계가 재사용 |
-| `collect/intent.py` | `INTENT_SYSTEM` | `agent_collect.py: parse_intent()` | ② 수집 에이전트 | `POST /api/collect/start` ← `/graph` 채팅(수집 명령) |
-| `collect/report.py` | `REPORT_SYSTEM`, `build_report_user()` | `agent_collect.py: build_status_report()` | ② 수집 에이전트 | 같은 흐름의 **interpret** interrupt 카드(한국어 보고) |
-| `collect/expand.py` | `EXPAND_SYSTEM`, `build_expand_user()` | `agent_collect.py: expand_query()` | ② 수집 에이전트 | `proceed` 후 arXiv 검색 직전 |
-| `collect/gate.py` | `GATE_SYSTEM/USER`, `GATE_PROMPT_VER` | `agent_collect.py: gate_classify()/gate_one()` | ② 수집 에이전트 | **approve** 승인 후 관문 판정 |
-| `filter/command.py` | `build_system_prompt(names)` | `agent_filter.py` → `api/main.py` | ③ 필터 에이전트 | `POST /api/command` ← `/graph` 채팅(화면 조작 명령) |
+| `collect/intent.py` | `INTENT_SYSTEM` | `agents/collect.py: parse_intent()` | ② 수집 에이전트 | `POST /api/collect/start` ← `/graph` 채팅(수집 명령) |
+| `collect/report.py` | `REPORT_SYSTEM`, `build_report_user()` | `agents/collect.py: build_status_report()` | ② 수집 에이전트 | 같은 흐름의 **interpret** interrupt 카드(한국어 보고) |
+| `collect/expand.py` | `EXPAND_SYSTEM`, `build_expand_user()` | `agents/collect.py: expand_query()` | ② 수집 에이전트 | `proceed` 후 arXiv 검색 직전 |
+| `collect/gate.py` | `GATE_SYSTEM/USER`, `GATE_PROMPT_VER` | `agents/collect.py: gate_classify()/gate_one()` | ② 수집 에이전트 | **approve** 승인 후 관문 판정 |
+| `filter/command.py` | `build_system_prompt(names)` | `agents/filter.py` → `api/main.py` | ③ 필터 에이전트 | `POST /api/command` ← `/graph` 채팅(화면 조작 명령) |
 
 > 언어: `extract`/`relate`는 영문 프롬프트. `extract`는 동작 불변(byte-동일 유지),
 > `relate`는 lineage-only로 전환됨(점수비교 baseline 제외, 입력에서 problem/domain 제거). `gate`/`intent`/`report`/
@@ -43,7 +43,7 @@ prompts/
 - **적용**: 배치 실행(`uv run python src/extract.py [--run]`). 결과는 `*.concepts.json`/`*.relations.json`.
   이 두 프롬프트는 ②의 추출 단계에서도 그대로 재사용된다(같은 함수 호출).
 
-## ② 수집 에이전트 (`agent_collect`, LangGraph)
+## ② 수집 에이전트 (`agents.collect`, LangGraph)
 
 "말로 부리는 수집". 사용자가 채팅으로 주제를 던지면 arXiv에서 찾아 관문을 통과한 것만 지도에 추가한다.
 사람 개입(interrupt) 3곳에서 멈춘다.
@@ -68,7 +68,7 @@ parse ─▶ confirm_interpret ⏸interpret ─▶ expand_search ─▶ approve 
 - `GATE_PROMPT_VER`: 관문 프롬프트가 바뀌면 올린다(현재 `gate-v2`). `papers.json`의 옛 버전 판정은
   자동 재판정된다.
 
-## ③ 필터 에이전트 (`agent_filter`)
+## ③ 필터 에이전트 (`agents.filter`)
 
 자연어 화면 조작 명령을 tool call로 번역한다(실행은 프론트가 함).
 

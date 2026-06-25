@@ -14,7 +14,7 @@ from collections import defaultdict
 assert os.environ.get("ATLAS_OFFLINE") != "1", "라이브 모드로 실행할 것(Neo4j 반영)"
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from agent_collect import extract_pipeline  # noqa: E402
+from agents.collect import extract_pipeline  # noqa: E402
 
 IDS = [  # T1(arXiv API 제목/초록 대조)에서 21/21 검증 통과
     "2501.12948", "2503.09516", "2501.05366", "2505.17005", "2504.03160", "2503.19470",

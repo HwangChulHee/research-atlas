@@ -45,6 +45,7 @@ ChatGPT·Claude에게 논문 하나를 물으면 잘 설명해 준다. 하지만
 | 디렉토리 | 역할 |
 |---|---|
 | `src/` | 빌드 파이프라인 (fetch → parse → extract → relate → normalize_v2 → embed) |
+| `agents/` | 수집(`collect.py`, LangGraph)·필터(`filter.py`, 명령 tool) 에이전트 |
 | `api/` | FastAPI 백엔드 (그래프 읽기 · 사전 편집 · 재빌드) |
 | `graphdb/` | Neo4j 적재(`load.py`)·검증(`verify.py`)·접속(`conn.py`) |
 | `web/` | Vite + React UI (사용법 / 지형도 / 사전) |

@@ -61,7 +61,7 @@ def main():
     print("\n검산 통과 ✓")
 
     if not do_apply:
-        print("미리보기 모드. 실제 적용하려면:  uv run python apply_pending.py --apply")
+        print("미리보기 모드. 실제 적용하려면:  uv run python scripts/apply_pending.py --apply")
         return
 
     for k in APPROVE:

@@ -28,8 +28,8 @@ from langgraph.types import Command, interrupt
 from openai import OpenAI
 
 # 기존 추출 파이프라인 재사용 (src/) — 호출만, 로직 수정 안 함
-sys.path.insert(0, str(Path(__file__).resolve().parent))          # 루트(prompts 패키지)
-sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))          # 루트(prompts 패키지)
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 import config  # noqa: E402
 import extract  # noqa: E402
 import fetch  # noqa: E402

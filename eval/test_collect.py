@@ -45,7 +45,7 @@ sys.path.insert(0, str(ROOT))
 # agent_collect import 는 OpenAI 클라이언트·임베딩 로더를 띄움(수집에 필요) — 정상.
 from langgraph.checkpoint.memory import MemorySaver  # noqa: E402
 
-from agent_collect import (  # noqa: E402
+from agents.collect import (  # noqa: E402
     _log_reset, _run_scenario, build_collect_graph, llm_summary,
 )
 
