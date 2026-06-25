@@ -2,15 +2,15 @@
    LLM 없음(재조립). lexicon status로 개념 거름. 빈 링 개념 유지.
    로직은 normalize_core.normalize_paper 공유(증분 쓰기와 같은 함수 — 두 경로 무분기).
    출력: normalized_v2.json (배치 재빌드의 중간 오라클).
-   실행: uv run python src/normalize_v2.py
+   실행: uv run python pipeline/normalize_v2.py
 """
 import glob
 import json
 import sys
 from pathlib import Path
 
-from src import config
-from src import normalize_core as nc
+from pipeline import config
+from pipeline import normalize_core as nc
 
 OUT = config.OUT_DIR / "normalized_v2.json"
 

@@ -4,7 +4,7 @@ from pathlib import Path
 from openai import OpenAI
 
 _HERE = Path(__file__).resolve().parent
-from src import config
+from pipeline import config
 from prompts.pipeline.extract import EXTRACT_SYSTEM, EXTRACT_USER, EXTRACT_SCHEMA
 
 client = OpenAI()

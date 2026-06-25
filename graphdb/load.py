@@ -6,7 +6,7 @@ import json, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-from src import config
+from pipeline import config
 
 from graphdb.conn import get_driver
 

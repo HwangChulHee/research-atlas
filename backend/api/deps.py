@@ -6,7 +6,7 @@ from pathlib import Path
 
 from fastapi import HTTPException
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent  # backend/api/deps.py → 레포 루트
 DATA_DIR = ROOT / "data"
 LEX_PATH = DATA_DIR / "lexicon.json"
 NORMALIZED_V2_PATH = DATA_DIR / "outputs" / "normalized_v2.json"  # v2 이중 노드 — 현재 소스

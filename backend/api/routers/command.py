@@ -5,11 +5,11 @@ from dotenv import load_dotenv
 from fastapi import APIRouter, Body, HTTPException
 from openai import OpenAI
 
-from agents.collect import embed_query, load_embeddings, match
-from agents.filter import TOOLS, build_system_prompt
-from api.deps import ROOT
-from api.graph_neo4j import graph_view_neo4j
-from src import config
+from backend.agents.collect import embed_query, load_embeddings, match
+from backend.agents.filter import TOOLS, build_system_prompt
+from backend.api.deps import ROOT
+from backend.api.graph_neo4j import graph_view_neo4j
+from pipeline import config
 
 router = APIRouter()
 

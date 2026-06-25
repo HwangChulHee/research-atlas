@@ -1,7 +1,7 @@
 """사전(lexicon) 편집 라우트 — 조회 · 부분수정(+Neo4j 동기) · 병합."""
 from fastapi import APIRouter, Body, HTTPException
 
-from api.deps import load_lexicon, save_lexicon
+from backend.api.deps import load_lexicon, save_lexicon
 
 router = APIRouter()
 
@@ -34,7 +34,7 @@ def patch_lexicon(name: str, patch: dict = Body(...)):
     - status 를 approved/unreviewed 로 *상향*: 즉시 노드화는 범위 밖(표#7) — 감사가 리포트.
     """
     from graphdb.write import reject_concept, update_definition
-    from src.normalize_core import canon
+    from pipeline.normalize_core import canon
 
     lex = load_lexicon()
     techniques = lex.get("techniques", {})
@@ -92,7 +92,7 @@ def merge_lexicon(body: dict = Body(...)):
 
     # Neo4j 증분 동기화(T0#8 + 0.6): src 엣지를 dst 로 재연결, 닻 이동, src 삭제.
     from graphdb.write import merge_concept
-    from src.normalize_core import canon
+    from pipeline.normalize_core import canon
     try:
         merge_concept(canon(src), canon(dst))
     except Exception as e:  # noqa: BLE001  (lexicon은 이미 저장됨 — rebuild로 복구 가능)

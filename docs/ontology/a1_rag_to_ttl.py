@@ -5,7 +5,7 @@ from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, SKOS
 
 HERE = Path(__file__).resolve().parent
-from src import config
+from pipeline import config
 
 ATLAS = Namespace("https://github.com/HwangChulHee/agent-project/atlas#")
 

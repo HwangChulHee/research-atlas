@@ -11,9 +11,9 @@ from dotenv import load_dotenv
 from openai import OpenAI
 
 from prompts.filter.command import build_system_prompt
-from src import config
+from pipeline import config
 
-load_dotenv(Path(__file__).resolve().parent.parent / ".env")  # cwd 무관하게 루트 .env 명시
+load_dotenv(Path(__file__).resolve().parent.parent.parent / ".env")  # backend/agents/filter.py → 루트 .env
 client = OpenAI()
 MODEL = config.MODEL_COMMAND
 

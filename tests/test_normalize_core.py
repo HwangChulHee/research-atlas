@@ -1,5 +1,5 @@
 """normalize_core 의 표기 정규화/해소 — lexicon 채점·정규화의 토대."""
-from src import normalize_core as nc
+from pipeline import normalize_core as nc
 
 
 def test_canon_lowercases_collapses_and_hyphen_to_space():

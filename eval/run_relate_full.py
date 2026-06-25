@@ -9,8 +9,8 @@ from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 _HERE = Path(__file__).resolve().parent
-from src import config
-from src.relate import relate_one
+from pipeline import config
+from pipeline.relate import relate_one
 
 OUT = config.OUT_DIR
 IDS = sorted(p.split("/")[-1].rsplit(".relations.json", 1)[0]

@@ -5,7 +5,7 @@ v2 이중 노드 임베딩(node_embeddings_v2.json) 위에서 동작.
 - 논문 매칭(problem): "같은 문제를 다룬 논문이 뭐 있나" (세렌디피티 씨앗).
 arXiv 실제 수집/승인/분기는 다음 조각. 이번은 현황 보고까지만.
 
-이 모듈은 라이브러리 — api/main.py·eval/test_collect.py 가 함수를 import 해 쓴다.
+이 모듈은 라이브러리 — backend/api/main.py·eval/test_collect.py 가 함수를 import 해 쓴다.
 스모크 검증은 eval/smoke_collect.py (uv run python eval/smoke_collect.py [--*-smoke]).
 """
 import datetime
@@ -27,12 +27,12 @@ from langgraph.graph import END, START, StateGraph
 from langgraph.types import Command, interrupt
 from openai import OpenAI
 
-# 기존 추출 파이프라인 재사용 (src/) — 호출만, 로직 수정 안 함
-from src import config  # noqa: E402
-from src import extract  # noqa: E402
-from src import fetch  # noqa: E402
-from src import parse  # noqa: E402
-from src import relate  # noqa: E402
+# 기존 추출 파이프라인 재사용 (pipeline/) — 호출만, 로직 수정 안 함
+from pipeline import config  # noqa: E402
+from pipeline import extract  # noqa: E402
+from pipeline import fetch  # noqa: E402
+from pipeline import parse  # noqa: E402
+from pipeline import relate  # noqa: E402
 
 from graphdb.write import write_paper  # noqa: E402  (증분 쓰기 — 추출 직후 Neo4j 반영)
 from graphdb.read import is_offline, node_meta, owned_paper_ids  # noqa: E402  (읽기 단일 진입점)

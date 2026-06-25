@@ -6,7 +6,7 @@ import sys
 
 import pymupdf
 
-from src import config
+from pipeline import config
 
 GOLD = json.load(open("eval/goldset/papers.json"))
 IDS = GOLD["new_collected"] + GOLD["from_corpus"]

@@ -18,7 +18,7 @@ from pathlib import Path
 
 from langgraph.checkpoint.memory import MemorySaver  # noqa: E402
 
-from agents.collect import (  # noqa: E402
+from backend.agents.collect import (  # noqa: E402
     DEFAULT_EXTRACT,
     EMBED_MODEL,
     PAPERS_LEDGER,

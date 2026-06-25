@@ -31,9 +31,9 @@ eval/runs/
 *.tmp
 
 # === 웹 프론트 (web/) ===
-web/node_modules/
-web/dist/
-web/.vite/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
 
 # 개인화 상태(검토함) — 정본 아님, 사용자별
 data/reviewed.json

@@ -4,14 +4,14 @@
    placeholder 개념(정의 없음)은 제외 — 수집으로 정의 채워지면 자동 합류.
    모델명 기록 -> 모델 같으면 영구 재사용, 바뀌면 전체 재생성.
    증분: 이미 임베딩된 id는 건너뜀. --force로 전체.
-   실행: uv run python src/embed_nodes_v2.py [--force]
+   실행: uv run python pipeline/embed_nodes_v2.py [--force]
 """
 import json
 import sys
 from pathlib import Path
 from openai import OpenAI
 
-from src import config  # .env 로딩(config.py가 load_dotenv(ROOT/.env)) — 별도 load_dotenv 불필요
+from pipeline import config  # .env 로딩(config.py가 load_dotenv(ROOT/.env)) — 별도 load_dotenv 불필요
 
 client = OpenAI()
 

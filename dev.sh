@@ -8,7 +8,7 @@ cd "$(dirname "$0")"
 # 백엔드: vite proxy가 /api → :8000 으로 보내므로 포트 8000 고정.
 # 수집 세션은 이제 SqliteSaver(data/collect_sessions.db)라 재시작에도 멈춘 흐름이 생존한다.
 # 그래도 --reload는 안 씀: 파일 저장마다 재기동되면 진행 중 요청(추출 등)이 끊겨서.
-uv run uvicorn api.main:app --port 8000 &
+uv run uvicorn backend.api.main:app --port 8000 &
 BACK=$!
 
 cleanup() {
@@ -23,5 +23,5 @@ echo "[dev] 잠시 후 프론트가 열립니다.  브라우저: http://localhos
 echo ""
 
 # 프론트(포그라운드). Ctrl-C 하면 trap이 백엔드까지 정리.
-cd web
+cd frontend
 npm run dev

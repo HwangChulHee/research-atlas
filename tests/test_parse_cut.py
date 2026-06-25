@@ -1,6 +1,6 @@
 """parse.find_cut — abstract+intro 만 남기고 본문/References 를 자르는 로직.
 batch2 등에서 핵심이었던 절단 동작의 회귀 방지."""
-from src import parse
+from pipeline import parse
 
 
 def test_find_cut_stops_at_section2_heading_and_excludes_references():

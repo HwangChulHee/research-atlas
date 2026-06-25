@@ -11,7 +11,7 @@
 - data/lexicon.json (검토 대기 = pending/unreviewed)
 - data/outputs/{id}.concepts.json (defines: 정의된 논문 + 정의문, title)
 - data/outputs/{id}.relations.json (builds_on: 조상으로 언급된 논문)
-- src/normalize_core.py 의 resolve/status_of/load_lex_state (표기 정규화·기존 개념 조회 재사용)
+- pipeline/normalize_core.py 의 resolve/status_of/load_lex_state (표기 정규화·기존 개념 조회 재사용)
 
 출력: eval/reports/review_suggestions.json + .md
 
@@ -30,8 +30,8 @@ from openai import OpenAI
 
 ROOT = Path(__file__).resolve().parents[1]
 load_dotenv(ROOT / ".env")
-from src import config
-from src import normalize_core as nc
+from pipeline import config
+from pipeline import normalize_core as nc
 
 OUT_DIR = config.OUT_DIR
 REPORT_DIR = ROOT / "eval" / "reports"

@@ -3,8 +3,8 @@ import json
 
 from fastapi import APIRouter, Body, HTTPException
 
-from api.deps import DATA_DIR, NORMALIZED_V2_PATH, REVIEWED_PATH, ROOT, run_step
-from api.graph_neo4j import graph_view_neo4j
+from backend.api.deps import DATA_DIR, NORMALIZED_V2_PATH, REVIEWED_PATH, ROOT, run_step
+from backend.api.graph_neo4j import graph_view_neo4j
 
 router = APIRouter()
 

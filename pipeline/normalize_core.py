@@ -18,7 +18,7 @@ import json
 import re
 from pathlib import Path
 
-from src import config
+from pipeline import config
 
 NODE_OK = {"approved", "unreviewed"}
 _PAREN = re.compile(r"\s*\(([^()]*)\)\s*")

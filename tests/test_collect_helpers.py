@@ -1,7 +1,7 @@
 """agents.collect 의 순수 헬퍼 — 편수 산정·arXiv id 정규화·코사인 매칭."""
 import numpy as np
 
-from agents import collect
+from backend.agents import collect
 
 
 def test_extract_target_default_and_hard_cap():

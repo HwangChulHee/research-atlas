@@ -7,7 +7,7 @@ research-atlas의 데이터는 **이분 그래프**다: 노드는 `paper`/`conce
 개념 계보(어떤 개념이 어떤 개념을 딛고 섰나)는 저장하지 않고 **논문을 경유해 유도**한다.
 
 이 유도 규칙이 임의의 코드 트릭이 아니라 **온톨로지적으로 타당한 추론**임을 먼저 RDF/OWL로
-검증한 뒤, 그 규칙을 Neo4j 읽기 경로(`api/graph_neo4j.py`)에 옮겼다. 그 작업 기록이 이 폴더다.
+검증한 뒤, 그 규칙을 Neo4j 읽기 경로(`backend/api/graph_neo4j.py`)에 옮겼다. 그 작업 기록이 이 폴더다.
 
 - **`a1_rag_to_ttl.py`** — `normalized_v2.json`의 RAG 서브그래프를 Turtle(`atlas_rag.ttl`)로 직렬화.
   개념은 `skos:Concept`(prefLabel/definition), 논문은 `atlas:Paper`, 엣지는 `atlas:defines`/`atlas:buildsOn`.

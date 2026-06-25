@@ -13,10 +13,10 @@ import json, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-from src import config  # noqa: F401  (.env 로딩 + 경로 상수)
+from pipeline import config  # noqa: F401  (.env 로딩 + 경로 상수)
 # 드라이버는 만들지 않는다 — graph_view_neo4j(프로덕션)가 자체 드라이버로 읽는다.
 # .env 는 config / api.graph_neo4j import 시 이미 로딩됨.
-from api.graph_neo4j import graph_view_neo4j
+from backend.api.graph_neo4j import graph_view_neo4j
 
 
 def _strip(nid):
@@ -154,7 +154,7 @@ def audit() -> int:
       E 노드 드리프트            (재빌드 오라클 개념집합 ↔ Neo4j 개념집합 불일치; row2 '있어야/없어야' 포함)
     자동수정 금지 — 위상 정확도가 정체성. 사람이 보고 판단. 발견 시 exit 1.
     """
-    from src import normalize_core as nc
+    from pipeline import normalize_core as nc
     from graphdb.conn import get_driver
 
     lex = json.loads((config.DATA_DIR / "lexicon.json").read_text())["techniques"]

@@ -1,15 +1,15 @@
 """research-atlas 웹 UI 백엔드.
 
 그래프(읽기 전용)와 사전(편집)을 서빙한다.
-파이프라인(src/)은 건드리지 않고, /api/rebuild만 src/normalize_v2.py를 subprocess로 호출한다.
-라우트는 도메인별 라우터로 분리(api/routers/): graph · lexicon · rebuild · command · collect.
+파이프라인(pipeline/)은 건드리지 않고, /api/rebuild만 pipeline/normalize_v2.py를 subprocess로 호출한다.
+라우트는 도메인별 라우터로 분리(backend/api/routers/): graph · lexicon · rebuild · command · collect.
 
-실행:  uv run uvicorn api.main:app --reload --port 8000
+실행:  uv run uvicorn backend.api.main:app --reload --port 8000
 """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from api.routers import collect, command, graph, lexicon, rebuild
+from backend.api.routers import collect, command, graph, lexicon, rebuild
 
 app = FastAPI(title="research-atlas")
 

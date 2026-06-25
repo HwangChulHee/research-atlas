@@ -44,7 +44,7 @@ RUNS = HERE / "runs"                    # 회차 산출물(JSON, gitignore) — 
 # agents.collect import 는 OpenAI 클라이언트·임베딩 로더를 띄움(수집에 필요) — 정상.
 from langgraph.checkpoint.memory import MemorySaver  # noqa: E402
 
-from agents.collect import (  # noqa: E402
+from backend.agents.collect import (  # noqa: E402
     _log_reset, _run_scenario, build_collect_graph, llm_summary,
 )
 
@@ -98,7 +98,7 @@ def load_view(path):
     """normalized_v2.json → diff용 요약 {concepts, papers, lineage}.
 
     개념간 builds_on(계보)은 normalized_v2 에 직접 저장돼 있지 않고 paper→concept 엣지에서
-    유도된다. build_graph_view(api/main.py)의 파생 규칙을 읽기 전용으로 미러(home concept =
+    유도된다. build_graph_view(backend/api/main.py)의 파생 규칙을 읽기 전용으로 미러(home concept =
     그 논문이 처음 defines 한 개념, 그 개념 → builds_on 대상들). 진단만, 아무것도 안 고침.
     """
     raw = json.loads(path.read_text())
@@ -338,7 +338,7 @@ def run_one(query):
 
         # --- normalize 반영 (추출분 → 노드/lexicon) ---
         print("\n=== normalize_v2 반영 ===")
-        proc = subprocess.run([sys.executable, str(ROOT / "src" / "normalize_v2.py")],
+        proc = subprocess.run([sys.executable, str(ROOT / "pipeline" / "normalize_v2.py")],
                              cwd=str(ROOT), capture_output=True, text=True)
         if proc.returncode != 0:
             raise RuntimeError(f"normalize_v2 실패:\n{proc.stderr or proc.stdout}")

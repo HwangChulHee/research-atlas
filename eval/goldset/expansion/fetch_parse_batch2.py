@@ -9,7 +9,7 @@ import csv, json, random, sys, time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-from src import fetch, parse  # noqa: E402
+from pipeline import fetch, parse  # noqa: E402
 
 EXP = ROOT / "eval/goldset/expansion"
 PARSED = EXP / "parsed"; PARSED.mkdir(parents=True, exist_ok=True)

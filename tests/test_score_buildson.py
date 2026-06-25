@@ -3,7 +3,7 @@ eval/ 는 패키지가 아니므로 파일 경로로 로드한다."""
 import importlib.util
 from pathlib import Path
 
-from src import normalize_core as nc
+from pipeline import normalize_core as nc
 
 _ROOT = Path(__file__).resolve().parents[1]
 _spec = importlib.util.spec_from_file_location("score_buildson", _ROOT / "eval/score_buildson.py")

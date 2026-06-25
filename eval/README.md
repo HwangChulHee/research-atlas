@@ -22,14 +22,14 @@ eval/
 2. 기준선  normalized_v2.json 의 개념/논문/계보 + lexicon status 를 메모리에 로드
 3. 수집    build_collect_graph(MemorySaver()) + _run_scenario(…, ["proceed"×3])
            → interrupt 3개(해석·물량·추출 승인) 자동통과, 추출까지(DEFAULT_EXTRACT 상한)
-4. 반영    subprocess: uv run python src/normalize_v2.py  (추출분 → 노드/lexicon)
+4. 반영    subprocess: uv run python pipeline/normalize_v2.py  (추출분 → 노드/lexicon)
 5. diff    normalized_v2.json 재로드 → 기준선과 비교: +개념 / +논문 / +계보 / +lexicon
            → 콘솔 출력 + eval/runs/{timestamp}.md(대화기록) + .json(diff+stages) 짝 기록
 6. 복원    finally: data/_snapshot_test/ → 되돌리고 스냅샷 정리,
            이번 회차가 새로 받은 PDF만 삭제 → data/ 원상복구
 ```
 
-수집 로직·프롬프트·그래프 정의는 **건드리지 않고** `agents/collect.py` 의 기존 함수를 호출만 한다.
+수집 로직·프롬프트·그래프 정의는 **건드리지 않고** `backend/agents/collect.py` 의 기존 함수를 호출만 한다.
 
 ---
 
@@ -162,5 +162,5 @@ rm -rf data/_snapshot_test
   돌린다. 그래서 이 테스트는 채팅 UI의 세션 영속/복원과 **독립** — 수집 그래프를 호출만 하므로 프론트
   핸드오프 적용 여부와 무관하게 동작한다.
 - 개념간 계보(`added_edges`)는 `normalized_v2.json` 에 직접 저장돼 있지 않고 paper→concept 엣지에서
-  유도된다. `test_collect.py: load_view()` 가 `api/main.py: build_graph_view` 의 파생 규칙(home
+  유도된다. `test_collect.py: load_view()` 가 `backend/api/main.py: build_graph_view` 의 파생 규칙(home
   concept = 그 논문이 처음 defines 한 개념 → builds_on 대상들)을 **읽기 전용으로 미러**한다.

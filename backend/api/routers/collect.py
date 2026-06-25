@@ -4,7 +4,7 @@ import uuid
 from fastapi import APIRouter, Body, HTTPException
 from langgraph.types import Command
 
-from agents.collect import build_collect_graph
+from backend.agents.collect import build_collect_graph
 
 router = APIRouter()
 

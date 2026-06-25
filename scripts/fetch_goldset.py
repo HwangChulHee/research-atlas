@@ -5,8 +5,8 @@ import sys
 import time
 from pathlib import Path
 
-from src import config
-from src import fetch
+from pipeline import config
+from pipeline import fetch
 
 GOLD = json.load(open("eval/goldset/papers.json"))
 IDS = GOLD["new_collected"] + GOLD["from_corpus"]
