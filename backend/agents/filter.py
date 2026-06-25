@@ -4,7 +4,6 @@
 이 스키마가 확정되면 api/(2/3)와 프론트(3/3)가 이걸 기준으로 만들어진다.
 실행: uv run python -m agents.filter
 """
-import json
 import sys
 from pathlib import Path
 from dotenv import load_dotenv

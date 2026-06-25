@@ -1,5 +1,5 @@
 """A-1: normalized_v2.json의 RAG 서브그래프 -> Turtle(.ttl)."""
-import json, sys
+import json
 from pathlib import Path
 from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, SKOS

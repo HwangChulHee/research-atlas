@@ -1,9 +1,8 @@
 """05 relate: builds_on + applies → {pid}.relations.json."""
-import argparse, json, sys
-from pathlib import Path
+import argparse
+import json
 from openai import OpenAI
 
-_HERE = Path(__file__).resolve().parent
 from pipeline import config
 from prompts.pipeline.relate import RELATE_SYSTEM, RELATE_USER, RELATE_SCHEMA
 

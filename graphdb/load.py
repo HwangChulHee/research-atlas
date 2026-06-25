@@ -2,7 +2,7 @@
 build_graph_view가 읽는 필드 전부 저장: 개념(def_status), 논문(domain, home_concept).
 node_embeddings_v2.json 이 있으면 id로 조인해 c.embedding/p.embedding 도 SET(있는 것만).
 """
-import json, sys
+import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent

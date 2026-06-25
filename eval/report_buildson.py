@@ -325,7 +325,6 @@ def write_md(st, rows, aggs, path):
     A("")
     a = aggs["전체(50)"]
     cheap_fp = len(fp_by_cat["component_tool"])
-    hard_fp = len(fp_by_cat["substrate"]) + len(fp_by_cat["method_misjudged"])
     A("**고칠 수 있는 것 vs 구조적 한계.**")
     A("")
     A(f"- *싸게 개선 가능(lexicon 작업)*: lexicon_dropped FN {a['fn_lex_drop']}건(검수로 approve) "

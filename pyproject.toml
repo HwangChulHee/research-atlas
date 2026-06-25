@@ -36,7 +36,17 @@ include = ["backend*", "graphdb*", "pipeline*", "prompts*"]
 [dependency-groups]
 dev = [
     "pytest>=9.1.1",
+    "ruff>=0.15.19",
 ]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]
+# 의도적 스타일은 유지: 긴 한글 주석(E501)·압축 one-liner(E701/E702)·
+# load_dotenv/경로설정 후 import(E402)·람다대입(E731). 핵심은 죽은 코드(F).
+ignore = ["E501", "E701", "E702", "E731", "E402"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

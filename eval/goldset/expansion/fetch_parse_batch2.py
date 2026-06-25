@@ -5,7 +5,10 @@ candidates.csv에서 규칙으로 90 ID 결정적 재생성 → arXiv PDF 다운
 pymupdf parse(abstract+intro, References 절단) → eval/goldset/expansion/parsed/{id}.parsed.json.
 실패는 parsed/_failed.txt 에 기록하고 계속. data/outputs·lexicon·papers.json 등은 안 건드림.
 """
-import csv, json, random, sys, time
+import csv
+import json
+import random
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]

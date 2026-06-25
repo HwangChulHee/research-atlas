@@ -6,9 +6,11 @@ section_tag 통제 어휘(=TAXONOMY_SUMMARY.ko.md 의 분류축):
   질의계획 검색시점 정보필터링 지식경계 메모리 생성 추론워크플로우
   그래프RAG 에이전트오케스트레이션 학습형RL RAG강화추론 사전정의 평가 기타
 """
-import csv, glob, json, re
+import csv
+import glob
+import json
+import re
 from pathlib import Path
-from collections import defaultdict
 
 # 레포 루트 기준 경로 자동 해소(이 스크립트가 expansion/ 안에 있어도 동작)
 ROOT = Path(__file__).resolve().parents[3]   # expansion/ → goldset → eval → root
@@ -122,9 +124,9 @@ def parse_table_readme(fname, survey, start_pat, stop_keys, title_col, breadcrum
             # title from [Title](url) or plain
             m=re.search(r'\[([^\]]+)\]\((https?://[^)]+)\)', cell)
             if m:
-                title=m.group(1).strip(); url=cell
+                title=m.group(1).strip()
             else:
-                title=cell; url=cell
+                title=cell
             if not title or title.lower() in ("paper title","method","time","paper") or set(title)<=set("-: "):
                 continue
             if "http" not in s:   # keep any row that carries a link (arxiv or aclanthology/openreview → blank id ok)

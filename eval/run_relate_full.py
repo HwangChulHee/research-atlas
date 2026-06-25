@@ -4,7 +4,8 @@ relate(full, temp=0)로 재호출해 덮어쓴다. extract 재실행 없음(conc
 병렬: ThreadPoolExecutor(워커 N). 각 워커는 relate_one만 호출, 메인이 기록.
 JSON 파싱 실패는 relate_one 내부 json.loads 예외로 잡혀 카운트된다.
 """
-import json, sys, glob
+import json
+import glob
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 

@@ -7,7 +7,6 @@ fetch→parse→extract→relate→write_paper(Neo4j 증분) 한 편 전부를 e
 실행: uv run python scripts/ingest_goldset.py   (Docker/Neo4j 기동 + ATLAS_OFFLINE 미설정 필수)
 """
 import os
-import sys
 from collections import defaultdict
 
 # 라이브 모드 확인: 오프라인이면 Neo4j 미반영 → 정답지 적재가 안 됨.

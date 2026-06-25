@@ -2,8 +2,6 @@
    섹션 경계로 자르되, 못 찾으면 HEAD_CHARS로 fallback."""
 import json
 import re
-import sys
-from pathlib import Path
 
 import pymupdf
 

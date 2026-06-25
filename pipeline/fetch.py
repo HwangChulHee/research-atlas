@@ -1,8 +1,6 @@
 """00 fetch: PAPER_IDS의 논문을 arXiv에서 data/pdfs/로. 3초 텀, 중복 skip."""
-import sys
 import time
 import urllib.request
-from pathlib import Path
 
 from pipeline import config
 

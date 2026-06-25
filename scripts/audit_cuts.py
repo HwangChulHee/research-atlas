@@ -2,7 +2,6 @@
    committed parsed.json vs PDF 원문(독립 추정)을 교차 점검."""
 import json
 import re
-import sys
 
 import pymupdf
 

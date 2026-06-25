@@ -3,7 +3,6 @@
 import json
 import sys
 import time
-from pathlib import Path
 
 from pipeline import config
 from pipeline import fetch

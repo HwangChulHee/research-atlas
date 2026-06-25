@@ -6,7 +6,6 @@
 """
 import glob
 import json
-import sys
 from pathlib import Path
 
 from pipeline import config

@@ -8,7 +8,6 @@
 """
 import json
 import sys
-from pathlib import Path
 from openai import OpenAI
 
 from pipeline import config  # .env 로딩(config.py가 load_dotenv(ROOT/.env)) — 별도 load_dotenv 불필요

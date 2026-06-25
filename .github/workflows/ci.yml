@@ -16,9 +16,13 @@ jobs:
         with:
           python-version: "3.12"
 
-      # 의존성 + 프로젝트 editable 설치(+ dev 그룹 pytest). build-system 검증도 겸함.
+      # 의존성 + 프로젝트 editable 설치(+ dev 그룹 pytest·ruff). build-system 검증도 겸함.
       - name: Sync
         run: uv sync
+
+      # 린트 — 미사용 import·죽은 코드 등(F 중심). 설정은 [tool.ruff].
+      - name: Lint
+        run: uv run ruff check .
 
       # 단위테스트 — API·네트워크·Neo4j 불필요(hermetic). 클린 러너라 PYTHONPATH 이슈 없음.
       - name: Test

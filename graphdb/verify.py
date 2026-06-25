@@ -9,7 +9,8 @@ papers=false / papers=true 둘 다 비교. 순서가 무의미한 것(papers 리
       부르면 stale 오라클과 비교해 FAIL 할 수 있다(드리프트 아님). /api/rebuild 는
       normalize→load→verify 순서라 무관.
 """
-import json, sys
+import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent

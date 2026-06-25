@@ -11,7 +11,6 @@
 - 임베딩은 OpenAI 호출 → Neo4j tx 밖에서 먼저 계산.
 """
 import json
-import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent

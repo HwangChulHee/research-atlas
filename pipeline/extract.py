@@ -1,9 +1,8 @@
 """04 extract: parsed → 내용(defines/uses/task/problem/domain)."""
-import argparse, json, sys
-from pathlib import Path
+import argparse
+import json
 from openai import OpenAI
 
-_HERE = Path(__file__).resolve().parent
 from pipeline import config
 from prompts.pipeline.extract import EXTRACT_SYSTEM, EXTRACT_USER, EXTRACT_SCHEMA
 
