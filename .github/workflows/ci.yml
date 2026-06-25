@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+
+      # 의존성 + 프로젝트 editable 설치(+ dev 그룹 pytest). build-system 검증도 겸함.
+      - name: Sync
+        run: uv sync
+
+      # 단위테스트 — API·네트워크·Neo4j 불필요(hermetic). 클린 러너라 PYTHONPATH 이슈 없음.
+      - name: Test
+        run: uv run pytest
