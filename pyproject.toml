@@ -1,7 +1,7 @@
 [project]
-name = "nlp-akg-practice"
+name = "research-atlas"
 version = "0.1.0"
-description = "NLP-AKG 방식 KG 추출/정규화 연습"
+description = "LLM·RAG·에이전트 연구 논문의 지형도 — builds_on 계보 그래프 추출·정규화·서빙"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.136.3",

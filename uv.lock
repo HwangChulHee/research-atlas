@@ -522,49 +522,6 @@ wheels = [
 ]
 
 [[package]]
-name = "nlp-akg-practice"
-version = "0.1.0"
-source = { editable = "." }
-dependencies = [
-    { name = "fastapi" },
-    { name = "feedparser" },
-    { name = "langgraph" },
-    { name = "langgraph-checkpoint-sqlite" },
-    { name = "neo4j" },
-    { name = "numpy" },
-    { name = "openai" },
-    { name = "owlrl" },
-    { name = "pymupdf4llm" },
-    { name = "python-dotenv" },
-    { name = "rdflib" },
-    { name = "uvicorn", extra = ["standard"] },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "pytest" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "fastapi", specifier = ">=0.136.3" },
-    { name = "feedparser", specifier = ">=6.0.12" },
-    { name = "langgraph", specifier = ">=1.2.4" },
-    { name = "langgraph-checkpoint-sqlite", specifier = ">=3.1.0" },
-    { name = "neo4j", specifier = ">=6.2.0" },
-    { name = "numpy", specifier = ">=2.4.6" },
-    { name = "openai", specifier = ">=2.41.0" },
-    { name = "owlrl", specifier = ">=7.1.4" },
-    { name = "pymupdf4llm", specifier = ">=1.27.2.3" },
-    { name = "python-dotenv", specifier = ">=1.2.2" },
-    { name = "rdflib", specifier = ">=7.6.0" },
-    { name = "uvicorn", extras = ["standard"], specifier = ">=0.49.0" },
-]
-
-[package.metadata.requires-dev]
-dev = [{ name = "pytest", specifier = ">=9.1.1" }]
-
-[[package]]
 name = "numpy"
 version = "2.4.6"
 source = { registry = "https://pypi.org/simple" }
@@ -1088,6 +1045,49 @@ sdist = { url = "https://files.pythonhosted.org/packages/f3/61/d7545dafb7ac2230c
 wheels = [
     { url = "https://files.pythonhosted.org/packages/3f/51/d4db610ef29373b879047326cbf6fa98b6c1969d6f6dc423279de2b1be2c/requests_toolbelt-1.0.0-py2.py3-none-any.whl", hash = "sha256:cccfdd665f0a24fcf4726e690f65639d272bb0637b9b92dfd91a5568ccf6bd06", size = 54481, upload-time = "2023-05-01T04:11:28.427Z" },
 ]
+
+[[package]]
+name = "research-atlas"
+version = "0.1.0"
+source = { editable = "." }
+dependencies = [
+    { name = "fastapi" },
+    { name = "feedparser" },
+    { name = "langgraph" },
+    { name = "langgraph-checkpoint-sqlite" },
+    { name = "neo4j" },
+    { name = "numpy" },
+    { name = "openai" },
+    { name = "owlrl" },
+    { name = "pymupdf4llm" },
+    { name = "python-dotenv" },
+    { name = "rdflib" },
+    { name = "uvicorn", extra = ["standard"] },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "pytest" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "fastapi", specifier = ">=0.136.3" },
+    { name = "feedparser", specifier = ">=6.0.12" },
+    { name = "langgraph", specifier = ">=1.2.4" },
+    { name = "langgraph-checkpoint-sqlite", specifier = ">=3.1.0" },
+    { name = "neo4j", specifier = ">=6.2.0" },
+    { name = "numpy", specifier = ">=2.4.6" },
+    { name = "openai", specifier = ">=2.41.0" },
+    { name = "owlrl", specifier = ">=7.1.4" },
+    { name = "pymupdf4llm", specifier = ">=1.27.2.3" },
+    { name = "python-dotenv", specifier = ">=1.2.2" },
+    { name = "rdflib", specifier = ">=7.6.0" },
+    { name = "uvicorn", extras = ["standard"], specifier = ">=0.49.0" },
+]
+
+[package.metadata.requires-dev]
+dev = [{ name = "pytest", specifier = ">=9.1.1" }]
 
 [[package]]
 name = "sgmllib3k"
