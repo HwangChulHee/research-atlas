@@ -26,3 +26,14 @@ build-backend = "setuptools.build_meta"
 # eval/·scripts/ 는 __init__.py 없는 실행 스크립트라 패키지에서 제외(설치 대상 아님).
 [tool.setuptools.packages.find]
 include = ["agents*", "api*", "graphdb*", "prompts*", "src*"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# 외부(시스템 ROS 등) pytest 플러그인 자동로드 차단 — venv 안의 것만 쓰게.
+# 주: ROS 환경이 PYTHONPATH로 주입되는 머신에선  PYTHONPATH= uv run pytest  로 실행.
+addopts = "-p no:cacheprovider"
