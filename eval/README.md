@@ -21,7 +21,7 @@ eval/
 1. 백업    data/outputs/ 통째 + data/lexicon.json → data/_snapshot_test/ (원자적)
 2. 기준선  normalized_v2.json 의 개념/논문/계보 + lexicon status 를 메모리에 로드
 3. 수집    build_collect_graph(MemorySaver()) + _run_scenario(…, ["proceed"×3])
-           → interrupt 3개(해석·물량·추출 승인) 자동통과, 추출까지(MAX_EXTRACT 상한)
+           → interrupt 3개(해석·물량·추출 승인) 자동통과, 추출까지(DEFAULT_EXTRACT 상한)
 4. 반영    subprocess: uv run python src/normalize_v2.py  (추출분 → 노드/lexicon)
 5. diff    normalized_v2.json 재로드 → 기준선과 비교: +개념 / +논문 / +계보 / +lexicon
            → 콘솔 출력 + eval/runs/{timestamp}.md(대화기록) + .json(diff+stages) 짝 기록
@@ -39,7 +39,7 @@ eval/
 - 레포 루트 `.env` 에 `OPENAI_API_KEY` (수집이 LLM·임베딩을 부름).
 - 네트워크: arXiv 메타 검색 + PDF 다운로드. arXiv rate limit 때문에 검색어 사이 3초 간격 → 한 회차에
   대략 1~2분.
-- **비용 주의**: 실제 OpenAI 토큰을 쓰고 PDF를 최대 `MAX_EXTRACT`(현재 2)편 받는다. 공짜 아님.
+- **비용 주의**: 실제 OpenAI 토큰을 쓰고 PDF를 최대 `DEFAULT_EXTRACT`(현재 2)편 받는다. 공짜 아님.
 
 ---
 

@@ -1,4 +1,4 @@
-"""필터 에이전트(agent_filter) 프롬프트 — 자연어 명령을 화면 조작 tool call로 라우팅."""
+"""필터 에이전트(agents.filter) 프롬프트 — 자연어 명령을 화면 조작 tool call로 라우팅."""
 
 
 def build_system_prompt(names):

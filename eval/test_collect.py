@@ -7,7 +7,7 @@
 
 핵심 원칙: 실제 normalized_v2.json / lexicon.json / papers.json 등을 건드리므로,
 에러·Ctrl-C 무엇에도 try/finally 로 복원이 보장된다. 수집 로직·프롬프트·그래프 정의는
-일절 건드리지 않고 agent_collect 의 기존 함수를 호출만 한다.
+일절 건드리지 않고 agents.collect 의 기존 함수를 호출만 한다.
 
 사용(레포 루트에서):
     uv run python eval/test_collect.py "llm 에이전트 메모리 관련 조사해줘"
@@ -27,7 +27,7 @@ import uuid
 from pathlib import Path
 
 # 오프라인 모드: eval 세계 전체를 JSON으로 격리한다(수집이 프로덕션 Neo4j에 안 씀 +
-# 보조 읽기도 normalized_v2.json 직독). agent_collect import 전에 설정해야 전 경로에 적용.
+# 보조 읽기도 normalized_v2.json 직독). agents.collect import 전에 설정해야 전 경로에 적용.
 os.environ.setdefault("ATLAS_OFFLINE", "1")
 
 HERE = Path(__file__).resolve().parent   # eval/ (이 스크립트·산출물이 사는 곳)
@@ -41,7 +41,7 @@ SNAP = DATA / "_snapshot_test"          # 완료된 백업(= pristine 본). data
 SNAP_TMP = DATA / "_snapshot_test.tmp"  # 작성 중 백업(원자적 rename 전)
 RUNS = HERE / "runs"                    # 회차 산출물(JSON, gitignore) — eval/runs/
 
-# agent_collect import 는 OpenAI 클라이언트·임베딩 로더를 띄움(수집에 필요) — 정상.
+# agents.collect import 는 OpenAI 클라이언트·임베딩 로더를 띄움(수집에 필요) — 정상.
 from langgraph.checkpoint.memory import MemorySaver  # noqa: E402
 
 from agents.collect import (  # noqa: E402
@@ -326,7 +326,7 @@ def run_one(query):
         before = load_view(NORMALIZED)
         lex_before = load_lex_status(LEXICON)
 
-        # --- 수집 (interrupt 3개를 'proceed' 자동응답으로 통과, MAX_EXTRACT 상한) ---
+        # --- 수집 (interrupt 3개를 'proceed' 자동응답으로 통과, DEFAULT_EXTRACT 상한) ---
         # 세션 DB(SqliteSaver) 오염 방지 위해 MemorySaver 휘발성 그래프 사용.
         graph = build_collect_graph(MemorySaver())
         tid = "test-" + uuid.uuid4().hex[:8]
