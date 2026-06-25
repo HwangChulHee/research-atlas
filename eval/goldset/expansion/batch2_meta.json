@@ -157,7 +157,7 @@
  "2502.14614": {
   "section_tag": "질의계획",
   "survey_source": "s1",
-  "paper_name": "FIND: Fine-grained Information Density Guided Adaptive Retrieval-Augmented Generation for Disease Diagnosis"
+  "paper_name": "ICA-RAG: Information Completeness Guided Adaptive Retrieval-Augmented Generation for Disease Diagnosis"
  },
  "2605.10899": {
   "section_tag": "학습형RL;RAG강화추론",

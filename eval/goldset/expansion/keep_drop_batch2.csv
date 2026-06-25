@@ -1,0 +1,91 @@
+arxiv_id,decision,reason,section_tag,title
+2205.14334,keep,"RAG-추론 방법 — GPT-3가 로짓을 쓰지 않고 답변에 대한 신뢰도를 자연어(""90% 신뢰"" 등)로 직접 말하도록 파인튜닝하면, 그 신뢰도가 잘 보정됨을 처음으로…",지식경계,Teaching Models to Express Their Uncertainty in Words
+2210.03350,keep,"RAG-추론 방법 — 모델이 하위 사실은 알면서도 조합 답은 틀리는 ""합성성 간극""을 정의·측정하고, 스스로 후속 질문을 던져 답하는 self-ask 프롬프트(+검색…",검색시점;에이전트오케스트레이션,Measuring and Narrowing the Compositionality Gap in Language Models
+2303.08896,keep,"RAG-추론 방법 — 외부 DB나 토큰 확률 없이, 같은 질문에 대해 여러 번 샘플링한 응답들이 서로 일관되면 사실, 발산·모순되면 환각이라고 판단하는 블랙박스 환각…",지식경계,Selfcheckgpt: Zero-resource black-box hallucination detection for generative large language models
+2304.13734,keep,"RAG-추론 방법 — LLM의 은닉층 활성값을 입력으로 작은 분류기를 학습해, 문장이 참인지 거짓인지(환각 여부)를 LLM의 내부 상태에서 직접 읽어내는 방법(SAP…",지식경계,The Internal State of an LLM Knows When It's Lying
+2306.17563,keep,"RAG-추론 방법 — LLM에게 문서를 한 번에 점수 매기거나 전체 순위를 매기게 하는 대신 ""두 문서 중 어느 쪽이 더 관련 있나?""라는 쌍 비교만 시켜, 중간 크…",정보필터링,Large Language Models are Effective Text Rankers with Pairwise Ranking Prompting
+2307.01379,keep,"RAG-추론 방법 — 불확실성 측정에서 ""of, an"" 같은 의미 없는 토큰이 과대 가중되는 문제를 발견하고, 토큰·문장의 의미 관련도에 따라 주의를 재할당해 자유형…",지식경계,Shifting Attention to Relevance: Towards the Predictive Uncertainty Quantification of Free-Form Large Language Models
+2309.11495,keep,RAG-추론 방법 — LLM이 자기 초안에 대한 검증 질문을 스스로 계획하고 독립적으로 답한 뒤 최종 답을 수정하게 하여 환각을 줄이는 방법(CoVe).,질의계획,Chain-of-Verification Reduces Hallucination in Large Language Models
+2310.05388,keep,"RAG-추론 방법 — 인간 작성 스토리를 검색해 퓨샷 예시로 쓰고, ""왜?""를 반복해 물어 증거의 숲을 만든 뒤 최적 증거 사슬을 스토리에 통합하여, 복잡하고 신빙성…",추론워크플로우,Grove: a retrieval-augmented complex story generation framework with a forest of evidence
+2311.01740,keep,"RAG-추론 방법 — 같은 질문에 대한 응답 일관성(자기일관성)만으로는 못 잡는 질문 수준·모델 수준 환각을, 동등 질문 섭동과 교차 모델 비교로 확장 탐지하는 블랙…",지식경계,SAC3: Reliable Hallucination Detection in Black-Box Language Models via Semantic-aware Cross-check Consistency
+2311.09677,keep,"RAG-추론 방법 — 모델이 모르는 질문에도 답을 지어내게 만드는 지시 튜닝의 한계를 짚고, 파라미터 지식 밖 질문은 ""모른다""고 말하도록 거부 인식 데이터로 파인튜…",지식경계,R-Tuning: Instructing Large Language Models to Say ‘I Don’t Know’
+2402.12174,keep,"RAG-추론 방법 — 검색된 문서를 LLM이 답에 진짜 필요한 ""핵심 근거(KSE)""로 압축·정제하는 정제기 모델을 지도학습+강화학습(선호 정렬)으로 훈련해, 입력 …",정보필터링,BIDER: Bridging Knowledge Inconsistency for Efficient Retrieval-Augmented LLMs via Key Supporting Evidence
+2403.10081,keep,"RAG-추론 방법 — LLM의 실시간 정보 요구(생성 시 불확실성·토큰 중요도)와 전체 문맥 자기-어텐션을 활용해 ""언제·무엇을 검색할지""를 결정하는, 추가 학습이 …",검색시점,DRAGIN: Dynamic Retrieval Augmented Generation based on the Information Needs of Large Language Models
+2403.14403,keep,RAG-추론 방법 — 질의의 복잡도를 소형 분류기로 예측해 무검색/단일 단계/다단계 반복 검색 중 가장 알맞은 RAG 전략을 자동 선택함으로써 효율과 정확도를 동시에…,질의계획;검색시점,Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity
+2404.12065,keep,"RAG-추론 방법 — 멀티모달 LLM과 RAG를 결합해, 이전 근거로 후속 질문을 이어가는 Chain/Tree of RAG 추론으로 정치 분야 멀티모달 주장(텍스트+…",RAG강화추론,"Ragar, your falsehood radar: Rag-augmented reasoning for political fact-checking using multimodal large language models"
+2405.20139,keep,"RAG-추론 방법 — GNN을 KG 서브그래프 추론·검색기로 재활용해 질문-답 최단 경로를 추출·언어화하고 이를 LLM에 RAG 입력으로 주는, 그래프 추론과 LLM…",질의계획;그래프RAG,GNN-RAG: Graph Neural Retrieval for Large Language Model Reasoning
+2406.11678,keep,"RAG-추론 방법 — 문서 랭킹을 스포츠 토너먼트처럼 다단계 병렬 그룹 비교 + 점수 앙상블로 수행해, LLM의 입력 길이·순서 의존·비용 문제를 동시에 완화하는 제…",정보필터링,TourRank: Utilizing Large Language Models for Documents Ranking with a Tournament-Inspired Strategy
+2406.12534,keep,"RAG-추론 방법 — ""언제 검색할지""를 의도·지식·시간민감·자기지식의 네 직교 기준에 대한 경량 분류기로 판단하고 결정 트리로 통합해, 추가 비용 없이 다양한 지시…",검색시점,Unified active retrieval for retrieval augmented generation
+2406.13629,keep,"RAG-추론 방법 — LM이 ""정답이 검색 문서에서 어떻게 도출되는지""를 스스로 설명한 근거를 생성하고, 그것을 인컨텍스트 시연 또는 SFT 데이터로 활용해 노이즈 …",정보필터링,InstructRAG: Instructing Retrieval-Augmented Generation via Self-Synthesized Rationales
+2407.02485,keep,"RAG-추론 방법 — 단일 LLM을 ""문맥 재랭킹""과 ""답변 생성"" 양쪽에 지시 미세조정해, 검색된 문맥을 LLM 스스로 재정렬한 뒤 상위 k개로 답하게 하여 별도 …",정보필터링,RankRAG: Unifying Context Ranking with Retrieval-Augmented Generation in LLMs
+2410.04739,keep,"RAG-추론 방법 — 표 전체를 프롬프트에 넣는 대신, 질의 확장 + 스키마 검색 + 셀 단위 검색으로 핵심 정보만 골라 LM에 주어 백만 토큰 규모 표를 효율적으로…",정보필터링,TableRAG: Million-Token Table Understanding with Language Model
+2410.22353,keep,"RAG-추론 방법 — 규칙(KG에서 추출한 논리 규칙)을 검색기와 생성기 양쪽에 인컨텍스트 또는 파인튜닝으로 주입하여, 더 표적화된 검색과 귀속 가능한 추론을 이끄는…",질의계획,RuleRAG: Rule-Guided Retrieval-Augmented Generation with Language Models for Question Answering
+2501.02727,keep,"RAG-추론 방법 — 각 트리 노드에서 RAG 추론을 수행하는 계층적 트리 구조로, 증상에서 출발해 단계적으로 적합한 의료 검사를 추천하는 시스템이다.",추론워크플로우,Tree-based RAG-Agent Recommendation System: A Case Study in Medical Test Data
+2501.10053,keep,"RAG-추론 방법 — RAG에 다섯 가지 추론 행동과 몬테카를로 트리 탐색(MCTS)·자기일관성을 결합하여, 사슬형 단일 추론의 좁은 해 공간을 트리로 넓혀 복잡 Q…",추론워크플로우,Airrag: Activating intrinsic reasoning for retrieval augmented generation via tree-based search
+2501.14342,keep,"RAG-추론 방법 — 정답만 있는 RAG 데이터셋에 거부 샘플링으로 중간 검색 사슬을 만들어 단계별 검색·추론을 명시적으로 훈련하고, 테스트 시점 연산을 확장하는 o…",추론워크플로우,Chain-of-Retrieval Augmented Generation
+2501.15228,keep,"RAG-추론 방법 — RAG 파이프라인의 각 모듈(질의 재작성기·검색기·선택기·생성기)을 강화학습 에이전트로 보고, 최종 답변 F1을 공유 보상으로 MAPPO로 공동…",질의계획;에이전트오케스트레이션,Improving Retrieval-Augmented Generation through Multi-Agent Reinforcement Learning
+2502.05867,keep,"RAG-추론 방법 — 정답 시연 없이 LLM 자신이 도구 사용 추적을 합성하고 출력 필터링 후 SFT/선호 파인튜닝으로 학습시켜, 검색·계산 같은 도구 사용을 가르치…",RAG강화추론,Self-Training Large Language Models for Tool-Use Without Demonstrations
+2502.11677,keep,"RAG-추론 방법 — LLM의 내부 상태를 생성 전에 읽어 확신도를 추정(효율↑)하고, 질문을 객관식으로 재구성해 확신도 일관성으로 보정(C3)함으로써 모델이 모르는…",지식경계,Towards Fully Exploiting LLM Internal States to Enhance Knowledge Boundary Perception
+2502.14614,keep,"RAG-추론 방법 — 의료 입력 텍스트를 단위로 쪼개 분류기로 중요도·정보 완전성을 측정하고, 이를 기준으로 검색 여부를 적응적으로 결정·정련하는 질병 진단용 적응형…",질의계획,ICA-RAG: Information Completeness Guided Adaptive Retrieval-Augmented Generation for Disease Diagnosis
+2503.06034,keep,"RAG-추론 방법 — DeepSeek-R1 스타일의 강화학습(GRPO)과 소량 관련성 라벨만으로 LLM 재순위기가 문서를 고르기 전에 추론하도록 훈련하여, 복잡 질의…",정보필터링,Rank-R1: Enhancing Reasoning in LLM-based Document Rerankers via Reinforcement Learning
+2504.03947,keep,"RAG-추론 방법 — 70B 교사 LLM의 추론·설명을 웹 기반 합성 데이터로 3B 학생 모델에 증류한 뒤 강화학습으로 정련하여, 작은 모델로 추론 집약적 문서 재순…",RAG강화추론,Distillation and Refinement of Reasoning in Small Language Models for Document Re-ranking
+2504.04736,keep,"RAG-추론 방법 — 다단계 추론·도구 사용 궤적을 하위 궤적으로 쪼개 각 단계마다 보상을 주는 오프라인 단계별 강화학습(SWiRL)으로, 골든 라벨 없이도 다중 홉…",검색시점;학습형RL,Synthetic Data Generation & Multi-Step RL for Reasoning & Tool Use
+2504.04915,keep,"RAG-추론 방법 — 작은 화이트박스 모델이 복잡 질문을 하위 질문으로 분해하고, 블랙박스 LLM의 답 정확도 피드백으로 그 분해 능력을 선호 최적화로 학습시켜 다중…",질의계획;에이전트오케스트레이션,Collab-RAG: Boosting Retrieval-Augmented Generation for Complex Question Answering via White-Box and Black-Box LLM Collaboration
+2504.16787,keep,"RAG-추론 방법 — PDCA(계획-실행-검토) 사이클을 본떠, 질문의 의미적 복잡도에 따라 분해 세분성과 검증 강도를 조절하며 다중 홉 QA를 푸는 계획 주도 RA…",질의계획,Credible plan-driven rag method for multi-hop question answering
+2505.03335,keep,"RAG-추론 방법 — 외부 데이터 없이 모델이 코드 실행기를 환경 삼아 스스로 추론 과제를 제안하고 풀며 검증 가능 보상으로 자기 진화하는, ""데이터 0"" 자기 대국…",학습형RL,Absolute Zero: Reinforced Self-Play Reasoning with Zero Data
+2505.04253,keep,"RAG-추론 방법 — LLM 불확실성 추정 대신 엔티티 인기도·질문 유형 같은 가벼운 외부 특징으로 검색 필요 여부를 결정해, 동등한 QA 성능을 훨씬 적은 계산으로…",질의계획,LLM-Independent Adaptive RAG: Let the Question Speak for Itself
+2505.04588,keep,"RAG-추론 방법 — 실제 검색 엔진 대신 SFT로 만든 시뮬레이션 LLM이 유용·잡음 문서를 생성하게 하고, 그 품질을 점진적으로 떨어뜨리는 커리큘럼 RL로 LLM…",질의계획;검색시점;에이전트오케스트레이션;학습형RL,ZeroSearch: Incentivize the Search Capability of LLMs without Searching
+2505.14246,keep,"RAG-추론 방법 — 규칙 기반 검증 가능 보상과 GRPO로 비전-언어 모델을 강화 미세조정해, 웹 검색과 이미지 조작 코드 작성·실행으로 ""이미지로 사고""하는 멀티…",RAG강화추론,Visual Agentic Reinforcement Fine‑Tuning
+2505.15776,keep,"RAG-추론 방법 — 인간/LLM 재작성 감독 없이, 검색 순위 신호를 보상으로 삼아 RL(GRPO)로 대화형 질의 재구성 모델을 검색기와 정렬시키는 자기 주도 2단…",질의계획;학습형RL,ConvSearch‑R1: Enhancing Query Reformulation for Conversational Search with Reasoning via Reinforcement Learning
+2505.21497,drop,논문→포스터 자동생성(멀티에이전트)+벤치마크 — RAG-추론 방법 아님(클러스터 밖),생성;평가,Paper2Poster: Towards Multimodal Poster Automation from Scientific Papers
+2505.22648,keep,RAG-추론 방법 — 브라우징 데이터 합성 → 궤적 샘플링 → SFT cold start → RL의 4단계 파이프라인으로 ReAct 기반 자율 웹 정보 탐색 에이전트…,학습형RL,WebDancer: Towards Autonomous Information Seeking Agency
+2505.24332,keep,"RAG-추론 방법 — 실제 오픈 웹 환경에서 검색 빈도·깊이를 문제 난이도에 맞춰 동적으로 키우는 능력(SIS)을 RL로 길러내고, 이를 평가할 WebPuzzle 벤…",검색시점,Pangu DeepDiver: Adaptive Search Intensity Scaling via Open‑Web Reinforcement Learning
+2506.04180,drop,"검색 없는 장문 생성 모델(plan-write-refine, MCTS-DPO) — RAG-추론 무관(생성)",생성,SuperWriter: Reflection-Driven Long-Form Generation with LLMs
+2506.08625,keep,"RAG-추론 방법 — 과학 문제를 하위 질문으로 분해하고 각 단계마다 ""논리적으로 관련된"" 문서를 검색하도록 질의를 재구성하는 3단계 단계별 RAG 프레임워크.",질의계획,RAISE: Enhancing Scientific Reasoning in LLMs via Step-by-Step Retrieval
+2507.15061,keep,"RAG-추론 방법 — 정보를 먼저 모아 질문을 짓는 대신, 집합론(지식 투영 KP) 기반으로 정보 탐색 과제를 먼저 형식화하고 에이전트형 Expander로 점진 확장…",학습형RL,WebShaper: Agentically Data Synthesizing via Information-Seeking Formalization
+2507.15586,keep,"RAG-추론 방법 — 검색 잡음을 곧바로 걸러내지 않고 ""먼저 추론한 뒤 추출""하도록 한 궤적에 통합하고, 검증 가능한 보상의 강화학습으로 학습해 합리적 증거만 뽑아…",생성,EviOmni: Learning to Extract Rational Evidence via Reinforcement Learning for Retrieval-Augmented Generation
+2508.05748,keep,"RAG-추론 방법 — 시각과 텍스트를 함께 다루는 멀티모달 Deep Research 웹 에이전트로, 합성 멀티모달 궤적으로 콜드스타트 후 다중 도구 사용을 RL(GR…",RAG강화추론,WebWatcher: Breaking New Frontier of Vision‑Language Deep Research Agent
+2508.10874,keep,"RAG-추론 방법 — 외부 검색 엔진 대신 LLM 자신의 내부 지식으로 검색을 시뮬레이션(Self-Search)하고, 형식·규칙 기반 보상의 RL로 이를 강화해 저비…",검색시점,SSRL: Self‑Search Reinforcement Learning
+2508.12800,keep,"RAG-추론 방법 — 에이전트형 deep research에서 추론을 ""원자적 사고(atomic thought)"" 단위로 쪼개 추론 보상 모델(RRM)로 과정 수준 보…",학습형RL,Atom‑Searcher: Enhancing Agentic Deep Research via Fine‑Grained Atomic Thought Reward
+2508.16438,keep,"RAG-추론 방법 — 멀티홉 RAG에서 계획(GPM)과 실행(REM: 분석-답변 + 재작성 에이전트)을 분리한 플래너-실행자 아키텍처를 만들고, 역할별로 순차 최적화…",질의계획;에이전트오케스트레이션;학습형RL,OPERA: A Reinforcement Learning–Enhanced Orchestrated Planner‑Executor Architecture for Reasoning‑Oriented Multi‑Hop Retrieval
+2508.17188,drop,논문→포스터 디자인 생성(멀티에이전트)+VLM 루브릭 — RAG-추론 방법 아님,생성;평가,PosterGen: Aesthetic-Aware Paper-to-Poster Generation via Multi-Agent LLMs
+2508.20368,keep,"RAG-추론 방법 — 크고 고정된 QA 생성 LLM은 그대로 두고, 작고 학습 가능한 ""검색 계획기"" LLM만 RL로 따로 훈련해 검색 계획의 효용과 비용을 파레토 …",질의계획;에이전트오케스트레이션;학습형RL,AI‑SearchPlanner: Modular Agentic Search via Pareto‑Optimal Multi‑Objective Reinforcement Learning
+2509.13313,keep,"RAG-추론 방법 — 긴 웹 검색 이력을 주기적으로 요약 도구로 압축해 문맥 한계 없이 무제한 탐색하게 하고, 분할된 궤적에 보상을 전파하는 GRPO 변형으로 학습시…",학습형RL,ReSum: Unlocking Long‑Horizon Search Intelligence via Context Summarization
+2510.05096,drop,논문→발표영상 생성(멀티에이전트)+벤치마크 — RAG-추론 방법 아님,생성,Paper2Video: Automatic Video Generation from Scientific Papers
+2510.05691,keep,"RAG-추론 방법 — RAG를 ""의사결정+실행"" 2단계 MDP로 보고 과정 수준 보상으로 학습하며, 검색 트리 가지치기로 과정 지도 데이터를 6배 효율로 만드는 에이…",학습형RL,DecEx-RAG: Boosting Agentic Retrieval-Augmented Generation with Decision and Execution Optimization via Process Supervision
+2510.10095,keep,"RAG-추론 방법 — 숏폼 플랫폼 독점 콘텐츠에 대한 사용자의 롱테일·오타 질의를, 다중 출처 지식을 요약한 ""지식 카드""로 LLM을 안내해 정확하게 재작성하는 (S…",질의계획,CardRewriter: Leveraging Knowledge Cards for Long-Tail Query Rewriting on Short-Video Platforms
+2510.14253,keep,"RAG-추론 방법 — 검색 에이전트를 인간 데이터·규칙 보상 없이, 문제 출제기·풀이 정책·생성형 보상 모델 세 역할이 서로 공진화하는 폐루프로 자기학습시키는 RL …",검색시점,Towards Agentic Self-Learning LLMs in Search Environment
+2510.24652,keep,"RAG-추론 방법 — ""인간용 검색""이 아닌 ""AI 추론용 검색""에 맞게, 검색기를 RAG 환경 안에서 생성 결과 기반 보상으로 RL 최적화(강화 대조 학습)하는 검…",질의계획,R3: Optimizing Retrieval for RAG via Reinforcement Learning
+2511.01854,keep,"RAG-추론 방법 — 도구와 그 부모 에이전트를 하나의 벡터 공간에 함께 임베딩하고 메타데이터 링크로 잇어, 질의에 따라 개별 도구 또는 에이전트 번들을 한 번에 검…",RAG강화추론,Tool-to-Agent Retrieval: Bridging Tools and Agents for Scalable LLM Multi-Agent Systems
+2511.05385,keep,"RAG-추론 방법 — 에이전트형 RAG의 토큰 낭비를, 그래프(트리플+PPR) 검색으로 검색 콘텐츠를 압축하고 과정 인식 DPO(IP-DPO)로 추론 스텝을 줄여 동…",학습형RL,TeaRAG: A Token-Efficient Agentic Retrieval-Augmented Generation Framework
+2511.12159,keep,"RAG-추론 방법 — 검색 에이전트 RL의 희소 보상 문제를, 정답과 전체 궤적을 본 고정 비평 LLM이 각 턴을 회고적으로 채점해 조밀한 턴 수준 보상을 주는 세밀…",질의계획,CriticSearch: Fine-Grained Credit Assignment for Search Agents via a Retrospective Critic
+2512.04220,keep,"RAG-추론 방법 — 검색 도구를 쓰는 GRPO 기반 RL 에이전트가 학습 도중 붕괴하는 원인을 ""정답 우도가 슬금슬금 줄어드는(LLD)"" 현상으로 규명하고, 우도가…",RAG강화추론,On Group Relative Policy Optimization Collapse in Agent Search: The Lazy Likelihood-Displacement
+2512.24330,keep,"RAG-추론 방법 — 시각-언어 모델이 텍스트/이미지 검색과 이미지 자르기 도구를 추론 도중 자유롭게 번갈아 쓰도록 RL로 훈련해, 고해상도·지식 집약 시각 질문에서…",RAG강화추론,SenseNova-MARS: Empowering Multimodal Agentic Reasoning and Search via Reinforcement Learning
+2601.04767,keep,"RAG-추론 방법 — 다회전 검색 에이전트를 RL로 학습할 때, 트리를 불확실한 ""턴""부터 키우고 보상도 정책 갱신도 토큰/시퀀스가 아닌 ""턴"" 단위로 처리해 탐색·…",RAG강화추론,AT$^2$PO: Agentic Turn-based Policy Optimization via Tree Search
+2601.06021,keep,"RAG-추론 방법 — 딥 서치 에이전트를 정답 여부(이진 보상)만으로 학습하면 지름길·환각이 생기므로, 다중 홉 질문을 단일 홉 루브릭으로 쪼개 ""올바른 인용으로 증…",학습형RL,Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards
+2601.07376,drop,에이전트 RL 인프라/시스템 논문(오픈 Tinker 대안) — 자기 RAG-추론 방법 없음,RAG강화추론,OpenTinker: Separating Concerns in Agentic Reinforcement Learning
+2601.08282,keep,"RAG-추론 방법 — 검색 증강 추론에서 컨텍스트가 잡음으로 넘쳐 추론이 빗나가는 문제를, 전역 계획을 세우고 고치는 Reasoner와 검색 결과를 정제해 넘겨주는 …",학습형RL,D$^2$Plan: Dual-Agent Dynamic Global Planning for Complex Retrieval-Augmented Reasoning
+2601.11037,keep,"RAG-추론 방법 — RL로 정확도를 올린 검색 에이전트가 모를 때도 답을 지어내는 문제를, 추론이 정말 한계일 때만 ""모르겠다""를 보상하고 초기엔 그 보상을 꺼서 …",검색시점,BAPO: Boundary-Aware Policy Optimization for Reliable Agentic Search
+2601.11888,keep,"RAG-추론 방법 — 검색 에이전트의 약한 고리인 검색기를, ""지역적 관련성 + 최종 답 정확성""으로 구절 효용을 재정의하고 에이전트와 검색기를 번갈아 키우는 반복 …",검색시점,Agentic-R: Learning to Retrieve for Agentic Search
+2601.13115,keep,"RAG-추론 방법 — 단일 회전용 딥 서치 에이전트를 다회전 대화로 확장해, 과거 맥락 기반 질의 생성·검색 결과 활용·명료화 질문 같은 혼합 주도 행동을 세 갈래 …",검색시점,Agentic Conversational Search with Contextualized Reasoning via Reinforcement Learning
+2601.20439,keep,"RAG-추론 방법 — 다단계 도구 사용에서 LLM 에이전트가 계획을 못 세우고 도구·파라미터를 환각하는 문제를, 오프라인 도구 탐색(사용 설명서 학습) + GRPO로…",RAG강화추론,PEARL: Plan Exploration and Adaptive Reinforcement Learning for Multihop Tool Use
+2601.21912,keep,"RAG-추론 방법 — MCTS 기반 프로세스 보상 모델로 만든 단계별 보상을 전역 결과 보상과 이중 입도로 결합해, 멀티홉 RAG의 신용 할당과 ""프로세스 환각"" 문…",학습형RL,ProRAG: Process-Supervised Reinforcement Learning for Retrieval-Augmented Generation
+2601.23188,keep,"RAG-추론 방법 — 인간 메타인지의 빠른 이상탐지+느린 경험 기반 성찰 구조를 본떠, 검색·추론 엔트로피 정합 점검과 과거 궤적 기반 교정을 딥서치 루프에 심어 언…",검색시점,Deep Search with Hierarchical Meta-Cognitive Monitoring Inspired by Cognitive Neuroscience
+2602.00994,keep,"RAG-추론 방법 — 에이전트 RL에서 추론과 도구 사용이 그래디언트 차원에서 서로 간섭(거의 직교)함을 정량화하고, 두 능력을 별도 LoRA 어댑터로 분리(DART…",RAG강화추론,Reasoning and Tool-use Compete in Agentic RL: From Quantifying Interference to Disentangled Tuning
+2602.03304,keep,"RAG-추론 방법 — 딥서치 에이전트가 언제 검색을 멈출지 못 정하는 문제를, 사실 대 반사실 궤적의 인과 개입으로 진단하고 선호 최적화(DAS)로 검색 결정 경계를…",검색시점,To Search or Not to Search: Aligning the Decision Boundary of Deep Search Agents via Causal Intervention
+2602.03468,keep,"RAG-추론 방법 — 딥 리서치 에이전트가 모호한 질의를 그냥 실행하지 않고, 긴 연구 시작 전에 사용자의 잠재 의도를 능동적으로 캐묻도록 C-DAG 합성 데이터 +…",검색시점,IntentRL: Training Proactive User-intent Agents for Open-ended Deep Research via Reinforcement Learning
+2603.01050,keep,"RAG-추론 방법 — 하이퍼그래프 QA 생성(Hyper-Search) + 도구별 전문가 분해·재조합 트리 탐색(DR-TTS) + 오프라인 검색 엔진으로, 비싼 온라인…",RAG강화추론,MM-DeepResearch: A Simple and Effective Multimodal Agentic Search Baseline
+2603.03293,keep,"RAG-추론 방법 — 검색 에이전트의 잡음 문서·희소 보상 문제를, Think-Search-Memorize 메모리 정화 + 짧고 다양한 원자 질의 + 4종 밀집 보상…",학습형RL,SE-Search: Self-Evolving Search Agent via Memory and Dense Reward
+2603.07853,keep,"RAG-추론 방법 — RLVR 연구 에이전트의 조기 종료·얕은 탐색 문제를, ReAct 기반 무작위 도구 계획으로 깊은 탐색 궤적을 합성해 콜드스타트 SFT 초기화를…",RAG강화추론,SynPlanResearch-R1: Encouraging Tool Exploration for Deep Research with Synthetic Plans
+2603.09203,keep,"RAG-추론 방법 — 검색마다 즉시 자기 평가 점수를 내는 명시적 Evaluate 행동(Search→Evaluate 프로토콜)을 도입하고, 그 점수로 세그먼트별 어드…",학습형RL,Evaluate-as-Action: Self-Evaluated Process Rewards for Retrieval-Augmented Agents
+2603.28376,keep,"RAG-추론 방법 — 딥 리서치 에이전트의 QA 데이터 합성·궤적 구성·테스트 타임 스케일링 세 단계 모두에 명시적 검증을 심어 오류 전파를 막고, 8B로 30B급 …",검색시점;RAG강화추론,Marco DeepResearch: Unlocking Efficient Deep Research Agents via Verification-Centric Design
+2604.04651,keep,RAG-추론 방법 — 소형 언어 모델이 추측 대신 항상 외부 검색으로 근거를 확보하도록 강제 훈련(ASP)해 파라미터 환각을 줄이고 LLM 수준의 멀티홉 검색 성능에…,검색시점,"Search, Do not Guess: Teaching Small Language Models to Be Effective Search Agents"
+2604.09508,keep,"RAG-추론 방법 — 시각 증거를 누적·정제하는 Evidence Space와 맥락 표류를 막는 동적 궤적·의도 주입을 결합하고 GRPO로 학습해, 장기 지평의 시각 …",검색시점;학습형RL;RAG강화추론,VISOR: Agentic Visual Retrieval-Augmented Generation via Iterative Search and Over-horizon Reasoning
+2604.17555,keep,RAG-추론 방법 — 검색기를 고정 도구로 두는 대신 추론 에이전트와 생성형 문서 랭커를 GRPO로 함께 훈련해 검색 병목을 직접 줄이는 에이전트형 검색 프레임워크.,질의계획;학습형RL,CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search
+2604.17931,keep,"RAG-추론 방법 — 라이브 인터넷을 모방하되 격리 실행되는 ""경량 가상 세계""와 난이도 커리큘럼 RL로, 작은 4B 딥 리서치 검색 에이전트를 안정적·저비용으로 S…",검색시점;RAG강화추론,LiteResearcher: A Scalable Agentic RL Training Framework for Deep Research Agent
+2604.19766,keep,"RAG-추론 방법 — 검색-정제(핵심 사실만 증류)-추론을 반복하며 GRPO-IR로 정확한 증거 적중을 보상·과도 검색을 벌해, 잡음과 비용을 동시에 줄이는 멀티홉 …",검색시점;학습형RL,"OThink-SRR1: Search, Refine and Reasoning with Reinforced Learning for Large Language Models"
+2605.04036,keep,RAG-추론 방법 — 복잡한 CPT+SFT+RL 대신 고난도·정보량 많은 궤적을 합성(그래프 확장·도구 확장·저단계 필터링)해 단순 SFT만으로 30B 딥 서치 에이…,검색시점,OpenSeeker-v2: Pushing the Limits of Search Agents with Informative and High-Difficulty Trajectories
+2605.07177,keep,"RAG-추론 방법 — 시각 그라운딩과 검색을 한 동작으로 융합해 여러 개체를 한 턴에 병렬 검색하고, 거시(TRACE)·미시(OPD) 이중 입도 효율 보상 RL로 과…",RAG강화추론;평가,HyperEyes: Dual-Grained Efficiency-Aware Reinforcement Learning for Parallel Multimodal Search Agents
+2605.10899,keep,"RAG-추론 방법 — 루브릭을 정책 실행·심판·기억을 잇는 공유 인터페이스로 삼아, 단계별 GRPO 신용 할당과 반성 메타정책 학습으로 검증 불가한 장문 딥 리서치 …",학습형RL;RAG강화추론,RubricEM: Meta-RL with Rubric-guided Policy Decomposition beyond Verifiable Rewards
+2605.29307,keep,"RAG-추론 방법 — 검색기 인덱스 대신 코퍼스를 환경으로 보고 셸 명령(grep류)을 발행해 증거를 찾는 ""직접 코퍼스 상호작용"" 검색 에이전트를, 콜드스타트(Tu…",질의계획;학습형RL;RAG강화추론,GrepSeek: Training Search Agents for Direct Corpus Interaction
+2605.29861,keep,RAG-추론 방법 — 계획·리서치·작성 단계에 전문 에이전트와 단계별 검증자 훅을 두어 텍스트와 시각 증거가 근거화·정렬된 멀티모달 딥 리서치 보고서를 생성하는 멀티…,에이전트오케스트레이션;RAG강화추론;평가,Towards Verifiable Multimodal Deep Research: A Multi-Agent Harness for Interleaved Report Generation
