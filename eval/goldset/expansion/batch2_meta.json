@@ -1,0 +1,452 @@
+{
+ "2604.17555": {
+  "section_tag": "질의계획;학습형RL",
+  "survey_source": "s3",
+  "paper_name": "CoSearch: Joint Training of Reasoning and Document Ranking via Reinforcement Learning for Agentic Search"
+ },
+ "2605.07177": {
+  "section_tag": "RAG강화추론;평가",
+  "survey_source": "s3",
+  "paper_name": "HyperEyes: Dual-Grained Efficiency-Aware Reinforcement Learning for Parallel Multimodal Search Agents"
+ },
+ "2601.11888": {
+  "section_tag": "검색시점",
+  "survey_source": "s3",
+  "paper_name": "Agentic-R: Learning to Retrieve for Agentic Search"
+ },
+ "2404.12065": {
+  "section_tag": "RAG강화추론",
+  "survey_source": "s1",
+  "paper_name": "Ragar, your falsehood radar: Rag-augmented reasoning for political fact-checking using multimodal large language models"
+ },
+ "2603.03293": {
+  "section_tag": "학습형RL",
+  "survey_source": "s3",
+  "paper_name": "SE-Search: Self-Evolving Search Agent via Memory and Dense Reward"
+ },
+ "2504.16787": {
+  "section_tag": "질의계획",
+  "survey_source": "s1",
+  "paper_name": "Credible plan-driven rag method for multi-hop question answering"
+ },
+ "2507.15586": {
+  "section_tag": "생성",
+  "survey_source": "s1",
+  "paper_name": "EviOmni: Learning to Extract Rational Evidence via Reinforcement Learning for Retrieval-Augmented Generation"
+ },
+ "2501.02727": {
+  "section_tag": "추론워크플로우",
+  "survey_source": "s1",
+  "paper_name": "Tree-based RAG-Agent Recommendation System: A Case Study in Medical Test Data"
+ },
+ "2205.14334": {
+  "section_tag": "지식경계",
+  "survey_source": "s2",
+  "paper_name": "Teaching Models to Express Their Uncertainty in Words"
+ },
+ "2311.09677": {
+  "section_tag": "지식경계",
+  "survey_source": "s2",
+  "paper_name": "R-Tuning: Instructing Large Language Models to Say ‘I Don’t Know’"
+ },
+ "2507.15061": {
+  "section_tag": "학습형RL",
+  "survey_source": "s2",
+  "paper_name": "WebShaper: Agentically Data Synthesizing via Information-Seeking Formalization"
+ },
+ "2509.13313": {
+  "section_tag": "학습형RL",
+  "survey_source": "s3",
+  "paper_name": "ReSum: Unlocking Long‑Horizon Search Intelligence via Context Summarization"
+ },
+ "2505.22648": {
+  "section_tag": "학습형RL",
+  "survey_source": "s2",
+  "paper_name": "WebDancer: Towards Autonomous Information Seeking Agency"
+ },
+ "2504.04915": {
+  "section_tag": "질의계획;에이전트오케스트레이션",
+  "survey_source": "s1",
+  "paper_name": "Collab-RAG: Boosting Retrieval-Augmented Generation for Complex Question Answering via White-Box and Black-Box LLM Collaboration"
+ },
+ "2306.17563": {
+  "section_tag": "정보필터링",
+  "survey_source": "s2",
+  "paper_name": "Large Language Models are Effective Text Rankers with Pairwise Ranking Prompting"
+ },
+ "2508.17188": {
+  "section_tag": "생성;평가",
+  "survey_source": "s2",
+  "paper_name": "PosterGen: Aesthetic-Aware Paper-to-Poster Generation via Multi-Agent LLMs"
+ },
+ "2506.08625": {
+  "section_tag": "질의계획",
+  "survey_source": "s2",
+  "paper_name": "RAISE: Enhancing Scientific Reasoning in LLMs via Step-by-Step Retrieval"
+ },
+ "2303.08896": {
+  "section_tag": "지식경계",
+  "survey_source": "s2",
+  "paper_name": "Selfcheckgpt: Zero-resource black-box hallucination detection for generative large language models"
+ },
+ "2601.21912": {
+  "section_tag": "학습형RL",
+  "survey_source": "s3",
+  "paper_name": "ProRAG: Process-Supervised Reinforcement Learning for Retrieval-Augmented Generation"
+ },
+ "2510.24652": {
+  "section_tag": "질의계획",
+  "survey_source": "s1",
+  "paper_name": "R3: Optimizing Retrieval for RAG via Reinforcement Learning"
+ },
+ "2601.06021": {
+  "section_tag": "학습형RL",
+  "survey_source": "s3",
+  "paper_name": "Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards"
+ },
+ "2505.04253": {
+  "section_tag": "질의계획",
+  "survey_source": "s1",
+  "paper_name": "LLM-Independent Adaptive RAG: Let the Question Speak for Itself"
+ },
+ "2504.04736": {
+  "section_tag": "검색시점;학습형RL",
+  "survey_source": "s3",
+  "paper_name": "Synthetic Data Generation & Multi-Step RL for Reasoning & Tool Use"
+ },
+ "2406.11678": {
+  "section_tag": "정보필터링",
+  "survey_source": "s2",
+  "paper_name": "TourRank: Utilizing Large Language Models for Documents Ranking with a Tournament-Inspired Strategy"
+ },
+ "2310.05388": {
+  "section_tag": "추론워크플로우",
+  "survey_source": "s1",
+  "paper_name": "Grove: a retrieval-augmented complex story generation framework with a forest of evidence"
+ },
+ "2403.10081": {
+  "section_tag": "검색시점",
+  "survey_source": "s2",
+  "paper_name": "DRAGIN: Dynamic Retrieval Augmented Generation based on the Information Needs of Large Language Models"
+ },
+ "2512.24330": {
+  "section_tag": "RAG강화추론",
+  "survey_source": "s3",
+  "paper_name": "SenseNova-MARS: Empowering Multimodal Agentic Reasoning and Search via Reinforcement Learning"
+ },
+ "2512.04220": {
+  "section_tag": "RAG강화추론",
+  "survey_source": "s3",
+  "paper_name": "On Group Relative Policy Optimization Collapse in Agent Search: The Lazy Likelihood-Displacement"
+ },
+ "2508.16438": {
+  "section_tag": "질의계획;에이전트오케스트레이션;학습형RL",
+  "survey_source": "s2;s3",
+  "paper_name": "OPERA: A Reinforcement Learning–Enhanced Orchestrated Planner‑Executor Architecture for Reasoning‑Oriented Multi‑Hop Retrieval"
+ },
+ "2501.14342": {
+  "section_tag": "추론워크플로우",
+  "survey_source": "s1",
+  "paper_name": "Chain-of-Retrieval Augmented Generation"
+ },
+ "2505.24332": {
+  "section_tag": "검색시점",
+  "survey_source": "s3",
+  "paper_name": "Pangu DeepDiver: Adaptive Search Intensity Scaling via Open‑Web Reinforcement Learning"
+ },
+ "2502.14614": {
+  "section_tag": "질의계획",
+  "survey_source": "s1",
+  "paper_name": "FIND: Fine-grained Information Density Guided Adaptive Retrieval-Augmented Generation for Disease Diagnosis"
+ },
+ "2605.10899": {
+  "section_tag": "학습형RL;RAG강화추론",
+  "survey_source": "s3",
+  "paper_name": "RubricEM: Meta-RL with Rubric-guided Policy Decomposition beyond Verifiable Rewards"
+ },
+ "2605.04036": {
+  "section_tag": "검색시점",
+  "survey_source": "s3",
+  "paper_name": "OpenSeeker-v2: Pushing the Limits of Search Agents with Informative and High-Difficulty Trajectories"
+ },
+ "2602.03468": {
+  "section_tag": "검색시점",
+  "survey_source": "s3",
+  "paper_name": "IntentRL: Training Proactive User-intent Agents for Open-ended Deep Research via Reinforcement Learning"
+ },
+ "2403.14403": {
+  "section_tag": "질의계획;검색시점",
+  "survey_source": "s1;s4",
+  "paper_name": "Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity"
+ },
+ "2505.03335": {
+  "section_tag": "학습형RL",
+  "survey_source": "s2",
+  "paper_name": "Absolute Zero: Reinforced Self-Play Reasoning with Zero Data"
+ },
+ "2505.15776": {
+  "section_tag": "질의계획;학습형RL",
+  "survey_source": "s2;s3",
+  "paper_name": "ConvSearch‑R1: Enhancing Query Reformulation for Conversational Search with Reasoning via Reinforcement Learning"
+ },
+ "2604.09508": {
+  "section_tag": "검색시점;학습형RL;RAG강화추론",
+  "survey_source": "s3",
+  "paper_name": "VISOR: Agentic Visual Retrieval-Augmented Generation via Iterative Search and Over-horizon Reasoning"
+ },
+ "2603.01050": {
+  "section_tag": "RAG강화추론",
+  "survey_source": "s3",
+  "paper_name": "MM-DeepResearch: A Simple and Effective Multimodal Agentic Search Baseline"
+ },
+ "2604.04651": {
+  "section_tag": "검색시점",
+  "survey_source": "s3",
+  "paper_name": "Search, Do not Guess: Teaching Small Language Models to Be Effective Search Agents"
+ },
+ "2510.10095": {
+  "section_tag": "질의계획",
+  "survey_source": "s2",
+  "paper_name": "CardRewriter: Leveraging Knowledge Cards for Long-Tail Query Rewriting on Short-Video Platforms"
+ },
+ "2508.20368": {
+  "section_tag": "질의계획;에이전트오케스트레이션;학습형RL",
+  "survey_source": "s2;s3",
+  "paper_name": "AI‑SearchPlanner: Modular Agentic Search via Pareto‑Optimal Multi‑Objective Reinforcement Learning"
+ },
+ "2508.10874": {
+  "section_tag": "검색시점",
+  "survey_source": "s3",
+  "paper_name": "SSRL: Self‑Search Reinforcement Learning"
+ },
+ "2605.29861": {
+  "section_tag": "에이전트오케스트레이션;RAG강화추론;평가",
+  "survey_source": "s3",
+  "paper_name": "Towards Verifiable Multimodal Deep Research: A Multi-Agent Harness for Interleaved Report Generation"
+ },
+ "2511.05385": {
+  "section_tag": "학습형RL",
+  "survey_source": "s3",
+  "paper_name": "TeaRAG: A Token-Efficient Agentic Retrieval-Augmented Generation Framework"
+ },
+ "2601.04767": {
+  "section_tag": "RAG강화추론",
+  "survey_source": "s3",
+  "paper_name": "AT$^2$PO: Agentic Turn-based Policy Optimization via Tree Search"
+ },
+ "2601.13115": {
+  "section_tag": "검색시점",
+  "survey_source": "s3",
+  "paper_name": "Agentic Conversational Search with Contextualized Reasoning via Reinforcement Learning"
+ },
+ "2307.01379": {
+  "section_tag": "지식경계",
+  "survey_source": "s2",
+  "paper_name": "Shifting Attention to Relevance: Towards the Predictive Uncertainty Quantification of Free-Form Large Language Models"
+ },
+ "2402.12174": {
+  "section_tag": "정보필터링",
+  "survey_source": "s2",
+  "paper_name": "BIDER: Bridging Knowledge Inconsistency for Efficient Retrieval-Augmented LLMs via Key Supporting Evidence"
+ },
+ "2511.12159": {
+  "section_tag": "질의계획",
+  "survey_source": "s3",
+  "paper_name": "CriticSearch: Fine-Grained Credit Assignment for Search Agents via a Retrospective Critic"
+ },
+ "2309.11495": {
+  "section_tag": "질의계획",
+  "survey_source": "s1;s2",
+  "paper_name": "Chain-of-Verification Reduces Hallucination in Large Language Models"
+ },
+ "2501.15228": {
+  "section_tag": "질의계획;에이전트오케스트레이션",
+  "survey_source": "s1;s2;s3",
+  "paper_name": "Improving Retrieval-Augmented Generation through Multi-Agent Reinforcement Learning"
+ },
+ "2603.07853": {
+  "section_tag": "RAG강화추론",
+  "survey_source": "s3",
+  "paper_name": "SynPlanResearch-R1: Encouraging Tool Exploration for Deep Research with Synthetic Plans"
+ },
+ "2511.01854": {
+  "section_tag": "RAG강화추론",
+  "survey_source": "s1",
+  "paper_name": "Tool-to-Agent Retrieval: Bridging Tools and Agents for Scalable LLM Multi-Agent Systems"
+ },
+ "2505.04588": {
+  "section_tag": "질의계획;검색시점;에이전트오케스트레이션;학습형RL",
+  "survey_source": "s1;s2;s3",
+  "paper_name": "ZeroSearch: Incentivize the Search Capability of LLMs without Searching"
+ },
+ "2304.13734": {
+  "section_tag": "지식경계",
+  "survey_source": "s2",
+  "paper_name": "The Internal State of an LLM Knows When It's Lying"
+ },
+ "2510.05691": {
+  "section_tag": "학습형RL",
+  "survey_source": "s3",
+  "paper_name": "DecEx-RAG: Boosting Agentic Retrieval-Augmented Generation with Decision and Execution Optimization via Process Supervision"
+ },
+ "2502.11677": {
+  "section_tag": "지식경계",
+  "survey_source": "s2",
+  "paper_name": "Towards Fully Exploiting LLM Internal States to Enhance Knowledge Boundary Perception"
+ },
+ "2405.20139": {
+  "section_tag": "질의계획;그래프RAG",
+  "survey_source": "s1",
+  "paper_name": "GNN-RAG: Graph Neural Retrieval for Large Language Model Reasoning"
+ },
+ "2508.12800": {
+  "section_tag": "학습형RL",
+  "survey_source": "s3",
+  "paper_name": "Atom‑Searcher: Enhancing Agentic Deep Research via Fine‑Grained Atomic Thought Reward"
+ },
+ "2601.23188": {
+  "section_tag": "검색시점",
+  "survey_source": "s3",
+  "paper_name": "Deep Search with Hierarchical Meta-Cognitive Monitoring Inspired by Cognitive Neuroscience"
+ },
+ "2406.12534": {
+  "section_tag": "검색시점",
+  "survey_source": "s2",
+  "paper_name": "Unified active retrieval for retrieval augmented generation"
+ },
+ "2602.03304": {
+  "section_tag": "검색시점",
+  "survey_source": "s3",
+  "paper_name": "To Search or Not to Search: Aligning the Decision Boundary of Deep Search Agents via Causal Intervention"
+ },
+ "2601.20439": {
+  "section_tag": "RAG강화추론",
+  "survey_source": "s3",
+  "paper_name": "PEARL: Plan Exploration and Adaptive Reinforcement Learning for Multihop Tool Use"
+ },
+ "2604.19766": {
+  "section_tag": "검색시점;학습형RL",
+  "survey_source": "s3",
+  "paper_name": "OThink-SRR1: Search, Refine and Reasoning with Reinforced Learning for Large Language Models"
+ },
+ "2407.02485": {
+  "section_tag": "정보필터링",
+  "survey_source": "s2",
+  "paper_name": "RankRAG: Unifying Context Ranking with Retrieval-Augmented Generation in LLMs"
+ },
+ "2410.22353": {
+  "section_tag": "질의계획",
+  "survey_source": "s1",
+  "paper_name": "RuleRAG: Rule-Guided Retrieval-Augmented Generation with Language Models for Question Answering"
+ },
+ "2601.08282": {
+  "section_tag": "학습형RL",
+  "survey_source": "s3",
+  "paper_name": "D$^2$Plan: Dual-Agent Dynamic Global Planning for Complex Retrieval-Augmented Reasoning"
+ },
+ "2510.05096": {
+  "section_tag": "생성",
+  "survey_source": "s2",
+  "paper_name": "Paper2Video: Automatic Video Generation from Scientific Papers"
+ },
+ "2604.17931": {
+  "section_tag": "검색시점;RAG강화추론",
+  "survey_source": "s3",
+  "paper_name": "LiteResearcher: A Scalable Agentic RL Training Framework for Deep Research Agent"
+ },
+ "2603.28376": {
+  "section_tag": "검색시점;RAG강화추론",
+  "survey_source": "s3",
+  "paper_name": "Marco DeepResearch: Unlocking Efficient Deep Research Agents via Verification-Centric Design"
+ },
+ "2508.05748": {
+  "section_tag": "RAG강화추론",
+  "survey_source": "s3",
+  "paper_name": "WebWatcher: Breaking New Frontier of Vision‑Language Deep Research Agent"
+ },
+ "2601.11037": {
+  "section_tag": "검색시점",
+  "survey_source": "s3",
+  "paper_name": "BAPO: Boundary-Aware Policy Optimization for Reliable Agentic Search"
+ },
+ "2510.14253": {
+  "section_tag": "검색시점",
+  "survey_source": "s3",
+  "paper_name": "Towards Agentic Self-Learning LLMs in Search Environment"
+ },
+ "2503.06034": {
+  "section_tag": "정보필터링",
+  "survey_source": "s2",
+  "paper_name": "Rank-R1: Enhancing Reasoning in LLM-based Document Rerankers via Reinforcement Learning"
+ },
+ "2504.03947": {
+  "section_tag": "RAG강화추론",
+  "survey_source": "s1",
+  "paper_name": "Distillation and Refinement of Reasoning in Small Language Models for Document Re-ranking"
+ },
+ "2501.10053": {
+  "section_tag": "추론워크플로우",
+  "survey_source": "s1",
+  "paper_name": "Airrag: Activating intrinsic reasoning for retrieval augmented generation via tree-based search"
+ },
+ "2601.07376": {
+  "section_tag": "RAG강화추론",
+  "survey_source": "s3",
+  "paper_name": "OpenTinker: Separating Concerns in Agentic Reinforcement Learning"
+ },
+ "2605.29307": {
+  "section_tag": "질의계획;학습형RL;RAG강화추론",
+  "survey_source": "s3",
+  "paper_name": "GrepSeek: Training Search Agents for Direct Corpus Interaction"
+ },
+ "2406.13629": {
+  "section_tag": "정보필터링",
+  "survey_source": "s2",
+  "paper_name": "InstructRAG: Instructing Retrieval-Augmented Generation via Self-Synthesized Rationales"
+ },
+ "2505.14246": {
+  "section_tag": "RAG강화추론",
+  "survey_source": "s3",
+  "paper_name": "Visual Agentic Reinforcement Fine‑Tuning"
+ },
+ "2410.04739": {
+  "section_tag": "정보필터링",
+  "survey_source": "s2",
+  "paper_name": "TableRAG: Million-Token Table Understanding with Language Model"
+ },
+ "2502.05867": {
+  "section_tag": "RAG강화추론",
+  "survey_source": "s1",
+  "paper_name": "Self-Training Large Language Models for Tool-Use Without Demonstrations"
+ },
+ "2603.09203": {
+  "section_tag": "학습형RL",
+  "survey_source": "s3",
+  "paper_name": "Evaluate-as-Action: Self-Evaluated Process Rewards for Retrieval-Augmented Agents"
+ },
+ "2210.03350": {
+  "section_tag": "검색시점;에이전트오케스트레이션",
+  "survey_source": "s1;s4",
+  "paper_name": "Measuring and Narrowing the Compositionality Gap in Language Models"
+ },
+ "2505.21497": {
+  "section_tag": "생성;평가",
+  "survey_source": "s2",
+  "paper_name": "Paper2Poster: Towards Multimodal Poster Automation from Scientific Papers"
+ },
+ "2602.00994": {
+  "section_tag": "RAG강화추론",
+  "survey_source": "s3",
+  "paper_name": "Reasoning and Tool-use Compete in Agentic RL: From Quantifying Interference to Disentangled Tuning"
+ },
+ "2311.01740": {
+  "section_tag": "지식경계",
+  "survey_source": "s2",
+  "paper_name": "SAC3: Reliable Hallucination Detection in Black-Box Language Models via Semantic-aware Cross-check Consistency"
+ },
+ "2506.04180": {
+  "section_tag": "생성",
+  "survey_source": "s2",
+  "paper_name": "SuperWriter: Reflection-Driven Long-Form Generation with LLMs"
+ }
+}
