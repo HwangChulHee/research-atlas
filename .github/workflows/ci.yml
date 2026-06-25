@@ -27,3 +27,22 @@ jobs:
       # 단위테스트 — API·네트워크·Neo4j 불필요(hermetic). 클린 러너라 PYTHONPATH 이슈 없음.
       - name: Test
         run: uv run pytest
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      # 잠금 기반 설치 → 프로덕션 번들 빌드(프론트 깨짐 검출).
+      - name: Build
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build
