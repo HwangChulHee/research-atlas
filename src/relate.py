@@ -4,9 +4,7 @@ from pathlib import Path
 from openai import OpenAI
 
 _HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(_HERE.parent))   # 루트(prompts 패키지) — cwd 무관 import
-sys.path.insert(0, str(_HERE))          # src(config)
-import config
+from src import config
 from prompts.pipeline.relate import RELATE_SYSTEM, RELATE_USER, RELATE_SCHEMA
 
 client = OpenAI()

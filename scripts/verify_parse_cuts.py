@@ -10,9 +10,8 @@ import re
 import subprocess
 import sys
 
-sys.path.insert(0, "src")
-import config
-import parse
+from src import config
+from src import parse
 
 LABELED = {"2503.09516", "2501.12948", "2501.05366", "2505.17005",
            "2504.03160", "2503.19470", "2502.01142"}

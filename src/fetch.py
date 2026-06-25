@@ -4,8 +4,7 @@ import time
 import urllib.request
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import config
+from src import config
 
 DELAY = 3.0          # arXiv 요청 간 텀(초)
 MIN_BYTES = 10_000   # 이보다 작으면 다운 실패로 간주

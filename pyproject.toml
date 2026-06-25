@@ -17,3 +17,12 @@ dependencies = [
     "rdflib>=7.6.0",
     "uvicorn[standard]>=0.49.0",
 ]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+# 루트의 코드 디렉토리를 패키지로 설치(editable) → cwd·sys.path 해킹 없이 절대 import.
+# eval/·scripts/ 는 __init__.py 없는 실행 스크립트라 패키지에서 제외(설치 대상 아님).
+[tool.setuptools.packages.find]
+include = ["agents*", "api*", "graphdb*", "prompts*", "src*"]

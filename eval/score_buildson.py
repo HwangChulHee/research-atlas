@@ -19,9 +19,8 @@ from pathlib import Path
 from datetime import datetime
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
-import config
-import normalize_core as nc
+from src import config
+from src import normalize_core as nc
 
 LABELS_PATH = ROOT / "eval/goldset/labels.json"
 PAPERS_PATH = ROOT / "eval/goldset/papers.json"

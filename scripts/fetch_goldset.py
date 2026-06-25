@@ -5,9 +5,8 @@ import sys
 import time
 from pathlib import Path
 
-sys.path.insert(0, "src")
-import config
-import fetch
+from src import config
+from src import fetch
 
 GOLD = json.load(open("eval/goldset/papers.json"))
 IDS = GOLD["new_collected"] + GOLD["from_corpus"]

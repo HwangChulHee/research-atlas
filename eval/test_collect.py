@@ -41,7 +41,6 @@ SNAP = DATA / "_snapshot_test"          # 완료된 백업(= pristine 본). data
 SNAP_TMP = DATA / "_snapshot_test.tmp"  # 작성 중 백업(원자적 rename 전)
 RUNS = HERE / "runs"                    # 회차 산출물(JSON, gitignore) — eval/runs/
 
-sys.path.insert(0, str(ROOT))
 # agent_collect import 는 OpenAI 클라이언트·임베딩 로더를 띄움(수집에 필요) — 정상.
 from langgraph.checkpoint.memory import MemorySaver  # noqa: E402
 

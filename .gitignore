@@ -37,3 +37,6 @@ web/.vite/
 
 # 개인화 상태(검토함) — 정본 아님, 사용자별
 data/reviewed.json
+
+# editable install 메타
+*.egg-info/

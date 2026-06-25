@@ -15,10 +15,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "src"))
-import config  # noqa: F401  (.env + 경로)
-import normalize_core as nc
+from src import config  # noqa: F401  (.env + 경로)
+from src import normalize_core as nc
 
 from graphdb.conn import get_driver
 from graphdb.load import ensure_constraints  # 멱등, 재사용

@@ -9,9 +9,8 @@ import json
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import config
-import normalize_core as nc
+from src import config
+from src import normalize_core as nc
 
 OUT = config.OUT_DIR / "normalized_v2.json"
 

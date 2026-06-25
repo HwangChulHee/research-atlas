@@ -9,10 +9,8 @@ from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 _HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(_HERE.parent))
-sys.path.insert(0, str(_HERE.parent / "src"))
-import config
-from relate import relate_one
+from src import config
+from src.relate import relate_one
 
 OUT = config.OUT_DIR
 IDS = sorted(p.split("/")[-1].rsplit(".relations.json", 1)[0]

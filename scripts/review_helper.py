@@ -29,10 +29,9 @@ from dotenv import load_dotenv
 from openai import OpenAI
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
 load_dotenv(ROOT / ".env")
-import config
-import normalize_core as nc
+from src import config
+from src import normalize_core as nc
 
 OUT_DIR = config.OUT_DIR
 REPORT_DIR = ROOT / "eval" / "reports"

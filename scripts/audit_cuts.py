@@ -6,8 +6,7 @@ import sys
 
 import pymupdf
 
-sys.path.insert(0, "src")
-import config
+from src import config
 
 GOLD = json.load(open("eval/goldset/papers.json"))
 IDS = GOLD["new_collected"] + GOLD["from_corpus"]

@@ -6,9 +6,7 @@ import json, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT))          # graphdb.conn import용 (스크립트 실행 시 루트 미포함)
-sys.path.insert(0, str(ROOT / "src"))
-import config
+from src import config
 
 from graphdb.conn import get_driver
 

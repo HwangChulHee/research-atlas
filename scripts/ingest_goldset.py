@@ -13,7 +13,6 @@ from collections import defaultdict
 # 라이브 모드 확인: 오프라인이면 Neo4j 미반영 → 정답지 적재가 안 됨.
 assert os.environ.get("ATLAS_OFFLINE") != "1", "라이브 모드로 실행할 것(Neo4j 반영)"
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from agents.collect import extract_pipeline  # noqa: E402
 
 IDS = [  # T1(arXiv API 제목/초록 대조)에서 21/21 검증 통과

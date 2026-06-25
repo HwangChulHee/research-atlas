@@ -15,7 +15,6 @@ import json
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))  # 레포 루트(agents.collect)
 
 from langgraph.checkpoint.memory import MemorySaver  # noqa: E402
 

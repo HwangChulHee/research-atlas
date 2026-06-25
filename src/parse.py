@@ -7,8 +7,7 @@ from pathlib import Path
 
 import pymupdf
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import config
+from src import config
 
 HEAD_CHARS = 6000       # 섹션 헤딩 못 찾을 때 fallback 상한
 MIN_INTRO_CHARS = 3000  # 이보다 이른 헤딩 매칭은 건너뜀(가장 짧은 정상 intro도 ~4400자)

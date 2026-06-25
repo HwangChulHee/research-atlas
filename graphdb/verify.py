@@ -13,9 +13,7 @@ import json, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "src"))
-import config  # noqa: F401  (.env 로딩 + 경로 상수)
+from src import config  # noqa: F401  (.env 로딩 + 경로 상수)
 # 드라이버는 만들지 않는다 — graph_view_neo4j(프로덕션)가 자체 드라이버로 읽는다.
 # .env 는 config / api.graph_neo4j import 시 이미 로딩됨.
 from api.graph_neo4j import graph_view_neo4j

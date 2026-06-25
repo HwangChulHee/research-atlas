@@ -11,8 +11,7 @@ import sys
 from pathlib import Path
 from openai import OpenAI
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import config  # .env 로딩(config.py가 load_dotenv(ROOT/.env)) — 별도 load_dotenv 불필요
+from src import config  # .env 로딩(config.py가 load_dotenv(ROOT/.env)) — 별도 load_dotenv 불필요
 
 client = OpenAI()
 

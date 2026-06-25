@@ -28,13 +28,11 @@ from langgraph.types import Command, interrupt
 from openai import OpenAI
 
 # 기존 추출 파이프라인 재사용 (src/) — 호출만, 로직 수정 안 함
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))          # 루트(prompts 패키지)
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
-import config  # noqa: E402
-import extract  # noqa: E402
-import fetch  # noqa: E402
-import parse  # noqa: E402
-import relate  # noqa: E402
+from src import config  # noqa: E402
+from src import extract  # noqa: E402
+from src import fetch  # noqa: E402
+from src import parse  # noqa: E402
+from src import relate  # noqa: E402
 
 from graphdb.write import write_paper  # noqa: E402  (증분 쓰기 — 추출 직후 Neo4j 반영)
 from graphdb.read import is_offline, node_meta, owned_paper_ids  # noqa: E402  (읽기 단일 진입점)
@@ -107,8 +105,8 @@ def llm_summary():
     return {"by_stage": dict(agg), "total": total}
 
 ARXIV_API = "https://export.arxiv.org/api/query"
-PAPERS_LEDGER = Path("data/outputs/papers.json")
-COLLECT_DB = Path("data/collect_sessions.db")  # 수집 세션 체크포인트(서버 재시작에도 생존)
+PAPERS_LEDGER = config.OUT_DIR / "papers.json"
+COLLECT_DB = config.DATA_DIR / "collect_sessions.db"  # 수집 세션 체크포인트(서버 재시작에도 생존)
 REJECT_VERDICTS = {"reject", "rejected", "drop"}  # 관문 탈락으로 보는 verdict
 
 DEFAULT_EXTRACT = 2           # 사용자가 편수 미언급 시 기본 추출 편수
@@ -150,7 +148,7 @@ def load_embeddings():
 
     반환: model, norm(v2 nodes dict), (concept_keys, concept_mat), (paper_keys, paper_mat)
     """
-    store = json.loads(Path("data/outputs/node_embeddings_v2.json").read_text())
+    store = json.loads((config.OUT_DIR / "node_embeddings_v2.json").read_text())
     norm = node_meta()  # 라이브=Neo4j / 오프라인=normalized_v2.json (벡터는 캐시 그대로)
     model = store["model"]
 

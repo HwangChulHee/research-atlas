@@ -365,7 +365,6 @@ def rebuild():
 
 
 # --- 자연어 명령 (필터 에이전트) ---
-sys.path.insert(0, str(ROOT))  # agent_filter import용 (uvicorn 실행 위치 무관하게)
 from dotenv import load_dotenv
 from openai import OpenAI
 
