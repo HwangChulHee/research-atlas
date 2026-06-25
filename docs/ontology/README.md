@@ -26,7 +26,10 @@ research-atlas의 데이터는 **이분 그래프**다: 노드는 `paper`/`conce
 
 ## 실행
 
+이 실험은 `owlrl`·`rdflib`가 필요한데, core 의존성이 아니라 **optional extra**다(legacy라 기본 미설치):
+
 ```bash
-uv run python docs/ontology/a1_rag_to_ttl.py   # normalized_v2.json → atlas_rag.ttl
+uv sync --extra ontology                        # owlrl·rdflib 설치(이 실험 전용)
+uv run python docs/ontology/a1_rag_to_ttl.py    # normalized_v2.json → atlas_rag.ttl
 uv run python docs/ontology/a3_infer_lineage.py # OWL 추론으로 개념 계보 도출
 ```
