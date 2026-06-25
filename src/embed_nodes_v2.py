@@ -15,7 +15,7 @@ from src import config  # .env 로딩(config.py가 load_dotenv(ROOT/.env)) — �
 
 client = OpenAI()
 
-EMBED_MODEL = "text-embedding-3-small"
+EMBED_MODEL = config.EMBED_MODEL
 NORMALIZED = config.OUT_DIR / "normalized_v2.json"
 EMB_PATH = config.OUT_DIR / "node_embeddings_v2.json"
 

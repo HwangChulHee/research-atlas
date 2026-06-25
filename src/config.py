@@ -13,6 +13,11 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 MODEL_EXTRACT = "gpt-5.4-mini"   # 검증된 구성: extract는 mini 유지(개념 집합 불변)
 MODEL_RELATE  = "gpt-5.4"        # 승격: relate만 full (모델 비교 결론 — 정밀도 +0.20)
+MODEL_COLLECT = "gpt-5.4-mini"   # 수집 에이전트(의도 파싱·게이트·검색어 확장)
+MODEL_COMMAND = "gpt-5.4-mini"   # 명령·필터 에이전트(자연어→tool call)
+# 임베딩 모델 — 벡터를 '만드는 쪽'(embed_nodes_v2)과 '질의하는 쪽'(graphdb.write·agents.collect)이
+# 반드시 동일해야 함(다르면 공간 불일치로 검색이 조용히 깨짐). 이 한 곳이 단일 출처.
+EMBED_MODEL   = "text-embedding-3-small"
 
 # 범용+RAG+에이전트 논문
 FULL_IDS = [

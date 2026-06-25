@@ -9,12 +9,13 @@ from agents.collect import embed_query, load_embeddings, match
 from agents.filter import TOOLS, build_system_prompt
 from api.deps import ROOT
 from api.graph_neo4j import graph_view_neo4j
+from src import config
 
 router = APIRouter()
 
 load_dotenv(ROOT / ".env")
 _oai = OpenAI()
-COMMAND_MODEL = "gpt-5.4-mini"
+COMMAND_MODEL = config.MODEL_COMMAND
 
 # 의미검색용 임베딩 행렬 캐시(1회 로드). collect의 검증된 부품 재사용 — 코사인/임베딩 재구현 없음.
 _EMB = None

@@ -45,8 +45,8 @@ from prompts.collect.expand import EXPAND_SYSTEM, build_expand_user  # noqa: E40
 
 # .env 는 위 `import config`(load_dotenv(ROOT/.env))에서 이미 로딩됨 — 별도 호출 불필요.
 client = OpenAI()
-MODEL = "gpt-5.4-mini"
-EMBED_MODEL = "text-embedding-3-small"
+MODEL = config.MODEL_COLLECT
+EMBED_MODEL = config.EMBED_MODEL
 
 
 # ---------- LLM 비용·시간 계기판 (레벨2: 호출당 기록 + 단계별 집계) ----------

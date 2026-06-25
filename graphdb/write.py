@@ -21,7 +21,7 @@ from src import normalize_core as nc
 from graphdb.conn import get_driver
 from graphdb.load import ensure_constraints  # 멱등, 재사용
 
-EMB_MODEL = "text-embedding-3-small"
+EMB_MODEL = config.EMBED_MODEL
 EMB_PATH = config.OUT_DIR / "node_embeddings_v2.json"
 
 # --- 개념 MERGE: 최초정의승 + ok↛placeholder. CASE는 옛 c.definition을 읽는다(아래 주석). ---

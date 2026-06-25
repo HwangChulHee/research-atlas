@@ -11,10 +11,11 @@ from dotenv import load_dotenv
 from openai import OpenAI
 
 from prompts.filter.command import build_system_prompt
+from src import config
 
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")  # cwd 무관하게 루트 .env 명시
 client = OpenAI()
-MODEL = "gpt-5.4-mini"
+MODEL = config.MODEL_COMMAND
 
 TOOLS = [
     {
