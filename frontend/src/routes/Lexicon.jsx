@@ -47,6 +47,8 @@ export default function Lexicon() {
     getReviewSuggestions()
       .then((r) => setReviewCards(r.cards || []))
       .catch(() => setReviewCards([])); // 제안 파일 없으면 패널 자체가 안 뜸
+    // 마운트 시 1회만 — reload/getReviewSuggestions 는 안정적.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // 결정 튜플(action,target) → 기존 엔드포인트로 dispatch. 새 적용 로직 없음.
@@ -169,7 +171,7 @@ export default function Lexicon() {
     return [...arr].sort(
       (a, b) => rank(a) - rank(b) || a.name.localeCompare(b.name)
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [items, filter, q, cardByName]);
 
   // 필터/검색/페이지크기가 바뀌면 1페이지로
