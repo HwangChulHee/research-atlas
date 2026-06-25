@@ -33,6 +33,18 @@ ChatGPT·Claude에게 논문 하나를 물으면 잘 설명해 준다. 하지만
 ```
 
 백엔드(:8000) + 프론트(:5173)를 한 번에 띄운다. 브라우저에서 **http://localhost:5173** (기본 진입 = `/usage`).
+(`dev.sh`는 `uv run`을 거치므로 의존성·프로젝트 설치를 자동 동기화한다.)
+
+## 개발 · 테스트
+
+파이썬 코드는 editable 패키지로 설치된다(`pyproject` `[build-system]`). 직접 동기화하려면:
+
+```bash
+uv sync                 # 의존성 + 프로젝트(editable) 설치 → cwd 무관 절대 import
+uv run pytest           # 순수함수 단위테스트(네트워크·Neo4j 불필요)
+```
+
+`agents`·`api`·`graphdb`·`prompts`·`src`는 설치된 패키지라 `from src import config`처럼 절대 import한다(`sys.path` 조작 없음). push/PR마다 GitHub Actions가 `uv sync + pytest`를 돌린다(`.github/workflows/ci.yml`). 로컬에서 ROS 등으로 `PYTHONPATH`가 주입된 환경이면 `PYTHONPATH= uv run pytest`로 실행.
 
 ## 화면
 
@@ -51,6 +63,7 @@ ChatGPT·Claude에게 논문 하나를 물으면 잘 설명해 준다. 하지만
 | `web/` | Vite + React UI (사용법 / 지형도 / 사전) |
 | `prompts/` | 모든 LLM 프롬프트(한 파일당 하나) |
 | `eval/` | 골든셋 평가 (정밀도/재현율 측정) |
+| `tests/` | 순수함수 단위테스트 (pytest) |
 | `data/` | 사전(`lexicon.json`) · 맵 결과(`outputs/`) |
 | `docs/` | 문서 |
 
