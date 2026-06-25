@@ -1,6 +1,6 @@
-"""② 검증: 프로덕션 graph_view_neo4j() 가 build_graph_view(JSON)을 전체 재현하나.
+"""② 검증: 프로덕션 graph_view_neo4j() 가 JSON 직독 뷰(expected_from_json)를 전체 재현하나.
 
-expected_from_json(include_papers) = build_graph_view 로직의 충실한 포트(JSON 직독).
+expected_from_json(include_papers) = 정본 normalized_v2.json 직독 뷰(graph_view_neo4j 검증 기준).
 actual = api.graph_neo4j.graph_view_neo4j(include_papers) — 실제 프로덕션 함수.
 papers=false / papers=true 둘 다 비교. 순서가 무의미한 것(papers 리스트, 엣지)은 정렬/집합화 후 비교.
 
@@ -25,7 +25,7 @@ def _strip(nid):
 
 
 def expected_from_json(include_papers: bool) -> dict:
-    """build_graph_view 의 충실한 포트 — normalized_v2.json 직독."""
+    """정본 normalized_v2.json 직독 뷰 — graph_view_neo4j 검증 기준."""
     raw = json.loads((config.OUT_DIR / "normalized_v2.json").read_text())
     v2_nodes, edges = raw["nodes"], raw["edges"]
     papers_meta = {pid: n for pid, n in v2_nodes.items() if n["type"] == "paper"}

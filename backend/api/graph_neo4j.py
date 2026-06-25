@@ -1,9 +1,9 @@
 """그래프 뷰를 Neo4j에서 빌드 (papers=false / papers=true 둘 다).
 
-verify_neo4j.py 로 build_graph_view(JSON)와 전체 일치 검증된 로직.
+graphdb/verify.py 로 JSON 직독 뷰(expected_from_json)와 전체 일치 검증된 로직.
 드라이버는 모듈 로드 시 1회 생성(지연 연결이라 Neo4j 미기동이어도 import는 안전).
 
-주의: Neo4j 의 Paper.id 는 접두사 없이 저장된다("1706.03762"). build_graph_view 는
+주의: Neo4j 의 Paper.id 는 접두사 없이 저장된다("1706.03762"). JSON 직독 뷰는
 논문 노드 키/엣지에 "paper:" 접두사를 유지하므로, papers=true 출력에선 다시 붙인다.
 개념 id 는 양쪽 모두 접두사 없음.
 """
@@ -52,7 +52,7 @@ RETURN p.id AS pid, c.id AS cid
 
 
 def graph_view_neo4j(include_papers: bool = False) -> dict:
-    """build_graph_view 재현. papers=false/true 둘 다 Neo4j 에서 빌드."""
+    """JSON 직독 뷰 재현(verify.expected_from_json 와 일치). papers=false/true 둘 다 Neo4j 에서 빌드."""
     with _driver.session() as s:
         nodes = {}
         for r in s.run(_NODES_CYPHER):

@@ -98,7 +98,7 @@ def load_view(path):
     """normalized_v2.json → diff용 요약 {concepts, papers, lineage}.
 
     개념간 builds_on(계보)은 normalized_v2 에 직접 저장돼 있지 않고 paper→concept 엣지에서
-    유도된다. build_graph_view(backend/api/main.py)의 파생 규칙을 읽기 전용으로 미러(home concept =
+    유도된다. graph_view_neo4j 의 파생 규칙을 읽기 전용으로 미러(home concept =
     그 논문이 처음 defines 한 개념, 그 개념 → builds_on 대상들). 진단만, 아무것도 안 고침.
     """
     raw = json.loads(path.read_text())
