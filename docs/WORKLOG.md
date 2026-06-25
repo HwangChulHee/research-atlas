@@ -2,6 +2,9 @@
 
 세션 인계용 개선 로그. 최신이 위.
 
+> 시간순 기록이라 **각 항목의 경로·이름은 작성 당시 기준**이다(예: 옛 `src/`→현 `pipeline/`,
+> `api/`→`backend/api/`, `agent_collect`→`agents.collect`). 현행 구조·실행법은 [`../README.md`](../README.md) 참조.
+
 ## 2026-06-19 — builds_on을 lineage-only로 전환 + relate 입력 필드 축소
 
 `builds_on`이 "계보(extends/improves) + 점수비교 baseline"을 한 통에 섞어 추출하던 것을 **lineage-only**(방법적 후예만)로 전환. 동시에 relate 입력에서 `problem`/`domain`을 빼고 `defines`+본문만 남김. **채점(scoring) 0회인 "평가 쌓기 전" 창에서 lockstep으로** 진행 — relate 프롬프트·골든셋 정답지·코퍼스를 같은 정의로 맞춤.

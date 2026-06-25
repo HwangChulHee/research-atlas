@@ -162,5 +162,5 @@ rm -rf data/_snapshot_test
   돌린다. 그래서 이 테스트는 채팅 UI의 세션 영속/복원과 **독립** — 수집 그래프를 호출만 하므로 프론트
   핸드오프 적용 여부와 무관하게 동작한다.
 - 개념간 계보(`added_edges`)는 `normalized_v2.json` 에 직접 저장돼 있지 않고 paper→concept 엣지에서
-  유도된다. `test_collect.py: load_view()` 가 `backend/api/main.py: build_graph_view` 의 파생 규칙(home
+  유도된다. `test_collect.py: load_view()` 가 `backend/api/graph_neo4j.py: graph_view_neo4j` 의 파생 규칙(home
   concept = 그 논문이 처음 defines 한 개념 → builds_on 대상들)을 **읽기 전용으로 미러**한다.

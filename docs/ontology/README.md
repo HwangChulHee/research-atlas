@@ -21,7 +21,7 @@ research-atlas의 데이터는 **이분 그래프**다: 노드는 `paper`/`conce
 
 **서사**: RDF/OWL로 "논문 경유 개념 계보"가 표준 추론(property chain)으로 환원됨을 확인하고,
 그 추론을 운영 그래프 DB(Neo4j)의 Cypher(`home_concept → builds_on 대상`)로 구현했다.
-프로덕션 읽기 경로가 이 규칙과 일치함은 `graphdb/verify.py`가 `build_graph_view`(JSON 정본)와
+프로덕션 읽기 경로가 이 규칙과 일치함은 `graphdb/verify.py`가 프로덕션 읽기(`graph_view_neo4j`)를 JSON 직독(`expected_from_json`)과
 전체 대조해 보증한다.
 
 ## 실행
