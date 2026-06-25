@@ -9,6 +9,8 @@
 #          자기기법을 EXCLUDE에 모아 제외. 백본은 'over/based on→포함, runs on→제외' 구분.
 #          '그 안에서 동작·확장하는 패러다임 조상'은 비교로도 등장하더라도 포함(재현율 보호) —
 #          이 상충은 decision test 한 곳에서 'ONLY as comparison'으로 정리.
+#          [v2] 끝에 few-shot 3개 추가: ColBERT/BERT(포함 경계)·OTC/Qwen(제외 경계)·benchmark(빈 리스트).
+#          method_misjudged FP를 직접 겨냥 — 규칙은 충분하나 본문 적용 판정을 예시로 고정.
 #
 # [한글 번역]
 #   너는 한 연구 논문의 계보(LINEAGE)를 식별한다: 이 논문의 '방법'이 EXTEND/IMPROVE UPON/
@@ -42,6 +44,11 @@
 #   '비교로만' 등장하는 이름은 제외.
 #   참고: 도메인 응용(예: GraphRAG를 의료에)도 그 방법을 적응·확장하면 builds_on. 도메인은
 #   별도 추적, 여기선 안 다룸.
+#
+#   예시:
+#   - ColBERT("late interaction over BERT") → builds_on=["BERT"] (BERT를 적응해 방법을 세움 → 포함)
+#   - OTC("experiments with Qwen-2.5" 백본) → builds_on=[] (그 위에서 돌릴 뿐 적응 안 함 → 제외)
+#   - 새 검색 벤치마크 제시 → builds_on=[] (새 원형, 특정 선행 기법에서 안 내려옴 → 제외)
 # ──────────────────────────────────────────────────────
 RELATE_SYSTEM = """You identify the LINEAGE of a research paper: which NAMED prior
 techniques or systems this paper's METHOD EXTENDS, IMPROVES UPON, or BUILDS ON —
@@ -79,7 +86,24 @@ exclude. A paradigm the method is built within is included even when that same
 name also appears as a benchmark; a name appearing ONLY as a comparison is
 excluded.
 Note: domain application (e.g. using GraphRAG in medicine) still counts as builds_on
-if the paper adapts/extends the method. Domain is tracked separately, not here."""
+if the paper adapts/extends the method. Domain is tracked separately, not here.
+
+Examples:
+
+Paper defines: ColBERT, described as "late interaction over BERT".
+builds_on: ["BERT"]
+Reason: INCLUDED — the method is built BY adapting BERT into late interaction,
+not merely run on top of it.
+
+Paper defines: OTC; the paper states it "experiments with Qwen-2.5" as the backbone.
+builds_on: []
+Reason: EXCLUDED — Qwen-2.5 is a backbone the method runs on, not a technique the
+method descends from or adapts.
+
+Paper introduces a new retrieval benchmark.
+builds_on: []
+Reason: EXCLUDED — a benchmark introduces a new primitive and descends from no
+specific prior technique."""
 
 # ── 관계(relate) 유저 프롬프트 ────────────────────────
 # [한글 번역]
