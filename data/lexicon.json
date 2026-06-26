@@ -1872,6 +1872,48 @@
       "definition": "",
       "source": "builds_on",
       "first_seen": "2504.14870"
+    },
+    "MMSearch-R1": {
+      "aliases": [],
+      "status": "approved",
+      "definition": "",
+      "source": "canon_unification (batch2 B2)",
+      "first_seen": "2512.24330"
+    },
+    "ReTool": {
+      "aliases": [],
+      "status": "approved",
+      "definition": "",
+      "source": "canon_unification (batch2 B2)",
+      "first_seen": "2505.14246"
+    },
+    "Semantic Entropy": {
+      "aliases": [],
+      "status": "approved",
+      "definition": "",
+      "source": "canon_unification (batch2 B2)",
+      "first_seen": "2307.01379"
+    },
+    "OpenSeeker": {
+      "aliases": [],
+      "status": "approved",
+      "definition": "",
+      "source": "canon_unification (batch2 B2)",
+      "first_seen": "2605.04036"
+    },
+    "evolving-rubric-eval-shao2025": {
+      "aliases": [],
+      "status": "approved",
+      "definition": "임시 토큰 — '진화 루브릭 평가 (Shao 2025)' 노드. arXiv id 미확인, 확인 시 교체.",
+      "source": "canon_unification (batch2 C)",
+      "first_seen": "2605.10899"
+    },
+    "Visual RAG": {
+      "aliases": [],
+      "status": "approved",
+      "definition": "",
+      "source": "canon_unification (batch2 D, 분리 유지)",
+      "first_seen": "2604.09508"
     }
   }
 }

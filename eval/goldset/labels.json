@@ -2,10 +2,11 @@
   "_meta": {
     "purpose": "goldset builds_on 정답 (사람 라벨, 채점 정본)",
     "rubric": "lineage-only: 이 논문의 '방법'이 딛고·확장한 방법적 후예(extends/improves/builds-on)만. 점수비교 baseline·부품(PPO/GRPO/MCTS)·데이터셋·툴·self-defined 기법 제외. 본문에 고유명사로 등장한 것만(인용 author-year 풀어넣지 않음). 경계 케이스는 본문 맥락으로 판단.",
-    "status": "in_progress",
+    "status": "labels_frozen",
     "labeled": 135,
     "total": 135,
-    "_count_note": "labeled=frozen 50 + 확장 85(학습형RL 13 + 검색시점 19 + RAG강화추론 14 + 질의계획 19 + 마지막 20, batch2 라벨 완료 85/85). total=frozen 50 + b2 keep pool 85. 다음: canon 통일 → freeze → 적재 → out-of-sample 채점. frozen 50 baseline(P0.82/R0.83)은 불변."
+    "batch2_frozen_at": "2026-06-26",
+    "_count_note": "labeled=frozen 50 + 확장 85(학습형RL 13 + 검색시점 19 + RAG강화추론 14 + 질의계획 19 + 마지막 20, batch2 라벨 완료 85/85). total=frozen 50 + b2 keep pool 85. batch2 라벨 freeze(2026-06-26): 채점 기준 고정. 다음: 적재(B안=baseline 재측정+batch2) → out-of-sample 채점. frozen 50(papers.json frozen_at 2026-06-17)·baseline(P0.82/R0.83)은 불변."
   },
   "labels": {
     "2503.09516": {
@@ -376,7 +377,7 @@
     "2605.10899": {
       "title": "RubricEM",
       "builds_on": [
-        "진화 루브릭 평가 (Shao 2025)"
+        "evolving-rubric-eval-shao2025"
       ]
     },
     "2210.03350": {

@@ -1,88 +1,92 @@
-# canon 반영 + 적재 — STEP 0 게이트 보고 (적재 중단)
+# canon 반영 + freeze 보고 (STEP 1~3 완료, STEP 4 적재는 API 키 대기)
 
 작성일: 2026-06-26
-결과: **STEP 0 컨파운드 게이트 FAIL + API 키 부재 → 적재(STEP 4) 중단, 사람 결정 대기.**
-이 핸드오프의 "드리프트가 있으면 적재를 멈추고 보고" 지침대로, lexicon·labels·freeze는
-**아직 손대지 않았다**(STEP 1~3 미실행). 무엇을 바꾸기 전에 결정이 필요하다.
+상태: **STEP 0 드리프트 보고 → 사람 결정(B) → STEP 1~3 실행 완료. STEP 4(적재)는 API 키 확보 후.**
 
 ---
 
-## STEP 0 — config 확인 결과
+## STEP 0 — config 게이트 결과 + 결정
 
-| 항목 | 상태 | 판정 |
-|---|---|---|
-| `MODEL_EXTRACT` = gpt-5.4-mini | ✅ 일치 | OK |
-| `MODEL_RELATE` = gpt-5.4 | ✅ 일치 | OK |
-| relate `temperature` = 0 | ✅ (`pipeline/relate.py:15`) | OK |
-| batch2 parsed 85편 | ✅ 전부 `expansion/parsed/`에 존재(85/85) | OK |
-| **relate few-shot (Change B)** | ⚠️ **드리프트 확인** | **STOP** |
+| 항목 | 상태 |
+|---|---|
+| MODEL_EXTRACT=gpt-5.4-mini · MODEL_RELATE=gpt-5.4 · relate temp=0 | ✅ 일치 |
+| batch2 parsed 85/85 (`expansion/parsed/`) | ✅ |
+| **relate few-shot 드리프트** | ⚠️ 확인됨 → 아래 |
 
----
+**드리프트**: frozen 50 baseline 예측은 06-22(`d498246`, few-shot 이전) 산출인데 `relate.py`엔
+06-25(`1457a62`) few-shot 3개(ColBERT/OTC/benchmark 경계)가 있음. 그대로 batch2를 돌리면
+"새 논문 + Change B" 혼재.
 
-## ⚠ 드리프트 — relate few-shot이 baseline 측정 이후 들어왔다
-
-타임라인(git):
-
-```
-2026-06-17  labels frozen (papers.json frozen_at)
-2026-06-22  d498246  relate를 full(gpt-5.4)로 승격 + 그래프 재빌드
-            → frozen 50 relations.json 이때 생성 (= baseline P0.82/R0.83의 예측 출처)
-2026-06-25  1457a62  relate 프롬프트 few-shot 3개 추가  ← Change B
-            → 프롬프트 파일 1개만 수정(+25줄). data/outputs/ 재생성 안 함.
-```
-
-근거:
-- `git log -1 -- data/outputs/2503.09516.relations.json` → **d498246 (06-22)**. 즉 커밋된
-  frozen-50 예측은 few-shot **이전** 산출물.
-- `git show --stat 1457a62` → `prompts/pipeline/relate.py` **1개 파일만** 변경. 예측 재생성 없음.
-- 06-25 이후 baseline 재측정 기록 없음(`eval/runs`·`eval/reports`에 post-06-25 baseline run 부재).
-
-추가된 few-shot 3개(`1457a62`):
-- ColBERT("late interaction over BERT") → `["BERT"]` (포함 경계)
-- OTC("experiments with Qwen-2.5" 백본) → `[]` (제외 경계)
-- 새 벤치마크 제시 → `[]` (빈 리스트)
-→ `method_misjudged` FP를 겨냥한 **정밀도 지향 변경**.
-
-### 왜 STOP인가
-baseline(frozen 50)은 **few-shot 없이** 측정됐는데 지금 `relate.py`엔 few-shot이 있다. 이대로
-batch2 85편을 돌리면 out-of-sample 결과가 **"새 논문(일반화) + Change B(프롬프트 개선)" 두 변수
-혼재**가 된다. in-sample vs out-of-sample 격차를 깨끗이 못 읽는다 — 이 핸드오프 STEP 0이 막으려는
-바로 그 컨파운드.
+**사람 결정 = B (baseline 재측정 후 batch2)**: frozen 50 relations를 현 config(few-shot 포함)로
+재생성해 새 baseline을 잡고, batch2도 동일 config로. 양쪽에 현 실제 파이프라인을 일관 적용.
+→ STEP 4에서 frozen 50 relate 재실행 + batch2 85편 relate 둘 다 필요(아래).
 
 ---
 
-## ⚠ 두 번째 블로커 — OpenAI API 키 부재
+## STEP 1 — lexicon 반영 (완료, append-only)
 
-- 작업 환경에 `.env` 없음, `OPENAI_API_KEY` 미설정.
-- STEP 4는 85편 × (extract+relate) OpenAI 호출이 필수 → **이 환경에서 실행 불가**.
-- 키가 있어도 위 드리프트가 먼저 해결돼야 결과가 유효.
+`data/lexicon.json`에 6개 노드 **append**(기존 엔트리 무수정, 42 insertions / 0 deletions).
+전부 `status: approved` → `resolve()`/`status_of()` NODE_OK 통과 스모크 확인:
 
----
-
-## 결정 필요 (사람) — 드리프트 해소 방법
-
-| 옵션 | 내용 | 비용 | 트레이드오프 |
+| 노드 | 구역 | first_seen | NODE_OK |
 |---|---|---|---|
-| **A. few-shot 되돌리고 batch2 실행** | relate.py를 06-22 상태로(few-shot 제거) → batch2 85편 생성 → 기존 baseline과 비교 | batch2 ×(extract+relate)만 | baseline 불변·격차가 순수 "일반화"만 측정. 단 현 라이브 개선(few-shot)은 평가에서 빠짐 |
-| **B. baseline 재측정(few-shot 포함) 후 batch2** | frozen 50 relations 재생성(few-shot) → 새 baseline → batch2도 few-shot으로 | (50 + 85) relate 재호출 | **현 실제 파이프라인**을 양쪽에 일관 적용(가장 대표적). 단 headline 0.82/0.83 재산출됨 |
-| **C. 그대로 진행(컨파운드 수용)** | 현 config로 batch2, 기존 baseline과 비교하되 혼재 명시 | batch2만 | 가장 빠르나 격차 해석에 두 변수 섞임(권장 안 함) |
+| MMSearch-R1 | B2 | 2512.24330 | ✅ |
+| ReTool | B2 | 2505.14246 | ✅ |
+| Semantic Entropy | B2 | 2307.01379 | ✅ |
+| OpenSeeker | B2 | 2605.04036 | ✅ |
+| evolving-rubric-eval-shao2025 | C(토큰) | 2605.10899 | ✅ |
+| Visual RAG | D(분리 유지) | 2604.09508 | ✅ |
 
-**권장**: 목표가 "현 시스템의 일반화 측정"이면 **B**(양쪽 동일 파이프라인, few-shot은 유지할 개선),
-"baseline 보존 + 순수 일반화 격차"면 **A**. **C는 비권장**.
+### ⚠ 미처리 1건 — agentic RAG (사람 결정 필요)
+- `agentic RAG`는 lexicon에 **이미 `pending`으로 존재**. STEP 1의 "기존 엔트리 수정 금지, append만"
+  (단조성) 원칙 + "없을 때만 추가" 지침에 따라 **건드리지 않았다**.
+- 그러나 `pending`은 NODE_OK가 아니라 **2511.05385(TeaRAG)의 builds_on `agentic RAG`가 채점에서
+  탈락**한다(D=분리 유지인데 유효 노드가 아님).
+- 분리 유지 + 채점 반영하려면 사람이 `agentic RAG` status를 `pending → approved`로 승격해야 함
+  (기존 엔트리 수정이라 이번 additive-only 범위 밖). 미승격 시 그 1건은 FN.
 
-그리고 어느 쪽이든 **API 키**를 제공하거나(또는 사람이 직접 실행) 해야 STEP 4가 돈다.
+### Shao2025 arXiv id
+- 확신 가능한 id 확인 못 함 → 핸드오프 지침대로 **임시 토큰 `evolving-rubric-eval-shao2025`**로 추가.
+  나중 id 확인 시 lexicon 노드명 + 2605.10899 라벨 표면형 동시 교체(둘 다 canon 일치 유지).
 
 ---
 
-## 아직 안 한 것 (결정 후 진행)
-- STEP 1 lexicon 반영(B2 4 + Shao + agentic/Visual RAG) — **미실행**
-- STEP 2 labels Shao 표면형 교체 / A 표면형 통일 — **미실행**
-- STEP 3 freeze 표시 — **미실행**
-- STEP 4 적재(예측 생성) — **미실행(블록)**
+## STEP 2 — labels 표면형 정리 (완료)
 
-> STEP 1~3은 드리프트 해소와 독립이라 지금 해도 안전하지만, STEP 0이 "멈추고 보고 우선"이고
-> STEP 4가 어차피 블록(키 부재)이라, 방향 확정 전 상태 변경을 보류했다. "1~3 먼저 진행" 지시 시
-> 즉시 처리 가능.
+- 2605.10899(RubricEM) builds_on: `진화 루브릭 평가 (Shao 2025)` → `evolving-rubric-eval-shao2025`
+  (STEP 1 노드와 일치). 표면형 표준화만 — **의미 불변**(같은 Shao 노드 지시).
+- **A 표면형 통일(Search-R1/CoT)은 미적용**: canon이 흡수해 채점 무해하고, frozen 50 라벨까지
+  건드리게 되므로 보류(핸드오프상 선택). 채점 영향 없음.
+- git diff: Shao 1줄 교체 + _meta(freeze) 외 builds_on 값 변경 없음 확인.
 
-## 무변경 확인
-- `lexicon.json` · `labels.json` · `data/outputs/` · 라이브 Neo4j 전부 **무변경**. 본 보고서 1장만 생성.
+---
+
+## STEP 3 — freeze (완료)
+
+`labels.json` `_meta`: `status: in_progress → labels_frozen`, `batch2_frozen_at: 2026-06-26` 추가.
+labeled=total=135 고정. frozen 50 메타(papers.json frozen_at 2026-06-17)·baseline 불변.
+
+---
+
+## STEP 4 — 적재 (미실행, 블록)
+
+- **블로커: 환경에 OPENAI_API_KEY 없음** → 85편(+B안이면 frozen 50 relate 재실행)의 OpenAI 호출 불가.
+- B안 실행 시 필요한 호출:
+  - frozen 50: relate 재실행(few-shot 포함) → relations 재생성(= 새 baseline). extract는 기존 재사용 가능.
+  - batch2 85: extract + relate (parsed 재사용, PDF/parse 재실행 금지).
+  - 격리: 라이브 Neo4j에 쓰지 말고 예측 JSON만 eval 경로(`data/outputs/`)에 생성.
+  - 비용: relate ≈ (50 + 85) full 호출 + extract 85 mini 호출.
+- **재개 방법**: `.env`에 `OPENAI_API_KEY` 설정 후 (또는 사람이 직접 실행) — extract/relate에
+  이미 per-item try/except·timeout·retry 적용됨(P0-3). config는 baseline과 일치(few-shot 포함, B안).
+
+---
+
+## 무변경/검증
+- `data/lexicon.json` append-only(0 deletions), 추가 6노드 NODE_OK 통과.
+- `labels.json` builds_on 의미 불변(Shao 표면형만), freeze 표시됨.
+- `data/outputs/` · 라이브 Neo4j **무변경**(STEP 4 미실행).
+
+## 다음 단계 (사람)
+1. (선택) agentic RAG `pending→approved` 승격 결정.
+2. API 키 제공/직접 실행 → STEP 4(B안: frozen 50 relate 재측정 + batch2 extract+relate, 격리).
+3. 별도 채점 게이트: ① 85편 전체 ② 경계 5편 제외 부분집합 ③ in-sample vs out-of-sample 격차.
