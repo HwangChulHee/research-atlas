@@ -3,9 +3,9 @@
     "purpose": "goldset builds_on 정답 (사람 라벨, 채점 정본)",
     "rubric": "lineage-only: 이 논문의 '방법'이 딛고·확장한 방법적 후예(extends/improves/builds-on)만. 점수비교 baseline·부품(PPO/GRPO/MCTS)·데이터셋·툴·self-defined 기법 제외. 본문에 고유명사로 등장한 것만(인용 author-year 풀어넣지 않음). 경계 케이스는 본문 맥락으로 판단.",
     "status": "in_progress",
-    "labeled": 115,
+    "labeled": 135,
     "total": 135,
-    "_count_note": "labeled=frozen 50 + 확장 65(학습형RL 13 + 검색시점 19 + RAG강화추론 14 + 질의계획 19, 누적 65/85). total=frozen 50 + b2 keep pool 85. frozen 50 baseline(P0.82/R0.83)은 불변."
+    "_count_note": "labeled=frozen 50 + 확장 85(학습형RL 13 + 검색시점 19 + RAG강화추론 14 + 질의계획 19 + 마지막 20, batch2 라벨 완료 85/85). total=frozen 50 + b2 keep pool 85. 다음: canon 통일 → freeze → 적재 → out-of-sample 채점. frozen 50 baseline(P0.82/R0.83)은 불변."
   },
   "labels": {
     "2503.09516": {
@@ -640,6 +640,110 @@
     "2605.29307": {
       "title": "GrepSeek",
       "builds_on": []
+    },
+    "2205.14334": {
+      "title": "Verbalized Uncertainty",
+      "builds_on": []
+    },
+    "2303.08896": {
+      "title": "SelfCheckGPT",
+      "builds_on": []
+    },
+    "2304.13734": {
+      "title": "Internal-State Lie Detection",
+      "builds_on": []
+    },
+    "2307.01379": {
+      "title": "Shifting Attention to Relevance",
+      "builds_on": [
+        "Semantic Entropy"
+      ]
+    },
+    "2311.01740": {
+      "title": "SAC3",
+      "builds_on": [
+        "SelfCheckGPT"
+      ]
+    },
+    "2311.09677": {
+      "title": "R-Tuning",
+      "builds_on": []
+    },
+    "2502.11677": {
+      "title": "Internal-State Knowledge Boundary",
+      "builds_on": []
+    },
+    "2306.17563": {
+      "title": "Pairwise Ranking Prompting",
+      "builds_on": []
+    },
+    "2402.12174": {
+      "title": "BIDER",
+      "builds_on": [
+        "RAG"
+      ]
+    },
+    "2406.11678": {
+      "title": "TourRank",
+      "builds_on": [
+        "RankGPT"
+      ]
+    },
+    "2406.13629": {
+      "title": "InstructRAG",
+      "builds_on": [
+        "RAG"
+      ]
+    },
+    "2407.02485": {
+      "title": "RankRAG",
+      "builds_on": [
+        "RAG"
+      ]
+    },
+    "2410.04739": {
+      "title": "TableRAG",
+      "builds_on": [
+        "RAG"
+      ]
+    },
+    "2503.06034": {
+      "title": "Rank-R1",
+      "builds_on": [
+        "DeepSeek-R1"
+      ]
+    },
+    "2310.05388": {
+      "title": "Grove",
+      "builds_on": [
+        "RAG"
+      ]
+    },
+    "2501.02727": {
+      "title": "Tree-RAG-Agent Recommender",
+      "builds_on": []
+    },
+    "2501.10053": {
+      "title": "AirRAG",
+      "builds_on": [
+        "RAG"
+      ]
+    },
+    "2501.14342": {
+      "title": "Chain-of-Retrieval RAG",
+      "builds_on": [
+        "RAG"
+      ]
+    },
+    "2507.15586": {
+      "title": "EviOmni",
+      "builds_on": []
+    },
+    "2605.29861": {
+      "title": "Verifiable Multimodal DR",
+      "builds_on": [
+        "RAG"
+      ]
     }
   }
 }
