@@ -23,8 +23,6 @@ import numpy as np
 from langgraph.checkpoint.sqlite import SqliteSaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.types import Command, interrupt
-from openai import OpenAI
-
 # 기존 추출 파이프라인 재사용 (pipeline/) — 호출만, 로직 수정 안 함
 from pipeline import config  # noqa: E402
 from pipeline import extract  # noqa: E402
@@ -42,7 +40,7 @@ from prompts.collect.report import REPORT_SYSTEM, build_report_user  # noqa: E40
 from prompts.collect.expand import EXPAND_SYSTEM, build_expand_user  # noqa: E402
 
 # .env 는 위 `import config`(load_dotenv(ROOT/.env))에서 이미 로딩됨 — 별도 호출 불필요.
-client = OpenAI()
+client = config.make_openai_client()
 MODEL = config.MODEL_COLLECT
 EMBED_MODEL = config.EMBED_MODEL
 

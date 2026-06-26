@@ -1,9 +1,21 @@
-"""경로 / 모델 상수."""
+"""경로 / 모델 상수 + 공용 OpenAI 클라이언트 팩토리."""
 from pathlib import Path
 from dotenv import load_dotenv
+from openai import OpenAI
 
 ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(ROOT / ".env")
+
+# OpenAI 호출 견고성 — 모든 호출 지점이 make_openai_client()를 거친다.
+# timeout 없으면 멈춘 요청이 동기 핸들러 스레드/배치를 무한 점유(서버 프리즈·배치 정지).
+# max_retries는 SDK 내장 지수 백오프(429/5xx/연결오류/타임아웃) — 별도 backoff 루프 불필요.
+OPENAI_TIMEOUT = 60.0
+OPENAI_MAX_RETRIES = 3
+
+
+def make_openai_client():
+    """timeout·재시도가 박힌 공용 OpenAI 클라이언트."""
+    return OpenAI(timeout=OPENAI_TIMEOUT, max_retries=OPENAI_MAX_RETRIES)
 
 DATA_DIR = ROOT / "data"
 PDF_DIR = DATA_DIR / "pdfs"          # PDF는 공용 (논문 겹쳐도 중복 다운 안 함)

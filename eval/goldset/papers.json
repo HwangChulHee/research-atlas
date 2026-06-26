@@ -1,5 +1,5 @@
 {
-  "purpose": "builds_on 추출 정확도 정답지 (50편)",
+  "purpose": "builds_on 추출 정확도 정답지 — frozen 50 baseline(new_collected+from_corpus, frozen_at 고정) + 확장 pool 85(survey_sourced_b2, 라벨링 진행중)",
   "frozen_at": "2026-06-17",
   "new_collected": [
     "2501.12948", "2503.09516", "2501.05366", "2505.17005", "2504.03160", "2503.19470",

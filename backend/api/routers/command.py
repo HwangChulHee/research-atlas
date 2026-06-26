@@ -3,7 +3,6 @@ import json
 
 from dotenv import load_dotenv
 from fastapi import APIRouter, Body, HTTPException
-from openai import OpenAI
 
 from backend.agents.collect import embed_query, load_embeddings, match
 from backend.agents.filter import TOOLS, build_system_prompt
@@ -14,7 +13,7 @@ from pipeline import config
 router = APIRouter()
 
 load_dotenv(ROOT / ".env")
-_oai = OpenAI()
+_oai = config.make_openai_client()
 COMMAND_MODEL = config.MODEL_COMMAND
 
 # 의미검색용 임베딩 행렬 캐시(1회 로드). collect의 검증된 부품 재사용 — 코사인/임베딩 재구현 없음.

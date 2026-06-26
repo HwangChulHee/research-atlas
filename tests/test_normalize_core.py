@@ -42,3 +42,19 @@ def test_resolve_unknown_returns_canon_key_and_original_name():
     rk, label = nc.resolve(st, "BrandNewMethod")
     assert rk == "brandnewmethod"
     assert label == "BrandNewMethod"
+
+
+def test_builds_on_to_non_nodeok_target_is_dropped_and_recorded():
+    # NODE_OK(approved) 타깃은 엣지가 되고, pending 타깃은 엣지 없이 dropped_builds_on에 기록.
+    # (동작은 기존 그대로 — lineage-only 제외. 손실을 관측 가능하게만 함.)
+    st = _state({"RAG": "approved", "HalfBaked": "pending"})
+    con = {"defines": []}
+    rel = {"builds_on": ["RAG", "HalfBaked"]}
+    res = nc.normalize_paper(con, rel, "9999.00001", st)
+
+    edge_targets = {e["to"] for e in res["edges"] if e["type"] == "builds_on"}
+    assert nc.canon("RAG") in edge_targets
+    assert nc.canon("HalfBaked") not in edge_targets
+
+    dropped = {d["to"]: d["status"] for d in res["dropped_builds_on"]}
+    assert dropped == {nc.canon("HalfBaked"): "pending"}

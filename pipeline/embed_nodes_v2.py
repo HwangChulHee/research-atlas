@@ -8,11 +8,10 @@
 """
 import json
 import sys
-from openai import OpenAI
 
 from pipeline import config  # .env 로딩(config.py가 load_dotenv(ROOT/.env)) — 별도 load_dotenv 불필요
 
-client = OpenAI()
+client = config.make_openai_client()
 
 EMBED_MODEL = config.EMBED_MODEL
 NORMALIZED = config.OUT_DIR / "normalized_v2.json"

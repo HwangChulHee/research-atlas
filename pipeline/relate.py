@@ -1,12 +1,11 @@
 """05 relate: builds_on + applies → {pid}.relations.json."""
 import argparse
 import json
-from openai import OpenAI
 
 from pipeline import config
 from prompts.pipeline.relate import RELATE_SYSTEM, RELATE_USER, RELATE_SCHEMA
 
-client = OpenAI()
+client = config.make_openai_client()
 
 
 def relate_one(concepts: dict, text: str) -> dict:
@@ -30,19 +29,22 @@ def main():
     ap.add_argument("--force", action="store_true")
     args = ap.parse_args()
     ids = config.PAPER_IDS if args.run else config.PAPER_IDS[:2]
-    n_new = n_skip = 0
+    n_new = n_skip = n_err = 0
     for pid in ids:
         out = config.OUT_DIR / f"{pid}.relations.json"
         if args.run and out.exists() and not args.force:
             n_skip += 1; print(f"{pid}: skip"); continue
-        concepts = json.loads((config.OUT_DIR / f"{pid}.concepts.json").read_text())
-        text = json.loads((config.OUT_DIR / f"{pid}.parsed.json").read_text())["text"]
-        r = relate_one(concepts, text)
+        try:                                  # 1편 실패가 배치 전체를 중단시키지 않게 격리
+            concepts = json.loads((config.OUT_DIR / f"{pid}.concepts.json").read_text())
+            text = json.loads((config.OUT_DIR / f"{pid}.parsed.json").read_text())["text"]
+            r = relate_one(concepts, text)
+        except Exception as e:
+            n_err += 1; print(f"{pid}: ERROR {type(e).__name__}: {e}"); continue
         if args.run:
             out.write_text(json.dumps(r, ensure_ascii=False, indent=2)); n_new += 1
         print(f"{pid}: builds_on={r['builds_on']}")
     if args.run:
-        print(f"\n신규 {n_new}, skip {n_skip}")
+        print(f"\n신규 {n_new}, skip {n_skip}, 실패 {n_err}")
 
 
 if __name__ == "__main__":

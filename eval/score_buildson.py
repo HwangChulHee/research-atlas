@@ -1,4 +1,8 @@
-"""score_buildson: builds_on 정답지(50편, frozen) vs 파이프라인 출력 정밀도/재현율 측정.
+"""score_buildson: builds_on 정답지 vs 파이프라인 출력 정밀도/재현율 측정.
+
+채점 대상 = labels.json 중 예측(data/outputs/{id}.relations.json)이 있는 논문.
+현재 채점되는 건 frozen 50 baseline(new_collected+from_corpus). 확장 라벨(survey_sourced_b2)은
+예측이 적재되면 자동 합류한다(카운트·그룹은 동적 — 하드코딩 없음).
 
 측정만 한다. lexicon/labels/relate/normalize 어떤 것도 고치지 않는다(읽기 전용).
 
@@ -10,7 +14,7 @@
 
 실행:
 - uv run python eval/score_buildson.py          # 스모크 5편 PASS/FAIL (기본)
-- uv run python eval/score_buildson.py --run     # 50편 전체 채점 + eval/runs 저장
+- uv run python eval/score_buildson.py --run     # 라벨 전체 채점 + eval/runs 저장
 """
 import sys
 import json
@@ -37,7 +41,9 @@ def load_labels():
 
 def load_groups():
     p = json.load(open(PAPERS_PATH))
-    return {"new_collected": set(p["new_collected"]), "from_corpus": set(p["from_corpus"])}
+    return {"new_collected": set(p["new_collected"]),
+            "from_corpus": set(p["from_corpus"]),
+            "survey_sourced_b2": set(p.get("survey_sourced_b2", []))}
 
 
 def load_pred(pid):
@@ -197,24 +203,28 @@ def run_full(st, labels, groups):
         r = score_paper(st, pid, lab["builds_on"], pred)
         r["title"] = lab["title"]
         r["group"] = ("new_collected" if pid in groups["new_collected"]
-                      else "from_corpus" if pid in groups["from_corpus"] else "?")
+                      else "from_corpus" if pid in groups["from_corpus"]
+                      else "survey_sourced_b2" if pid in groups["survey_sourced_b2"]
+                      else "?")
         rows.append(r)
 
     if missing:
-        print(f"⚠️  매칭 누락 {len(missing)}편: {missing}")
+        print(f"⚠️  매칭 누락 {len(missing)}편(예측 없음): {missing}")
 
-    by_group = {
-        "전체(50)": rows,
-        "new_collected": [r for r in rows if r["group"] == "new_collected"],
-        "from_corpus": [r for r in rows if r["group"] == "from_corpus"],
-    }
+    # 전체 + 비어있지 않은 하위 그룹만(카운트 동적 — 하드코딩 없음).
+    all_label = f"전체({len(rows)})"
+    by_group = {all_label: rows}
+    for g in ["new_collected", "from_corpus", "survey_sourced_b2", "?"]:
+        gr = [r for r in rows if r["group"] == g]
+        if gr:
+            by_group[g] = gr
     aggs = {name: aggregate(rs) for name, rs in by_group.items()}
 
-    # ── 콘솔: 집계 3세트
+    # ── 콘솔: 집계 (전체 + 하위 그룹)
     print("=" * 70)
     print("BUILDS_ON 채점 결과")
     print("=" * 70)
-    for name in ["전체(50)", "new_collected", "from_corpus"]:
+    for name in aggs:
         print_agg_table(st, name, aggs[name])
 
     # ── 콘솔: FP 전체 목록
@@ -291,13 +301,15 @@ def save_run(st, rows, aggs):
     L.append("")
     L.append("| 그룹 | n | micro P | micro R | macro P | macro R | ΣTP | ΣFP | ΣFN | FN:lexicon탈락 | FN:추출X |")
     L.append("|---|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|")
-    for name in ["전체(50)", "new_collected", "from_corpus"]:
+    for name in aggs:
         a = aggs[name]
         L.append(f"| {name} | {a['n_papers']} | {fmt(a['micro_p'])} | {fmt(a['micro_r'])} | "
                  f"{fmt(a['macro_p'])} | {fmt(a['macro_r'])} | {a['sumTP']} | {a['sumFP']} | "
                  f"{a['sumFN']} | {a['fn_lex_drop']} | {a['fn_not_extracted']} |")
     L.append("")
-    L.append("> macro P 분모=pred≠∅ 논문, macro R 분모=gold≠∅ 논문(empty gold 11편 제외).")
+    total = next(iter(aggs.values()))   # 첫 항목 = 전체
+    empty_gold = total["n_papers"] - total["n_gold_nonempty"]
+    L.append(f"> macro P 분모=pred≠∅ 논문, macro R 분모=gold≠∅ 논문(empty gold {empty_gold}편 제외).")
     L.append("")
 
     L.append("## False Positives (헛것)")

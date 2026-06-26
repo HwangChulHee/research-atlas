@@ -51,12 +51,17 @@ def _load_cache():
     return {"model": EMB_MODEL, "dim": None, "vectors": {}}
 
 
+_oai = None
+
+
 def _embed_batch(texts):
     """OpenAI 임베딩 배치. 빈 입력이면 []."""
     if not texts:
         return []
-    from openai import OpenAI
-    resp = OpenAI().embeddings.create(model=EMB_MODEL, input=texts)
+    global _oai
+    if _oai is None:
+        _oai = config.make_openai_client()   # timeout·재시도 박힌 공용 클라이언트 재사용
+    resp = _oai.embeddings.create(model=EMB_MODEL, input=texts)
     return [d.embedding for d in resp.data]
 
 

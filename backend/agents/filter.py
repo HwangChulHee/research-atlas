@@ -7,13 +7,12 @@
 import sys
 from pathlib import Path
 from dotenv import load_dotenv
-from openai import OpenAI
 
 from prompts.filter.command import build_system_prompt
 from pipeline import config
 
 load_dotenv(Path(__file__).resolve().parent.parent.parent / ".env")  # backend/agents/filter.py → 루트 .env
-client = OpenAI()
+client = config.make_openai_client()
 MODEL = config.MODEL_COMMAND
 
 TOOLS = [

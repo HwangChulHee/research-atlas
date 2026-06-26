@@ -25,7 +25,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from dotenv import load_dotenv
-from openai import OpenAI
 
 ROOT = Path(__file__).resolve().parents[1]
 load_dotenv(ROOT / ".env")
@@ -36,7 +35,7 @@ OUT_DIR = config.OUT_DIR
 REPORT_DIR = ROOT / "eval" / "reports"
 REVIEW_STATUSES = {"pending", "unreviewed"}
 
-client = OpenAI()
+client = config.make_openai_client()
 
 RUBRIC_SYSTEM = """\
 너는 논문 지식그래프 사전(lexicon)의 검토를 *돕는* 도우미다. 너는 결정하지 않는다 —

@@ -114,6 +114,7 @@ def normalize_paper(con, rel, pid, st):
     concept_nodes = {}
     edges = []
     new_entries = []
+    dropped_builds_on = []   # 관측용: 타깃이 NODE_OK 아니라 그래프에 안 실린 builds_on(데이터 손실 가시화)
 
     def ensure(rk, label, definition, def_status):
         if rk not in concept_nodes:
@@ -141,6 +142,10 @@ def normalize_paper(con, rel, pid, st):
         if status_of(st, rk) in NODE_OK:
             ensure(rk, label, "", "placeholder")
             edges.append({"type": "builds_on", "from": pid, "to": rk})
+        else:
+            # 타깃이 pending/rejected → 엣지 안 생김(의도된 lineage-only 동작·순서의존 0.4).
+            # 동작은 그대로 두되, 조용히 사라지지 않게 기록만 한다.
+            dropped_builds_on.append({"name": name, "to": rk, "status": status_of(st, rk)})
 
     for e in edges:                       # home = 첫 defines 엣지의 대상
         if e["type"] == "defines":
@@ -148,4 +153,5 @@ def normalize_paper(con, rel, pid, st):
             break
 
     return {"paper_node": paper_node, "concept_nodes": concept_nodes,
-            "edges": edges, "new_lexicon_entries": new_entries}
+            "edges": edges, "new_lexicon_entries": new_entries,
+            "dropped_builds_on": dropped_builds_on}

@@ -17,6 +17,7 @@ OUT = config.OUT_DIR / "normalized_v2.json"
 def main():
     st = nc.load_lex_state()
     nodes, edges = {}, []
+    dropped = []   # 타깃 status가 NODE_OK 아니라 그래프에 못 실린 builds_on (관측용)
 
     pids = [Path(f).name.split(".concepts")[0]
             for f in sorted(glob.glob(str(config.OUT_DIR / "*.concepts.json")))]
@@ -51,6 +52,8 @@ def main():
         for e in res["edges"]:
             edges.append({"type": e["type"], "from": f"paper:{pid}",
                           "to": f"concept:{e['to']}"})
+        for d in res.get("dropped_builds_on", []):
+            dropped.append({"paper": pid, **d})
 
     nc.save_lexicon(st)
     OUT.write_text(json.dumps({"nodes": nodes, "edges": edges}, ensure_ascii=False, indent=2))
@@ -64,6 +67,12 @@ def main():
     print(f"=== 논문 {papers} + 개념 {concepts} = 노드 {len(nodes)} / "
           f"엣지 {len(edges)} (defines {defines} · builds_on {builds}) ===")
     print(f"=== 빈 링 개념 {placeholders}개 / 사전 신규 {st['new']} ===")
+    if dropped:
+        by_status = {}
+        for d in dropped:
+            by_status[d["status"]] = by_status.get(d["status"], 0) + 1
+        print(f"=== builds_on 탈락 {len(dropped)}개 (타깃 비-NODE_OK: {by_status}) — "
+              f"의도된 lineage-only 제외, 손실 가시화용 ===")
 
 
 if __name__ == "__main__":
