@@ -1,0 +1,36 @@
+{
+  "title": "PTAH: An Agentic Harness for Credible Multimodal Deep Research",
+  "task": [
+    "multimodal deep research",
+    "interleaved report generation",
+    "report synthesis",
+    "multimodal evaluation"
+  ],
+  "defines": [
+    {
+      "name": "PTAH",
+      "definition": "An agentic harness that coordinates specialized agents, external tools, intermediate research states, and verification signals to generate credible interleaved multimodal research reports."
+    },
+    {
+      "name": "PTAHEval",
+      "definition": "An evaluation protocol that extends deep research benchmarks with image-level and presentation-level assessments for interleaved image-text reports."
+    }
+  ],
+  "uses": [
+    "planning",
+    "research stage",
+    "writing stage",
+    "verifier agent",
+    "visual-aware plan",
+    "claim-grounded evidence",
+    "source-aligned images",
+    "Visual Working Memory",
+    "declarative multimodal tool use",
+    "factual grounding",
+    "citation fidelity",
+    "cross-modal consistency"
+  ],
+  "problem": "Existing deep research systems struggle to produce verifiable multimodal reports because open-ended synthesis lacks deterministic ground truth and visual evidence is not tightly integrated with text.",
+  "domain": "general",
+  "paper_type": "technique"
+}

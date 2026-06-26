@@ -1,0 +1,25 @@
+{
+  "title": "Large Language Model Independent Adaptive Retrieval Using External Information",
+  "task": [
+    "question answering",
+    "adaptive retrieval"
+  ],
+  "defines": [
+    {
+      "name": "External Adaptive Retrieval",
+      "definition": "A lightweight adaptive retrieval approach that decides whether to retrieve using external information features instead of LLM-based uncertainty estimation."
+    }
+  ],
+  "uses": [
+    "external information features",
+    "entity popularity",
+    "question type",
+    "question complexity",
+    "knowledgeability",
+    "context relevance",
+    "hybrid feature combinations"
+  ],
+  "problem": "Existing adaptive retrieval methods rely on expensive LLM-based uncertainty estimation, making them inefficient and impractical for deciding when retrieval is needed.",
+  "domain": "general",
+  "paper_type": "technique"
+}

@@ -1,0 +1,29 @@
+{
+  "title": "Agentic Reinforcement Learning with Disentangled Action-Reasoning Tuning",
+  "task": [
+    "agentic reinforcement learning",
+    "tool-use reasoning",
+    "retrieval-augmented question answering",
+    "NL2SQL"
+  ],
+  "defines": [
+    {
+      "name": "DART",
+      "definition": "A framework that decouples reasoning and tool-use parameter updates with separate LoRA adapters to reduce gradient interference in agentic reinforcement learning."
+    },
+    {
+      "name": "CEA",
+      "definition": "A diagnostic framework that decomposes agent performance into individual capability effects and pairwise interaction terms to measure interference between reasoning and tool use."
+    }
+  ],
+  "uses": [
+    "LoRA",
+    "gradient masking",
+    "hybrid inference",
+    "shared backbone",
+    "token-level routing"
+  ],
+  "problem": "Shared-parameter joint optimization of reasoning and tool-use behaviors causes gradient misalignment and negative interference that weakens agent performance.",
+  "domain": "general",
+  "paper_type": "technique"
+}

@@ -1,0 +1,31 @@
+{
+  "title": "WebDancer: Building Web Information-Seeking Agents with a Data-Centric and Training-Stage Perspective",
+  "task": [
+    "web information seeking",
+    "web question answering",
+    "autonomous web agent training",
+    "multi-step reasoning"
+  ],
+  "defines": [
+    {
+      "name": "WebDancer",
+      "definition": "A ReAct-based web information-seeking agent trained through a four-stage data-centric pipeline of browsing data construction, trajectory sampling, supervised fine-tuning, and reinforcement learning."
+    }
+  ],
+  "uses": [
+    "ReAct",
+    "browsing data construction",
+    "trajectory sampling",
+    "supervised fine-tuning",
+    "rejection sampling fine-tuning",
+    "reinforcement learning",
+    "search",
+    "click",
+    "Short-CoT",
+    "Long-CoT",
+    "DAPO"
+  ],
+  "problem": "Existing web information-seeking agents rely on shallow datasets and limited training paradigms that do not sufficiently support complex, long-horizon, real-world search and reasoning.",
+  "domain": "web",
+  "paper_type": "technique"
+}

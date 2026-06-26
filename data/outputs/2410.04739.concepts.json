@@ -1,0 +1,24 @@
+{
+  "title": "TableRAG: Retrieval-Augmented Generation for Large-Scale Table Understanding",
+  "task": [
+    "table question answering",
+    "table understanding",
+    "retrieval-augmented generation"
+  ],
+  "defines": [
+    {
+      "name": "TableRAG",
+      "definition": "A retrieval-augmented generation framework for large-scale table understanding that uses schema and cell retrieval with query expansion to provide compact, relevant table evidence to language models."
+    }
+  ],
+  "uses": [
+    "retrieval-augmented generation",
+    "query expansion",
+    "schema retrieval",
+    "cell retrieval",
+    "program-aided LM agent"
+  ],
+  "problem": "Existing LM-based table reasoning methods often require the entire table or large sub-tables, which does not scale well to very large tables and can suffer from context-length limits and information loss.",
+  "domain": "general",
+  "paper_type": "technique"
+}

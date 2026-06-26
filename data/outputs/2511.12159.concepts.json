@@ -1,0 +1,28 @@
+{
+  "title": "CriticSearch",
+  "task": [
+    "tool-integrated reasoning",
+    "search-based question answering",
+    "multi-hop reasoning",
+    "search agent training"
+  ],
+  "defines": [
+    {
+      "name": "CriticSearch",
+      "definition": "A fine-grained credit-assignment framework for search-based tool-integrated reasoning that uses a retrospective critic to generate dense turn-level rewards from complete trajectories."
+    }
+  ],
+  "uses": [
+    "tool-integrated reasoning",
+    "search engine",
+    "retrospective critic mechanism",
+    "frozen asymmetric critique LLM",
+    "dense reward",
+    "turn-level feedback",
+    "global reward",
+    "gold answer"
+  ],
+  "problem": "Existing search-agent RL methods rely on sparse outcome rewards, which make it difficult to assign credit to individual tool-use actions and lead to inefficient exploration and unstable training.",
+  "domain": "general",
+  "paper_type": "technique"
+}

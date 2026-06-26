@@ -1,0 +1,27 @@
+{
+  "title": "Marco DeepResearch: Unlocking Efficient Deep Research Agents via Verification-Centric Design",
+  "task": [
+    "deep research",
+    "open-ended question answering",
+    "information retrieval",
+    "multi-step reasoning"
+  ],
+  "defines": [
+    {
+      "name": "Marco DeepResearch",
+      "definition": "A verification-centric deep research agent that improves data synthesis, trajectory construction, and test-time scaling to better solve long-horizon search and reasoning tasks."
+    }
+  ],
+  "uses": [
+    "graph-based QA synthesis",
+    "agent-based QA synthesis",
+    "verification-driven trajectory synthesis",
+    "specialized verifier agent",
+    "web search tools",
+    "test-time self-verification",
+    "Qwen3-8B"
+  ],
+  "problem": "Existing deep research agents lack explicit verification in data synthesis, trajectory construction, and inference, causing error propagation and poor performance on long-horizon tasks.",
+  "domain": "general",
+  "paper_type": "technique"
+}

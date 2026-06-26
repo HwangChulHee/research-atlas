@@ -1,0 +1,26 @@
+{
+  "title": "Collab-RAG: Collaborative Training for Retrieval-Augmented Generation with White-Box Small Language Models and Black-Box Large Language Models",
+  "task": [
+    "multi-hop question answering",
+    "retrieval-augmented generation",
+    "question decomposition",
+    "query reformulation"
+  ],
+  "defines": [
+    {
+      "name": "Collab-RAG",
+      "definition": "A collaborative RAG framework that trains a white-box small language model to decompose complex questions and improve retrieval and reasoning for a black-box large language model reader."
+    }
+  ],
+  "uses": [
+    "white-box small language model",
+    "black-box large language model",
+    "question decomposition",
+    "multi-turn interactions",
+    "iterative preference optimization",
+    "rule-based evaluation"
+  ],
+  "problem": "Standard RAG struggles on multi-hop questions because retrieval returns irrelevant context and the reader lacks sufficient complex reasoning ability.",
+  "domain": "general",
+  "paper_type": "technique"
+}

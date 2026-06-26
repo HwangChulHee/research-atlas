@@ -1,0 +1,25 @@
+{
+  "title": "Semantic-aware cross-check consistency for hallucination detection in language models",
+  "task": [
+    "hallucination detection",
+    "uncertainty estimation",
+    "question answering evaluation",
+    "open-domain generation evaluation"
+  ],
+  "defines": [
+    {
+      "name": "SAC3",
+      "definition": "A sampling-based hallucination detection method that extends self-consistency with semantically equivalent question perturbations and cross-model response consistency checks."
+    }
+  ],
+  "uses": [
+    "self-consistency checking",
+    "sampling-based response generation",
+    "semantically equivalent question perturbation",
+    "cross-model response consistency checking",
+    "AUROC"
+  ],
+  "problem": "Self-consistency alone cannot reliably detect all hallucinations, especially question-level and model-level hallucinations in black-box language models.",
+  "domain": "general",
+  "paper_type": "technique"
+}

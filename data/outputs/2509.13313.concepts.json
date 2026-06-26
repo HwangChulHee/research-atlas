@@ -1,0 +1,36 @@
+{
+  "title": "ReSum: A Plug-and-Play Paradigm for Long-Horizon Search Intelligence via Context Summarization",
+  "task": [
+    "web agent",
+    "long-horizon search",
+    "knowledge-intensive question answering",
+    "context summarization",
+    "reinforcement learning for agents"
+  ],
+  "defines": [
+    {
+      "name": "ReSum",
+      "definition": "A plug-and-play paradigm that enables long-horizon web agents to continue exploration by periodically compressing interaction histories into compact summaries and resuming from the summarized state."
+    },
+    {
+      "name": "ReSum-GRPO",
+      "definition": "A GRPO-based training method adapted to the ReSum paradigm that uses advantage broadcasting across segmented trajectories to assign credit over long horizons."
+    },
+    {
+      "name": "ReSumTool-30B",
+      "definition": "A specialized summarization model trained to condense web search interaction histories into summaries that preserve key evidence, gaps, and next-step directions."
+    }
+  ],
+  "uses": [
+    "external summarization tool",
+    "history compression",
+    "Qwen3-30B-A3B-Thinking",
+    "high-quality conversation-summary pairs",
+    "Group Relative Policy Optimization",
+    "advantage broadcasting",
+    "trajectory segmentation"
+  ],
+  "problem": "Existing web agents exhaust limited context windows during long-horizon exploration, and prior memory-based fixes often require architectural changes and costly retraining.",
+  "domain": "web",
+  "paper_type": "technique"
+}

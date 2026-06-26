@@ -1,0 +1,31 @@
+{
+  "title": "Atom-Searcher: Enhancing Agentic Deep Research via Fine-Grained Atomic Thought Reward",
+  "task": [
+    "agentic deep research",
+    "retrieval-augmented reasoning",
+    "multi-hop question answering",
+    "reinforcement learning for LLM agents"
+  ],
+  "defines": [
+    {
+      "name": "Atomic Thought",
+      "definition": "A thinking paradigm that decomposes reasoning into fine-grained functional units to support clearer and more in-depth reasoning."
+    },
+    {
+      "name": "Atom-Searcher",
+      "definition": "An RL framework for agentic deep research that combines Atomic Thought with fine-grained atomic thought rewards and outcome rewards to improve search-and-reasoning performance."
+    }
+  ],
+  "uses": [
+    "Reasoning Reward Model (RRM)",
+    "Atomic Thought Reward (ATR)",
+    "curriculum-inspired reward schedule",
+    "supervised fine-tuning (SFT)",
+    "GRPO",
+    "rule-based outcome reward",
+    "search engine"
+  ],
+  "problem": "Outcome-based RL for agentic deep research suffers from gradient conflicts and reward sparsity, limiting optimization and generalization.",
+  "domain": "general",
+  "paper_type": "technique"
+}

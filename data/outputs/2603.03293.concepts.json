@@ -1,0 +1,26 @@
+{
+  "title": "SE-Search: A Self-Evolving Search Agent for Multi-Turn Information Seeking",
+  "task": [
+    "search agent",
+    "question answering",
+    "retrieval-augmented generation",
+    "multi-turn information seeking"
+  ],
+  "defines": [
+    {
+      "name": "SE-Search",
+      "definition": "A self-evolving search agent that improves autonomous search behavior through memory purification, atomic query training, and dense rewards."
+    }
+  ],
+  "uses": [
+    "memory purification",
+    "atomic query training",
+    "dense rewards",
+    "Think-Search-Memorize strategy",
+    "GRPO",
+    "self-memory"
+  ],
+  "problem": "Existing search agents often accumulate noisy retrieved documents, generate repetitive or overly long queries, and receive sparse reinforcement learning feedback.",
+  "domain": "general",
+  "paper_type": "technique"
+}

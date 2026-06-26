@@ -1,0 +1,29 @@
+{
+  "title": "VISOR: Visual Retrieval-Augmented Generation via Iterative Search and Over-horizon Reasoning",
+  "task": [
+    "visual retrieval-augmented generation",
+    "agentic reasoning",
+    "long-horizon visual question answering",
+    "multi-step visual reasoning"
+  ],
+  "defines": [
+    {
+      "name": "VISOR",
+      "definition": "A unified single-agent framework for visual retrieval-augmented generation that combines structured evidence accumulation, visual action correction, and dynamic context management for long-horizon reasoning."
+    }
+  ],
+  "uses": [
+    "structured Evidence Space",
+    "Visual Action Evaluation and Correction",
+    "Dynamic Trajectory",
+    "Sliding Window",
+    "Intent Injection",
+    "supervised fine-tuning",
+    "GRPO-based reinforcement learning",
+    "state masking",
+    "credit assignment"
+  ],
+  "problem": "Existing agentic VRAG systems struggle with scattered visual evidence across pages, unreliable fine-grained visual actions, and search drift caused by long visual contexts.",
+  "domain": "vision-language",
+  "paper_type": "technique"
+}

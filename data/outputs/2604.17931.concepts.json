@@ -1,0 +1,25 @@
+{
+  "title": "LiteResearcher: Scalable Agentic RL for Deep Research",
+  "task": [
+    "deep research",
+    "web search agent training",
+    "reinforcement learning for LLM agents"
+  ],
+  "defines": [
+    {
+      "name": "LiteResearcher",
+      "definition": "A scalable agentic RL training framework that builds a virtual web-like world for training deep research agents through synthetic data, simulated search tools, and curriculum RL."
+    }
+  ],
+  "uses": [
+    "virtual world construction",
+    "synthetic task synthesis",
+    "targeted webpage corpus expansion",
+    "local search tool",
+    "local browse tool",
+    "difficulty-aware curriculum RL"
+  ],
+  "problem": "Agentic RL for deep research is hard to scale because real-world search makes training unstable and expensive, while synthetic data often fails to capture genuine search behavior.",
+  "domain": "general",
+  "paper_type": "technique"
+}

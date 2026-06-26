@@ -1,0 +1,28 @@
+{
+  "title": "Deep Search with Hierarchical Meta-Cognitive Monitoring Inspired by Cognitive Neuroscience",
+  "task": [
+    "deep search",
+    "multi-step retrieval",
+    "reasoning",
+    "long-horizon task execution",
+    "agent monitoring"
+  ],
+  "defines": [
+    {
+      "name": "DS-MCM",
+      "definition": "A deep search framework that adds hierarchical meta-cognitive monitoring to regulate reasoning and retrieval through fast consistency checks and slow experience-driven reflection."
+    }
+  ],
+  "uses": [
+    "Fast Consistency Monitor",
+    "Slow Experience-Driven Monitor",
+    "Searching Entropy",
+    "Reasoning Entropy",
+    "experience memory",
+    "historical agent trajectories",
+    "critical model"
+  ],
+  "problem": "Deep search agents often fail because they lack mechanisms to monitor and regulate their reasoning and retrieval states as tasks evolve.",
+  "domain": "general",
+  "paper_type": "technique"
+}

@@ -1,0 +1,26 @@
+{
+  "title": "DRAGIN: Dynamic Retrieval Augmented Generation based on the Information Needs of LLMs",
+  "task": [
+    "knowledge-intensive text generation",
+    "dynamic retrieval-augmented generation"
+  ],
+  "defines": [
+    {
+      "name": "DRAGIN",
+      "definition": "A dynamic RAG framework that decides when and what to retrieve for an LLM based on its real-time information needs during generation."
+    }
+  ],
+  "uses": [
+    "RIND",
+    "Real-time Information Needs Detection",
+    "QFS",
+    "Query Formulation based on Self-attention",
+    "self-attention",
+    "uncertainty estimation",
+    "token influence scoring",
+    "semantic significance scoring"
+  ],
+  "problem": "Existing dynamic RAG methods use static retrieval timing rules and narrow query formulations that do not reflect an LLM’s full information needs during generation.",
+  "domain": "general",
+  "paper_type": "technique"
+}

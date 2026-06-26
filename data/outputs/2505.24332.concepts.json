@@ -1,0 +1,30 @@
+{
+  "title": "WebPuzzle: Benchmarking and Enhancing Information Seeking in Large Language Models via Search Intensity Scaling",
+  "task": [
+    "information seeking benchmark",
+    "open-web question answering",
+    "reinforcement learning for search and reasoning"
+  ],
+  "defines": [
+    {
+      "name": "WebPuzzle",
+      "definition": "A 24k-sample training and 275-sample test benchmark for evaluating information-seeking ability on the live internet across wiki and open-domain queries."
+    },
+    {
+      "name": "DeepDiver",
+      "definition": "An RL-driven search-and-reasoning framework that learns to interact with real-world search engines and improve information seeking via search intensity scaling."
+    }
+  ],
+  "uses": [
+    "reinforcement learning",
+    "supervised fine-tuning",
+    "real-world search engines",
+    "iterative retrieval-augmented generation",
+    "search intensity scaling",
+    "cold-start SFT",
+    "curriculum training"
+  ],
+  "problem": "Existing prompting and supervised fine-tuning methods for information seeking are rigid and are usually evaluated on clean wiki-based benchmarks, which limits adaptability and generalization to noisy real-web environments.",
+  "domain": "general",
+  "paper_type": "technique"
+}

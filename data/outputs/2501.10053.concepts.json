@@ -1,0 +1,26 @@
+{
+  "title": "AirRAG",
+  "task": [
+    "retrieval-augmented generation",
+    "complex question answering",
+    "iterative reasoning",
+    "agentic reasoning"
+  ],
+  "defines": [
+    {
+      "name": "AirRAG",
+      "definition": "An RAG framework that uses autonomous strategic planning and Monte Carlo Tree Search to expand the reasoning solution space for complex tasks."
+    }
+  ],
+  "uses": [
+    "Monte Carlo Tree Search",
+    "self-consistency",
+    "voting mechanism",
+    "process-supervised reward model",
+    "inference scaling",
+    "five fundamental reasoning actions"
+  ],
+  "problem": "Existing iterative and agentic RAG methods often stay trapped in a single reasoning path and fail to sufficiently explore the solution space for complex problems.",
+  "domain": "general",
+  "paper_type": "technique"
+}

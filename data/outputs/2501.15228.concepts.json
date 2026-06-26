@@ -1,0 +1,26 @@
+{
+  "title": "Multi-Module joint Optimization Algorithm for RAG",
+  "task": [
+    "retrieval-augmented question answering",
+    "joint optimization of RAG pipelines",
+    "multi-agent reinforcement learning"
+  ],
+  "defines": [
+    {
+      "name": "MMOA-RAG",
+      "definition": "A multi-agent reinforcement learning framework that models each module in a RAG pipeline as an agent and jointly optimizes them toward a shared final-answer reward."
+    }
+  ],
+  "uses": [
+    "cooperative multi-agent reinforcement learning",
+    "Multi-Agent PPO (MAPPO)",
+    "query rewriting",
+    "document retrieval",
+    "document selection",
+    "answer generation",
+    "F1 score reward"
+  ],
+  "problem": "Standard independently trained RAG modules are misaligned with the end goal of producing accurate final answers, and existing end-to-end methods do not adequately handle multi-component pipeline interdependencies.",
+  "domain": "general",
+  "paper_type": "technique"
+}

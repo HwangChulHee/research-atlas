@@ -1,0 +1,26 @@
+{
+  "title": "Conditional Story Generation with Retrieval-Augmented Complex Story Generation and a Forest of Evidence",
+  "task": [
+    "conditional story generation",
+    "story rewriting",
+    "retrieval-augmented generation"
+  ],
+  "defines": [
+    {
+      "name": "GROVE",
+      "definition": "A retrieval-augmented framework for generating complex and credible stories by retrieving exemplars and iteratively collecting evidence chains to enrich the plot."
+    }
+  ],
+  "uses": [
+    "retrieval repository",
+    "few-shot prompting",
+    "asking-why prompting",
+    "evidence forest",
+    "evidence trees",
+    "optimal evidence chains",
+    "LLMs"
+  ],
+  "problem": "Existing LLM prompting methods for conditional story generation often overconstrain the model, making it hard to balance plot complexity with creativity and credibility.",
+  "domain": "story generation",
+  "paper_type": "technique"
+}

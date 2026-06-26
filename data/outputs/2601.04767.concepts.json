@@ -1,0 +1,40 @@
+{
+  "title": "AT2PO (Agentic Turn-based Policy Optimization via Tree Search)",
+  "task": [
+    "multi-turn agentic reinforcement learning",
+    "policy optimization",
+    "tree search",
+    "trajectory exploration",
+    "credit assignment"
+  ],
+  "defines": [
+    {
+      "name": "AT2PO",
+      "definition": "A unified framework for multi-turn agentic reinforcement learning that combines turn-level tree search, turn-wise reward propagation, and turn-based policy optimization."
+    },
+    {
+      "name": "Entropy-Guided Tree Expansion",
+      "definition": "A tree expansion strategy that prioritizes uncertain turns to improve exploration diversity and rollout quality."
+    },
+    {
+      "name": "Turn-wise Credit Assignment",
+      "definition": "A mechanism that propagates sparse outcome rewards backward through a turn-level tree to produce fine-grained per-turn value and advantage estimates."
+    },
+    {
+      "name": "Agentic Turn-based Policy Optimization",
+      "definition": "A turn-level policy optimization objective that applies importance sampling and clipping at the natural turn granularity of agentic interactions."
+    }
+  ],
+  "uses": [
+    "tree search",
+    "entropy-guided exploration",
+    "turn-wise reward propagation",
+    "importance sampling",
+    "clipping",
+    "value estimates",
+    "advantage estimates"
+  ],
+  "problem": "Existing agentic reinforcement learning methods suffer from limited exploration diversity, sparse credit assignment, and a mismatch between turn-based interaction structure and flat policy optimization objectives.",
+  "domain": "general",
+  "paper_type": "technique"
+}

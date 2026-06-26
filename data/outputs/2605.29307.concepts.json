@@ -1,0 +1,25 @@
+{
+  "title": "GR EPSEEK: TRAINING SEARCH AGENTS FOR DIRECT CORPUS INTERACTION",
+  "task": [
+    "open-domain question answering",
+    "search agent training",
+    "information retrieval"
+  ],
+  "defines": [
+    {
+      "name": "GrepSeek",
+      "definition": "A direct corpus interaction search agent that learns to find, filter, and compose evidence from large text corpora by issuing executable shell commands."
+    }
+  ],
+  "uses": [
+    "answer-aware Tutor",
+    "answer-blind Planner",
+    "verified causally grounded search trajectories",
+    "Group Relative Policy Optimization (GRPO)",
+    "semantics-preserving sharded-parallel execution engine",
+    "shell-based retrieval"
+  ],
+  "problem": "Existing retrieval-augmented search agents depend on pre-computed indices and document-level retrieval, which limits fine-grained corpus access and makes direct, controllable evidence search difficult at scale.",
+  "domain": "general",
+  "paper_type": "technique"
+}

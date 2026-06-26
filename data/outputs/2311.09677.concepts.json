@@ -1,0 +1,27 @@
+{
+  "title": "Refusal-Aware Instruction Tuning for Large Language Models",
+  "task": [
+    "instruction tuning",
+    "hallucination mitigation",
+    "question answering",
+    "uncertainty estimation"
+  ],
+  "defines": [
+    {
+      "name": "R-Tuning",
+      "definition": "A refusal-aware instruction tuning method that trains LLMs to answer only within their parametric knowledge and refuse unknown questions."
+    }
+  ],
+  "uses": [
+    "parametric knowledge",
+    "instruction tuning data",
+    "knowledge gap measurement",
+    "supervised uncertain/certain data splitting",
+    "uncertainty expression padding",
+    "multi-task training",
+    "unsupervised consistency-based uncertainty estimation"
+  ],
+  "problem": "Traditional instruction tuning forces models to answer even when they lack the knowledge, which increases hallucination and poor refusal behavior.",
+  "domain": "general",
+  "paper_type": "technique"
+}

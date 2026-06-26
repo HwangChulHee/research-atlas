@@ -1,6 +1,7 @@
 {
   "builds_on": [
-    "RAG",
-    "HippoRAG"
+    "HippoRAG",
+    "Personalized PageRank",
+    "RAG"
   ]
 }

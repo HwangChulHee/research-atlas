@@ -1,0 +1,24 @@
+{
+  "title": "Statement Accuracy Prediction, based on Language Model Activations (SAPLMA)",
+  "task": [
+    "truthfulness detection",
+    "statement classification",
+    "hallucination detection"
+  ],
+  "defines": [
+    {
+      "name": "SAPLMA",
+      "definition": "A classifier-based method that predicts whether a statement is true or false from an LLM’s hidden-layer activations while reading or generating the statement."
+    }
+  ],
+  "uses": [
+    "hidden layer activations",
+    "feedforward neural network",
+    "out-of-distribution training",
+    "held-out topic evaluation",
+    "sentence probability"
+  ],
+  "problem": "LLMs often generate confident but false statements, and sentence likelihood alone is an unreliable signal of truthfulness.",
+  "domain": "general",
+  "paper_type": "technique"
+}

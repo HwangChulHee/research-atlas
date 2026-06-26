@@ -1,0 +1,24 @@
+{
+  "title": "To Search or Not to Search: Aligning the Decision Boundary of Deep Search Agents via Causal Intervention",
+  "task": [
+    "deep search agent optimization",
+    "information seeking",
+    "web-based reasoning",
+    "search decision calibration"
+  ],
+  "defines": [
+    {
+      "name": "DAS",
+      "definition": "Decision Boundary Alignment for Deep Search agents is a framework that uses causal feedback and preference optimization to align when an agent should continue searching versus answer."
+    }
+  ],
+  "uses": [
+    "causal intervention-based diagnosis",
+    "factual and counterfactual trajectories",
+    "preference datasets",
+    "preference optimization"
+  ],
+  "problem": "Current deep search agents waste computation by over-searching or under-searching because they cannot reliably determine the decision boundary for stopping search and answering.",
+  "domain": "web search",
+  "paper_type": "technique"
+}

@@ -1,0 +1,26 @@
+{
+  "title": "SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models",
+  "task": [
+    "hallucination detection",
+    "factuality assessment",
+    "sentence-level classification",
+    "passage ranking"
+  ],
+  "defines": [
+    {
+      "name": "SelfCheckGPT",
+      "definition": "A zero-resource, sampling-based framework for detecting hallucinations in black-box LLM outputs by measuring consistency across stochastic generations."
+    }
+  ],
+  "uses": [
+    "sampling-based consistency",
+    "BERTScore",
+    "question answering",
+    "n-gram overlap",
+    "natural language inference",
+    "LLM prompting"
+  ],
+  "problem": "Existing hallucination and fact-checking methods often require access to token probabilities or external databases, which limits their use on black-box LLM systems.",
+  "domain": "general",
+  "paper_type": "technique"
+}

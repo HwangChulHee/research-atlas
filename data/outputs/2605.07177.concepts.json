@@ -1,0 +1,33 @@
+{
+  "title": "HyperEyes: Parallel Multimodal Search Agent for Efficient Multi-Entity Visual Search",
+  "task": [
+    "multimodal search",
+    "visual grounding and retrieval",
+    "multi-entity visual question answering",
+    "efficient search agent training"
+  ],
+  "defines": [
+    {
+      "name": "HyperEyes",
+      "definition": "A parallel multimodal search agent that fuses visual grounding and retrieval into a single atomic action to search multiple entities concurrently with efficiency-aware training."
+    },
+    {
+      "name": "IMEB",
+      "definition": "A human-curated benchmark that jointly evaluates multimodal search accuracy and search efficiency on multi-entity visual instances."
+    }
+  ],
+  "uses": [
+    "Unified Grounded Search (UGS)",
+    "Parallel-Amenable Data Synthesis Pipeline",
+    "Progressive Rejection Sampling",
+    "Dual-Grained Efficiency-Aware reinforcement learning",
+    "TRACE",
+    "On-Policy Distillation (OPD)",
+    "visual grounding",
+    "retrieval",
+    "tool calls"
+  ],
+  "problem": "Existing multimodal search agents search entities sequentially, causing redundant interaction rounds and inefficient trajectories for decomposable multi-entity queries.",
+  "domain": "multimodal search",
+  "paper_type": "technique"
+}

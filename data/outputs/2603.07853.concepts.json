@@ -1,0 +1,27 @@
+{
+  "title": "SynPlanResearch-R1",
+  "task": [
+    "research agents",
+    "multi-turn tool use",
+    "open-web question answering",
+    "multi-hop question answering"
+  ],
+  "defines": [
+    {
+      "name": "SynPlanResearch-R1",
+      "definition": "A plan-guided data synthesis and training framework that creates deeper tool-use trajectories for cold-start supervised fine-tuning before reinforcement learning."
+    }
+  ],
+  "uses": [
+    "ReAct",
+    "randomized tool plans",
+    "tool-dependent cues",
+    "cold-start supervised fine-tuning",
+    "reinforcement learning from verifiable rewards",
+    "policy loss masking",
+    "JSON schema validation"
+  ],
+  "problem": "RLVR-trained research agents often explore poorly, terminating too early or using tools in shallow and fragmented ways, which limits performance gains.",
+  "domain": "web",
+  "paper_type": "technique"
+}

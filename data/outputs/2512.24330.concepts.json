@@ -1,0 +1,37 @@
+{
+  "title": "SenseNova-MARS: Multimodal Agentic Reasoning and Search with Reinforcement Learning",
+  "task": [
+    "vision-language reasoning",
+    "agentic tool use",
+    "visual question answering",
+    "high-resolution perception",
+    "search-oriented visual understanding"
+  ],
+  "defines": [
+    {
+      "name": "SenseNova-MARS",
+      "definition": "A multimodal agentic reasoning and search framework that enables VLMs to interleave visual reasoning with image search, text search, and image crop tool use through reinforcement learning."
+    },
+    {
+      "name": "HR-MMSearch",
+      "definition": "A search-oriented benchmark of high-resolution images and knowledge-intensive questions for evaluating agentic visual search models."
+    },
+    {
+      "name": "BN-GSPO",
+      "definition": "A batch-normalized extension of Group Sequence Policy Optimization designed to stabilize reinforcement learning for multi-tool agentic VLM training."
+    }
+  ],
+  "uses": [
+    "reinforcement learning",
+    "supervised fine-tuning",
+    "image search",
+    "text search",
+    "image crop",
+    "Group Sequence Policy Optimization",
+    "Qwen2.5-VL",
+    "Qwen3-VL"
+  ],
+  "problem": "Existing VLM agents are limited to text-centric reasoning or isolated tool calls and cannot robustly interleave reasoning with multiple external tools for complex high-resolution, knowledge-intensive visual tasks.",
+  "domain": "vision-language",
+  "paper_type": "technique"
+}

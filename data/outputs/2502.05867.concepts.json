@@ -1,0 +1,22 @@
+{
+  "title": "Large language models learn tool use without demonstrations",
+  "task": [
+    "tool-use learning",
+    "question answering",
+    "reasoning",
+    "self-training",
+    "fine-tuning"
+  ],
+  "defines": [],
+  "uses": [
+    "zero-shot prompting",
+    "self-training",
+    "supervised fine-tuning",
+    "preference fine-tuning",
+    "filtering strategies",
+    "external tools"
+  ],
+  "problem": "LLMs are prone to hallucinations and reasoning errors, and existing tool-use methods usually rely on curated demonstrations that are costly and hard to generalize.",
+  "domain": "general",
+  "paper_type": "technique"
+}

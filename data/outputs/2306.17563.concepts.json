@@ -1,0 +1,26 @@
+{
+  "title": "Pairwise Ranking Prompting: Pointwise and Listwise?",
+  "task": [
+    "document ranking",
+    "information retrieval",
+    "LLM-based reranking"
+  ],
+  "defines": [
+    {
+      "name": "Pairwise Ranking Prompting (PRP)",
+      "definition": "A prompting paradigm that ranks documents by asking an LLM to compare a query with pairs of candidate documents."
+    }
+  ],
+  "uses": [
+    "large language models",
+    "prompting",
+    "pairwise comparison",
+    "generation-based LLM APIs",
+    "scoring-based LLM APIs",
+    "FLAN-UL2",
+    "FLAN-T5"
+  ],
+  "problem": "Existing pointwise and listwise LLM ranking prompts are too hard for off-the-shelf LLMs and often underperform strong fine-tuned rankers.",
+  "domain": "information retrieval",
+  "paper_type": "technique"
+}

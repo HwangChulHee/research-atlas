@@ -1,0 +1,24 @@
+{
+  "title": "A Tree-based RAG-Agent Recommendation System: A Case Study in Medical Test Data",
+  "task": [
+    "medical test recommendation",
+    "decision support"
+  ],
+  "defines": [
+    {
+      "name": "HiRMed",
+      "definition": "A hierarchical RAG-enhanced tree-structured system for medical test recommendation that performs medical reasoning at each node to guide diagnostic test selection."
+    }
+  ],
+  "uses": [
+    "retrieval-augmented generation",
+    "tree-structured recommendation",
+    "hierarchical reasoning",
+    "dynamic knowledge integration",
+    "memory-augmented reasoning",
+    "large language models"
+  ],
+  "problem": "Traditional similarity-based and rule-based medical test recommendation methods fail to capture hierarchical medical reasoning, integrate domain knowledge across diagnostic stages, and balance coverage with specificity.",
+  "domain": "medical",
+  "paper_type": "technique"
+}

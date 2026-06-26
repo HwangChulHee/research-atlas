@@ -1,0 +1,25 @@
+{
+  "title": "GNN-RAG: Graph Neural Network Retrieval Augmented Generation",
+  "task": [
+    "knowledge graph question answering",
+    "retrieval-augmented generation"
+  ],
+  "defines": [
+    {
+      "name": "GNN-RAG",
+      "definition": "A retrieval-augmented generation framework for KGQA that uses a GNN to retrieve answer candidates from a dense KG subgraph and verbalizes shortest reasoning paths for LLM-based answering."
+    }
+  ],
+  "uses": [
+    "graph neural network",
+    "dense KG subgraph reasoning",
+    "answer candidate retrieval",
+    "shortest path extraction",
+    "path verbalization",
+    "LLM-based reasoning",
+    "retrieval augmentation"
+  ],
+  "problem": "Existing KGQA RAG methods struggle to retrieve the right multi-hop graph information from large, complex knowledge graphs and often require stronger LLMs or extra calls.",
+  "domain": "knowledge graph",
+  "paper_type": "technique"
+}

@@ -1,0 +1,24 @@
+{
+  "title": "Always-Search Policy: Distilling Search Agents into Small Language Models",
+  "task": [
+    "search agent distillation",
+    "multi-hop question answering",
+    "knowledge-intensive reasoning"
+  ],
+  "defines": [
+    {
+      "name": "Always-Search Policy",
+      "definition": "A distillation paradigm that trains small language models to always retrieve evidence with search before answering, thereby grounding reasoning in external information."
+    }
+  ],
+  "uses": [
+    "LLM distillation",
+    "search tools",
+    "retrieved evidence",
+    "multi-hop QA benchmarks",
+    "fine-tuning"
+  ],
+  "problem": "Small language models used as search agents rely too much on parametric knowledge, causing hallucinations and weak performance when they search adaptively or too infrequently.",
+  "domain": "general",
+  "paper_type": "technique"
+}

@@ -1,0 +1,26 @@
+{
+  "title": "Distillation and Refinement of Reasoning in Small Language Models for Document Re-ranking",
+  "task": [
+    "document re-ranking",
+    "reasoning-intensive information retrieval",
+    "knowledge distillation",
+    "reinforcement learning"
+  ],
+  "defines": [
+    {
+      "name": "reasoning-intensive document ranking framework",
+      "definition": "A framework that distills and refines explicit reasoning capabilities in small language models for document re-ranking using synthetic supervision and reinforcement learning."
+    }
+  ],
+  "uses": [
+    "teacher LLM",
+    "pseudo-labeling",
+    "web data scraping",
+    "knowledge distillation",
+    "reinforcement learning",
+    "explanation generation"
+  ],
+  "problem": "Existing reranking models struggle with reasoning-intensive queries and small models lack the reasoning ability of much larger language models, while manual annotations are expensive.",
+  "domain": "information retrieval",
+  "paper_type": "technique"
+}

@@ -1,0 +1,29 @@
+{
+  "title": "Verbalized Probabilities: Interpreting Language Models' Answers with Confidence",
+  "task": [
+    "uncertainty calibration",
+    "question answering",
+    "mathematical reasoning",
+    "distribution shift evaluation"
+  ],
+  "defines": [
+    {
+      "name": "verbalized probability",
+      "definition": "A method for training a language model to express epistemic uncertainty about its own answers in natural language confidence statements."
+    },
+    {
+      "name": "CalibratedMath",
+      "definition": "A suite of elementary mathematics problems designed to evaluate calibration of model answers and their expressed confidence."
+    }
+  ],
+  "uses": [
+    "GPT-3",
+    "fine-tuning",
+    "natural language confidence generation",
+    "logit-based uncertainty",
+    "MSE metric"
+  ],
+  "problem": "Language models can answer questions well but often hallucinate, and existing calibration methods focus on token probabilities rather than calibrated uncertainty about the underlying claim.",
+  "domain": "general",
+  "paper_type": "technique"
+}

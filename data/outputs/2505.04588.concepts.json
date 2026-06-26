@@ -1,0 +1,25 @@
+{
+  "title": "ZEROSEARCH",
+  "task": [
+    "reinforcement learning for search",
+    "retrieval-augmented reasoning",
+    "LLM search capability training"
+  ],
+  "defines": [
+    {
+      "name": "ZEROSEARCH",
+      "definition": "A reinforcement learning framework that teaches LLMs to use search strategies by training with simulated search results instead of live search engine interactions."
+    }
+  ],
+  "uses": [
+    "supervised fine-tuning",
+    "curriculum rollout mechanism",
+    "simulated document generation",
+    "REINFORCE",
+    "Proximal Policy Optimization",
+    "Group Relative Policy Optimization"
+  ],
+  "problem": "Training LLMs with real search engines is hindered by unpredictable document quality and prohibitively high API costs.",
+  "domain": "general",
+  "paper_type": "technique"
+}

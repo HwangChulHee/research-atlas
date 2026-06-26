@@ -1,0 +1,26 @@
+{
+  "title": "RAISE: Step-by-Step Retrieval-Augmented Inference for Scientific rEasoning",
+  "task": [
+    "scientific reasoning",
+    "retrieval-augmented generation",
+    "step-wise reasoning"
+  ],
+  "defines": [
+    {
+      "name": "RAISE",
+      "definition": "A step-by-step retrieval-augmented framework for scientific reasoning that decomposes problems, generates logic-enriched queries, and retrieves logically relevant documents from an open-domain corpus."
+    }
+  ],
+  "uses": [
+    "problem decomposition",
+    "logical query generation",
+    "logical retrieval",
+    "LLMs",
+    "retrieval-augmented generation",
+    "open-domain corpus",
+    "Wikipedia"
+  ],
+  "problem": "Existing retrieval-augmented methods for scientific reasoning often retrieve superficially similar documents or assume curated corpora, failing to provide logically relevant evidence for each reasoning step.",
+  "domain": "scientific",
+  "paper_type": "technique"
+}

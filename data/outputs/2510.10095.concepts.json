@@ -1,0 +1,27 @@
+{
+  "title": "CardRewriter: Leveraging Knowledge Cards for Long-Tail Query Rewriting on Short-Video Platforms",
+  "task": [
+    "query rewriting",
+    "long-tail query rewriting",
+    "retrieval-augmented generation"
+  ],
+  "defines": [
+    {
+      "name": "CardRewriter",
+      "definition": "A retrieval-augmented LLM-based framework that uses summarized knowledge cards to improve long-tail query rewriting on short-video platforms."
+    }
+  ],
+  "uses": [
+    "knowledge cards",
+    "multi-source knowledge retrieval",
+    "top-k videos retrieved by the original query",
+    "similar high-supply query set",
+    "open-domain documents",
+    "supervised fine-tuning",
+    "group relative policy optimization",
+    "custom reward system"
+  ],
+  "problem": "LLM-based query rewriting struggles on short-video platforms because proprietary platform content is outside pretraining distribution, causing misinterpretation of long-tail and ambiguous queries.",
+  "domain": "short-video platforms",
+  "paper_type": "technique"
+}

@@ -1,0 +1,24 @@
+{
+  "title": "On Group Relative Policy Optimization Collapse in Agent Search: The Lazy Likelihood-Displacement",
+  "task": [
+    "tool-integrated reinforcement learning",
+    "multi-step reasoning",
+    "search-integrated question answering"
+  ],
+  "defines": [
+    {
+      "name": "LLDS",
+      "definition": "A likelihood-preserving regularization method for GRPO-based tool-integrated reinforcement learning that selectively penalizes only response actions and tokens whose likelihood decreases."
+    }
+  ],
+  "uses": [
+    "GRPO",
+    "lazy likelihood displacement",
+    "action-level gating",
+    "token-level selectivity",
+    "regularization"
+  ],
+  "problem": "GRPO-based tool-integrated reinforcement learning suffers from training collapse caused by systematic likelihood decay of correct response trajectories.",
+  "domain": "general",
+  "paper_type": "technique"
+}

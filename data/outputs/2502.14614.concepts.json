@@ -1,0 +1,24 @@
+{
+  "title": "ICA-RAG: Information Completeness Guided Adaptive Retrieval-Augmented Generation for Disease Diagnosis",
+  "task": [
+    "clinical diagnosis",
+    "retrieval-augmented generation",
+    "adaptive retrieval"
+  ],
+  "defines": [
+    {
+      "name": "ICA-RAG",
+      "definition": "A disease diagnosis RAG framework that uses information completeness to decide when retrieval is needed and to prioritize informative text units during retrieval."
+    }
+  ],
+  "uses": [
+    "adaptive control module",
+    "information completeness",
+    "text unit segmentation",
+    "classification model",
+    "knowledge filtering"
+  ],
+  "problem": "Existing RAG methods retrieve indiscriminately for medical diagnosis, causing unnecessary computation and noisy retrieval that can hurt diagnostic accuracy.",
+  "domain": "medical",
+  "paper_type": "technique"
+}

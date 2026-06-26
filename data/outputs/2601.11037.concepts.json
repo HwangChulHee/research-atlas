@@ -1,0 +1,25 @@
+{
+  "title": "Boundary-Aware Policy Optimization for Reliable Agentic Search",
+  "task": [
+    "reinforcement learning",
+    "agentic search",
+    "reliable question answering"
+  ],
+  "defines": [
+    {
+      "name": "BAPO",
+      "definition": "A reinforcement learning framework that improves agentic search reliability by teaching models to recognize when they are outside their reasoning boundary and should answer IDK."
+    }
+  ],
+  "uses": [
+    "group-based boundary-aware reward",
+    "adaptive reward modulator",
+    "large language models",
+    "external search",
+    "multi-turn search",
+    "reinforcement learning"
+  ],
+  "problem": "RL-based agentic search models often fail to admit uncertainty and produce plausible but unreliable answers when evidence is insufficient or reasoning reaches its limit.",
+  "domain": "general",
+  "paper_type": "technique"
+}

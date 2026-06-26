@@ -1,0 +1,24 @@
+{
+  "title": "R3: Retrieval framework optimized for RAG via Reinforcement learning",
+  "task": [
+    "retrieval-augmented generation",
+    "information retrieval",
+    "retriever optimization"
+  ],
+  "defines": [
+    {
+      "name": "R3",
+      "definition": "A retrieval framework that optimizes embedding-based retrievers for RAG environments using reinforcement learning and reinforced contrastive learning."
+    }
+  ],
+  "uses": [
+    "reinforcement learning",
+    "contrastive learning",
+    "reinforced contrastive learning",
+    "embedding-based retrievers",
+    "RAG environment"
+  ],
+  "problem": "Existing retrievers are trained with static supervised relevance and do not adapt well to the complex, environment-dependent relevance needed for effective RAG.",
+  "domain": "general",
+  "paper_type": "technique"
+}

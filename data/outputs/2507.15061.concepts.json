@@ -1,0 +1,30 @@
+{
+  "title": "WebShaper: Formalization-Driven Data Synthesis for Information-Seeking Agents",
+  "task": [
+    "information-seeking agent training",
+    "data synthesis",
+    "question-answer generation"
+  ],
+  "defines": [
+    {
+      "name": "WebShaper",
+      "definition": "A formalization-driven data synthesis framework and dataset construction approach for information-seeking agents that uses set-theoretic task formalization to generate consistent training data."
+    }
+  ],
+  "uses": [
+    "set-theoretic constructs",
+    "Knowledge Projections (KP)",
+    "KP operation compositions",
+    "seed task construction",
+    "multi-step expansion",
+    "agentic Expander",
+    "retrieval tools",
+    "validation tools",
+    "internet-based knowledge collection",
+    "supervised fine-tuning",
+    "reinforcement learning"
+  ],
+  "problem": "Existing information-driven data synthesis methods produce sparse and difficult-to-verify training data with mismatches between information structure, reasoning structure, and question-answer consistency.",
+  "domain": "general",
+  "paper_type": "technique"
+}

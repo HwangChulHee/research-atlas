@@ -1,0 +1,29 @@
+{
+  "title": "EVALACT: Evaluate-as-Action for Retrieval-Augmented Agents",
+  "task": [
+    "open-domain question answering",
+    "multi-hop question answering",
+    "retrieval-augmented reasoning",
+    "reinforcement learning for agents"
+  ],
+  "defines": [
+    {
+      "name": "EVALACT",
+      "definition": "A reinforcement learning framework that turns retrieval quality assessment into an explicit Evaluate action paired with each Search step to produce trajectory-aligned process signals."
+    },
+    {
+      "name": "Process-Calibrated Advantage Rescaling (PCAR)",
+      "definition": "A GRPO-based optimization strategy that rescales advantages at the segment level using self-evaluation scores to improve credit assignment in long retrieval trajectories."
+    }
+  ],
+  "uses": [
+    "Search action",
+    "Evaluate action",
+    "structured self-assessment score",
+    "Search-to-Evaluate protocol",
+    "Group Relative Policy Optimization (GRPO)"
+  ],
+  "problem": "Retrieval-augmented agents still struggle with reliable intermediate reasoning because noisy retrieval can derail multi-step trajectories and outcome-only reinforcement learning gives overly coarse credit signals.",
+  "domain": "general",
+  "paper_type": "technique"
+}

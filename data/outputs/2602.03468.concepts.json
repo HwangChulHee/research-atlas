@@ -1,0 +1,26 @@
+{
+  "title": "IntentRL: Clarifying Latent User Intent for Deep Research Agents via Two-Stage Reinforcement Learning",
+  "task": [
+    "proactive intent clarification",
+    "deep research agent training",
+    "reinforcement learning for dialogue"
+  ],
+  "defines": [
+    {
+      "name": "IntentRL",
+      "definition": "A two-stage reinforcement learning framework that trains deep research agents to proactively clarify latent user intent before long-horizon research execution."
+    }
+  ],
+  "uses": [
+    "Clarification Directed Acyclic Graph (C-DAG)",
+    "offline RL",
+    "online RL",
+    "user simulator",
+    "rule-based user simulator",
+    "LLM-judge",
+    "POMDP formulation"
+  ],
+  "problem": "Deep research agents are costly and time-consuming, and they often execute ambiguous queries without clarifying the user's latent intent, leading to off-target reports and wasted computation.",
+  "domain": "general",
+  "paper_type": "technique"
+}

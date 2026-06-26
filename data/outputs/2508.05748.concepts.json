@@ -1,0 +1,35 @@
+{
+  "title": "WebWatcher: A Multimodal Agent for Deep Research",
+  "task": [
+    "multimodal information-seeking",
+    "web-based deep research",
+    "vision-language reasoning",
+    "visual question answering",
+    "benchmarking multimodal agents"
+  ],
+  "defines": [
+    {
+      "name": "WebWatcher",
+      "definition": "A multimodal deep research web agent that combines visual-language reasoning with multiple external tools, synthetic training trajectories, and reinforcement learning."
+    },
+    {
+      "name": "BrowseComp-VL",
+      "definition": "A BrowseComp-style benchmark for complex visual-textual information retrieval and reasoning."
+    }
+  ],
+  "uses": [
+    "web image search",
+    "web text search",
+    "webpage visit",
+    "code interpreter",
+    "internal OCR",
+    "synthetic multimodal trajectories",
+    "action-observation sequence prompting",
+    "rule-based filtering",
+    "GRPO",
+    "RAG workflow"
+  ],
+  "problem": "Existing deep research agents are mostly text-centric and rigidly tool-driven, making them unable to robustly solve complex multimodal information-seeking tasks that require integrated visual and textual reasoning.",
+  "domain": "general",
+  "paper_type": "technique"
+}

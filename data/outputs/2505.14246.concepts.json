@@ -1,0 +1,34 @@
+{
+  "title": "Visual Agentic Reinforcement Fine-Tuning for Large Vision-Language Models",
+  "task": [
+    "multimodal agentic reasoning",
+    "visual question answering",
+    "tool use",
+    "agentic search",
+    "agentic coding",
+    "benchmarking"
+  ],
+  "defines": [
+    {
+      "name": "Visual-ARFT",
+      "definition": "A reinforcement fine-tuning framework that equips large vision-language models with multimodal agentic reasoning and tool-use abilities through verifiable rewards."
+    },
+    {
+      "name": "MAT",
+      "definition": "A multimodal agentic tool benchmark for evaluating LVLMs on search and coding-based agentic tasks."
+    }
+  ],
+  "uses": [
+    "verifiable rewards",
+    "Group Relative Policy Optimization (GRPO)",
+    "web search",
+    "Python code execution",
+    "image cropping",
+    "image rotation",
+    "manual annotation",
+    "automated dataset construction pipeline"
+  ],
+  "problem": "Existing agentic reinforcement fine-tuning methods are largely limited to language-only settings and do not adequately teach LVLMs to think with images and use tools in multimodal tasks.",
+  "domain": "multimodal",
+  "paper_type": "technique"
+}

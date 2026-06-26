@@ -1,0 +1,26 @@
+{
+  "title": "Measuring and Narrowing the Compositionality Gap in Language Models",
+  "task": [
+    "compositional reasoning evaluation",
+    "multi-hop question answering",
+    "prompting methods",
+    "retrieval-augmented question answering"
+  ],
+  "defines": [
+    {
+      "name": "self-ask",
+      "definition": "A prompting method that has the language model explicitly generate and answer follow-up questions before answering the original question."
+    }
+  ],
+  "uses": [
+    "chain of thought",
+    "elicitive prompting",
+    "multi-hop questions",
+    "search engine",
+    "Wikipedia",
+    "automatically generated datasets"
+  ],
+  "problem": "Language models often know the constituent facts for a compositional question but still fail to compose them into the correct final answer.",
+  "domain": "general",
+  "paper_type": "technique"
+}

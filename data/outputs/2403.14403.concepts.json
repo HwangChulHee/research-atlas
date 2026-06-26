@@ -1,0 +1,26 @@
+{
+  "title": "Adaptive-RAG: Adaptive Retrieval-Augmented Generation for Question Answering",
+  "task": [
+    "question answering",
+    "adaptive retrieval-augmented generation"
+  ],
+  "defines": [
+    {
+      "name": "Adaptive-RAG",
+      "definition": "An adaptive QA framework that dynamically selects among no-retrieval, single-step retrieval, and multi-step retrieval strategies based on query complexity."
+    }
+  ],
+  "uses": [
+    "classifier",
+    "smaller LM",
+    "automatically collected labels",
+    "predicted outcomes",
+    "dataset inductive biases",
+    "single-step retrieval",
+    "multi-step retrieval",
+    "no-retrieval methods"
+  ],
+  "problem": "Existing retrieval-augmented QA methods are either too computationally expensive for simple queries or too weak for complex multi-step queries, so a one-size-fits-all strategy is inadequate.",
+  "domain": "general",
+  "paper_type": "technique"
+}

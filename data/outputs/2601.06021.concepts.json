@@ -1,0 +1,29 @@
+{
+  "title": "Citation-aware Rubric Rewards for Deep Search Agents",
+  "task": [
+    "reinforcement learning for deep search agents",
+    "reward shaping",
+    "multi-hop question answering"
+  ],
+  "defines": [
+    {
+      "name": "CaRR",
+      "definition": "Citation-aware Rubric Rewards is a fine-grained reward framework that evaluates deep search agent trajectories by decomposing questions into verifiable rubrics and checking factual grounding, comprehensiveness, and evidence connectivity."
+    },
+    {
+      "name": "C-GRPO",
+      "definition": "Citation-aware Group Relative Policy Optimization is a mixed-reward RL algorithm that combines citation-aware rubric rewards with outcome rewards to train robust deep search agents."
+    }
+  ],
+  "uses": [
+    "GRPO",
+    "LLM-based question decomposition",
+    "judge LLM",
+    "citation checking",
+    "web browsing tools",
+    "synthetic multi-hop QA datasets"
+  ],
+  "problem": "Binary outcome rewards do not capture the comprehensiveness and factuality of deep search agents’ reasoning, enabling shortcut exploitation and hallucinations.",
+  "domain": "general",
+  "paper_type": "technique"
+}

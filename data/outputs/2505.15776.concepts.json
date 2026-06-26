@@ -1,0 +1,25 @@
+{
+  "title": "ConvSearch-R1: Self-Driven Conversational Query Reformulation with Retrieval-Guided Reinforcement Learning",
+  "task": [
+    "conversational query reformulation",
+    "conversational search"
+  ],
+  "defines": [
+    {
+      "name": "ConvSearch-R1",
+      "definition": "A self-driven conversational query reformulation framework that learns rewrites directly from retrieval feedback without external rewrite supervision."
+    }
+  ],
+  "uses": [
+    "self-driven policy warm-up",
+    "retrieval-guided reinforcement learning",
+    "retrieval ranking signals",
+    "self-distillation",
+    "Group Relative Policy Optimization (GRPO)",
+    "rank-incentive reward shaping",
+    "off-the-shelf retrievers"
+  ],
+  "problem": "Existing conversational query reformulation methods depend heavily on costly external rewrite supervision and are poorly aligned with downstream retrievers.",
+  "domain": "conversational search",
+  "paper_type": "technique"
+}

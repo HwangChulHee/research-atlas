@@ -1,5 +1,6 @@
 {
   "builds_on": [
-    "DeepSeek-V3-Base"
+    "DeepSeek-V3-Base",
+    "Group Relative Policy Optimization"
   ]
 }

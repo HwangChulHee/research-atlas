@@ -1,0 +1,27 @@
+{
+  "title": "ConvAgent: An Agentic Framework for Conversational Search via Contextualized Reasoning and Reinforcement Learning",
+  "task": [
+    "conversational search",
+    "multi-turn question answering",
+    "information seeking dialogue"
+  ],
+  "defines": [
+    {
+      "name": "ConvAgent",
+      "definition": "An agentic conversational search framework that interleaves search and reasoning across turns using reinforcement learning with tailored rewards."
+    }
+  ],
+  "uses": [
+    "reinforcement learning",
+    "history-conditional query generation",
+    "search optimization reward",
+    "mixed-initiative action reward",
+    "contextualized reasoning",
+    "de-contextualization",
+    "retrieval",
+    "answer generation"
+  ],
+  "problem": "Existing conversational search systems rely on static rewrite-retrieve-generate pipelines or single-turn deep search agents, which do not adequately handle evolving multi-turn user intent, search-result utilization, and mixed-initiative interaction.",
+  "domain": "conversational search",
+  "paper_type": "technique"
+}

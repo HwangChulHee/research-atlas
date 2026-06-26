@@ -1,0 +1,27 @@
+{
+  "title": "Agentic Self-Learning: Scaling LLM Agents without Human Curated Data or Rule-Based Rewards",
+  "task": [
+    "LLM agent training",
+    "reinforcement learning for agents",
+    "open-domain search-agent learning"
+  ],
+  "defines": [
+    {
+      "name": "Agentic Self-Learning (ASL)",
+      "definition": "A fully closed-loop, multi-role reinforcement learning framework that jointly generates tasks, executes policies, and evaluates outcomes within a shared tool environment and LLM backbone."
+    }
+  ],
+  "uses": [
+    "Prompt Generator",
+    "Policy Model",
+    "Generative Reward Model",
+    "shared tool environment",
+    "LLM backbone",
+    "synthetic task generation",
+    "co-evolution",
+    "reinforcement learning with verifiers and rewards"
+  ],
+  "problem": "Existing LLM agent self-learning methods depend heavily on human-curated data or rigid rule-based rewards, which limits scalable open-domain agent training.",
+  "domain": "general",
+  "paper_type": "technique"
+}

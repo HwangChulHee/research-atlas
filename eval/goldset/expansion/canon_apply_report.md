@@ -1,7 +1,7 @@
-# canon 반영 + freeze 보고 (STEP 1~3 완료, STEP 4 적재는 API 키 대기)
+# canon 반영 + freeze + 적재 보고 (STEP 0~4 완료, 채점 직전)
 
 작성일: 2026-06-26
-상태: **STEP 0 드리프트 보고 → 사람 결정(B) → STEP 1~3 실행 완료. STEP 4(적재)는 API 키 확보 후.**
+상태: **STEP 0 드리프트 → 결정(B) → STEP 1~3(canon/freeze) + STEP 4(적재, B안) 완료. 채점은 별도 게이트.**
 
 ---
 
@@ -68,25 +68,34 @@ labeled=total=135 고정. frozen 50 메타(papers.json frozen_at 2026-06-17)·ba
 
 ---
 
-## STEP 4 — 적재 (미실행, 블록)
+## STEP 4 — 적재 (완료, B안)
 
-- **블로커: 환경에 OPENAI_API_KEY 없음** → 85편(+B안이면 frozen 50 relate 재실행)의 OpenAI 호출 불가.
-- B안 실행 시 필요한 호출:
-  - frozen 50: relate 재실행(few-shot 포함) → relations 재생성(= 새 baseline). extract는 기존 재사용 가능.
-  - batch2 85: extract + relate (parsed 재사용, PDF/parse 재실행 금지).
-  - 격리: 라이브 Neo4j에 쓰지 말고 예측 JSON만 eval 경로(`data/outputs/`)에 생성.
-  - 비용: relate ≈ (50 + 85) full 호출 + extract 85 mini 호출.
-- **재개 방법**: `.env`에 `OPENAI_API_KEY` 설정 후 (또는 사람이 직접 실행) — extract/relate에
-  이미 per-item try/except·timeout·retry 적용됨(P0-3). config는 baseline과 일치(few-shot 포함, B안).
+`.env` 키 제공됨 → 실행. 드라이버 `scripts/gen_predictions.py`(graphdb 미호출, JSON만 생성).
+
+| 대상 | 동작 | 결과 |
+|---|---|---|
+| batch2 85 | extract(mini) + relate(full, temp0), parsed `expansion/parsed/` 재사용 | concepts 85/85 · relations 85/85, **실패 0** |
+| frozen 50 | relate(full, few-shot 포함) `--force` 재실행(extract 재사용) | relations 50/50 재생성, **실패 0** |
+
+- **frozen 재측정 효과**: temp0 결정적이라 few-shot에 민감한 **9편만 relations 변경**, 41편 동일.
+  → 새 baseline은 frozen 50 중 9편이 이전과 다름(few-shot 경계 보정분). headline 0.82/0.83은 채점
+  게이트에서 재산출 대상.
+- **호출량**: extract 85(mini) + relate 135(full=50+85). per-item try/except·timeout·retry(P0-3) 적용.
+  토큰/$ 정밀 집계는 미계측(extract/relate에 토큰 로깅 없음) — 호출 수로 보고.
+- **격리 확인**: extract/relate는 Neo4j 미접촉(graphdb/load·collect 미실행). 라이브 그래프 무변경.
+- **산출물**: `data/outputs/{id}.{concepts,relations}.json`(score_buildson가 읽는 경로). batch2 parsed
+  85편도 `data/outputs/`로 복사(기존 corpus 관례=tracked).
 
 ---
 
 ## 무변경/검증
 - `data/lexicon.json` append-only(0 deletions), 추가 6노드 NODE_OK 통과.
 - `labels.json` builds_on 의미 불변(Shao 표면형만), freeze 표시됨.
-- `data/outputs/` · 라이브 Neo4j **무변경**(STEP 4 미실행).
+- **라이브 Neo4j 무변경**(extract/relate는 JSON만 생성). `data/outputs/`는 예측 생성으로 변경됨(의도).
 
-## 다음 단계 (사람)
-1. (선택) agentic RAG `pending→approved` 승격 결정.
-2. API 키 제공/직접 실행 → STEP 4(B안: frozen 50 relate 재측정 + batch2 extract+relate, 격리).
-3. 별도 채점 게이트: ① 85편 전체 ② 경계 5편 제외 부분집합 ③ in-sample vs out-of-sample 격차.
+## 다음 단계 (사람 — 별도 채점 게이트)
+1. (선택) agentic RAG `pending→approved` 승격 결정(미승격 시 2511.05385 1건 FN).
+2. (선택) Shao2025 arXiv id 확인 → 토큰 교체.
+3. out-of-sample 채점: ① batch2 85편 전체 ② 경계 5편(Absolute Zero·Tool-to-Agent·GRPO Collapse·
+   Pangu DeepDiver·PTAH) 제외 부분집합 ③ 새 baseline(frozen 50, 9편 갱신) vs batch2 P/R 격차
+   = in-sample 편향 정량화. (frozen baseline은 few-shot 포함으로 재산출됐으므로 in/out 동일 파이프라인.)

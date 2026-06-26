@@ -1,0 +1,40 @@
+{
+  "title": "MM-DeepResearch: A Simple and Effective Multimodal Agentic Search Baseline",
+  "task": [
+    "multimodal deep research",
+    "agentic search",
+    "multimodal question answering",
+    "search trajectory synthesis",
+    "tool-use reinforcement learning"
+  ],
+  "defines": [
+    {
+      "name": "MM-DeepResearch",
+      "definition": "A multimodal deep research agent that combines explicit reasoning, multi-tool search, and cross-modal information synthesis for complex open-world tasks."
+    },
+    {
+      "name": "Hyper-Search",
+      "definition": "A hypergraph-based QA generation method that constructs search-intensive multimodal question-answer pairs by modeling and connecting visual and textual nodes across modalities."
+    },
+    {
+      "name": "DR-TTS",
+      "definition": "A decompose-recompose tool tree search method that trains specialized search tool experts and recomposes them to explore and synthesize valid multi-tool search trajectories."
+    }
+  ],
+  "uses": [
+    "hypergraph",
+    "visual nodes",
+    "textual nodes",
+    "hyperedges",
+    "reinforcement learning",
+    "tree search",
+    "offline search engine",
+    "information-based search",
+    "knowledge-based search",
+    "multimodal corpus",
+    "search tool experts"
+  ],
+  "problem": "Existing multimodal agents lack sufficient search-intensive data, effective multi-tool search trajectories, and affordable training without costly online search APIs.",
+  "domain": "multimodal",
+  "paper_type": "technique"
+}

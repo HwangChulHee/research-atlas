@@ -1,0 +1,28 @@
+{
+  "title": "COSEARCH: Jointly Training Reasoning Agent and Retrieval System for Agentic Search",
+  "task": [
+    "agentic search",
+    "question answering",
+    "reinforcement learning",
+    "document ranking"
+  ],
+  "defines": [
+    {
+      "name": "COSEARCH",
+      "definition": "A reinforcement learning framework that jointly trains a multi-step reasoning agent and a generative document ranker for agentic search."
+    }
+  ],
+  "uses": [
+    "ReAct-style loop",
+    "Group Relative Policy Optimization",
+    "semantic grouping strategy",
+    "token-level F1 similarity",
+    "composite reward",
+    "Hit@k",
+    "trajectory-level reward",
+    "fixed first-stage dense retriever"
+  ],
+  "problem": "Fixed retrieval systems bottleneck RL-trained agentic search because the retrieval component does not adapt to the agent’s evolving queries and reasoning trajectories.",
+  "domain": "general",
+  "paper_type": "technique"
+}

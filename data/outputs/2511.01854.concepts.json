@@ -1,0 +1,25 @@
+{
+  "title": "Tool-to-Agent Retrieval: Bridging Tools and Agents for Scalable LLM Multi-Agent Systems",
+  "task": [
+    "tool retrieval",
+    "agent routing",
+    "multi-agent system retrieval"
+  ],
+  "defines": [
+    {
+      "name": "Tool-to-Agent Retrieval",
+      "definition": "A unified retrieval framework that embeds tools and their parent agents in a shared vector space and traverses metadata links to retrieve either individual tools or whole agent bundles."
+    }
+  ],
+  "uses": [
+    "vector embeddings",
+    "metadata relationships",
+    "shared vector space",
+    "tool-to-agent traversal",
+    "Top-N retrieval",
+    "query similarity ranking"
+  ],
+  "problem": "Existing retrieval methods for LLM multi-agent systems often obscure fine-grained tool functionality by matching queries only against coarse agent descriptions, leading to suboptimal routing and poor scalability.",
+  "domain": "general",
+  "paper_type": "technique"
+}

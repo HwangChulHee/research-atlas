@@ -1,0 +1,28 @@
+{
+  "title": "TeaRAG: A Token-Efficient Agentic Retrieval-Augmented Generation Framework",
+  "task": [
+    "retrieval-augmented generation",
+    "agentic question answering",
+    "token-efficient reasoning"
+  ],
+  "defines": [
+    {
+      "name": "TeaRAG",
+      "definition": "A token-efficient agentic RAG framework that reduces both retrieved-content length and reasoning steps while preserving answer accuracy."
+    }
+  ],
+  "uses": [
+    "semantic retrieval",
+    "graph retrieval",
+    "knowledge association graph",
+    "Personalized PageRank",
+    "supervised fine-tuning",
+    "Iterative Process-aware Direct Preference Optimization",
+    "knowledge matching mechanism",
+    "chain combinations",
+    "query decomposition"
+  ],
+  "problem": "Existing agentic RAG systems achieve strong accuracy but incur substantial token overhead from redundant retrieval and overlong reasoning, and their retrieval content is often low-density and noisy.",
+  "domain": "general",
+  "paper_type": "technique"
+}

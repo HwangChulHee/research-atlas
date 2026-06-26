@@ -1,0 +1,34 @@
+{
+  "title": "Rule-guided Retrieval-Augmented Generation with LMs",
+  "task": [
+    "retrieval-augmented question answering",
+    "rule-guided retrieval",
+    "rule-guided reasoning"
+  ],
+  "defines": [
+    {
+      "name": "RuleRAG",
+      "definition": "A rule-guided retrieval-augmented generation framework that uses explicit rules to steer document retrieval and answer generation for question answering."
+    },
+    {
+      "name": "RuleRAG-ICL",
+      "definition": "A training-free in-context learning variant of RuleRAG that injects rules into retrievers and generators to improve retrieval and reasoning."
+    },
+    {
+      "name": "RuleRAG-FT",
+      "definition": "A fine-tuned variant of RuleRAG that uses query-rule pairs to update retrievers and generators for better rule-following ability."
+    }
+  ],
+  "uses": [
+    "in-context learning",
+    "fine-tuning",
+    "retrievers",
+    "generators",
+    "knowledge graphs",
+    "rule mining",
+    "rule-aware QA benchmarks"
+  ],
+  "problem": "Standard RAG only conditions on the query, leading to blind retrieval and weak, poorly attributed reasoning over noisy retrieved documents.",
+  "domain": "general",
+  "paper_type": "technique"
+}

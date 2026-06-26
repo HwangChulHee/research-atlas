@@ -1,0 +1,33 @@
+{
+  "title": "Absolute Zero: Reinforced Self-play Reasoning with Zero Data",
+  "task": [
+    "reasoning model training",
+    "reinforcement learning with verifiable rewards",
+    "code reasoning",
+    "mathematical reasoning",
+    "self-play learning"
+  ],
+  "defines": [
+    {
+      "name": "Absolute Zero",
+      "definition": "A reinforcement learning paradigm in which a model autonomously proposes tasks and learns to solve them without relying on any external data."
+    },
+    {
+      "name": "Absolute Zero Reasoner",
+      "definition": "A self-evolving reasoning system that uses self-proposed code tasks and verifiable feedback from a code executor to improve reasoning end-to-end."
+    }
+  ],
+  "uses": [
+    "reinforcement learning with verifiable rewards",
+    "code executor",
+    "self-proposed tasks",
+    "verifiable feedback",
+    "multitask reinforcement learning advantage estimator",
+    "induction",
+    "abduction",
+    "deduction"
+  ],
+  "problem": "Existing zero-setting RLVR methods still depend on human-curated question-answer data, limiting scalability and autonomous learning.",
+  "domain": "general",
+  "paper_type": "technique"
+}

@@ -1,0 +1,39 @@
+{
+  "title": "RubricEM: Meta-RL with Rubric-guided Policy Decomposition beyond Verifiable Rewards",
+  "task": [
+    "reinforcement learning",
+    "deep research agents",
+    "long-form question answering",
+    "information-seeking report generation"
+  ],
+  "defines": [
+    {
+      "name": "RubricEM",
+      "definition": "A rubric-guided reinforcement learning framework that combines stagewise policy decomposition with reflection-based meta-policy training for deep research agents."
+    },
+    {
+      "name": "Stage-Structured GRPO",
+      "definition": "A rubric-based credit assignment method that provides stage-specific feedback for long-horizon policy optimization."
+    },
+    {
+      "name": "Reflection Meta-Policy",
+      "definition": "A shared-backbone policy that generates rubric-grounded reflections from judged trajectories and stores them as reusable memory."
+    }
+  ],
+  "uses": [
+    "self-generated rubrics",
+    "planning",
+    "research",
+    "review",
+    "answer synthesis",
+    "stagewise rubric judgments",
+    "GRPO",
+    "evolving rubric buffer",
+    "rubric bank",
+    "reflection candidates",
+    "asynchronous reflection branch"
+  ],
+  "problem": "End-to-end reinforcement learning for deep research agents is hard because outputs lack verifiable ground truth, feedback is delayed and coarse over long tool-augmented trajectories, and judged attempts are not turned into reusable experience.",
+  "domain": "general",
+  "paper_type": "technique"
+}

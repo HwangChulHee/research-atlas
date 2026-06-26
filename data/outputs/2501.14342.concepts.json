@@ -1,0 +1,27 @@
+{
+  "title": "CoRAG: Chain-of-Retrieval Augmented Generation",
+  "task": [
+    "retrieval-augmented generation",
+    "multi-hop question answering",
+    "knowledge-intensive question answering",
+    "test-time scaling",
+    "query reformulation"
+  ],
+  "defines": [
+    {
+      "name": "CoRAG",
+      "definition": "A chain-of-retrieval augmented generation framework that trains models to iteratively retrieve, reformulate queries, and reason step by step before producing an answer."
+    }
+  ],
+  "uses": [
+    "rejection sampling",
+    "intermediate retrieval chains",
+    "next-token prediction",
+    "greedy decoding",
+    "best-of-N sampling",
+    "tree search"
+  ],
+  "problem": "Standard RAG systems rely on a single retrieval step and struggle with complex multi-hop queries when the initial retrieval is incomplete or imperfect.",
+  "domain": "general",
+  "paper_type": "technique"
+}

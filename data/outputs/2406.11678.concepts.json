@@ -1,0 +1,25 @@
+{
+  "title": "TourRank: Utilizing Large Language Models for Documents Ranking with a Tournament-Inspired Strategy",
+  "task": [
+    "zero-shot document ranking",
+    "information retrieval"
+  ],
+  "defines": [
+    {
+      "name": "TourRank",
+      "definition": "A zero-shot LLM-based document ranking method that uses a tournament-inspired multi-stage grouping and points-based aggregation strategy to produce robust rankings efficiently."
+    }
+  ],
+  "uses": [
+    "multi-stage grouping strategy",
+    "parallel group comparisons",
+    "seeding strategy",
+    "points system",
+    "multiple rounds of tournament",
+    "LLMs",
+    "prompting"
+  ],
+  "problem": "Existing LLM-based listwise ranking methods are limited by context length, sequential generation, input-order sensitivity, and the need to balance cost with ranking quality.",
+  "domain": "search",
+  "paper_type": "technique"
+}

@@ -1,0 +1,26 @@
+{
+  "title": "RankRAG: Instruction Fine-Tuning for Context Ranking and Answer Generation in Retrieval-Augmented Generation",
+  "task": [
+    "retrieval-augmented generation",
+    "context ranking",
+    "answer generation",
+    "knowledge-intensive question answering"
+  ],
+  "defines": [
+    {
+      "name": "RankRAG",
+      "definition": "A single-LLM instruction fine-tuning framework that jointly learns to rerank retrieved contexts and generate answers for RAG."
+    }
+  ],
+  "uses": [
+    "instruction fine-tuning",
+    "context-rich QA",
+    "retrieval-augmented QA",
+    "ranking datasets",
+    "dense embedding retriever",
+    "cross-encoding ranker"
+  ],
+  "problem": "Standard RAG often retrieves too many contexts for effective generation, while retrievers may miss relevant evidence and separate ranking models can generalize poorly.",
+  "domain": "general",
+  "paper_type": "technique"
+}

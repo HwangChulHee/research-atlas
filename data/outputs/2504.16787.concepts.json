@@ -1,0 +1,23 @@
+{
+  "title": "PAR-RAG: Plan-then-Act-and-Review Retrieval-Augmented Generation for Reliable Multi-hop Reasoning",
+  "task": [
+    "multi-hop question answering",
+    "retrieval-augmented generation",
+    "reasoning"
+  ],
+  "defines": [
+    {
+      "name": "PAR-RAG",
+      "definition": "A Plan-then-Act-and-Review retrieval-augmented generation framework that improves multi-hop reasoning reliability through complexity-aware planning, structured execution, and dual verification."
+    }
+  ],
+  "uses": [
+    "complexity-aware exemplar selection",
+    "retrieve-then-read",
+    "dual verification",
+    "semantic complexity"
+  ],
+  "problem": "Existing RAG methods for multi-hop QA suffer from reasoning path deviation and intermediate factual errors, and they lack a principled way to adapt planning and verification to semantic complexity.",
+  "domain": "general",
+  "paper_type": "technique"
+}

@@ -1,0 +1,27 @@
+{
+  "title": "Unified Active Retrieval",
+  "task": [
+    "active retrieval",
+    "retrieval timing classification",
+    "retrieval-augmented generation"
+  ],
+  "defines": [
+    {
+      "name": "UAR",
+      "definition": "A unified active retrieval framework that judges whether to retrieve by combining multiple orthogonal criteria into lightweight classification tasks."
+    },
+    {
+      "name": "UAR-Criteria",
+      "definition": "A standardized decision procedure that prioritizes multiple retrieval criteria and unifies them into a single multifaceted retrieval decision tree."
+    }
+  ],
+  "uses": [
+    "lightweight binary classifiers",
+    "fixed LLM hidden states",
+    "plug-and-play classification",
+    "decision tree"
+  ],
+  "problem": "Existing active retrieval methods rely on a single criterion and specialized procedures, making them ineffective for diverse instructions and costly to integrate efficiently into RAG systems.",
+  "domain": "general",
+  "paper_type": "technique"
+}

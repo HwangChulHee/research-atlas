@@ -1,0 +1,27 @@
+{
+  "title": "Self-Search RL: A Full-Sim Framework for Search-Driven Agentic Tasks",
+  "task": [
+    "search-driven question answering",
+    "agentic search reinforcement learning",
+    "sim-to-real transfer"
+  ],
+  "defines": [
+    {
+      "name": "Self-Search RL (SSRL)",
+      "definition": "A full-simulation reinforcement learning framework that improves an LLM's ability to internally generate search queries and information using format-based and rule-based rewards."
+    }
+  ],
+  "uses": [
+    "structured prompting",
+    "repeated sampling",
+    "pass@k evaluation",
+    "format-based rewards",
+    "rule-based rewards",
+    "multi-turn tool-formatted outputs",
+    "information masking",
+    "on-policy self-search"
+  ],
+  "problem": "Training search-driven agents with real search engines is expensive and slow, and existing methods depend heavily on external tool interactions during reinforcement learning.",
+  "domain": "general",
+  "paper_type": "technique"
+}

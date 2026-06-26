@@ -1,0 +1,25 @@
+{
+  "title": "Confidence Consistency-based Calibration for Large Language Models",
+  "task": [
+    "confidence estimation",
+    "knowledge boundary detection",
+    "calibration",
+    "question answering"
+  ],
+  "defines": [
+    {
+      "name": "C3",
+      "definition": "A confidence calibration method that uses question reformulation and confidence consistency to improve large language models’ recognition of when they do not know an answer."
+    }
+  ],
+  "uses": [
+    "internal states",
+    "question reformulation",
+    "multiple-choice question generation",
+    "chain-of-thought",
+    "embeddings"
+  ],
+  "problem": "Large language models are often overconfident and struggle to accurately perceive their knowledge boundaries, especially when deciding whether to answer or abstain.",
+  "domain": "general",
+  "paper_type": "technique"
+}

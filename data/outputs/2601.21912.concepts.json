@@ -1,0 +1,25 @@
+{
+  "title": "ProRAG: Process-Supervised Reinforcement Learning for Retrieval-Augmented Generation",
+  "task": [
+    "retrieval-augmented generation",
+    "multi-hop question answering",
+    "reinforcement learning for reasoning optimization"
+  ],
+  "defines": [
+    {
+      "name": "ProRAG",
+      "definition": "A process-supervised reinforcement learning framework for optimizing multi-hop RAG by combining learned step-level process rewards with global outcome signals."
+    }
+  ],
+  "uses": [
+    "supervised policy warmup",
+    "Monte Carlo Tree Search (MCTS)",
+    "process reward model (PRM)",
+    "PRM-guided reasoning refinement",
+    "dual-granularity advantage mechanism",
+    "process-supervised reinforcement learning"
+  ],
+  "problem": "Outcome-based RL for RAG suffers from reward sparsity and poor credit assignment, causing process hallucinations and inefficient learning on long-horizon reasoning tasks.",
+  "domain": "general",
+  "paper_type": "technique"
+}

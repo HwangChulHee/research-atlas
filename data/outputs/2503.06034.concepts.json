@@ -1,0 +1,23 @@
+{
+  "title": "Rank-R1: A Reasoning-Enhanced LLM-Based Reranker with Reinforcement Learning",
+  "task": [
+    "document reranking",
+    "relevance ranking"
+  ],
+  "defines": [
+    {
+      "name": "Rank-R1",
+      "definition": "A reinforcement-learning-trained LLM reranker that generates reasoning before selecting the most relevant document from a candidate set."
+    }
+  ],
+  "uses": [
+    "large language models",
+    "reinforcement learning",
+    "Group Relative Policy Optimization",
+    "relevance labels",
+    "reasoning steps"
+  ],
+  "problem": "Existing LLM-based rerankers typically rely on prompting or supervised fine-tuning without explicitly learning reasoning, limiting their effectiveness on complex relevance judgments.",
+  "domain": "general",
+  "paper_type": "technique"
+}

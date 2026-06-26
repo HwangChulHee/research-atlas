@@ -1,0 +1,24 @@
+{
+  "title": "Shifting Attention to Relevance: A Token- and Sentence-Level Attention-Shifting Method for Uncertainty Quantification in Large Language Models",
+  "task": [
+    "uncertainty quantification",
+    "free-form question answering",
+    "hallucination detection"
+  ],
+  "defines": [
+    {
+      "name": "SAR",
+      "definition": "Shifting Attention to Relevance (SAR) is an uncertainty quantification method that reassigns attention to more relevant tokens and sentences when estimating uncertainty in LLM generations."
+    }
+  ],
+  "uses": [
+    "token-level relevance scoring",
+    "sentence-level relevance scoring",
+    "semantic change measurement",
+    "entropy-based uncertainty",
+    "semantic clustering"
+  ],
+  "problem": "Existing uncertainty quantification methods for LLMs treat all generated tokens and sentences too equally, causing irrelevant components to be over-weighted and leading to inaccurate uncertainty estimates.",
+  "domain": "general",
+  "paper_type": "technique"
+}

@@ -1,0 +1,25 @@
+{
+  "title": "EviOmni: Rational Evidence Extraction for Retrieval-Augmented Generation via Reinforcement Learning",
+  "task": [
+    "retrieval-augmented generation",
+    "evidence extraction",
+    "noise filtering"
+  ],
+  "defines": [
+    {
+      "name": "EviOmni",
+      "definition": "A rational evidence extraction framework for RAG that first reasons over retrieved content and then extracts compact evidence via reinforcement learning with verifiable rewards."
+    }
+  ],
+  "uses": [
+    "evidence reasoning",
+    "evidence extraction",
+    "knowledge token masking",
+    "on-policy reinforcement learning",
+    "Group Relative Policy Optimization (GRPO)",
+    "verifiable rewards"
+  ],
+  "problem": "Existing evidence extraction methods for RAG often filter retrieval content straightforwadly without sufficient contextual reasoning, which can discard key clues and reduce generation quality.",
+  "domain": "general",
+  "paper_type": "technique"
+}

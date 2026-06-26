@@ -1,0 +1,26 @@
+{
+  "title": "Agentic Retrieval-Augmented Generation via Process Supervision",
+  "task": [
+    "agentic retrieval-augmented generation",
+    "open-domain question answering",
+    "process-supervised reinforcement learning"
+  ],
+  "defines": [
+    {
+      "name": "DecEx-RAG",
+      "definition": "A process-supervised Agentic RAG framework that models retrieval-augmented generation as a Markov Decision Process with decision-making and execution stages to enable fine-grained optimization."
+    }
+  ],
+  "uses": [
+    "Markov Decision Process",
+    "search tree expansion",
+    "rollout simulations",
+    "aggregated rewards",
+    "branch pruning",
+    "termination decision",
+    "retrieval decision"
+  ],
+  "problem": "Outcome-supervised Agentic RAG suffers from inefficient exploration, sparse rewards, and weak step-level feedback for optimizing reasoning and retrieval.",
+  "domain": "general",
+  "paper_type": "technique"
+}

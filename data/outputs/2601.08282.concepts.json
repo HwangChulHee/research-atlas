@@ -1,0 +1,26 @@
+{
+  "title": "D2PLAN: Dual-agent Dynamic Global Planning for Retrieval-Augmented Reasoning",
+  "task": [
+    "multi-hop question answering",
+    "retrieval-augmented reasoning",
+    "search-augmented reasoning"
+  ],
+  "defines": [
+    {
+      "name": "D2PLAN",
+      "definition": "A dual-agent dynamic global planning paradigm for retrieval-augmented reasoning that coordinates a Reasoner and a Purifier to support adaptive search and robust evidence filtering."
+    }
+  ],
+  "uses": [
+    "Reasoner",
+    "Purifier",
+    "dynamic global planning",
+    "supervised fine-tuning",
+    "reinforcement learning",
+    "plan-oriented rewards",
+    "synthetic trajectories"
+  ],
+  "problem": "Search-augmented LLMs often fail on complex multi-hop reasoning because they construct ineffective search chains and are misled by irrelevant retrieved evidence.",
+  "domain": "general",
+  "paper_type": "technique"
+}

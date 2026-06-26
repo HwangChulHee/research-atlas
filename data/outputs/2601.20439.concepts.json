@@ -1,0 +1,25 @@
+{
+  "title": "PEARL: Plan Exploration and Adaptive Reinforcement Learning for Tool Use",
+  "task": [
+    "tool use",
+    "multi-turn tool invocation",
+    "LLM agent planning",
+    "reinforcement learning"
+  ],
+  "defines": [
+    {
+      "name": "PEARL",
+      "definition": "A two-stage framework that combines offline tool exploration with online reinforcement learning to improve planning and execution for complex tool use."
+    }
+  ],
+  "uses": [
+    "offline tool exploration",
+    "Group Relative Policy Optimization (GRPO)",
+    "planning-centric reward function",
+    "dedicated Planner",
+    "adaptive reinforcement learning"
+  ],
+  "problem": "LLMs struggle with coherent long-horizon planning, tool hallucination, incorrect parameter generation, and robust execution when using tools over multiple turns.",
+  "domain": "general",
+  "paper_type": "technique"
+}

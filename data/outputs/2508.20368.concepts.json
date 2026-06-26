@@ -1,0 +1,30 @@
+{
+  "title": "AI-SearchPlanner: Reinforcement Learning for Efficient Search Planning with Frozen QA Models",
+  "task": [
+    "search reasoning",
+    "question answering",
+    "reinforcement learning",
+    "search planning"
+  ],
+  "defines": [
+    {
+      "name": "AI-SearchPlanner",
+      "definition": "A reinforcement learning framework that improves end-to-end QA by training a small search-planning LLM while using a large frozen LLM for answer generation."
+    }
+  ],
+  "uses": [
+    "frozen QA model",
+    "search planner LLM",
+    "search engine",
+    "reinforcement learning",
+    "PPO",
+    "GRPO",
+    "dual-reward mechanism",
+    "outcome reward",
+    "process reward",
+    "Pareto optimization"
+  ],
+  "problem": "Existing RL-based search agents use one LLM for both planning and answering, making it difficult to optimize search planning and QA quality simultaneously while keeping inference efficient.",
+  "domain": "general",
+  "paper_type": "technique"
+}

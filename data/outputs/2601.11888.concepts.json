@@ -1,0 +1,23 @@
+{
+  "title": "Agentic-R: Retriever Training for Agentic Search",
+  "task": [
+    "retriever training",
+    "agentic search",
+    "question answering"
+  ],
+  "defines": [
+    {
+      "name": "Agentic-R",
+      "definition": "A retriever training framework designed specifically for agentic search that optimizes passages using both local query relevance and global answer correctness in an iterative agent-retriever loop."
+    }
+  ],
+  "uses": [
+    "LLM-based listwise scoring",
+    "passage utility modeling",
+    "iterative agent-retriever optimization",
+    "reinforcement learning"
+  ],
+  "problem": "Existing retrievers for agentic search rely on similarity or single-turn utility signals and do not account for multi-turn reasoning or the interaction between the retriever and the evolving search agent.",
+  "domain": "general",
+  "paper_type": "technique"
+}

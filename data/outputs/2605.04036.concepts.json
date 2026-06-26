@@ -1,0 +1,26 @@
+{
+  "title": "OpenSeeker-v2: Simple SFT is Surprisingly Powerful for Frontier Search Agents",
+  "task": [
+    "deep search",
+    "search agent training",
+    "supervised fine-tuning",
+    "question answering"
+  ],
+  "defines": [
+    {
+      "name": "OpenSeeker-v2",
+      "definition": "An upgraded frontier search agent trained with simple supervised fine-tuning on high-difficulty trajectories to achieve state-of-the-art search performance."
+    }
+  ],
+  "uses": [
+    "ReAct",
+    "knowledge graph scaling",
+    "tool set expansion",
+    "low-step filtering",
+    "trajectory synthesis",
+    "supervised fine-tuning"
+  ],
+  "problem": "Existing frontier search agents are typically trained with complex, resource-intensive CPT+SFT+RL pipelines that create a high barrier for academic and open-source development.",
+  "domain": "general",
+  "paper_type": "technique"
+}

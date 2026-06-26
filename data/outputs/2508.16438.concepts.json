@@ -1,0 +1,32 @@
+{
+  "title": "OPERA: Orchestrated Planner-Executor Reasoning Architecture for Reasoning-Driven Retrieval",
+  "task": [
+    "retrieval-augmented generation",
+    "multi-hop retrieval",
+    "reasoning-driven retrieval",
+    "question answering"
+  ],
+  "defines": [
+    {
+      "name": "OPERA",
+      "definition": "A reasoning-driven retrieval framework that orchestrates planning, retrieval, reasoning, and filtering through separate planning and execution modules."
+    },
+    {
+      "name": "MAPGRPO",
+      "definition": "A multi-agent variant of GRPO that sequentially optimizes specialized agents with role-specific rewards for planning, reasoning, and retrieval."
+    }
+  ],
+  "uses": [
+    "Goal Planning Module (GPM)",
+    "Reason-Execute Module (REM)",
+    "Plan Agent",
+    "Analysis-Answer Agent",
+    "Rewrite Agent",
+    "Trajectory Memory Component (TMC)",
+    "neural dense retriever",
+    "GRPO"
+  ],
+  "problem": "Existing RAG methods struggle with multi-hop reasoning because planning, retrieval, and filtering are weakly coupled, leading to poor sub-goal planning, ineffective query reformulation, and noisy retrieval filtering.",
+  "domain": "general",
+  "paper_type": "technique"
+}

@@ -1,0 +1,25 @@
+{
+  "title": "BIDER: Bridging Knowledge Inconsistency for Efficient Retrieval-Augmented LLMs",
+  "task": [
+    "retrieval-augmented generation",
+    "open-domain question answering",
+    "dialogue generation",
+    "fact verification"
+  ],
+  "defines": [
+    {
+      "name": "BIDER",
+      "definition": "A retrieval-document refiner that bridges knowledge inconsistency by converting retrieved documents into key supporting evidence for downstream LLMs."
+    }
+  ],
+  "uses": [
+    "knowledge synthesis",
+    "supervised fine-tuning",
+    "preference alignment",
+    "reinforcement learning",
+    "seq2seq model"
+  ],
+  "problem": "Retrieved documents in RAG are often long, noisy, and misaligned with the knowledge actually needed by LLMs, which hurts answer quality.",
+  "domain": "general",
+  "paper_type": "technique"
+}

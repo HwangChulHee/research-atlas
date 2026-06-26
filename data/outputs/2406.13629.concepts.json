@@ -1,0 +1,23 @@
+{
+  "title": "INSTRUCTRAG: INSTRUCTING RETRIEVAL AUGMENTED GENERATION VIA SELF-SYNTHESIZED RATIONALES",
+  "task": [
+    "retrieval-augmented generation",
+    "knowledge-intensive question answering",
+    "denoising noisy retrieved documents"
+  ],
+  "defines": [
+    {
+      "name": "INSTRUCTRAG",
+      "definition": "A RAG framework that teaches language models to explicitly denoise retrieved documents by generating self-synthesized rationales before producing answers."
+    }
+  ],
+  "uses": [
+    "self-synthesized rationales",
+    "in-context learning",
+    "supervised fine-tuning",
+    "retrieved documents"
+  ],
+  "problem": "Standard RAG methods implicitly handle noisy or misleading retrieved content, making denoising difficult to interpret, verify, and supervise.",
+  "domain": "general",
+  "paper_type": "technique"
+}

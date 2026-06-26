@@ -1,0 +1,33 @@
+{
+  "title": "RAG-Augmented Reasoning Techniques for Multimodal Fact-Checking in Political Domain",
+  "task": [
+    "multimodal fact-checking",
+    "veracity prediction",
+    "fact-check explanation generation"
+  ],
+  "defines": [
+    {
+      "name": "RAGAR",
+      "definition": "A multimodal RAG-based reasoning framework for fact-checking claims by combining claim verbalization, external retrieval, and stepwise reasoning."
+    },
+    {
+      "name": "Chain of RAG (CoRAG)",
+      "definition": "A sequential reasoning strategy that answers successive fact-checking subquestions using prior retrieval evidence."
+    },
+    {
+      "name": "Tree of RAG (ToRAG)",
+      "definition": "A branching reasoning strategy that explores multiple retrieval-and-reasoning paths for multimodal fact-checking."
+    }
+  ],
+  "uses": [
+    "multimodal large language model",
+    "retrieval-augmented generation",
+    "image captioning",
+    "claim verbalization",
+    "external search engine",
+    "sub-question generation"
+  ],
+  "problem": "Existing RAG-based fact-checking approaches are mostly text-only and do not adequately handle the more challenging multimodal setting with elaborate reasoning over visual and textual evidence.",
+  "domain": "political",
+  "paper_type": "technique"
+}

@@ -1,0 +1,31 @@
+{
+  "title": "OThink-SRR1: Search-Refine-Reason for Multi-Hop Question Answering via Reinforcement Learning",
+  "task": [
+    "multi-hop question answering",
+    "retrieval-augmented generation",
+    "information-seeking reasoning"
+  ],
+  "defines": [
+    {
+      "name": "OThink-SRR1",
+      "definition": "A reinforcement-learning-based search-refine-reason framework that iteratively retrieves information, refines it into concise relevant facts, and then reasons over the refined content."
+    },
+    {
+      "name": "GRPO-IR",
+      "definition": "An end-to-end reinforcement learning algorithm that rewards correct evidence identification and penalizes excessive retrievals to improve search efficiency and focus."
+    }
+  ],
+  "uses": [
+    "iterative search",
+    "refinement stage",
+    "reasoning stage",
+    "reinforcement learning",
+    "ground-truth-based reward",
+    "retrieval penalty",
+    "Qwen2.5-7B-Instruct",
+    "Qwen2.5-3B-Instruct"
+  ],
+  "problem": "Static and dynamic RAG methods often retrieve irrelevant noise and full documents, which mislead reasoning and increase computation and latency.",
+  "domain": "general",
+  "paper_type": "technique"
+}

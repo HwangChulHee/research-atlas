@@ -1,0 +1,29 @@
+{
+  "title": "Step-Wise Reinforcement Learning (SWiRL)",
+  "task": [
+    "multi-step reasoning",
+    "tool use",
+    "question answering",
+    "mathematical reasoning",
+    "offline reinforcement learning",
+    "synthetic data generation"
+  ],
+  "defines": [
+    {
+      "name": "Step-Wise Reinforcement Learning (SWiRL)",
+      "definition": "An offline multi-step optimization method that generates synthetic multi-step reasoning and tool-use trajectories, decomposes them into sub-trajectories, and applies step-wise RL optimization."
+    }
+  ],
+  "uses": [
+    "synthetic data filtering",
+    "step-wise decomposition",
+    "sub-trajectories",
+    "generative reward model",
+    "tool execution",
+    "chain-of-thought prompting",
+    "offline RL"
+  ],
+  "problem": "Traditional RL methods for language models optimize single-step decisions and do not adequately address multi-step reasoning and tool-use tasks.",
+  "domain": "general",
+  "paper_type": "technique"
+}
