@@ -378,6 +378,101 @@
       "builds_on": [
         "진화 루브릭 평가 (Shao 2025)"
       ]
+    },
+    "2210.03350": {
+      "title": "Self-Ask",
+      "builds_on": [
+        "Chain-of-Thought"
+      ]
+    },
+    "2403.10081": {
+      "title": "DRAGIN",
+      "builds_on": [
+        "FLARE"
+      ]
+    },
+    "2406.12534": {
+      "title": "Unified Active Retrieval (UAR)",
+      "builds_on": [
+        "Self-RAG",
+        "FLARE"
+      ]
+    },
+    "2504.04736": {
+      "title": "Synthetic Data & Multi-Step RL",
+      "builds_on": []
+    },
+    "2505.24332": {
+      "title": "Pangu DeepDiver",
+      "builds_on": []
+    },
+    "2508.10874": {
+      "title": "SSRL",
+      "builds_on": [
+        "ZeroSearch"
+      ]
+    },
+    "2510.14253": {
+      "title": "Agentic Self-Learning",
+      "builds_on": [
+        "Search-R1",
+        "Absolute Zero"
+      ]
+    },
+    "2601.11037": {
+      "title": "BAPO",
+      "builds_on": []
+    },
+    "2601.11888": {
+      "title": "Agentic-R",
+      "builds_on": []
+    },
+    "2601.13115": {
+      "title": "Agentic Conversational Search",
+      "builds_on": []
+    },
+    "2601.23188": {
+      "title": "Meta-Cognitive Deep Search",
+      "builds_on": []
+    },
+    "2602.03304": {
+      "title": "To Search or Not to Search",
+      "builds_on": []
+    },
+    "2602.03468": {
+      "title": "IntentRL",
+      "builds_on": []
+    },
+    "2603.28376": {
+      "title": "Marco DeepResearch",
+      "builds_on": []
+    },
+    "2604.04651": {
+      "title": "Search, Don't Guess",
+      "builds_on": []
+    },
+    "2604.09508": {
+      "title": "VISOR",
+      "builds_on": [
+        "Visual RAG",
+        "RAG"
+      ]
+    },
+    "2604.17931": {
+      "title": "LiteResearcher",
+      "builds_on": []
+    },
+    "2604.19766": {
+      "title": "OThink-SRR1",
+      "builds_on": [
+        "RAG"
+      ]
+    },
+    "2605.04036": {
+      "title": "OpenSeeker-v2",
+      "builds_on": [
+        "OpenSeeker"
+      ]
     }
   }
 }
