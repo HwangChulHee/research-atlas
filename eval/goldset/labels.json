@@ -305,6 +305,78 @@
         "GraphRAG",
         "RAG"
       ]
+    },
+    "2505.03335": {
+      "title": "Absolute Zero",
+      "builds_on": [
+        "DeepSeek-R1-Zero"
+      ]
+    },
+    "2505.22648": {
+      "title": "WebDancer",
+      "builds_on": [
+        "ReAct"
+      ]
+    },
+    "2507.15061": {
+      "title": "WebShaper",
+      "builds_on": []
+    },
+    "2508.12800": {
+      "title": "Atom-Searcher",
+      "builds_on": [
+        "Search-R1",
+        "DeepResearcher"
+      ]
+    },
+    "2509.13313": {
+      "title": "ReSum",
+      "builds_on": [
+        "ReAct"
+      ]
+    },
+    "2510.05691": {
+      "title": "DecEx-RAG",
+      "builds_on": [
+        "Search-R1",
+        "RAG"
+      ]
+    },
+    "2511.05385": {
+      "title": "TeaRAG",
+      "builds_on": [
+        "Search-R1",
+        "agentic RAG"
+      ]
+    },
+    "2601.06021": {
+      "title": "Chaining the Evidence",
+      "builds_on": []
+    },
+    "2601.08282": {
+      "title": "D2Plan",
+      "builds_on": []
+    },
+    "2601.21912": {
+      "title": "ProRAG",
+      "builds_on": []
+    },
+    "2603.03293": {
+      "title": "SE-Search",
+      "builds_on": [
+        "Search-R1",
+        "Atom-Searcher"
+      ]
+    },
+    "2603.09203": {
+      "title": "Evaluate-as-Action",
+      "builds_on": []
+    },
+    "2605.10899": {
+      "title": "RubricEM",
+      "builds_on": [
+        "진화 루브릭 평가 (Shao 2025)"
+      ]
     }
   }
 }
