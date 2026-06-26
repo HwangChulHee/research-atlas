@@ -3,9 +3,9 @@
     "purpose": "goldset builds_on 정답 (사람 라벨, 채점 정본)",
     "rubric": "lineage-only: 이 논문의 '방법'이 딛고·확장한 방법적 후예(extends/improves/builds-on)만. 점수비교 baseline·부품(PPO/GRPO/MCTS)·데이터셋·툴·self-defined 기법 제외. 본문에 고유명사로 등장한 것만(인용 author-year 풀어넣지 않음). 경계 케이스는 본문 맥락으로 판단.",
     "status": "in_progress",
-    "labeled": 96,
+    "labeled": 115,
     "total": 135,
-    "_count_note": "labeled=frozen 50 + 확장 46(학습형RL 13 + 검색시점 19 + RAG강화추론 14, 누적 46/85). total=frozen 50 + b2 keep pool 85. frozen 50 baseline(P0.82/R0.83)은 불변."
+    "_count_note": "labeled=frozen 50 + 확장 65(학습형RL 13 + 검색시점 19 + RAG강화추론 14 + 질의계획 19, 누적 65/85). total=frozen 50 + b2 keep pool 85. frozen 50 baseline(P0.82/R0.83)은 불변."
   },
   "labels": {
     "2503.09516": {
@@ -539,6 +539,106 @@
     },
     "2605.07177": {
       "title": "HyperEyes",
+      "builds_on": []
+    },
+    "2309.11495": {
+      "title": "Chain-of-Verification",
+      "builds_on": []
+    },
+    "2403.14403": {
+      "title": "Adaptive-RAG",
+      "builds_on": [
+        "IRCoT"
+      ]
+    },
+    "2405.20139": {
+      "title": "GNN-RAG",
+      "builds_on": [
+        "RAG"
+      ]
+    },
+    "2410.22353": {
+      "title": "RuleRAG",
+      "builds_on": [
+        "RAG"
+      ]
+    },
+    "2501.15228": {
+      "title": "Multi-Agent RL RAG",
+      "builds_on": [
+        "RAG"
+      ]
+    },
+    "2502.14614": {
+      "title": "ICA-RAG",
+      "builds_on": [
+        "Adaptive-RAG"
+      ]
+    },
+    "2504.04915": {
+      "title": "Collab-RAG",
+      "builds_on": [
+        "RAG"
+      ]
+    },
+    "2504.16787": {
+      "title": "Credible Plan-RAG",
+      "builds_on": []
+    },
+    "2505.04253": {
+      "title": "LLM-Independent Adaptive RAG",
+      "builds_on": []
+    },
+    "2505.04588": {
+      "title": "ZeroSearch",
+      "builds_on": [
+        "Search-R1"
+      ]
+    },
+    "2505.15776": {
+      "title": "ConvSearch-R1",
+      "builds_on": []
+    },
+    "2506.08625": {
+      "title": "RAISE",
+      "builds_on": []
+    },
+    "2508.16438": {
+      "title": "OPERA",
+      "builds_on": []
+    },
+    "2508.20368": {
+      "title": "AI-SearchPlanner",
+      "builds_on": [
+        "Search-R1",
+        "RAG"
+      ]
+    },
+    "2510.10095": {
+      "title": "CardRewriter",
+      "builds_on": []
+    },
+    "2510.24652": {
+      "title": "R3",
+      "builds_on": [
+        "RAG"
+      ]
+    },
+    "2511.12159": {
+      "title": "CriticSearch",
+      "builds_on": [
+        "Search-R1"
+      ]
+    },
+    "2604.17555": {
+      "title": "CoSearch",
+      "builds_on": [
+        "Search-R1",
+        "RAG"
+      ]
+    },
+    "2605.29307": {
+      "title": "GrepSeek",
       "builds_on": []
     }
   }
