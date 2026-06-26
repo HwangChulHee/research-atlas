@@ -3,9 +3,9 @@
     "purpose": "goldset builds_on 정답 (사람 라벨, 채점 정본)",
     "rubric": "lineage-only: 이 논문의 '방법'이 딛고·확장한 방법적 후예(extends/improves/builds-on)만. 점수비교 baseline·부품(PPO/GRPO/MCTS)·데이터셋·툴·self-defined 기법 제외. 본문에 고유명사로 등장한 것만(인용 author-year 풀어넣지 않음). 경계 케이스는 본문 맥락으로 판단.",
     "status": "in_progress",
-    "labeled": 63,
+    "labeled": 96,
     "total": 135,
-    "_count_note": "labeled=frozen 50 + 확장 13(학습형RL). total=frozen 50 + b2 keep pool 85. frozen 50 baseline(P0.82/R0.83)은 불변."
+    "_count_note": "labeled=frozen 50 + 확장 46(학습형RL 13 + 검색시점 19 + RAG강화추론 14, 누적 46/85). total=frozen 50 + b2 keep pool 85. frozen 50 baseline(P0.82/R0.83)은 불변."
   },
   "labels": {
     "2503.09516": {
