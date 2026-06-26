@@ -473,6 +473,73 @@
       "builds_on": [
         "OpenSeeker"
       ]
+    },
+    "2404.12065": {
+      "title": "RAGAR",
+      "builds_on": [
+        "RAG"
+      ]
+    },
+    "2502.05867": {
+      "title": "Self-Training Tool-Use",
+      "builds_on": []
+    },
+    "2504.03947": {
+      "title": "Distilled Reasoning Re-ranking",
+      "builds_on": [
+        "DeepSeek-R1"
+      ]
+    },
+    "2505.14246": {
+      "title": "Visual-ARFT",
+      "builds_on": [
+        "Search-R1",
+        "ReTool"
+      ]
+    },
+    "2508.05748": {
+      "title": "WebWatcher",
+      "builds_on": []
+    },
+    "2511.01854": {
+      "title": "Tool-to-Agent Retrieval",
+      "builds_on": []
+    },
+    "2512.04220": {
+      "title": "GRPO Collapse",
+      "builds_on": []
+    },
+    "2512.24330": {
+      "title": "SenseNova-MARS",
+      "builds_on": [
+        "MMSearch-R1"
+      ]
+    },
+    "2601.04767": {
+      "title": "AT2PO",
+      "builds_on": []
+    },
+    "2601.20439": {
+      "title": "PEARL",
+      "builds_on": []
+    },
+    "2602.00994": {
+      "title": "Reasoning–Tool Interference",
+      "builds_on": []
+    },
+    "2603.01050": {
+      "title": "MM-DeepResearch",
+      "builds_on": []
+    },
+    "2603.07853": {
+      "title": "SynPlanResearch-R1",
+      "builds_on": [
+        "ReAct"
+      ]
+    },
+    "2605.07177": {
+      "title": "HyperEyes",
+      "builds_on": []
     }
   }
 }
