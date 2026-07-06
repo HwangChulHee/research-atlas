@@ -18,6 +18,11 @@ log() { printf '\n>>> %s\n' "$*"; }
 
 cd "${REPO_ROOT}"
 
+# PYTHONPATH 중화 — GitHub 클린 러너와 달리 로컬 셸엔 ROS(jazzy) 등이 PYTHONPATH를
+# 주입해 pytest 수집이 외부 패키지(launch_testing 등)를 끌어와 깨진다(README "개발·테스트"
+# 참고). editable 설치라 절대 import엔 PYTHONPATH가 불필요하므로 비워 hermetic하게 만든다.
+export PYTHONPATH=""
+
 # ── backend ────────────────────────────────────────────────────────────
 log "[backend 1/3] uv sync (의존성 + editable 설치)"
 uv sync
