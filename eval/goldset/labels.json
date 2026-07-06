@@ -7,7 +7,8 @@
     "total": 135,
     "batch2_frozen_at": "2026-06-26",
     "_count_note": "labeled=frozen 50 + 확장 85(학습형RL 13 + 검색시점 19 + RAG강화추론 14 + 질의계획 19 + 마지막 20, batch2 라벨 완료 85/85). total=frozen 50 + b2 keep pool 85. batch2 라벨 freeze(2026-06-26): 채점 기준 고정. 다음: 적재(B안=baseline 재측정+batch2) → out-of-sample 채점. frozen 50(papers.json frozen_at 2026-06-17)·baseline(P0.82/R0.83)은 불변.",
-    "_draft_note_ma": "multiagent_b3 초안 60편 append(2026-07-07, D1~D4). draft:true·미freeze — 사용자 검수 대기. frozen 135(status labels_frozen)·baseline 불변."
+    "_draft_note_ma": "multiagent_b3 초안 60편 append(2026-07-07, D1~D4). draft:true·미freeze — 사용자 검수 대기. frozen 135(status labels_frozen)·baseline 불변.",
+    "_draft_note_eval": "eval_b4 초안 16편 append(2026-07-07, D1~D4). draft:true·미freeze — 사용자 검수 대기. frozen 135(status labels_frozen)·baseline 불변."
   },
   "labels": {
     "2503.09516": {
@@ -1142,6 +1143,114 @@
         "FunSearch"
       ],
       "group": "multiagent_b3",
+      "draft": true
+    },
+    "2309.15817": {
+      "title": "Identifying the Risks of LM Agents with an LM-Emulated Sandbox",
+      "builds_on": [],
+      "group": "eval_b4",
+      "draft": true
+    },
+    "2310.01798": {
+      "title": "Large Language Models Cannot Self-Correct Reasoning Yet",
+      "builds_on": [],
+      "group": "eval_b4",
+      "draft": true
+    },
+    "2310.08560": {
+      "title": "MemGPT: Towards LLMs as Operating Systems",
+      "builds_on": [],
+      "group": "eval_b4",
+      "draft": true
+    },
+    "2401.02777": {
+      "title": "From LLM to Conversational Agent: A Memory Enhanced Architecture with Fine-Tuning of Large Language Models",
+      "builds_on": [
+        "ReAct"
+      ],
+      "group": "eval_b4",
+      "draft": true
+    },
+    "2402.09727": {
+      "title": "A Human-Inspired Reading Agent with Gist Memory of Very Long Contexts",
+      "builds_on": [],
+      "group": "eval_b4",
+      "draft": true
+    },
+    "2404.15269": {
+      "title": "Aligning LLM Agents by Learning Latent Preference from User Edits",
+      "builds_on": [],
+      "group": "eval_b4",
+      "draft": true
+    },
+    "2406.09187": {
+      "title": "GuardAgent: Safeguard LLM Agents by a Guard Agent via Knowledge-Enabled Reasoning",
+      "builds_on": [],
+      "group": "eval_b4",
+      "draft": true
+    },
+    "2406.10400": {
+      "title": "Self-Reflection Makes Large Language Models Safer, Less Biased, and Ideologically Neutral",
+      "builds_on": [],
+      "group": "eval_b4",
+      "draft": true
+    },
+    "2407.01502": {
+      "title": "AI Agents That Matter",
+      "builds_on": [
+        "DSPy"
+      ],
+      "group": "eval_b4",
+      "draft": true
+    },
+    "2409.14908": {
+      "title": "KARMA: Augmenting Embodied AI Agents with Long-and-short Term Memory Systems",
+      "builds_on": [],
+      "group": "eval_b4",
+      "draft": true
+    },
+    "2409.17275": {
+      "title": "On the Vulnerability of Applying Retrieval-Augmented Generation within Knowledge-Intensive Application Domains",
+      "builds_on": [],
+      "group": "eval_b4",
+      "draft": true
+    },
+    "2410.10934": {
+      "title": "Agent-as-a-Judge: Evaluate Agents with Agents",
+      "builds_on": [
+        "LLM-as-a-Judge"
+      ],
+      "group": "eval_b4",
+      "draft": true
+    },
+    "2410.14262": {
+      "title": "Good Parenting is all you need -- Multi-agentic LLM Hallucination Mitigation",
+      "builds_on": [
+        "self-reflection (self-correction)"
+      ],
+      "group": "eval_b4",
+      "draft": true
+    },
+    "2501.00879": {
+      "title": "TrustRAG: Enhancing Robustness and Trustworthiness in Retrieval-Augmented Generation",
+      "builds_on": [],
+      "group": "eval_b4",
+      "draft": true
+    },
+    "2502.11127": {
+      "title": "G-Safeguard: A Topology-Guided Security Lens and Treatment on LLM-based Multi-agent Systems",
+      "builds_on": [
+        "graph neural networks (GNN)"
+      ],
+      "group": "eval_b4",
+      "draft": true
+    },
+    "2502.12110": {
+      "title": "A-MEM: Agentic Memory for LLM Agents",
+      "builds_on": [
+        "Zettelkasten"
+      ],
+      "group": "eval_b4",
       "draft": true
     }
   }
