@@ -44,7 +44,26 @@ uv sync                 # 의존성 + 프로젝트(editable) 설치 → cwd 무�
 uv run pytest           # 순수함수 단위테스트(네트워크·Neo4j 불필요)
 ```
 
-`pipeline`·`backend`·`graphdb`·`prompts`는 설치된 패키지라 `from pipeline import config`처럼 절대 import한다(`sys.path` 조작 없음). push/PR마다 GitHub Actions가 `uv sync + pytest`를 돌린다(`.github/workflows/ci.yml`). 로컬에서 ROS 등으로 `PYTHONPATH`가 주입된 환경이면 `PYTHONPATH= uv run pytest`로 실행.
+`pipeline`·`backend`·`graphdb`·`prompts`는 설치된 패키지라 `from pipeline import config`처럼 절대 import한다(`sys.path` 조작 없음). 로컬에서 ROS 등으로 `PYTHONPATH`가 주입된 환경이면 `PYTHONPATH= uv run pytest`로 실행.
+
+### CI — push 전에 로컬에서
+
+CI는 `git push` 직전 **로컬 pre-push 훅**으로 돈다(GitHub Actions 없음). `scripts/ci_local.sh`가 backend(`uv sync` → `ruff check` → `pytest`)와 frontend(`npm ci` → `npm run lint` → `npm run build`)를 그대로 검사하고, 하나라도 실패하면 push가 막힌다.
+
+새 클론에서 **한 번만** 훅을 활성화하면 된다:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+수동으로 돌려 보려면:
+
+```bash
+bash scripts/ci_local.sh          # 전체(backend + frontend)
+SKIP_FRONTEND=1 bash scripts/ci_local.sh   # frontend 스킵
+```
+
+(node/npm 미설치 환경이면 frontend 단계는 경고 후 자동 스킵된다.)
 
 ## 화면
 

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+# pre-push — push 전에 로컬 CI(scripts/ci_local.sh)를 돌린다.
+# 실패하면 non-zero로 종료해 push를 막는다.
+#
+# 활성화(새 클론에서 한 번):  git config core.hooksPath .githooks
+set -euo pipefail
+
+HOOK_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${HOOK_DIR}/.." && pwd)"
+
+echo ">>> pre-push: 로컬 CI 실행 (scripts/ci_local.sh)"
+bash "${REPO_ROOT}/scripts/ci_local.sh"
