@@ -1,8 +1,7 @@
 {
   "builds_on": [
-    "Tool-Integrated Reasoning",
-    "PPO",
-    "GRPO",
+    "Proximal Policy Optimization",
+    "Group Relative Preference Optimization",
     "Search-R1"
   ]
 }

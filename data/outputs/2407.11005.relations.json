@@ -1,7 +1,5 @@
 {
   "builds_on": [
-    "RAG",
-    "RAGAS",
-    "ARES"
+    "RAG"
   ]
 }

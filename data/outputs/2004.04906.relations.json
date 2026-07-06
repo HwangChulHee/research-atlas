@@ -1,5 +1,6 @@
 {
   "builds_on": [
-    "BERT"
+    "BERT",
+    "dual-encoder"
   ]
 }

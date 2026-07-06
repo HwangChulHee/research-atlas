@@ -1,6 +1,6 @@
 {
   "builds_on": [
-    "Chain-of-thought prompting",
-    "Few-shot prompting"
+    "Chain-of-Thought Prompting",
+    "Few-Shot Prompting"
   ]
 }
