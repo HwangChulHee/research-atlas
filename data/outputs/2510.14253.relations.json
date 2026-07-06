@@ -1,8 +1,8 @@
 {
   "builds_on": [
     "RLVR",
+    "Search-R1",
     "Absolute-Zero",
-    "R-Zero",
-    "Search-R1"
+    "R-Zero"
   ]
 }

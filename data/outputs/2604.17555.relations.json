@@ -1,7 +1,8 @@
 {
   "builds_on": [
-    "Search-R1",
+    "Retrieval-Augmented Generation",
     "ReAct",
-    "GRPO"
+    "Search-R1",
+    "Group Relative Policy Optimization"
   ]
 }

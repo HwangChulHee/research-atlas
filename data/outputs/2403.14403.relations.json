@@ -1,5 +1,7 @@
 {
   "builds_on": [
-    "RAG"
+    "RAG",
+    "Self-RAG",
+    "SKR"
   ]
 }

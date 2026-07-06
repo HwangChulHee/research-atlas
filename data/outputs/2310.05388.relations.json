@@ -1,6 +1,5 @@
 {
   "builds_on": [
-    "BART",
-    "GPT-2"
+    "retrieval-augmented generation"
   ]
 }

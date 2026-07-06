@@ -1,9 +1,6 @@
 {
   "builds_on": [
     "Tool-Integrated Reasoning",
-    "Search-R1",
-    "StepSearch",
-    "ARPO",
-    "ReasonRAG"
+    "Search-R1"
   ]
 }

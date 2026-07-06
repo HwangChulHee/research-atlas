@@ -1,6 +1,7 @@
 {
   "builds_on": [
+    "Deep Research",
     "BrowseComp",
-    "RAG"
+    "GRPO"
   ]
 }

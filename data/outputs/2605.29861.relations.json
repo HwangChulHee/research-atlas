@@ -1,7 +1,6 @@
 {
   "builds_on": [
-    "RAG",
-    "Deep Search",
+    "Retrieval-Augmented Generation",
     "OpenAI Deep Research"
   ]
 }
