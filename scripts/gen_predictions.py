@@ -42,7 +42,7 @@ def main():
 
     groups = [g.strip() for g in args.groups.split(",") if g.strip()]
     ids = ids_for(groups)
-    O = config.OUT_DIR
+    out_dir = config.OUT_DIR
     print(f"대상 {len(ids)}편 (groups={groups}) | extract={args.extract} relate={args.relate} "
           f"force={args.force}")
     print(f"models: extract={config.MODEL_EXTRACT} relate={config.MODEL_RELATE} (relate temp=0)")
@@ -53,20 +53,20 @@ def main():
         copied = 0
         for pid in ids:
             sp = src / f"{pid}.parsed.json"
-            dp = O / f"{pid}.parsed.json"
+            dp = out_dir / f"{pid}.parsed.json"
             if sp.exists() and not dp.exists():
                 shutil.copy2(sp, dp); copied += 1
-        print(f"parsed 복사: {copied}편 ({src} → {O})")
+        print(f"parsed 복사: {copied}편 ({src} → {out_dir})")
 
     n_ex = n_re = n_skip = n_err = 0
     for i, pid in enumerate(ids, 1):
-        parsed = O / f"{pid}.parsed.json"
+        parsed = out_dir / f"{pid}.parsed.json"
         if not parsed.exists():
             print(f"[{i}/{len(ids)}] {pid}: parsed 없음 — skip"); n_err += 1; continue
         text = json.loads(parsed.read_text())["text"]
 
         # extract
-        cpath = O / f"{pid}.concepts.json"
+        cpath = out_dir / f"{pid}.concepts.json"
         if args.extract and (args.force or not cpath.exists()):
             try:
                 c = extract_mod.extract_one(text)
@@ -75,7 +75,7 @@ def main():
                 print(f"[{i}/{len(ids)}] {pid}: EXTRACT ERROR {type(e).__name__}: {e}"); n_err += 1; continue
 
         # relate (concepts 필요)
-        rpath = O / f"{pid}.relations.json"
+        rpath = out_dir / f"{pid}.relations.json"
         if args.relate and (args.force or not rpath.exists()):
             if not cpath.exists():
                 print(f"[{i}/{len(ids)}] {pid}: concepts 없음 — relate skip"); n_err += 1; continue
