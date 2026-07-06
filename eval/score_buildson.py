@@ -135,9 +135,8 @@ SMOKE = {
     "2503.09516": dict(title="SEARCH-R1", TP=2, FP=0, FN=0, P=1.0, R=1.0),
     "2501.12948": dict(title="DeepSeek-R1", TP=1, FP=0, FN=1, P=1.0, R=0.5),
     "2302.04761": dict(title="Toolformer", TP=0, FP=0, FN=0, P=0.0, R=None),
-    # ⚠ HippoRAG 2: few-shot 재측정(53f1ca5)이 부품 'Personalized PageRank'를 FP로 추가 → 퇴행.
-    #   무비판 박제 금지 원칙상 갱신하지 않음(핀은 개선 상태 유지). 사람이 few-shot 드리프트를
-    #   조사·결정할 때까지 스모크는 이 핀에서 의도적으로 FAIL. smoke_rebaseline_report.md §2 참조.
+    # HippoRAG 2: few-shot(1457a62)이 부품 'Personalized PageRank'를 FP로 추가했던 퇴행은
+    #   few-shot 롤백(STEP2, 97ccf0d)으로 해소 → 2/0/0(baseline) 복귀. 스모크 5/5 PASS.
     "2502.14802": dict(title="HippoRAG 2", TP=2, FP=0, FN=0, P=1.0, R=1.0),
     "2509.26383": dict(title="KG-R1", TP=2, FP=0, FN=3, P=1.0, R=0.4),
 }
