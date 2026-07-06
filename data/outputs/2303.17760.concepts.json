@@ -1,0 +1,27 @@
+{
+  "title": "Role-Playing: Autonomous Cooperative Agents with Inception Prompting",
+  "task": [
+    "multi-agent cooperation",
+    "instruction following",
+    "conversational data generation",
+    "code generation",
+    "question answering"
+  ],
+  "defines": [
+    {
+      "name": "role-playing",
+      "definition": "A communicative agent framework that enables autonomous cooperation among chat agents using role-playing and inception prompting to complete tasks with minimal human intervention."
+    }
+  ],
+  "uses": [
+    "inception prompting",
+    "chat-based large language models",
+    "modular agents",
+    "prompting",
+    "data generation pipelines",
+    "data analysis tools"
+  ],
+  "problem": "Chat-based language models depend heavily on human guidance to steer conversations toward task completion, making autonomous cooperation difficult and time-consuming.",
+  "domain": "general",
+  "paper_type": "technique"
+}

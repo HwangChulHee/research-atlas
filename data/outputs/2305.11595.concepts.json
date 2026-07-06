@@ -1,0 +1,24 @@
+{
+  "title": "Examining Inter-Consistency of Large Language Models Collaboration: An In-depth Analysis via Debate",
+  "task": [
+    "commonsense reasoning",
+    "multi-choice reasoning",
+    "LLM collaboration analysis"
+  ],
+  "defines": [
+    {
+      "name": "FORD",
+      "definition": "A formal debate framework for systematically analyzing inter-consistency and collaboration among multiple large language models."
+    }
+  ],
+  "uses": [
+    "debate theory",
+    "fair debate",
+    "mismatched debate",
+    "roundtable debate",
+    "GPT-4 as judge"
+  ],
+  "problem": "Existing work mainly studies self-consistency within a single LLM, leaving the inter-consistency and collaborative behavior among multiple LLMs insufficiently understood.",
+  "domain": "general",
+  "paper_type": "analysis"
+}

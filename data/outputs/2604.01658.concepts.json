@@ -1,0 +1,28 @@
+{
+  "title": "CORAL: Autonomous Multi-Agent Evolution for Open-Ended Discovery",
+  "task": [
+    "open-ended discovery",
+    "mathematical optimization",
+    "algorithm design",
+    "systems optimization"
+  ],
+  "defines": [
+    {
+      "name": "CORAL",
+      "definition": "A framework for autonomous multi-agent evolution on open-ended problems that uses shared persistent memory, asynchronous execution, and heartbeat-based interventions."
+    }
+  ],
+  "uses": [
+    "shared persistent memory",
+    "asynchronous multi-agent execution",
+    "heartbeat-based interventions",
+    "isolated workspaces",
+    "evaluator separation",
+    "resource management",
+    "agent session management",
+    "agent health management"
+  ],
+  "problem": "Existing LLM-based evolutionary search methods rely on fixed heuristics and rigid control, limiting agent autonomy, knowledge accumulation, and parallel exploration on open-ended problems.",
+  "domain": "general",
+  "paper_type": "technique"
+}

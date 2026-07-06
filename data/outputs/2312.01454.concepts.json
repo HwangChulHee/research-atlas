@@ -1,0 +1,31 @@
+{
+  "title": "D-Bot: Database Diagnosis System using Large Language Models",
+  "task": [
+    "database diagnosis",
+    "root cause analysis",
+    "anomaly diagnosis",
+    "optimization advice generation"
+  ],
+  "defines": [
+    {
+      "name": "D-Bot",
+      "definition": "An LLM-based database diagnosis system that automatically extracts diagnosis knowledge from documents and generates well-founded diagnosis reports for database anomalies."
+    }
+  ],
+  "uses": [
+    "offline knowledge extraction",
+    "summary-tree based knowledge extraction",
+    "automatic prompt generation",
+    "knowledge matching",
+    "key metric searching",
+    "tool retrieval",
+    "fine-tuned SentenceBert",
+    "tree search algorithm",
+    "collaborative diagnosis mechanism",
+    "cross reviews",
+    "asynchronous multi-LLM collaboration"
+  ],
+  "problem": "Existing database diagnosis methods are labor-intensive, hard to update, and lack the generalizable reasoning ability needed to diagnose diverse and unseen anomalies quickly.",
+  "domain": "database",
+  "paper_type": "technique"
+}

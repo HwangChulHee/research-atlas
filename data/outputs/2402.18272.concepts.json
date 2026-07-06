@@ -1,0 +1,26 @@
+{
+  "title": "Understanding the Effectiveness of Multi-Agent Discussion for Reasoning with Language Models",
+  "task": [
+    "reasoning",
+    "multi-agent discussion",
+    "experimental analysis"
+  ],
+  "defines": [
+    {
+      "name": "CMD",
+      "definition": "A multi-agent discussion framework that simulates a human group discussion process for reasoning tasks."
+    }
+  ],
+  "uses": [
+    "kick-start prompt",
+    "discussion algorithm",
+    "multiple agents",
+    "single-agent prompting",
+    "demonstrations",
+    "strong LLMs",
+    "weak LLMs"
+  ],
+  "problem": "Prior claims that multi-agent discussion reliably improves LLM reasoning were not fully established, especially compared with strong single-agent prompting.",
+  "domain": "general",
+  "paper_type": "analysis"
+}

@@ -1,0 +1,29 @@
+{
+  "title": "A-MEM: Agentic Memory for LLM Agents",
+  "task": [
+    "LLM agent memory management",
+    "long-term interaction",
+    "memory organization",
+    "retrieval-augmented agent memory"
+  ],
+  "defines": [
+    {
+      "name": "A-MEM",
+      "definition": "A dynamic agentic memory system for LLM agents that creates structured notes, links related memories, and evolves existing memory representations over time."
+    }
+  ],
+  "uses": [
+    "Zettelkasten method",
+    "atomic notes",
+    "dynamic indexing",
+    "linking mechanisms",
+    "structured textual attributes",
+    "embedding vectors",
+    "semantic similarity matching",
+    "shared attribute matching",
+    "T-SNE visualization"
+  ],
+  "problem": "Existing LLM agent memory systems rely on fixed storage schemas and predefined operations, which limits adaptive organization and long-term effectiveness across diverse tasks.",
+  "domain": "general",
+  "paper_type": "technique"
+}

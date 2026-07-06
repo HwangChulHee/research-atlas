@@ -1,0 +1,26 @@
+{
+  "title": "Enhancing Diagnostic Accuracy through Multi-Agent Conversations: Using Large Language Models to Mitigate Cognitive Bias",
+  "task": [
+    "clinical decision support",
+    "diagnostic accuracy improvement",
+    "multi-agent simulation",
+    "cognitive bias mitigation"
+  ],
+  "defines": [
+    {
+      "name": "LLM-driven multi-agent conversation framework",
+      "definition": "A GPT-4-based multi-agent simulation that models clinical team discussion with specialized roles to reduce cognitive bias and improve diagnostic accuracy."
+    }
+  ],
+  "uses": [
+    "GPT-4",
+    "multi-agent framework",
+    "simulated agents",
+    "devil’s advocate role",
+    "tutor/facilitator role",
+    "recorder/summarizer role"
+  ],
+  "problem": "Cognitive biases in clinical decision-making can cause misdiagnosis, and existing approaches have not sufficiently mitigated these errors in challenging cases.",
+  "domain": "medical",
+  "paper_type": "technique"
+}

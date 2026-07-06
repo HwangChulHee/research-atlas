@@ -1,0 +1,27 @@
+{
+  "title": "A Human-Inspired Reading Agent with Gist Memory",
+  "task": [
+    "long-document reading comprehension",
+    "question answering",
+    "meeting summarization",
+    "information lookup",
+    "web navigation"
+  ],
+  "defines": [
+    {
+      "name": "ReadAgent",
+      "definition": "An LLM agent system that reads long inputs by segmenting them into episodes, compressing episodes into gist memories, and interactively looking up relevant original passages when needed."
+    }
+  ],
+  "uses": [
+    "episode pagination",
+    "memory gisting",
+    "episodic gist memory",
+    "interactive look-up",
+    "retrieval methods",
+    "prompting"
+  ],
+  "problem": "LLMs have limited context windows and their performance degrades on long inputs, making them unable to robustly consume and reason over very long documents.",
+  "domain": "general",
+  "paper_type": "technique"
+}

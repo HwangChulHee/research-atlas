@@ -1,0 +1,26 @@
+{
+  "title": "ChatDev: Communicative Agents for Software Development",
+  "task": [
+    "software development",
+    "multi-agent collaboration",
+    "software design",
+    "coding",
+    "testing"
+  ],
+  "defines": [
+    {
+      "name": "ChatDev",
+      "definition": "A chat-powered software development framework that uses multiple LLM-based software agents to collaboratively complete design, coding, and testing through structured communication."
+    }
+  ],
+  "uses": [
+    "large language models",
+    "software agents",
+    "chat chain",
+    "communicative dehallucination",
+    "multi-turn dialogue"
+  ],
+  "problem": "Software development workflows are fragmented across phases, and LLM-based code generation can suffer from hallucinations that reduce completeness, executability, and requirement consistency.",
+  "domain": "software",
+  "paper_type": "technique"
+}

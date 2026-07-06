@@ -1,0 +1,32 @@
+{
+  "title": "AgentLite: A Lightweight Library for LLM Agent Development",
+  "task": [
+    "LLM agent development",
+    "multi-agent systems",
+    "reasoning strategy prototyping",
+    "agent architecture prototyping",
+    "benchmarking evaluation"
+  ],
+  "defines": [
+    {
+      "name": "AgentLite",
+      "definition": "A lightweight, research-oriented library for developing, implementing, and evaluating LLM-based agent and multi-agent systems with task-oriented design and hierarchical orchestration."
+    }
+  ],
+  "uses": [
+    "tool usage",
+    "environment interaction",
+    "ReAct",
+    "Reflection",
+    "ReWOO",
+    "Divergent Think",
+    "manager agent",
+    "prompts",
+    "memory",
+    "Large Language Models",
+    "code execution"
+  ],
+  "problem": "Existing agent libraries are too complex or rigid to easily prototype and evaluate new reasoning strategies and agent architectures for LLM agents.",
+  "domain": "general",
+  "paper_type": "technique"
+}

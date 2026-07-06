@@ -1,0 +1,30 @@
+{
+  "title": "RAISE (Reasoning and Acting through Scratchpad and Examples)",
+  "task": [
+    "conversational agent construction",
+    "multi-turn dialogue",
+    "LLM fine-tuning",
+    "real estate sales conversation"
+  ],
+  "defines": [
+    {
+      "name": "RAISE",
+      "definition": "A conversational agent architecture that enhances ReAct with a scratchpad and retrieved examples to improve context retention, controllability, and adaptability."
+    }
+  ],
+  "uses": [
+    "ReAct",
+    "scratchpad",
+    "retrieval module",
+    "example pool",
+    "conversation selection",
+    "scene extraction",
+    "Chain of Thought completion",
+    "scene augmentation",
+    "LLM training",
+    "memory system"
+  ],
+  "problem": "Existing LLM-based conversational agents struggle to maintain coherent, context-aware, and controllable multi-turn conversations.",
+  "domain": "real estate",
+  "paper_type": "technique"
+}

@@ -1,0 +1,27 @@
+{
+  "title": "WIDESEEK-R1: Exploring Width Scaling for Broad Information Seeking via MARL",
+  "task": [
+    "broad information seeking",
+    "multi-agent orchestration",
+    "parallel information gathering"
+  ],
+  "defines": [
+    {
+      "name": "WIDESEEK-R1",
+      "definition": "A lead-agent–subagent multi-agent system trained with multi-agent reinforcement learning to enable scalable orchestration and parallel execution for broad information seeking."
+    }
+  ],
+  "uses": [
+    "multi-agent reinforcement learning",
+    "lead agent",
+    "subagents",
+    "shared LLM",
+    "isolated contexts",
+    "call_subagent tool",
+    "search tools",
+    "access tools"
+  ],
+  "problem": "Existing multi-agent systems for broad information seeking rely on hand-crafted workflows and serial turn-taking, which limits scalable orchestration, context isolation, and parallel execution.",
+  "domain": "general",
+  "paper_type": "technique"
+}

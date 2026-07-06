@@ -1,0 +1,25 @@
+{
+  "title": "Critical Evaluation of Self-Correction in Large Language Models for Reasoning",
+  "task": [
+    "analysis of self-correction",
+    "reasoning evaluation",
+    "prompting study"
+  ],
+  "defines": [
+    {
+      "name": "intrinsic self-correction",
+      "definition": "A setting in which an LLM attempts to correct its initial responses using only its own internal capabilities, without external feedback."
+    }
+  ],
+  "uses": [
+    "large language models",
+    "self-correction",
+    "multi-agent debate",
+    "self-consistency",
+    "oracle labels",
+    "prompt design"
+  ],
+  "problem": "Prior claims that LLM self-correction improves reasoning are often confounded by external oracle labels, unequal inference cost, and prompt design effects, while intrinsic self-correction itself frequently fails or degrades performance.",
+  "domain": "general",
+  "paper_type": "analysis"
+}

@@ -1,0 +1,32 @@
+{
+  "title": "Learning through Communication: Training LLM Agents via Communication with Linguistic and Non-Linguistic Feedback",
+  "task": [
+    "LLM agent training",
+    "online adaptation",
+    "decision-making",
+    "knowledge-intensive reasoning",
+    "numerical reasoning",
+    "multi-agent collaboration",
+    "multi-agent competition",
+    "teacher-student learning"
+  ],
+  "defines": [
+    {
+      "name": "Learning through Communication (LTC)",
+      "definition": "A universal framework for training LLM agents using both linguistic feedback and non-linguistic reward signals through iterative exploration and policy updating."
+    }
+  ],
+  "uses": [
+    "universal buffer",
+    "iterative pipeline",
+    "replay buffer",
+    "language modeling loss",
+    "PPO loss",
+    "single-agent monologue",
+    "multi-agent dialogue",
+    "teacher-student dialogue"
+  ],
+  "problem": "Existing methods for training LLM agents can only partially use heterogeneous feedback, failing to jointly exploit linguistic trajectories and non-linguistic reward signals.",
+  "domain": "general",
+  "paper_type": "technique"
+}

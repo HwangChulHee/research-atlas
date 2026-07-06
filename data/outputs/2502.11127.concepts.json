@@ -1,0 +1,24 @@
+{
+  "title": "G-Safeguard: A Topology-Guided Security Lens for Robust LLM Multi-Agent Systems",
+  "task": [
+    "multi-agent system security",
+    "adversarial attack detection",
+    "attack remediation"
+  ],
+  "defines": [
+    {
+      "name": "G-Safeguard",
+      "definition": "A topology-guided framework for detecting anomalies and remediating attacks in LLM-based multi-agent systems using a multi-agent utterance graph and graph neural networks."
+    }
+  ],
+  "uses": [
+    "multi-agent utterance graph",
+    "edge-featured graph neural network",
+    "anomaly detection",
+    "topological intervention",
+    "graph pruning"
+  ],
+  "problem": "LLM-based multi-agent systems are vulnerable to adversarial attacks, misinformation propagation, and unintended behaviors, and existing defenses are not topology-aware or transferable across system configurations.",
+  "domain": "general",
+  "paper_type": "technique"
+}

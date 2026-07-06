@@ -1,0 +1,28 @@
+{
+  "title": "Agent-as-a-Judge: Evaluate Agents with Agents",
+  "task": [
+    "evaluation framework",
+    "agentic system evaluation",
+    "code generation benchmark"
+  ],
+  "defines": [
+    {
+      "name": "Agent-as-a-Judge",
+      "definition": "A framework in which agentic systems are used to evaluate other agentic systems, providing intermediate feedback over the full task-solving process."
+    },
+    {
+      "name": "DevAI",
+      "definition": "A benchmark of 55 realistic automated AI development tasks with hierarchical user requirements for evaluating agentic code-generation systems."
+    }
+  ],
+  "uses": [
+    "LLM-as-a-Judge",
+    "human evaluation",
+    "compare-based judge",
+    "metrics-based judge",
+    "hierarchical user requirements"
+  ],
+  "problem": "Existing evaluation methods for agentic systems are too focused on final outcomes or too costly to provide rich intermediate feedback during task solving.",
+  "domain": "code",
+  "paper_type": "benchmark"
+}

@@ -1,0 +1,7 @@
+{
+  "builds_on": [
+    "Chain-of-Thought",
+    "Zero-shot Chain-of-Thought",
+    "The Society of Mind"
+  ]
+}

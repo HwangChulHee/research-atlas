@@ -1,0 +1,29 @@
+{
+  "title": "Generative agent-based modeling with actions grounded in physical, social, or digital space using Concordia",
+  "task": [
+    "agent-based modeling",
+    "social simulation",
+    "generative agents",
+    "digital user simulation",
+    "synthetic data generation",
+    "service evaluation"
+  ],
+  "defines": [
+    {
+      "name": "Concordia",
+      "definition": "A library for constructing and running generative agent-based models in physically, socially, or digitally grounded environments."
+    }
+  ],
+  "uses": [
+    "large language models",
+    "associative memory retrieval",
+    "Game Master",
+    "API calls",
+    "external tools",
+    "digital apps",
+    "social networks"
+  ],
+  "problem": "Traditional agent-based models are too abstract and limited to capture the complexity of real social and digital interactions, and there is no flexible framework for grounded generative simulations.",
+  "domain": "general",
+  "paper_type": "technique"
+}

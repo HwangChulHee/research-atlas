@@ -1,0 +1,27 @@
+{
+  "title": "Self-Adaptive Large Language Model (LLM)-Based Multiagent Systems",
+  "task": [
+    "multiagent system adaptation",
+    "self-adaptive agent design",
+    "agent communication"
+  ],
+  "defines": [
+    {
+      "name": "LLM-based MAPE-K model",
+      "definition": "A self-adaptive multiagent system approach that integrates large language models into the MAPE-K loop to improve agents' communication and adaptation capabilities."
+    }
+  ],
+  "uses": [
+    "LLMs",
+    "GPT-based technologies",
+    "GPT-4",
+    "MAPE-K model",
+    "monitoring",
+    "analysis",
+    "planning",
+    "execution"
+  ],
+  "problem": "Traditional self-adaptive multiagent systems struggle with expressive communication and complex adaptation in dynamic environments.",
+  "domain": "general",
+  "paper_type": "technique"
+}

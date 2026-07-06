@@ -1,0 +1,27 @@
+{
+  "title": "MEDAGENTS: A Multi-disciplinary Collaboration Framework for Medical Question Answering",
+  "task": [
+    "medical question answering",
+    "multi-agent reasoning",
+    "zero-shot inference"
+  ],
+  "defines": [
+    {
+      "name": "MEDAGENTS",
+      "definition": "A training-free multi-agent framework that uses role-playing LLM experts in multi-round discussion to improve medical reasoning and reach a consensus answer."
+    }
+  ],
+  "uses": [
+    "LLM-based agents",
+    "role-playing",
+    "multi-round discussion",
+    "expert gathering",
+    "analysis proposition",
+    "report summarization",
+    "collaborative consultation",
+    "decision making"
+  ],
+  "problem": "LLMs struggle with medical tasks because of limited domain-specific training data, specialized terminology, and the need for strong domain knowledge and reasoning.",
+  "domain": "medical",
+  "paper_type": "technique"
+}

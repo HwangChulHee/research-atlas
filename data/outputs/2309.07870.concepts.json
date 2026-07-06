@@ -1,0 +1,34 @@
+{
+  "title": "AGENTS: An Open-source Library for Autonomous Language Agents",
+  "task": [
+    "autonomous language agent framework",
+    "agent customization",
+    "agent deployment",
+    "multi-agent communication",
+    "human-agent interaction"
+  ],
+  "defines": [
+    {
+      "name": "AGENTS",
+      "definition": "An open-source library and framework for building, customizing, testing, tuning, and deploying autonomous language agents."
+    }
+  ],
+  "uses": [
+    "planning",
+    "memory",
+    "tool usage",
+    "web navigation",
+    "multi-agent communication",
+    "human-agent interaction",
+    "dynamic scheduling",
+    "symbolic plans",
+    "standard operating procedures (SOPs)",
+    "VectorDB",
+    "semantic search",
+    "scratchpad",
+    "retrieval-augmented generation"
+  ],
+  "problem": "Existing language agent demos and frameworks are hard for non-specialists to customize, tune, deploy, and control, and they often lack key agent capabilities and stable behavior.",
+  "domain": "general",
+  "paper_type": "technique"
+}

@@ -1,0 +1,27 @@
+{
+  "title": "Dynamic LLM-Powered Agent Network (DyLAN)",
+  "task": [
+    "multi-agent collaboration",
+    "code generation",
+    "decision-making",
+    "general reasoning",
+    "arithmetic reasoning"
+  ],
+  "defines": [
+    {
+      "name": "DyLAN",
+      "definition": "A two-stage framework for task-oriented LLM agent collaboration that dynamically selects a smaller team of agents and coordinates them in a temporal feed-forward network."
+    }
+  ],
+  "uses": [
+    "temporal feed-forward networks",
+    "agent selection",
+    "Agent Importance Score",
+    "forward-backward message passing",
+    "LLM-powered ranker",
+    "agent team reformation"
+  ],
+  "problem": "Existing LLM agent collaboration methods use fixed team sizes and static communication structures, making them less effective for different tasks and domains.",
+  "domain": "general",
+  "paper_type": "technique"
+}

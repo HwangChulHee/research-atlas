@@ -1,0 +1,36 @@
+{
+  "title": "Chain-of-Agents: Native End-to-End Complex Problem Solving with One Model",
+  "task": [
+    "multi-agent reasoning",
+    "complex problem solving",
+    "web agent tasks",
+    "code agent tasks",
+    "mathematical reasoning",
+    "tool-integrated reasoning"
+  ],
+  "defines": [
+    {
+      "name": "Chain-of-Agents (CoA)",
+      "definition": "A reasoning paradigm that enables one LLM to dynamically activate multiple tool agents and role-playing agents to simulate multi-agent collaboration end-to-end within a single model."
+    },
+    {
+      "name": "Agent Foundation Models (AFMs)",
+      "definition": "Models trained to natively perform Chain-of-Agents problem solving in the same way as a multi-agent system."
+    }
+  ],
+  "uses": [
+    "multi-agent distillation",
+    "agentic supervised fine-tuning",
+    "agentic reinforcement learning",
+    "verifiable agentic tasks",
+    "tool agents",
+    "role-playing agents",
+    "agentic task generation and filtering",
+    "OAgents",
+    "ReAct",
+    "tool-integrated reasoning"
+  ],
+  "problem": "Existing multi-agent systems are computationally inefficient, depend on manual prompt and workflow engineering, and cannot be improved well through data-centric end-to-end training.",
+  "domain": "general",
+  "paper_type": "technique"
+}

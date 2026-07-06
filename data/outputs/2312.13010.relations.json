@@ -1,0 +1,9 @@
+{
+  "builds_on": [
+    "CodeCoT",
+    "MetaGPT",
+    "ChatDev",
+    "AgentVerse",
+    "Self-Edit"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "title": "D-Bot: LLM as DBA",
+  "task": [
+    "database maintenance",
+    "root cause analysis",
+    "diagnosis",
+    "optimization advice"
+  ],
+  "defines": [
+    {
+      "name": "D-Bot",
+      "definition": "An LLM-based database administrator framework that learns maintenance knowledge from documents, interacts with database tools, and performs collaborative diagnosis to provide timely advice."
+    }
+  ],
+  "uses": [
+    "LLMs",
+    "document chunking",
+    "summarization",
+    "external tools",
+    "matching algorithms",
+    "tree of thought reasoning",
+    "tree search",
+    "multi-LLM collaboration",
+    "debate-like communication",
+    "database system views",
+    "metrics"
+  ],
+  "problem": "Existing DBA workflows and traditional database tools are too slow, hard to scale, and too limited in reasoning and document understanding for large-scale database maintenance.",
+  "domain": "database",
+  "paper_type": "technique"
+}

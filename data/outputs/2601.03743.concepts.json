@@ -1,0 +1,26 @@
+{
+  "title": "O-Researcher-SFT/O-Researcher-RL",
+  "task": [
+    "synthetic instructional data generation",
+    "open-source LLM training",
+    "deep research reasoning",
+    "supervised fine-tuning",
+    "reinforcement learning"
+  ],
+  "defines": [
+    {
+      "name": "O-Researcher",
+      "definition": "A multi-agent framework that automatically synthesizes research-grade instructional data and trains open-source LLMs with a two-stage SFT and RL strategy."
+    }
+  ],
+  "uses": [
+    "multi-agent workflow",
+    "collaborative AI agents",
+    "tool-integrated reasoning",
+    "supervised fine-tuning",
+    "reinforcement learning"
+  ],
+  "problem": "Open-source LLMs lag behind closed-source models because they lack access to high-quality training data for complex reasoning tasks.",
+  "domain": "general",
+  "paper_type": "technique"
+}

@@ -1,0 +1,25 @@
+{
+  "title": "Co-NavGPT: Multi-Robot Cooperative Visual Semantic Navigation Using Vision Language Models",
+  "task": [
+    "multi-robot visual target navigation",
+    "visual semantic navigation",
+    "cooperative exploration"
+  ],
+  "defines": [
+    {
+      "name": "Co-NavGPT",
+      "definition": "A multi-robot cooperative visual semantic navigation framework that uses a vision-language model as a global planner to assign frontiers and coordinate exploration."
+    }
+  ],
+  "uses": [
+    "vision-language model (VLM)",
+    "global map aggregation",
+    "sub-map fusion",
+    "robot state encoding",
+    "frontier regions",
+    "frontier assignment"
+  ],
+  "problem": "Existing visual navigation methods are mostly single-robot and lack common-sense reasoning, making them inefficient and less robust in complex unknown environments.",
+  "domain": "robotics",
+  "paper_type": "technique"
+}

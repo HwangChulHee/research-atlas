@@ -1,0 +1,30 @@
+{
+  "title": "Emergent autonomous scientific research capabilities of large language models",
+  "task": [
+    "autonomous scientific experimentation",
+    "scientific planning",
+    "tool-augmented question answering",
+    "robotic laboratory control"
+  ],
+  "defines": [
+    {
+      "name": "Intelligent Agent",
+      "definition": "A multi-LLM agent system that autonomously designs, plans, and executes scientific experiments using external tools and robotic APIs."
+    }
+  ],
+  "uses": [
+    "GPT-3.5",
+    "GPT-4",
+    "Google Search API",
+    "Python interpreter",
+    "documentation index",
+    "web browsing",
+    "robotic experimentation APIs",
+    "liquid handler",
+    "GC-MS",
+    "cloud lab"
+  ],
+  "problem": "General-purpose LLMs are not yet reliable enough to autonomously design, plan, and execute complex scientific experiments across tools and hardware without human intervention.",
+  "domain": "scientific research",
+  "paper_type": "technique"
+}

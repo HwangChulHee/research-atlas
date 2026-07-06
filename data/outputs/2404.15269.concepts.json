@@ -1,0 +1,31 @@
+{
+  "title": "Aligning LLM Agents by Learning Latent Preference from User Edits",
+  "task": [
+    "interactive learning",
+    "language agent alignment",
+    "preference learning",
+    "writing assistance",
+    "summarization",
+    "email writing"
+  ],
+  "defines": [
+    {
+      "name": "PRELUDE",
+      "definition": "A learning framework that infers a user's latent preference description from historic edit data and uses it to prompt future response generation."
+    },
+    {
+      "name": "CIPHER",
+      "definition": "An algorithm that infers context-specific user preferences from edits and retrieves nearby past preferences to form an aggregate preference for generation."
+    }
+  ],
+  "uses": [
+    "LLMs",
+    "user edits",
+    "k-closest contexts",
+    "GPT-4 simulated user",
+    "prompt-based generation"
+  ],
+  "problem": "LLM agents are not well aligned to individual users, and fine-tuning from costly preference feedback does not naturally exploit the rich signal in user edits.",
+  "domain": "general",
+  "paper_type": "technique"
+}

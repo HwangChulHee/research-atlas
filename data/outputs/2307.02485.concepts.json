@@ -1,0 +1,30 @@
+{
+  "title": "CoELA: Cooperative Embodied Language Agents for Decentralized Multi-Agent Cooperation",
+  "task": [
+    "multi-agent cooperation",
+    "embodied planning",
+    "natural language communication",
+    "human-agent interaction"
+  ],
+  "defines": [
+    {
+      "name": "CoELA",
+      "definition": "A cognitive-inspired modular framework for cooperative embodied agents that uses LLMs to perceive, remember, communicate, plan, and execute in decentralized multi-agent tasks."
+    }
+  ],
+  "uses": [
+    "LLMs",
+    "perception module",
+    "memory module",
+    "communication module",
+    "planning module",
+    "execution module",
+    "LoRA",
+    "GPT-4",
+    "LLAMA-2",
+    "CoLLAMA"
+  ],
+  "problem": "Existing embodied multi-agent approaches struggle with decentralized control, partial observation, and costly communication in long-horizon cooperative tasks.",
+  "domain": "embodied multi-agent",
+  "paper_type": "technique"
+}

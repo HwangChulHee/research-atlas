@@ -1,0 +1,33 @@
+{
+  "title": "ProtAgents: Protein discovery by combining physics and machine learning",
+  "task": [
+    "de novo protein design",
+    "protein structure analysis",
+    "protein property prediction",
+    "physics-based simulation",
+    "literature retrieval",
+    "data analysis"
+  ],
+  "defines": [
+    {
+      "name": "ProtAgents",
+      "definition": "A dynamic multi-agent LLM framework for automated protein design and analysis that combines specialized agents and external tools to solve complex protein-related tasks."
+    }
+  ],
+  "uses": [
+    "large language models",
+    "multi-agent system",
+    "group chat manager",
+    "custom functions",
+    "physics simulators",
+    "denoising diffusion model",
+    "fine-tuned transformer model",
+    "retrieval agent",
+    "retrieval augmented generation",
+    "OmegaFold",
+    "Chroma"
+  ],
+  "problem": "Existing protein design methods are often too specialized and cannot flexibly combine out-of-domain knowledge, physics-based simulation, retrieval, and analysis in one automated workflow.",
+  "domain": "protein",
+  "paper_type": "technique"
+}

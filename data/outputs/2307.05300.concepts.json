@@ -1,0 +1,25 @@
+{
+  "title": "Solo Performance Prompting",
+  "task": [
+    "prompting",
+    "creative writing",
+    "collaborative reasoning",
+    "question answering"
+  ],
+  "defines": [
+    {
+      "name": "Solo Performance Prompting (SPP)",
+      "definition": "A zero-shot prompting method that turns a single LLM into a multi-persona collaborator through dynamic persona identification and multi-turn self-collaboration."
+    }
+  ],
+  "uses": [
+    "multiple personas",
+    "dynamic persona identification",
+    "multi-turn self-collaboration",
+    "self-revision",
+    "self-feedback"
+  ],
+  "problem": "Current LLM prompting methods improve reasoning but still suffer from factual hallucination and lack a way to combine diverse knowledge through collaborative perspectives without multiple agents or fine-tuning.",
+  "domain": "general",
+  "paper_type": "technique"
+}

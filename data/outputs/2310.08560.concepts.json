@@ -1,0 +1,27 @@
+{
+  "title": "MemGPT: Towards LLMs as Operating Systems",
+  "task": [
+    "long-context conversation",
+    "document analysis",
+    "conversational agents"
+  ],
+  "defines": [
+    {
+      "name": "MemGPT",
+      "definition": "An OS-inspired LLM system for virtual context management that provides the illusion of extended context by moving information between the model context window and external storage."
+    }
+  ],
+  "uses": [
+    "virtual context management",
+    "hierarchical memory",
+    "function calling",
+    "external data sources",
+    "persistent memory",
+    "memory hierarchy",
+    "event-based control flow",
+    "paging"
+  ],
+  "problem": "Fixed-size LLM context windows limit long conversations and long-document reasoning, and simply scaling context is costly and often ineffective.",
+  "domain": "general",
+  "paper_type": "technique"
+}

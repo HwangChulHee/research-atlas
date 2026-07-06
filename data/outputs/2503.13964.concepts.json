@@ -1,0 +1,27 @@
+{
+  "title": "MDocAgent: A Multi-Modal Multi-Agent Framework for Document Understanding",
+  "task": [
+    "document question answering",
+    "document understanding",
+    "multi-modal reasoning"
+  ],
+  "defines": [
+    {
+      "name": "MDocAgent",
+      "definition": "A multi-modal multi-agent RAG framework for document question answering that integrates text and image evidence through specialized collaborating agents."
+    }
+  ],
+  "uses": [
+    "OCR",
+    "text-based RAG",
+    "image-based RAG",
+    "general agent",
+    "critical agent",
+    "text agent",
+    "image agent",
+    "summarizing agent"
+  ],
+  "problem": "Existing DocQA methods often rely on a single modality and fail to effectively integrate textual and visual cues for complex long-document reasoning.",
+  "domain": "document",
+  "paper_type": "technique"
+}

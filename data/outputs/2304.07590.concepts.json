@@ -1,0 +1,25 @@
+{
+  "title": "Self-collaboration Code Generation via ChatGPT",
+  "task": [
+    "code generation",
+    "multi-agent collaboration",
+    "repository-level code generation"
+  ],
+  "defines": [
+    {
+      "name": "self-collaboration framework",
+      "definition": "A role-instruction-based framework that lets multiple LLM agents collaborate as a virtual software team to solve complex code generation tasks without human intervention."
+    }
+  ],
+  "uses": [
+    "role instructions",
+    "software-development methodology",
+    "analyst",
+    "coder",
+    "tester",
+    "blackboard"
+  ],
+  "problem": "Single LLM agents struggle to generate correct code for complex requirements and repository-level tasks.",
+  "domain": "code",
+  "paper_type": "technique"
+}

@@ -1,0 +1,29 @@
+{
+  "title": "Knowledge-Aware Iterative Retrieval for Multi-Agent Systems",
+  "task": [
+    "open-domain question answering",
+    "multi-step question answering",
+    "retrieval-augmented generation",
+    "iterative retrieval"
+  ],
+  "defines": [
+    {
+      "name": "Knowledge-Aware Iterative Retrieval for Multi-Agent Systems",
+      "definition": "A multi-agent iterative retrieval framework that refines queries and filters evidence using dynamically updated internal knowledge to improve multi-step QA."
+    }
+  ],
+  "uses": [
+    "LLM-based agents",
+    "query planning",
+    "knowledge extraction",
+    "contextual filtering",
+    "internal knowledge cache",
+    "multi-agent sharing",
+    "query refinement",
+    "gap detection",
+    "re-querying"
+  ],
+  "problem": "Conventional RAG and iterative retrieval methods struggle with multi-step reasoning, effective evidence filtering, and avoiding bias-reinforcement loops in open-domain QA.",
+  "domain": "general",
+  "paper_type": "technique"
+}

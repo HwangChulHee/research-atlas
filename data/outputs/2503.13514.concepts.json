@@ -1,0 +1,25 @@
+{
+  "title": "RAG-KG-IL: A Multi-Agent Hybrid Framework for Reducing Hallucinations and Enhancing LLM Reasoning through RAG and Incremental Knowledge Graph Learning Integration",
+  "task": [
+    "question answering",
+    "reasoning",
+    "hallucination reduction",
+    "knowledge integration"
+  ],
+  "defines": [
+    {
+      "name": "RAG-KG-IL",
+      "definition": "A multi-agent hybrid framework that combines retrieval-augmented generation, knowledge graphs, and incremental learning to reduce hallucinations and improve LLM reasoning with continuously updated knowledge."
+    }
+  ],
+  "uses": [
+    "retrieval-augmented generation",
+    "knowledge graphs",
+    "incremental learning",
+    "multi-agent architecture",
+    "autonomous agents"
+  ],
+  "problem": "LLMs struggle to reason with structured knowledge, adapt to dynamic knowledge updates, and avoid hallucinations in mission-critical settings.",
+  "domain": "general",
+  "paper_type": "technique"
+}

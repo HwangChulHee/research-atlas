@@ -1,0 +1,27 @@
+{
+  "title": "MetaAgents: Large Language Model Based Agents for Decision-making on Teaming",
+  "task": [
+    "social simulation",
+    "multi-agent teaming",
+    "team assembly",
+    "decision-making",
+    "job fair simulation"
+  ],
+  "defines": [
+    {
+      "name": "MetaAgents",
+      "definition": "A social simulation framework populated with LLM-based agents that supports multi-turn conversation and sequential decision-making for studying team formation and interpersonal choices."
+    }
+  ],
+  "uses": [
+    "LLM-based agents",
+    "multi-turn conversations",
+    "sequential decision-making",
+    "job fair environment",
+    "task-oriented metrics",
+    "qualitative text analysis"
+  ],
+  "problem": "LLM-based multi-agent systems are largely bound to human-prescribed team compositions and workflows, leaving their ability to autonomously form teams and assign roles in social contexts underexplored.",
+  "domain": "general",
+  "paper_type": "technique"
+}

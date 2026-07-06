@@ -1,0 +1,31 @@
+{
+  "title": "SurgRAW: Multi-Agent Workflow with Chain of Thought Reasoning for Robotic Surgical Video Analysis",
+  "task": [
+    "robotic surgical video analysis",
+    "surgical scene understanding",
+    "workflow recognition",
+    "instrument presence detection",
+    "error detection",
+    "question answering"
+  ],
+  "defines": [
+    {
+      "name": "SurgCoTBench",
+      "definition": "A reasoning-focused benchmark for robotic-assisted surgery with frame-level annotations and QA pairs across multiple surgical tasks."
+    },
+    {
+      "name": "SurgRAW",
+      "definition": "A clinically aligned chain-of-thought driven multi-agent workflow for zero-shot multi-task reasoning in robotic surgery videos."
+    }
+  ],
+  "uses": [
+    "orchestrator",
+    "specialized agents",
+    "panel discussion mechanism",
+    "retrieval-augmented generation",
+    "task-specific chain-of-thought prompts"
+  ],
+  "problem": "Existing surgical AI and VLM methods are fragmented, task-specific, and often lack interpretability and robust reasoning under the domain gap of robotic surgery videos.",
+  "domain": "robotic surgery",
+  "paper_type": "technique"
+}

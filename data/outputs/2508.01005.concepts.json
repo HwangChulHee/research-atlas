@@ -1,0 +1,29 @@
+{
+  "title": "MAO-ARAG: Adaptive Multi-Agent Orchestration for Retrieval-Augmented Generation",
+  "task": [
+    "question answering",
+    "retrieval-augmented generation",
+    "adaptive workflow planning"
+  ],
+  "defines": [
+    {
+      "name": "MAO-ARAG",
+      "definition": "An adaptive multi-turn RAG framework that uses a planner agent to dynamically compose executor agents into query-specific workflows."
+    }
+  ],
+  "uses": [
+    "multi-agent orchestration",
+    "planner agent",
+    "executor agents",
+    "query reformulation",
+    "retriever",
+    "document selection",
+    "answer generation",
+    "Proximal Policy Optimization (PPO)",
+    "outcome-based reward",
+    "cost-based penalty"
+  ],
+  "problem": "Fixed RAG pipelines struggle to handle diverse query types while balancing answer quality, cost, and latency.",
+  "domain": "general",
+  "paper_type": "technique"
+}

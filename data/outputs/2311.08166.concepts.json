@@ -1,0 +1,30 @@
+{
+  "title": "MechAgents: Multi-agent modeling for solving mechanics problems with large language models",
+  "task": [
+    "mechanics problem solving",
+    "elasticity problem solving",
+    "finite element code generation",
+    "code execution and debugging",
+    "result analysis"
+  ],
+  "defines": [
+    {
+      "name": "MechAgents",
+      "definition": "A physics-inspired multi-agent LLM platform that autonomously collaborates to formulate, code, execute, critique, and solve mechanics problems."
+    }
+  ],
+  "uses": [
+    "large language models",
+    "multi-agent frameworks",
+    "finite element methods",
+    "conversable agents",
+    "division of labor",
+    "self-correction",
+    "code execution",
+    "debugging",
+    "postprocessing"
+  ],
+  "problem": "Mechanics simulations require deep expertise in theory, coding, debugging, and analysis, while existing ML approaches lack flexibility for incorporating physical insights and new knowledge.",
+  "domain": "mechanics",
+  "paper_type": "technique"
+}

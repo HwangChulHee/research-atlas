@@ -1,0 +1,29 @@
+{
+  "title": "OptimAI: Leveraging LLM-powered AI Agents for Solving Optimization Problems Described in Natural Language",
+  "task": [
+    "natural language optimization",
+    "mathematical formulation generation",
+    "solver selection",
+    "optimization problem solving"
+  ],
+  "defines": [
+    {
+      "name": "OptimAI",
+      "definition": "A multi-agent framework that solves optimization problems described in natural language by translating them into mathematical formulations and generating executable solution strategies with LLM-powered agents."
+    }
+  ],
+  "uses": [
+    "formulator",
+    "planner",
+    "coder",
+    "code critic",
+    "UCB-based debug scheduling",
+    "plan-before-code strategy",
+    "multi-agent collaboration",
+    "multiple LLMs",
+    "alternative plans"
+  ],
+  "problem": "Formulating natural-language optimization problems into mathematical models and selecting appropriate solvers requires substantial domain expertise, making optimization inaccessible to non-experts.",
+  "domain": "optimization",
+  "paper_type": "technique"
+}

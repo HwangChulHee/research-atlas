@@ -1,0 +1,26 @@
+{
+  "title": "ToolEmu: A Framework for Emulating Tool Use and Safety Evaluation for Language Model Agents",
+  "task": [
+    "agent safety evaluation",
+    "tool-use emulation",
+    "risk analysis",
+    "benchmarking"
+  ],
+  "defines": [
+    {
+      "name": "ToolEmu",
+      "definition": "An LM-based framework that emulates tool execution and sandbox states to test language model agents across diverse tools and scenarios."
+    }
+  ],
+  "uses": [
+    "language models",
+    "tool specifications",
+    "tool inputs",
+    "adversarial emulation",
+    "automatic safety evaluator",
+    "helpfulness evaluator"
+  ],
+  "problem": "Testing language model agents for realistic high-stakes failures is labor-intensive and does not scale to long-tail risks across diverse tools and scenarios.",
+  "domain": "general",
+  "paper_type": "benchmark"
+}

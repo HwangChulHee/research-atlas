@@ -1,0 +1,25 @@
+{
+  "title": "Agent Forest: Scaling LLM Agent Performance with More Agents and Simple Sampling-and-Voting",
+  "task": [
+    "LLM evaluation",
+    "reasoning",
+    "generation",
+    "ensemble methods",
+    "multi-agent collaboration"
+  ],
+  "defines": [
+    {
+      "name": "Agent Forest",
+      "definition": "A simple sampling-and-voting framework that improves LLM performance by instantiating more agents, collecting multiple outputs, and selecting the final result by majority vote."
+    }
+  ],
+  "uses": [
+    "sampling-and-voting",
+    "majority voting",
+    "LLM agents",
+    "CoT-SC"
+  ],
+  "problem": "Existing LLM agent collaboration methods are often complex and lack a dedicated study of whether simply increasing the number of agents can systematically improve performance.",
+  "domain": "general",
+  "paper_type": "analysis"
+}

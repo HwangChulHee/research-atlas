@@ -1,0 +1,30 @@
+{
+  "title": "LLM-based multi-agent system for qualitative data analysis in software engineering",
+  "task": [
+    "qualitative data analysis",
+    "software engineering",
+    "text analysis",
+    "interview transcript analysis"
+  ],
+  "defines": [
+    {
+      "name": "LLM-based multi-agent system",
+      "definition": "A multi-agent LLM system that automates and assists multiple qualitative data analysis approaches in software engineering."
+    }
+  ],
+  "uses": [
+    "large language models",
+    "multi-agent systems",
+    "text summarization",
+    "initial code generation",
+    "theme extraction",
+    "content analysis",
+    "thematic analysis",
+    "narrative analysis",
+    "grounded theory data analysis",
+    "discourse analysis"
+  ],
+  "problem": "Manual qualitative data analysis is time-consuming and difficult to scale, limiting efficiency, validity, and replicability in software engineering research.",
+  "domain": "software engineering",
+  "paper_type": "technique"
+}

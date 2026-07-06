@@ -1,0 +1,30 @@
+{
+  "title": "GenoMAS: Team of AI Scientist",
+  "task": [
+    "gene expression analysis",
+    "scientific automation",
+    "multi-agent code generation",
+    "genomic data analysis"
+  ],
+  "defines": [
+    {
+      "name": "GenoMAS",
+      "definition": "A multi-agent framework for genomic data analysis that coordinates specialized LLM agents to generate, revise, and validate executable code for scientific workflows."
+    }
+  ],
+  "uses": [
+    "LLM-based multi-agent system",
+    "typed message-passing protocols",
+    "guided planning framework",
+    "Action Units",
+    "programming agents",
+    "code reviewer",
+    "data engineer",
+    "domain expert",
+    "PI agent",
+    "task decomposition"
+  ],
+  "problem": "Existing automation approaches for scientific and genomic analysis are either too rigid to handle edge cases or too autonomous to provide the precision and validation needed for rigorous code-driven research.",
+  "domain": "genomic",
+  "paper_type": "technique"
+}

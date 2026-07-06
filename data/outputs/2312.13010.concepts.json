@@ -1,0 +1,25 @@
+{
+  "title": "AgentCoder: A Multi-Agent Framework for Code Generation with Effective Test Generation and Small Token Overhead",
+  "task": [
+    "code generation",
+    "test generation",
+    "program refinement"
+  ],
+  "defines": [
+    {
+      "name": "AgentCoder",
+      "definition": "A three-agent multi-agent framework for code generation that separates programming, test design, and test execution to improve code quality with low token overhead."
+    }
+  ],
+  "uses": [
+    "programmer agent",
+    "test designer agent",
+    "test executor agent",
+    "LLMs",
+    "test cases",
+    "feedback loop"
+  ],
+  "problem": "Existing code generation methods have weak feedback for refinement and often require too many agents, leading to high token overhead and less effective tests.",
+  "domain": "code",
+  "paper_type": "technique"
+}

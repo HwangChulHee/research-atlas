@@ -1,0 +1,27 @@
+{
+  "title": "Co-Evolving Multi-Agent Systems for Self-Evolution in LLM-Based Agents",
+  "task": [
+    "multi-agent reinforcement learning",
+    "LLM agent self-evolution",
+    "interactive reasoning"
+  ],
+  "defines": [
+    {
+      "name": "CoMAS",
+      "definition": "A framework that enables LLM-based agents to improve autonomously by learning from inter-agent interactions without external supervision."
+    }
+  ],
+  "uses": [
+    "LLM-as-a-judge",
+    "intrinsic rewards",
+    "reinforcement learning",
+    "collaborative discussion",
+    "critical discussion",
+    "solution proposal",
+    "evaluation",
+    "scoring"
+  ],
+  "problem": "Existing RL-based self-evolution methods rely on external supervision or individual self-reward signals, which do not capture human-like collective learning through inter-agent interaction.",
+  "domain": "general",
+  "paper_type": "technique"
+}

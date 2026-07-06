@@ -1,0 +1,26 @@
+{
+  "title": "Retrieval-Augmented Generation (RAG) has been empirically shown to enhance the performance of large language models (LLMs) in knowledge-intensive domains such as healthcare, finance, and legal contexts.",
+  "task": [
+    "adversarial robustness analysis",
+    "data poisoning attack study",
+    "defense method development",
+    "medical and legal question answering"
+  ],
+  "defines": [
+    {
+      "name": "orthogonal augmentation",
+      "definition": "A property of dense retrievers in which appending an orthogonal document to a query shifts the resulting embedding in a perpendicular direction while preserving high similarity."
+    }
+  ],
+  "uses": [
+    "dense retrieval systems",
+    "embedding space similarity",
+    "distance metrics",
+    "universal poisoning attacks",
+    "medical Q&A",
+    "legal Q&A"
+  ],
+  "problem": "RAG retrieval systems are vulnerable to universal poisoning attacks, and existing embedding-based defenses such as ℓ2 norm or ℓ2 distance fail to reliably detect poisoned documents.",
+  "domain": "medical",
+  "paper_type": "analysis"
+}

@@ -1,0 +1,30 @@
+{
+  "title": "AGENTVERSE: Facilitating Multi-Agent Collaboration and Exploring Emergent Behaviors in Agents",
+  "task": [
+    "multi-agent collaboration",
+    "autonomous agents",
+    "problem solving",
+    "text understanding",
+    "reasoning",
+    "coding",
+    "tool utilization",
+    "embodied AI"
+  ],
+  "defines": [
+    {
+      "name": "AGENTVERSE",
+      "definition": "A general multi-agent framework that simulates human group problem-solving with dynamic agent recruitment, collaboration, execution, and evaluation."
+    }
+  ],
+  "uses": [
+    "large language models",
+    "expert recruitment",
+    "collaborative decision-making",
+    "action execution",
+    "evaluation",
+    "dynamic group adjustment"
+  ],
+  "problem": "Existing multi-agent systems are limited to narrow tasks and static agent roles, which restricts their generalizability and adaptability in complex real-world problem solving.",
+  "domain": "general",
+  "paper_type": "technique"
+}

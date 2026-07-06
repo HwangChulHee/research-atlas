@@ -1,0 +1,38 @@
+{
+  "title": "Scalable Multi-Robot Collaboration with Large Language Models: Centralized or Decentralized Systems?",
+  "task": [
+    "multi-robot task planning",
+    "multi-agent coordination",
+    "warehouse-like task planning",
+    "3D manipulation planning"
+  ],
+  "defines": [
+    {
+      "name": "DMAS",
+      "definition": "A decentralized multi-agent system where each robot has its own LLM agent and planning proceeds through turn-taking dialogue rounds."
+    },
+    {
+      "name": "CMAS",
+      "definition": "A centralized multi-agent system where a single LLM generates the next action for all robots."
+    },
+    {
+      "name": "HMAS-1",
+      "definition": "A hybrid multi-agent system that augments decentralized planning with a central LLM that provides an initial plan to prime the dialogue."
+    },
+    {
+      "name": "HMAS-2",
+      "definition": "A hybrid multi-agent system that augments centralized planning with robot-local LLM feedback to the central planner."
+    }
+  ],
+  "uses": [
+    "large language models",
+    "in-context learning",
+    "re-prompting",
+    "truncated prompts",
+    "turn-taking dialogue",
+    "state-action information"
+  ],
+  "problem": "Existing LLM-based multi-robot planning approaches do not scale well to many agents and long-horizon tasks because coordination complexity and context-window token limits degrade performance.",
+  "domain": "robotics",
+  "paper_type": "technique"
+}

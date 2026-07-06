@@ -1,0 +1,19 @@
+{
+  "title": "Self-Reflection Can Improve Reasoning, Safety, Bias, and Ideological Leaning of Large Language Models",
+  "task": [
+    "reasoning evaluation",
+    "safety evaluation",
+    "bias evaluation",
+    "ideological leaning evaluation"
+  ],
+  "defines": [],
+  "uses": [
+    "self-reflection",
+    "natural language prompts",
+    "large language models",
+    "chain-of-thought prompting"
+  ],
+  "problem": "Prior work gives conflicting results on whether self-reflection helps LLMs, and it has largely ignored effects on safety, bias, and ideological neutrality.",
+  "domain": "general",
+  "paper_type": "analysis"
+}

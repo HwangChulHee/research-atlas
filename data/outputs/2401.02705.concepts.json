@@ -1,0 +1,28 @@
+{
+  "title": "XUAT-Copilot: Multi-Agent Collaborative System for Automated User Acceptance Testing with Large Language Model",
+  "task": [
+    "automated user acceptance testing",
+    "test script generation",
+    "mobile app testing"
+  ],
+  "defines": [
+    {
+      "name": "XUAT-Copilot",
+      "definition": "An LLM-powered multi-agent collaborative system for automating user acceptance testing by generating and executing test scripts from test cases."
+    }
+  ],
+  "uses": [
+    "LLMs",
+    "multi-agent collaboration",
+    "action planning",
+    "state checking",
+    "parameter selection",
+    "state sensing",
+    "case rewriting",
+    "ADB commands",
+    "GUI information"
+  ],
+  "problem": "Current UAT automation remains labor-intensive because human testers still manually implement test scripts from test cases, especially under condensed instructions, context-sensitive actions, many parameters, and step-by-step correctness requirements.",
+  "domain": "mobile payment",
+  "paper_type": "technique"
+}

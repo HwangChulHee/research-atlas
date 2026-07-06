@@ -1,0 +1,9 @@
+{
+  "builds_on": [
+    "Chain-of-Thought",
+    "Tree of Thought",
+    "Reflexion",
+    "Self-Consistency",
+    "Society of Mind"
+  ]
+}

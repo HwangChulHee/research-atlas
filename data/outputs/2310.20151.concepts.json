@@ -1,0 +1,26 @@
+{
+  "title": "ConsensusLLM: An LLM-Driven Multi-Agent Consensus Seeking Framework",
+  "task": [
+    "multi-agent consensus seeking",
+    "negotiation",
+    "multi-robot aggregation"
+  ],
+  "defines": [
+    {
+      "name": "ConsensusLLM",
+      "definition": "An LLM-driven multi-agent framework for consensus seeking through inter-agent negotiation and iterative state adjustment."
+    }
+  ],
+  "uses": [
+    "large language models",
+    "inter-agent negotiation",
+    "average strategy",
+    "Monte Carlo simulation",
+    "network topology analysis",
+    "personality modeling",
+    "multi-robot aggregation"
+  ],
+  "problem": "LLM-driven multi-agent consensus behavior is not well understood, making it unclear how agents reach agreement and what factors affect convergence or failure.",
+  "domain": "general",
+  "paper_type": "technique"
+}

@@ -1,0 +1,31 @@
+{
+  "title": "L2MAC: Large Language Model Automatic Computer",
+  "task": [
+    "long output generation",
+    "code generation",
+    "system design",
+    "text generation"
+  ],
+  "defines": [
+    {
+      "name": "L2MAC",
+      "definition": "An LLM-based multi-agent stored-program automatic computer framework for generating long and coherent outputs under a fixed context window."
+    },
+    {
+      "name": "Code-L2MAC",
+      "definition": "A practical instantiation of L2MAC for generating large, internally consistent codebases from detailed user-specified tasks."
+    }
+  ],
+  "uses": [
+    "Control Unit",
+    "instruction registry",
+    "file store",
+    "LLM agents",
+    "read/write tools",
+    "syntactic checker",
+    "unit tests"
+  ],
+  "problem": "Fixed context windows and simplistic memory management prevent LLMs from producing long, coherent, and internally consistent outputs such as large codebases.",
+  "domain": "general",
+  "paper_type": "technique"
+}

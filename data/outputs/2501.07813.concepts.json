@@ -1,0 +1,26 @@
+{
+  "title": "RIRS: Routing and Iterative Refining-Solving for Multi-RAG-Agent Question Answering",
+  "task": [
+    "question answering",
+    "multi-agent orchestration",
+    "query routing",
+    "iterative reasoning"
+  ],
+  "defines": [
+    {
+      "name": "RIRS",
+      "definition": "A training-free orchestration framework that routes queries to relevant RAG agents using embedding-space knowledge summaries and iteratively refines complex questions across agents."
+    }
+  ],
+  "uses": [
+    "knowledge summarization",
+    "cluster centroids",
+    "embedding space",
+    "query embedding matching",
+    "iterative aggregation",
+    "question refinement"
+  ],
+  "problem": "In multi-RAG-agent settings, relevant evidence is distributed across private agents, making it hard to choose the right agent and to answer complex questions without centralizing knowledge or broadcasting to all agents.",
+  "domain": "general",
+  "paper_type": "technique"
+}

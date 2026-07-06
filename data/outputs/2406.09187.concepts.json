@@ -1,0 +1,29 @@
+{
+  "title": "GuardAgent: A General Guardrail Agent for LLM Agents",
+  "task": [
+    "agent safety",
+    "guardrail generation",
+    "access control",
+    "safety control"
+  ],
+  "defines": [
+    {
+      "name": "GuardAgent",
+      "definition": "An LLM-based guardrail agent that checks whether target LLM agents' actions satisfy user-specified safety guard requests by generating and executing guardrail code."
+    }
+  ],
+  "uses": [
+    "LLM reasoning",
+    "in-context learning",
+    "memory module",
+    "task planning",
+    "guardrail code generation",
+    "code execution",
+    "external API",
+    "retrieved demonstrations",
+    "callable functions"
+  ],
+  "problem": "Existing LLM guardrails focus on textual input-output moderation and cannot reliably enforce diverse, action-level safety and access-control requests for LLM agents.",
+  "domain": "general",
+  "paper_type": "technique"
+}

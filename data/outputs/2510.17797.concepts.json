@@ -1,0 +1,35 @@
+{
+  "title": "Enterprise Deep Research",
+  "task": [
+    "deep research",
+    "enterprise information retrieval",
+    "multi-agent reasoning",
+    "report generation",
+    "human-in-the-loop steering"
+  ],
+  "defines": [
+    {
+      "name": "Enterprise Deep Research (EDR)",
+      "definition": "A transparent, steerable multi-agent framework for adaptive, interpretable, and user-aligned enterprise research."
+    }
+  ],
+  "uses": [
+    "Master Planning Agent",
+    "General search agent",
+    "Academic search agent",
+    "GitHub search agent",
+    "LinkedIn search agent",
+    "MCP-based tool ecosystem",
+    "NL2SQL",
+    "file analysis",
+    "enterprise workflows",
+    "Visualization Agent",
+    "reflection mechanism",
+    "todo.md",
+    "LangGraph orchestration",
+    "human-in-the-loop guidance"
+  ],
+  "problem": "Enterprise deep research agents are often opaque, rigid, and poorly aligned with user intent, making it difficult to steer reasoning, maintain evidence transparency, and handle enterprise-specific data sources and workflows.",
+  "domain": "enterprise",
+  "paper_type": "technique"
+}

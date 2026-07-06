@@ -1,0 +1,25 @@
+{
+  "title": "Planner-Actor-Reporter: An Embodied Agent Paradigm for Language Model Reasoning",
+  "task": [
+    "embodied reasoning",
+    "instruction following",
+    "zero-shot generalization",
+    "closed-loop planning",
+    "reinforcement learning"
+  ],
+  "defines": [
+    {
+      "name": "Planner-Actor-Reporter",
+      "definition": "A three-part embodied agent paradigm in which a language-model Planner issues instructions to an RL Actor and a Reporter feeds environmental observations back to the Planner."
+    }
+  ],
+  "uses": [
+    "large scale language models",
+    "reinforcement learning",
+    "embodied agent",
+    "closed-loop feedback"
+  ],
+  "problem": "Reinforcement learning agents need large amounts of training data and generalize poorly, while language models can reason but cannot directly act in or observe embodied environments.",
+  "domain": "embodied",
+  "paper_type": "technique"
+}

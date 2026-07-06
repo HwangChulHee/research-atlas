@@ -1,0 +1,28 @@
+{
+  "title": "MANTRA: Enhancing Automated Method-Level Refactoring with Contextual RAG and Multi-Agent LLM Collaboration",
+  "task": [
+    "automated method-level refactoring",
+    "code refactoring",
+    "refactoring verification"
+  ],
+  "defines": [
+    {
+      "name": "MANTRA",
+      "definition": "An end-to-end LLM agent-based framework for automated method-level refactoring that aims to produce compilable, test-passing, and readable refactored code."
+    }
+  ],
+  "uses": [
+    "Context-Aware Retrieval-Augmented Generation",
+    "Multi-Agent collaboration",
+    "Developer Agent",
+    "Reviewer Agent",
+    "Verbal Reinforcement Learning",
+    "self-repair",
+    "compilation checks",
+    "test execution",
+    "PurityChecker"
+  ],
+  "problem": "Existing LLM-based refactoring approaches are limited in scope and lack reliable mechanisms to ensure compilability, test success, and developer-like refactoring quality.",
+  "domain": "code",
+  "paper_type": "technique"
+}

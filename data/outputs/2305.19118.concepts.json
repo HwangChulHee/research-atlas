@@ -1,0 +1,29 @@
+{
+  "title": "Multi-Agent Debate: Boosting the Performance of LLMs via Debating",
+  "task": [
+    "reasoning",
+    "machine translation",
+    "arithmetic reasoning",
+    "multi-agent debate"
+  ],
+  "defines": [
+    {
+      "name": "MAD",
+      "definition": "A multi-agent debate framework that has multiple LLM agents exchange arguments in a tit-for-tat manner under the supervision of a judge to reach a final answer."
+    },
+    {
+      "name": "Degeneration-of-Thought",
+      "definition": "A failure mode in self-reflection where an LLM becomes stuck on its initial stance and cannot generate new thoughts even when the stance is incorrect."
+    }
+  ],
+  "uses": [
+    "self-reflection",
+    "chain-of-thought prompting",
+    "judge model",
+    "adaptive break strategy",
+    "tit for tat"
+  ],
+  "problem": "Self-reflection can suffer from degeneration of thought, causing LLMs to stick to incorrect answers instead of exploring alternative reasoning paths.",
+  "domain": "general",
+  "paper_type": "technique"
+}

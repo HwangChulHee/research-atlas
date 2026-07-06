@@ -1,0 +1,30 @@
+{
+  "title": "AutoNumerics: Autonomous Numerical Solver Construction for Partial Differential Equations via Multi-Agent LLM Reasoning",
+  "task": [
+    "PDE solving",
+    "numerical solver construction",
+    "code generation",
+    "autonomous debugging",
+    "solver verification"
+  ],
+  "defines": [
+    {
+      "name": "AutoNumerics",
+      "definition": "A multi-agent framework that autonomously designs, implements, debugs, and verifies transparent numerical solvers for general PDEs from natural language descriptions."
+    }
+  ],
+  "uses": [
+    "multi-agent LLM reasoning",
+    "planning agent",
+    "coarse-to-fine execution strategy",
+    "residual-based self-verification",
+    "history decimation",
+    "numerical analysis",
+    "finite difference methods",
+    "finite element methods",
+    "spectral methods"
+  ],
+  "problem": "Designing accurate numerical solvers for new PDEs typically requires substantial expertise, manual tuning, and lacks accessible automated debugging and verification.",
+  "domain": "pde",
+  "paper_type": "technique"
+}

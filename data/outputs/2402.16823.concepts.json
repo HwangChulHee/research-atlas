@@ -1,0 +1,31 @@
+{
+  "title": "GPTSwarm: Language Agents as Optimizable Graphs",
+  "task": [
+    "language agents",
+    "multi-agent systems",
+    "prompt engineering",
+    "tool use",
+    "reasoning",
+    "automatic optimization"
+  ],
+  "defines": [
+    {
+      "name": "GPTSwarm",
+      "definition": "A framework that represents language agents as optimizable computational graphs whose nodes perform operations and whose edges encode information flow and agent orchestration."
+    }
+  ],
+  "uses": [
+    "computational graphs",
+    "node optimization",
+    "edge optimization",
+    "prompting",
+    "evolutionary techniques",
+    "reinforcement learning",
+    "tree of thought",
+    "reflexion",
+    "self-consistency"
+  ],
+  "problem": "LLM agent systems are fragmented across disparate codebases and require extensive human engineering to design prompts and orchestrate agent workflows.",
+  "domain": "general",
+  "paper_type": "technique"
+}

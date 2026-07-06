@@ -1,0 +1,23 @@
+{
+  "title": "Paper text (title + abstract + introduction):",
+  "task": [
+    "analysis of agent benchmarks",
+    "evaluation methodology",
+    "benchmark design recommendations",
+    "cost-aware agent optimization"
+  ],
+  "defines": [],
+  "uses": [
+    "Pareto curve",
+    "DSPy",
+    "hold-out sets",
+    "WebArena",
+    "HumanEval",
+    "HotPotQA",
+    "NovelQA",
+    "agent benchmarks"
+  ],
+  "problem": "Current agent benchmarks overemphasize accuracy, conflate evaluation needs, lack proper holdouts, and suffer from poor standardization and reproducibility, making them less useful for real-world agent development.",
+  "domain": "general",
+  "paper_type": "analysis"
+}

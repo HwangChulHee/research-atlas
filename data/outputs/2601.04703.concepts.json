@@ -1,0 +1,28 @@
+{
+  "title": "M-ASK (Multi-Agent Search and Knowledge)",
+  "task": [
+    "agentic search",
+    "multi-hop question answering",
+    "information seeking"
+  ],
+  "defines": [
+    {
+      "name": "M-ASK",
+      "definition": "A multi-agent agentic search framework that separates search behavior from knowledge management and uses turn-level dense rewards for stable coordination."
+    }
+  ],
+  "uses": [
+    "Search Behavior Agents",
+    "Knowledge Management Agents",
+    "Planning Agent",
+    "Search Agent",
+    "Answer Agent",
+    "Summary Agent",
+    "Update Agent",
+    "turn-level rewards",
+    "dense rewards"
+  ],
+  "problem": "Monolithic agentic search systems suffer from long-horizon credit assignment problems, sparse rewards, and search noise that make training unstable and less effective.",
+  "domain": "general",
+  "paper_type": "technique"
+}

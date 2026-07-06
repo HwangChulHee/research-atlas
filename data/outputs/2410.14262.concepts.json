@@ -1,0 +1,25 @@
+{
+  "title": "Good Parenting is all you need\nMulti-agentic LLM Hallucination Mitigation",
+  "task": [
+    "hallucination detection",
+    "hallucination correction",
+    "multi-agent workflow evaluation",
+    "AI-generated content revision"
+  ],
+  "defines": [
+    {
+      "name": "Good Parenting",
+      "definition": "A multi-agent LLM workflow for detecting and correcting hallucinations in generated content through a primary agent and a reviewing agent."
+    }
+  ],
+  "uses": [
+    "primary agent",
+    "reviewing agent",
+    "self-reflection",
+    "feedback loop",
+    "human-in-the-loop verification"
+  ],
+  "problem": "LLM-generated content can contain hallucinations, and existing methods do not adequately integrate detection and correction into autonomous multi-agent workflows.",
+  "domain": "general",
+  "paper_type": "technique"
+}

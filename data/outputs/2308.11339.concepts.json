@@ -1,0 +1,28 @@
+{
+  "title": "ProAgent: Building Proactive Cooperative Agents with Large Language Models",
+  "task": [
+    "multi-agent coordination",
+    "cooperative agents",
+    "zero-shot coordination",
+    "multi-agent planning"
+  ],
+  "defines": [
+    {
+      "name": "ProAgent",
+      "definition": "A modular LLM-based framework for proactive cooperative agents that predicts teammate intentions, validates plans, and adapts behavior through belief correction."
+    }
+  ],
+  "uses": [
+    "large language models",
+    "Planner",
+    "Verificator",
+    "Controller",
+    "Memory",
+    "Belief Correction",
+    "reflection loop",
+    "plan validation"
+  ],
+  "problem": "Learning-based cooperative agents depend heavily on training teammate diversity, which limits their ability to adapt strategically to unfamiliar teammates in zero-shot coordination.",
+  "domain": "general",
+  "paper_type": "technique"
+}

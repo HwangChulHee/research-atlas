@@ -1,0 +1,36 @@
+{
+  "title": "Advancing Multi-Agent RAG Systems with Minimalist Reinforcement Learning",
+  "task": [
+    "multi-turn question answering",
+    "retrieval-augmented generation",
+    "multi-agent reasoning",
+    "reinforcement learning for post-training"
+  ],
+  "defines": [
+    {
+      "name": "Mujica-MyGo",
+      "definition": "A unified framework for efficient multi-turn reasoning in RAG that combines a multi-agent planner-worker workflow with a minimalist reinforcement learning method."
+    },
+    {
+      "name": "Mujica",
+      "definition": "A multi-agent RAG workflow that decomposes complex multi-turn interactions into cooperative sub-interactions to mitigate long-context issues."
+    },
+    {
+      "name": "MyGO",
+      "definition": "A minimalist policy gradient optimization algorithm for post-training LLMs in complex RAG pipelines without relying on in-context learning."
+    }
+  ],
+  "uses": [
+    "Planner",
+    "Worker",
+    "retrieval",
+    "search engines",
+    "summary-based history",
+    "maximum likelihood estimation",
+    "reinforcement learning",
+    "policy gradient optimization"
+  ],
+  "problem": "Multi-turn RAG pipelines create long intermediate contexts and in-context learning prompts that exceed context limits and hurt performance, while post-training such systems is difficult with standard supervised or RL methods.",
+  "domain": "general",
+  "paper_type": "technique"
+}

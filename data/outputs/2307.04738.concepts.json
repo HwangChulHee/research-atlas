@@ -1,0 +1,35 @@
+{
+  "title": "RoCo: A Unified Approach for Multi-Robot Collaboration using Large Language Models",
+  "task": [
+    "multi-robot collaboration",
+    "multi-robot manipulation",
+    "motion planning",
+    "task coordination",
+    "benchmarking"
+  ],
+  "defines": [
+    {
+      "name": "RoCo",
+      "definition": "RoCo is a zero-shot multi-robot collaboration framework that uses LLM agents for natural-language task coordination and for generating sub-task plans and waypoint paths to guide motion planning."
+    },
+    {
+      "name": "RoCoBench",
+      "definition": "RoCoBench is a benchmark of six multi-robot collaboration tasks designed to evaluate coordination, semantics variation, workspace overlap, and agent capability differences."
+    }
+  ],
+  "uses": [
+    "large language models",
+    "dialogue-style task coordination",
+    "sub-task planning",
+    "environment feedback",
+    "collision checking",
+    "IK failure feedback",
+    "task-space waypoint generation",
+    "centralized RRT-sampler",
+    "joint-space motion planning",
+    "text-only dataset"
+  ],
+  "problem": "Multi-robot systems struggle with high-level task allocation, scalable collision-free motion planning, and generalization to new collaboration scenarios without task-specific engineering.",
+  "domain": "robotics",
+  "paper_type": "technique"
+}

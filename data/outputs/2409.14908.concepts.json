@@ -1,0 +1,25 @@
+{
+  "title": "KARMA: A Plug and Play Memory System for Embodied AI Agents",
+  "task": [
+    "embodied agent planning",
+    "household task execution",
+    "memory-augmented prompting"
+  ],
+  "defines": [
+    {
+      "name": "KARMA",
+      "definition": "A plug-and-play memory system for embodied AI agents that combines long-term and short-term memory to improve LLM-based planning for long-sequence household tasks."
+    }
+  ],
+  "uses": [
+    "3D scene graph",
+    "short-term memory",
+    "memory-augmented prompting",
+    "LLM planner",
+    "LRU replacement policy",
+    "hit rate"
+  ],
+  "problem": "Embodied AI agents struggle with in-context memory for long, interconnected household tasks, which leads to inefficient and error-prone execution.",
+  "domain": "household robotics",
+  "paper_type": "technique"
+}

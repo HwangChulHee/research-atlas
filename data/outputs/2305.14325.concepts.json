@@ -1,0 +1,26 @@
+{
+  "title": "Multiagent Debate Improves Reasoning and Factuality in Large Language Models",
+  "task": [
+    "multi-agent debate",
+    "reasoning",
+    "factuality evaluation",
+    "question answering",
+    "benchmarking"
+  ],
+  "defines": [
+    {
+      "name": "Multiagent Debate",
+      "definition": "A black-box prompting procedure where multiple language model instances generate, critique, and revise answers over several debate rounds to reach a consensus final response."
+    }
+  ],
+  "uses": [
+    "multiple language model instances",
+    "critique-and-revise debate rounds",
+    "black-box prompting",
+    "zero-shot chain of thought",
+    "prompt templates"
+  ],
+  "problem": "Single-model prompting methods often produce hallucinations and weak reasoning, and they cannot leverage diverse model opinions to reach more accurate answers.",
+  "domain": "general",
+  "paper_type": "technique"
+}

@@ -1,0 +1,28 @@
+{
+  "title": "Large Language Model-based Actor-Critic (LLaMAC)",
+  "task": [
+    "multi-agent decision making",
+    "planning",
+    "collaborative task solving",
+    "system resource allocation",
+    "robot grid transportation"
+  ],
+  "defines": [
+    {
+      "name": "LLaMAC",
+      "definition": "A modular large-language-model-based actor-critic framework for large-scale multi-agent decision-making that uses a centralized critic and iterative actor interactions to improve coordination and efficiency."
+    }
+  ],
+  "uses": [
+    "actor-critic reinforcement learning",
+    "centralized critic",
+    "TripletCritic",
+    "distributional code for value",
+    "internal feedback",
+    "external feedback",
+    "LLM-based actors"
+  ],
+  "problem": "Large-scale LLM-based multi-agent decision-making suffers from hallucinations, poor coordination, and inefficient token use as the number of agents grows.",
+  "domain": "multi-agent systems",
+  "paper_type": "technique"
+}

@@ -1,0 +1,26 @@
+{
+  "title": "ChatEval: Towards Better LLM Evaluation through Multi-Agent Debate",
+  "task": [
+    "text evaluation",
+    "LLM-as-a-judge",
+    "natural language generation evaluation",
+    "open-ended question answering evaluation"
+  ],
+  "defines": [
+    {
+      "name": "ChatEval",
+      "definition": "A multi-agent referee framework that uses collaborative debate among LLM agents to evaluate the quality of generated text."
+    }
+  ],
+  "uses": [
+    "multi-agent debate",
+    "communication strategies",
+    "diverse role prompts",
+    "personas",
+    "LLMs",
+    "human evaluation-inspired collaboration"
+  ],
+  "problem": "Single-agent LLM evaluators still fall short of human-level judgment quality and can be biased or unstable compared with collaborative human evaluation.",
+  "domain": "general",
+  "paper_type": "technique"
+}

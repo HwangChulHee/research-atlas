@@ -1,0 +1,27 @@
+{
+  "title": "AutoAgents: A framework for dynamically generating and coordinating multiple specialized agents for different tasks",
+  "task": [
+    "multi-agent task solving",
+    "automatic agent generation",
+    "task planning",
+    "collaborative problem solving"
+  ],
+  "defines": [
+    {
+      "name": "AutoAgents",
+      "definition": "A framework that dynamically generates specialized agents and coordinates them through collaborative discussion, planning, and refinement to solve tasks."
+    }
+  ],
+  "uses": [
+    "Planner",
+    "Agent Observer",
+    "Plan Observer",
+    "Action Observer",
+    "self-refinement",
+    "collaborative refinement",
+    "multi-agent discussion"
+  ],
+  "problem": "Existing LLM multi-agent systems rely on predefined or manually specified agents, limiting their adaptability to diverse and complex tasks.",
+  "domain": "general",
+  "paper_type": "technique"
+}

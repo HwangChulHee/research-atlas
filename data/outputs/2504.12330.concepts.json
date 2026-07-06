@@ -1,0 +1,29 @@
+{
+  "title": "HM-RAG: Hierarchical Multi-agent Multimodal Retrieval-Augmented Generation",
+  "task": [
+    "multimodal question answering",
+    "retrieval-augmented generation",
+    "complex query answering"
+  ],
+  "defines": [
+    {
+      "name": "HM-RAG",
+      "definition": "A hierarchical multi-agent multimodal RAG framework that coordinates query decomposition, multi-source retrieval, and decision refinement across heterogeneous data sources."
+    }
+  ],
+  "uses": [
+    "decomposition agent",
+    "semantic-aware query rewriting",
+    "schema-guided context augmentation",
+    "multi-source retrieval agents",
+    "vector databases",
+    "graph databases",
+    "web-based databases",
+    "decision agent",
+    "consistency voting",
+    "Expert Model Refinement"
+  ],
+  "problem": "Conventional single-agent RAG struggles to answer complex queries that require coordinated reasoning over heterogeneous multimodal data sources.",
+  "domain": "multimodal",
+  "paper_type": "technique"
+}

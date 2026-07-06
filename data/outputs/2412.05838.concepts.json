@@ -1,0 +1,27 @@
+{
+  "title": "Multi-Agent RAG Systems for Heterogeneous Data Environments",
+  "task": [
+    "retrieval-augmented generation",
+    "database question answering",
+    "multi-agent system"
+  ],
+  "defines": [
+    {
+      "name": "Multi-Agent RAG system",
+      "definition": "A modular RAG framework that delegates query generation to specialized agents for different data sources and executes queries in a shared compatibility layer before response synthesis."
+    }
+  ],
+  "uses": [
+    "specialized agents",
+    "relational databases",
+    "NoSQL databases",
+    "document-based systems",
+    "graph databases",
+    "modular framework",
+    "execution environment",
+    "generative agent"
+  ],
+  "problem": "Traditional single-agent RAG systems struggle with diverse data sources, causing inefficiency, token overhead, latency, and reduced accuracy.",
+  "domain": "general",
+  "paper_type": "technique"
+}

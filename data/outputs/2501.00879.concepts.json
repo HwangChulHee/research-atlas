@@ -1,0 +1,26 @@
+{
+  "title": "TrustRAG",
+  "task": [
+    "retrieval-augmented generation",
+    "corpus poisoning defense",
+    "robust question answering"
+  ],
+  "defines": [
+    {
+      "name": "TrustRAG",
+      "definition": "A plug-and-play, training-free RAG defense framework that filters malicious and irrelevant retrieved content through clean retrieval and conflict resolution."
+    }
+  ],
+  "uses": [
+    "K-means clustering",
+    "ROUGE score",
+    "embedding distributions",
+    "LLM self-assessment",
+    "internal knowledge extraction",
+    "document grouping",
+    "conflict resolution"
+  ],
+  "problem": "RAG systems are vulnerable to corpus poisoning attacks that inject malicious or irrelevant documents and cause incorrect answers.",
+  "domain": "general",
+  "paper_type": "technique"
+}

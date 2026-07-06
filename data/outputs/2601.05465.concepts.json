@@ -1,0 +1,25 @@
+{
+  "title": "PRISMA: Plan-Retrieve-Inspect-Solve-Memoize Architecture for Real-World Open-Domain Multi-Hop Question Answering",
+  "task": [
+    "open-domain multi-hop question answering",
+    "retrieval-augmented generation",
+    "multi-agent reasoning"
+  ],
+  "defines": [
+    {
+      "name": "PRISMA",
+      "definition": "A decoupled RL-guided multi-agent framework for open-domain multi-hop QA that coordinates planning, retrieval, inspection, solving, and memoization to improve evidence-grounded reasoning."
+    }
+  ],
+  "uses": [
+    "Planner",
+    "Inspector",
+    "Solver",
+    "Memoizer",
+    "Group Relative Policy Optimization",
+    "Observation-Aware Residual Policy Optimization"
+  ],
+  "problem": "Real-world multi-hop RAG systems suffer from retrieval collapse and unstable end-to-end learning, making it hard to reliably find intermediate evidence and generalize across benchmarks.",
+  "domain": "general",
+  "paper_type": "technique"
+}
