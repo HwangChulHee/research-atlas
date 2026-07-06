@@ -5,7 +5,9 @@
 parsed(expansion_ma·expansion_eval) 재사용해 예측 생성 → data/outputs/{id}.{concepts,relations}.json.
 lexicon·normalize 미실행(provisional, 라이브 미오염). ATLAS_OFFLINE.
 """
-import os, json, shutil
+import os
+import json
+import shutil
 os.environ.setdefault("ATLAS_OFFLINE", "1")
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed

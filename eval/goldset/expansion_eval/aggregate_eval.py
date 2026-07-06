@@ -7,7 +7,10 @@
 가드: labels.json round-trip 안정성 확인 후에만 재덤프. papers.json은 외과적 텍스트 삽입.
 frozen 50·RAG 85 라벨/relations 무변경. --write 없으면 dry-run.
 """
-import json, csv, sys, re
+import json
+import csv
+import sys
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]

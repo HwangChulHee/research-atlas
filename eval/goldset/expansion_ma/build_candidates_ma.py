@@ -10,7 +10,10 @@
 dedup 대상 = frozen 50 + RAG batch2 85 + 전체 corpus(data/outputs) + candidates in_corpus.
 출력: expansion_ma/candidates_ma.csv  (paper_name,arxiv_id,source,guo_section,core,in_corpus)
 """
-import csv, glob, json, re
+import csv
+import glob
+import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]

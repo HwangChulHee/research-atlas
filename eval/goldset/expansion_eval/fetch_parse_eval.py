@@ -4,7 +4,8 @@
 사용자 결정(집중: on-topic 평가방법만). 손선별 16편 = 에이전트 메모리 방법 + 평가 방법 +
 RAG/신뢰성 방법(벤치마크·순수 LLM보안 제외). arXiv PDF → parse(abstract+intro) → parsed/.
 """
-import json, time
+import json
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]

@@ -5,7 +5,8 @@ arXiv PDF 다운로드(data/pdfs/, 캐시) → pymupdf parse(abstract+intro, Ref
 → expansion_ma/parsed/{id}.parsed.json. 실패는 parsed/_failed.txt 기록 후 계속.
 data/outputs·lexicon·papers.json 등 무변경.
 """
-import json, time
+import json
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
