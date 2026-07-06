@@ -1,0 +1,158 @@
+paper_name,arxiv_id,source,guo_section,core,in_corpus
+A Collaborative Multi-Agent Approach to Retrieval-Augmented Generation Across Diverse Data,2412.05838,cand:s1,orchestration,core,no
+A fine-tuning enhanced RAG system with quantized influence measure as AI judge,,cand:s1,orchestration,core,no
+A Hybrid RAG System with Comprehensive Enhancement on Complex Reasoning,2408.05141,cand:s1,orchestration,core,no
+Achilles Heel of Distributed Multi-Agent Systems,2504.07461,guo,orchestration,core,no
+Adapting LLM Agents Through Communication,2310.01444,guo,orchestration,core,no
+Advancing Multi-Agent RAG Systems with Minimalist Reinforcement Learning,2505.17086,cand:s3,orchestration,core,no
+AgentCoder: Multi-Agent-based Code Generation with Iterative Testing and Optimisation,2312.13010,guo,problem_solving,core,no
+AgentDisCo: Towards Disentanglement and Collaboration in Open-ended Deep Research Agents,2605.11732,cand:s3,orchestration,core,no
+AgentGym‑RL: Training LLM Agents for Long‑Horizon Decision Making through Multi‑Turn Reinforcement Learning,2509.08755,cand:s3,orchestration,core,no
+Agentic Information Retrieval,2410.09713,cand:s1,orchestration,core,no
+Agentic Reasoning: Reasoning LLMs with Tools for the Deep Research,2502.04644,cand:s1,orchestration,core,no
+AgentLite: A Lightweight Library for Building and Advancing Task-Oriented LLM Agent System,2402.15538,guo,framework,core,no
+Agents: An Open-source Framework for Autonomous Language Agents,2309.07870,guo,framework,core,no
+AgentVerse: Facilitating Multi-Agent Collaboration and Exploring Emergent Behaviors,2308.10848,guo,framework,core,no
+Are More LLM Calls All You Need? Towards Scaling Laws of Compound Inference Systems,2403.02419,guo,framework,core,no
+Argus: Evidence Assembly for Scalable Deep Research Agents,2605.16217,cand:s3,orchestration,core,no
+AutoAgents: A Framework for Automatic Agent Generation,2309.17288,guo,framework,core,no
+"AutoNumerics: An Autonomous, PDE-Agnostic Multi-Agent Pipeline for Scientific Computing",2602.17607,guo,problem_solving,core,no
+Beyond Monolithic Architectures: A Multi-Agent Search and Knowledge Optimization Framework for Agentic Search,2601.04703,cand:s3,orchestration,core,no
+Building Cooperative Embodied Agents Modularly with Large Language Models,2307.02485,guo,problem_solving,core,no
+CAMEL: Communicative Agents for “Mind” Exploration of Large Language Model Society,2303.17760,guo,framework,core,no
+Can Large Language Models Serve as Data Analysts? A Multi-Agent Assisted Approach for Qualitative Data Analysis,2402.01386,guo,problem_solving,core,no
+Chain of Agents: Large Language Models Collaborating on Long-Context Tasks,,cand:s1,orchestration,core,no
+Chain-of-Agents: End-to-End Agent Foundation Models via Multi-Agent Distillation and Agentic RL,2508.13167,cand:s2;s3,orchestration,core,no
+ChatEval: Towards Better LLM-based Evaluators through Multi-Agent Debate,2308.07201,guo,problem_solving,core,no
+ChatGPT Research Group for Optimizing the Crystallinity of MOFs and COFs,,guo,problem_solving,core,no
+ChemCrow: Augmenting large-language models with chemistry tools,2304.05376,guo,problem_solving,core,no
+Co-NavGPT: Multi-Robot Cooperative Visual Semantic Navigation using Large Language Models,2310.07937,guo,problem_solving,core,no
+Collaborating with language models for embodied reasoning,2302.00763,guo,problem_solving,core,no
+CoMAS: Co-Evolving Multi-Agent Systems via Interaction Rewards,2510.08529,guo,orchestration,core,no
+Communicative agents for software development,2307.07924,guo,problem_solving,core,no
+Controlling Large Language Model-based Agents for Large-Scale Decision-Making: An Actor-Critic Approach,2311.13884,guo,orchestration,core,no
+CORAL: Towards Autonomous Multi-Agent Evolution for Open-Ended Discovery,2604.01658,guo,orchestration,core,no
+crewAI. joaomdmoura et al,,guo,orchestration,core,no
+D-Bot: Database Diagnosis System using Large Language Models.  et al,2312.01454,guo,problem_solving,core,no
+Dynamic LLM-Agent Network: An LLM-agent Collaboration Framework with Agent Team Optimization,2310.02170,guo,orchestration,core,no
+Emergent autonomous scientific research capabilities of large language models,2304.05332,guo,problem_solving,core,no
+Encouraging Divergent Thinking in Large Language Models through Multi-Agent Debate,2305.19118,guo,orchestration,core,no
+Enhancing Diagnostic Accuracy through Multi-Agent Conversations: Using Large Language Models to Mitigate Cognitive Bias,2401.14589,guo,problem_solving,core,no
+Enhancing Retrieval Systems with Inference-Time Logical Reasoning,2503.17860,cand:s1,orchestration,core,no
+Enterprise Deep Research: Steerable MultiAgent Deep Research for Enterprise Analytics,2510.17797,cand:s1,orchestration,core,no
+Examining Inter-Consistency of Large Language Models Collaboration: An In-depth Analysis via Debate,2305.11595,guo,problem_solving,core,no
+"Generative agent-based modeling with actions grounded in physical, social, or digital space using Concordia",2312.03664,guo,framework,core,no
+GenoMAS: A Multi-Agent Framework for Scientific Discovery via Code-Driven Gene Expression Analysis,2507.21035,guo,problem_solving,core,no
+HM-RAG: Hierarchical Multi-Agent Multimodal Retrieval Augmented Generation,2504.12330,cand:s1,orchestration,core,no
+Improving Factuality and Reasoning in Language Models through Multiagent Debate,2305.14325,guo,problem_solving,core,no
+In-the-Flow Agentic System Optimization for Effective Planning and Tool Use,2510.05592,cand:s3,orchestration,core,no
+InstructRetro: Instruction Tuning post Retrieval-Augmented Pretraining,2310.07713,cand:s1,orchestration,core,no
+Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions,2212.10509,cand:s1;s2,orchestration,core,no
+INTERS: Unlocking the Power of Large Language Models in Search with Instruction Tuning,2401.06532,cand:s1,orchestration,core,no
+Knowledge-Aware Iterative Retrieval for Multi-Agent Systems,2503.13275,cand:s1,orchestration,core,no
+L2MAC: Large Language Model Automatic Computer for Extensive Code Generation,2310.02003,guo,framework;problem_solving,core,no
+Language Agents as Optimizable Graphs,2402.16823,guo,orchestration,core,no
+LLM As DBA.  et al,2308.05481,guo,problem_solving,core,no
+M-RAG: Reinforcing Large Language Model Performance through Retrieval-Augmented Generation with Multiple Partitions,2405.16420,cand:s1,orchestration,core,no
+MANTRA: Enhancing Automated Method-Level Refactoring with Contextual RAG and Multi-Agent LLM Collaboration,2503.14340,cand:s1,orchestration,core,no
+MAO-ARAG: Multi-Agent Orchestration for Adaptive Retrieval-Augmented Generation,2508.01005,cand:s2;s3,orchestration,core,no
+MDocAgent: A Multi-Modal Multi-Agent Framework for Document Understanding,2503.13964,cand:s1,orchestration,core,no
+"MechAgents: Large language model multi-agent collaborations can solve mechanics problems, generate new data, and integrate knowledge",2311.08166,guo,problem_solving,core,no
+MedAgents: Large Language Models as Collaborators for Zero-shot Medical Reasoning,2311.10537,guo,problem_solving,core,no
+MetaAgents: Simulating Interactions of Human Behaviors for LLM-based Task-oriented Coordination via Collaborative Generative Agents,2310.06500,guo,framework,core,no
+MindSearch: Mimicking Human Minds Elicits Deep AI Searcher,2407.20183,cand:s1,orchestration,core,no
+More Agents Is All You Need,2402.05120,guo,orchestration,core,no
+Multi-Agent Consensus Seeking via Large Language Models,2310.20151,guo,problem_solving;world_sim,core,no
+O-Researcher: An Open Ended Deep Research Model via Multi-Agent Distillation and Agentic RL,2601.03743,cand:s1;s3,orchestration,core,no
+Open Deep Search: Democratizing Search with Open-source Reasoning Agents,2503.20201,cand:s1,orchestration,core,no
+OpenAgents: An Open Platform for Language Agents in the Wild,2310.10634,guo,framework,core,no
+OptimAI: Optimization from Natural Language Using LLM-Powered AI Agents,2504.16918,guo,problem_solving,core,no
+Plan∗RAG: Efficient Test-Time Planning for Retrieval Augmented Generation,2410.20753,cand:s1,orchestration,core,no
+PRISMA: Reinforcement Learning Guided Two-Stage Policy Optimization in Multi-Agent Architecture for Open-Domain Multi-Hop Question Answering,2601.05465,cand:s3,orchestration,core,no
+ProAgent: Building Proactive Cooperative AI with Large Language Models,2308.11339,guo,orchestration,core,no
+ProtAgents: Protein discovery via large language model multi-agent collaborations combining physics and machine learning. A,2402.04268,guo,problem_solving,core,no
+R1-Searcher: Incentivizing the Search Capability in LLMs via Reinforcement Learning,2503.05592,cand:s1;s2;s3;s4,orchestration,core,no
+Ra-dit: Retrieval-augmented dual instruction tuning,,cand:s1,orchestration,core,no
+Raft: Adapting language model to domain specific rag,,cand:s1,orchestration,core,no
+RAG-KG-IL: A Multi-Agent Hybrid Framework for Reducing Hallucinations and Enhancing LLM Reasoning through RAG and Incremental Knowledge Graph Learning Integration,2503.13514,cand:s1,orchestration,core,no
+RAG-RL: Advancing Retrieval-Augmented Generation via RL and Curriculum Learning,2503.12759,cand:s1,orchestration,core,no
+RAG-Studio: Towards In-Domain Adaptation of Retrieval Augmented Generation Through Self-Alignment,,cand:s1,orchestration,core,no
+REAR: A Relevance-Aware Retrieval-Augmented Framework for Open-Domain Question Answering,2402.17497,cand:s1,orchestration,core,no
+ReARTeR: Retrieval-Augmented Reasoning with Trustworthy Process Rewarding,2501.07861,cand:s1,orchestration,core,no
+Rethinking the Bounds of LLM Reasoning: Are Multi-Agent Discussions the Key?,2402.18272,guo,framework,core,no
+RoCo: Dialectic Multi-Robot Collaboration with Large Language Models,2307.04738,guo,problem_solving,core,no
+Scalable Multi-Robot Collaboration with Large Language Models: Centralized or Decentralized Systems?,2309.15943,guo,problem_solving,core,no
+Search Self-play: Pushing the Frontier of Agent Capability without Supervision,2510.18821,cand:s1;s3,orchestration,core,no
+Self-Adaptive Large Language Model (LLM)-Based Multiagent Systems,2307.06187,guo,orchestration,core,no
+Self-collaboration Code Generation via ChatGPT,2304.07590,guo,problem_solving,core,no
+Self-Taught Agentic Long-Context Understanding,2502.15920,cand:s1,orchestration,core,no
+SFR-RAG: Towards Contextually Faithful LLMs,2409.09916,cand:s1,orchestration,core,no
+SIRAG: Towards Stable and Interpretable RAG with a Process‑Supervised Multi‑Agent Framework,2509.18167,cand:s3,orchestration,core,no
+SLA Management in Reconfigurable Multi-Agent RAG: A Systems Approach to Question Answering,2503.10265,cand:s1,orchestration,core,no
+Talk to Right Specialists: Routing and Planning in Multi-agent System for Question Answering,2501.07813,cand:s1,orchestration,core,no
+Universal Deep Research: Bring Your Own Model and Strategy,2509.00244,cand:s1,orchestration,core,no
+Unleashing Cognitive Synergy in Large Language Models: A Task-Solving Agent through Multi-Persona Self-Collaboration,2307.05300,guo,orchestration,core,no
+WebExplorer: Explore and Evolve for Training Long‑Horizon Web Agents,2509.06501,cand:s3,orchestration,core,no
+WebGPT: Browser-assisted question-answering with human feedback,2112.09332,cand:s1,orchestration,core,no
+WideSeek-R1: Exploring Width Scaling for Broad Information Seeking via Multi-Agent Reinforcement Learning,2602.04634,cand:s3,orchestration,core,no
+XUAT-Copilot: Multi-Agent Collaborative System for Automated User Acceptance Testing with Large Language Model,2401.02705,guo,problem_solving,core,no
+AI‑SearchPlanner: Modular Agentic Search via Pareto‑Optimal Multi‑Objective Reinforcement Learning,2508.20368,cand:s2;s3,orchestration,core,yes
+AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation,2308.08155,guo,framework,core,yes
+Collab-RAG: Boosting Retrieval-Augmented Generation for Complex Question Answering via White-Box and Black-Box LLM Collaboration,2504.04915,cand:s1,orchestration,core,yes
+DeepRAG: Thinking to Retrieval Step by Step for Large Language Models,2502.01142,cand:s1;s2;s3,orchestration,core,yes
+DeepResearcher: Scaling Deep Research via Reinforcement Learning in Real-world Environments,2504.03160,cand:s1;s2;s3;s4,orchestration,core,yes
+Improving Retrieval-Augmented Generation through Multi-Agent Reinforcement Learning,2501.15228,cand:s1;s2;s3,orchestration,core,yes
+Measuring and Narrowing the Compositionality Gap in Language Models,2210.03350,cand:s1;s4,orchestration,core,yes
+MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework,2308.00352,guo,framework;problem_solving,core,yes
+OPERA: A Reinforcement Learning–Enhanced Orchestrated Planner‑Executor Architecture for Reasoning‑Oriented Multi‑Hop Retrieval,2508.16438,cand:s2;s3,orchestration,core,yes
+ReAct: Synergizing Reasoning and Acting in Language Models,2210.03629,cand:s1;s2;s4,orchestration,core,yes
+ReSearch: Learning to Reason with Search for LLMs via Reinforcement Learning,2503.19470,cand:s1;s3,orchestration,core,yes
+Search-o1: Agentic Search-Enhanced Large Reasoning Models,2501.05366,cand:s1;s2;s4,orchestration,core,yes
+Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning,2503.09516,cand:s1;s2;s3;s4,orchestration,core,yes
+"Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection",2310.11511,cand:s1;s2;s4,orchestration,core,yes
+Toolformer: Language Models Can Teach Themselves to Use Tools,2302.04761,cand:s1,orchestration,core,yes
+Towards Verifiable Multimodal Deep Research: A Multi-Agent Harness for Interleaved Report Generation,2605.29861,cand:s3,orchestration,core,yes
+ZeroSearch: Incentivize the Search Capability of LLMs without Searching,2505.04588,cand:s1;s2;s3,orchestration,core,yes
+AgentCF: Collaborative Learning with Autonomous Language Agents for Recommender Systems,2310.09233,guo,world_sim,noncore,no
+AlignUSER: Human-Aligned LLM Agents via World Models for Recommender System Evaluation,2601.00930,guo,world_sim,noncore,no
+ALYMPICS: Language Agents Meet Game Theory,2311.03220,guo,world_sim,noncore,no
+Are you in a Masquerade? Exploring the Behavior and Impact of Large Language Model Driven Social Bots in Online Social Networks,2307.10337,guo,world_sim,noncore,no
+AVALONBENCH: Evaluating LLMs Playing the Game of Avalon,2310.05036,guo,world_sim,noncore,no
+Avalon’s Game of Thoughts: Battle Against Deception through Recursive Contemplation,2310.01320,guo,world_sim,noncore,no
+Beyond Offline A/B Testing: Context-Aware Agent Simulation for Recommender System Evaluation,2604.09549,guo,world_sim,noncore,no
+Can Large Language Model Agents Simulate Human Trust Behaviors? Chengxing Xie et al,2402.04559,guo,world_sim,noncore,no
+Can Large Language Models Serve as Rational Players in Game Theory? A Systematic Analysis,2312.05488,guo,world_sim,noncore,no
+Can Large Language Models Transform Computational Social Science?,2305.03514,guo,world_sim,noncore,no
+CitySim: Modeling Urban Behaviors and City Dynamics with Large-Scale LLM-Driven Agent Simulation,2506.21805,guo,world_sim,noncore,no
+CompeteAI: Understanding the Competition Behaviors in Large Language Model-based Agents,2310.17512,guo,world_sim,noncore,no
+Deciphering Digital Detectives: Understanding LLM Behaviors and Capabilities in Multi-Agent Mystery Games,2312.00746,guo,world_sim,noncore,no
+Epidemic modeling with generative agents,2307.04986,guo,world_sim,noncore,no
+Exploring Collaboration Mechanisms for LLM Agents: A Social Psychology View,2310.02124,guo,world_sim,noncore,no
+Exploring Large Language Models for Communication Games: An Empirical Study on Werewolf,2309.04658,guo,world_sim,noncore,no
+GameGPT: Multi-agent Collaborative Framework for Game Development,2310.08067,guo,world_sim,noncore,no
+Generative Agent-Based Modeling: Unveiling Social System Dynamics through Coupling Mechanistic Models with Generative Artificial Intelligence,2309.11456,guo,world_sim,noncore,no
+Implicit Behavioral Alignment of Language Agents in High-Stakes Crowd Simulations Yunzhe Wang et al,,guo,world_sim,noncore,no
+Language Agents with Reinforcement Learning for Strategic Play in the Werewolf Game,2310.18940,guo,world_sim,noncore,no
+Large Language Model Enhanced Multi-Agent Systems for 6G Communications,2312.07850,guo,world_sim,noncore,no
+Large Language Model-Empowered Agents for Simulating Macroeconomic Activities,2310.10436,guo,world_sim,noncore,no
+Large Language Models as Simulated Economic Agents: What Can We Learn from Homo Silicus?,2301.07543,guo,world_sim,noncore,no
+Lyfe Agents: Generative agents for low-cost real-time social interactions,2310.02172,guo,world_sim,noncore,no
+MindAgent: Emergent Gaming Interaction,2309.09971,guo,world_sim,noncore,no
+On Generative Agents in Recommendation,2310.10108,guo,world_sim,noncore,no
+PerceptUI: LLM Agents as Human-Aligned Synthetic Users for UI/UX Evaluation,2606.05697,guo,world_sim,noncore,no
+Playing repeated games with Large Language Models,2305.16867,guo,world_sim,noncore,no
+Quantifying the Impact of Large Language Models on Collective Opinion Dynamics,2308.03313,guo,world_sim,noncore,no
+Rethinking the Buyer’s Inspection Paradox in Information Markets with Language Agents.  et al,,guo,world_sim,noncore,no
+S3 Social-network Simulation System with Large Language Model-Empowered Agents,2307.14984,guo,world_sim,noncore,no
+Simulating Public Administration Crisis: A Novel Generative Agent-Based Simulation System to Lower Technology Barriers in Social Science Research,2311.06957,guo,world_sim,noncore,no
+SimUSER: Simulating User Behavior with Large Language Models for Recommender System Evaluation,2504.12722,guo,world_sim,noncore,no
+Social simulacra: Creating populated prototypes for social computing systems,,guo,world_sim,noncore,no
+The SocialAI School: Insights from Developmental Psychology Towards Artificial Socio-Cultural Agents,2307.07871,guo,world_sim,noncore,no
+Theory of Mind for Multi-Agent Collaboration via Large Language Models,2310.10701,guo,world_sim,noncore,no
+TradingGPT: Multi-Agent System with Layered Memory and Distinct Characters for Enhanced Financial Trading Performance,2309.03736,guo,world_sim,noncore,no
+Understanding the Benefits and Challenges of Using Large Language Model-based Conversational Agents for Mental Well-being Support,2307.15810,guo,world_sim,noncore,no
+User Behavior Simulation with Large Language Model based Agents,2306.02552,guo,world_sim,noncore,no
+Using Large Language Models to Simulate Multiple Humans and Replicate Human Subject Studies,2208.10264,guo,world_sim,noncore,no
+War and Peace (WarAgent): Large Language Model-based Multi-Agent Simulation of World Wars,2311.17227,guo,world_sim,noncore,no
+Welfare Diplomacy: Benchmarking Language Model Cooperation,2310.08901,guo,world_sim,noncore,no
+Generative Agents- Interactive Simulacra of Human Behavior,2304.03442,guo,world_sim,noncore,yes

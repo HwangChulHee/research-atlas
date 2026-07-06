@@ -1,0 +1,174 @@
+{
+ "fetch_ids": [
+  "2302.00763",
+  "2303.17760",
+  "2304.05332",
+  "2304.05376",
+  "2304.07590",
+  "2305.11595",
+  "2305.14325",
+  "2305.19118",
+  "2307.02485",
+  "2307.04738",
+  "2307.05300",
+  "2307.06187",
+  "2307.07924",
+  "2308.05481",
+  "2308.07201",
+  "2308.10848",
+  "2308.11339",
+  "2309.07870",
+  "2309.15943",
+  "2309.17288",
+  "2310.01444",
+  "2310.02003",
+  "2310.02170",
+  "2310.06500",
+  "2310.07937",
+  "2310.10634",
+  "2310.20151",
+  "2311.08166",
+  "2311.10537",
+  "2311.13884",
+  "2312.01454",
+  "2312.03664",
+  "2312.13010",
+  "2401.02705",
+  "2401.14589",
+  "2402.01386",
+  "2402.04268",
+  "2402.05120",
+  "2402.15538",
+  "2402.16823",
+  "2402.18272",
+  "2403.02419",
+  "2412.05838",
+  "2501.07813",
+  "2503.10265",
+  "2503.13275",
+  "2503.13514",
+  "2503.13964",
+  "2503.14340",
+  "2504.07461",
+  "2504.12330",
+  "2504.16918",
+  "2505.17086",
+  "2507.21035",
+  "2508.01005",
+  "2508.13167",
+  "2510.08529",
+  "2510.17797",
+  "2601.03743",
+  "2601.04703",
+  "2601.05465",
+  "2602.04634",
+  "2602.17607",
+  "2604.01658"
+ ],
+ "pre_dropped": [
+  {
+   "id": "2112.09332",
+   "title": "WebGPT: Browser-assisted question-answering with human feedback"
+  },
+  {
+   "id": "2212.10509",
+   "title": "Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions"
+  },
+  {
+   "id": "2310.07713",
+   "title": "InstructRetro: Instruction Tuning post Retrieval-Augmented Pretraining"
+  },
+  {
+   "id": "2401.06532",
+   "title": "INTERS: Unlocking the Power of Large Language Models in Search with Instruction Tuning"
+  },
+  {
+   "id": "2402.17497",
+   "title": "REAR: A Relevance-Aware Retrieval-Augmented Framework for Open-Domain Question Answering"
+  },
+  {
+   "id": "2405.16420",
+   "title": "M-RAG: Reinforcing Large Language Model Performance through Retrieval-Augmented Generation with Multiple Partitions"
+  },
+  {
+   "id": "2407.20183",
+   "title": "MindSearch: Mimicking Human Minds Elicits Deep AI Searcher"
+  },
+  {
+   "id": "2408.05141",
+   "title": "A Hybrid RAG System with Comprehensive Enhancement on Complex Reasoning"
+  },
+  {
+   "id": "2409.09916",
+   "title": "SFR-RAG: Towards Contextually Faithful LLMs"
+  },
+  {
+   "id": "2410.09713",
+   "title": "Agentic Information Retrieval"
+  },
+  {
+   "id": "2410.20753",
+   "title": "Plan∗RAG: Efficient Test-Time Planning for Retrieval Augmented Generation"
+  },
+  {
+   "id": "2501.07861",
+   "title": "ReARTeR: Retrieval-Augmented Reasoning with Trustworthy Process Rewarding"
+  },
+  {
+   "id": "2502.04644",
+   "title": "Agentic Reasoning: Reasoning LLMs with Tools for the Deep Research"
+  },
+  {
+   "id": "2502.15920",
+   "title": "Self-Taught Agentic Long-Context Understanding"
+  },
+  {
+   "id": "2503.05592",
+   "title": "R1-Searcher: Incentivizing the Search Capability in LLMs via Reinforcement Learning"
+  },
+  {
+   "id": "2503.12759",
+   "title": "RAG-RL: Advancing Retrieval-Augmented Generation via RL and Curriculum Learning"
+  },
+  {
+   "id": "2503.17860",
+   "title": "Enhancing Retrieval Systems with Inference-Time Logical Reasoning"
+  },
+  {
+   "id": "2503.20201",
+   "title": "Open Deep Search: Democratizing Search with Open-source Reasoning Agents"
+  },
+  {
+   "id": "2509.00244",
+   "title": "Universal Deep Research: Bring Your Own Model and Strategy"
+  },
+  {
+   "id": "2509.06501",
+   "title": "WebExplorer: Explore and Evolve for Training Long‑Horizon Web Agents"
+  },
+  {
+   "id": "2509.08755",
+   "title": "AgentGym‑RL: Training LLM Agents for Long‑Horizon Decision Making through Multi‑Turn Reinforcement Learning"
+  },
+  {
+   "id": "2509.18167",
+   "title": "SIRAG: Towards Stable and Interpretable RAG with a Process‑Supervised Multi‑Agent Framework"
+  },
+  {
+   "id": "2510.05592",
+   "title": "In-the-Flow Agentic System Optimization for Effective Planning and Tool Use"
+  },
+  {
+   "id": "2510.18821",
+   "title": "Search Self-play: Pushing the Frontier of Agent Capability without Supervision"
+  },
+  {
+   "id": "2605.11732",
+   "title": "AgentDisCo: Towards Disentanglement and Collaboration in Open-ended Deep Research Agents"
+  },
+  {
+   "id": "2605.16217",
+   "title": "Argus: Evidence Assembly for Scalable Deep Research Agents"
+  }
+ ]
+}
