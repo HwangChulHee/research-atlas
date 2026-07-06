@@ -1,0 +1,230 @@
+title,arxiv_id,list,section,is_benchmark,in_corpus
+*Alfonso Amayuelas et al.* [Paper](https://arxiv.org/pdf/2406.14711),2406.14711,trustagent,attack,no,no
+*Bagdasaryan et al.*  [Paper](https://arxiv.org/abs/2307.10490),2307.10490,trustagent,attack,no,no
+*Cheng et al.*  [Paper](https://arxiv.org/abs/2408.11006),2408.11006,trustagent,attack,no,no
+*Donghyun Lee et al.* [Paper](https://arxiv.org/pdf/2410.07283),2410.07283,trustagent,attack,no,no
+*Fang et al.*  [Paper](https://arxiv.org/abs/2404.08144),2404.08144,trustagent,attack,no,no
+*Fu et al.*  [Paper](https://arxiv.org/abs/2310.03185),2310.03185,trustagent,attack,no,no
+*Fu et al.*  [Paper](https://arxiv.org/abs/2410.14923),2410.14923,trustagent,attack,no,no
+*Greshake et al.*  [Paper](https://arxiv.org/abs/2302.12173),2302.12173,trustagent,attack,no,no
+*Jia et al.*  [Paper](https://arxiv.org/abs/2405.21018),2405.21018,trustagent,attack,no,no
+*Jiang et al.*  [Paper](https://arxiv.org/abs/2502.11358),2502.11358,trustagent,attack,no,no
+*Kumar et al.*  [Paper](https://arxiv.org/abs/2309.02705),2309.02705,trustagent,attack,no,no
+*Kumar et al.*  [Paper](https://arxiv.org/abs/2410.13886),2410.13886,trustagent,attack,no,no
+*Liu et al.*  [Paper](https://arxiv.org/abs/2306.05499),2306.05499,trustagent,attack,no,no
+*Liu et al.*  [Paper](https://arxiv.org/abs/2403.04957),2403.04957,trustagent,attack,no,no
+*Miao Yu et al.* [Paper](https://arxiv.org/pdf/2410.15686),2410.15686,trustagent,attack,no,no
+*Nie et al.*  [Paper](https://arxiv.org/abs/2412.05734),2412.05734,trustagent,attack,no,no
+*Pengfei He et al.* [Paper](https://arxiv.org/pdf/2502.14847),2502.14847,trustagent,attack,no,no
+*Perez et al.*  [Paper](https://arxiv.org/abs/2211.09527),2211.09527,trustagent,attack,no,no
+*Shen et al.*  [Paper](https://arxiv.org/abs/2409.18807),2409.18807,trustagent,attack,no,no
+*Shi et al.*  [Paper](https://arxiv.org/abs/2403.17710),2403.17710,trustagent,attack,no,no
+*Tianjie Ju et al.* [Paper](https://arxiv.org/pdf/2407.07791),2407.07791,trustagent,attack,no,no
+*Wang et al.*  [Paper](https://arxiv.org/abs/2406.03007),2406.03007,trustagent,attack,no,no
+*Wang et al.*  [Paper](https://arxiv.org/abs/2410.09040),2410.09040,trustagent,attack,no,no
+*Wang et al.*  [Paper](https://arxiv.org/abs/2411.03814),2411.03814,trustagent,attack,no,no
+*Wang et al.*  [Paper](https://arxiv.org/abs/2412.10198),2412.10198,trustagent,attack,no,no
+*Yang et al.*  [Paper](https://arxiv.org/abs/2402.11208),2402.11208,trustagent,attack,no,no
+*Yu et al.*  [Paper](https://arxiv.org/abs/2501.01593),2501.01593,trustagent,attack,no,no
+*Yu Tian et al.* [Paper](https://arxiv.org/pdf/2311.11855),2311.11855,trustagent,attack,no,no
+*Yuan et al.*  [Paper](https://arxiv.org/abs/2401.06201),2401.06201,trustagent,attack,no,no
+*Zhang et al.*  [Paper](https://arxiv.org/abs/2402.07939),2402.07939,trustagent,attack,no,no
+*Zhang et al.*  [Paper](https://arxiv.org/abs/2407.20859),2407.20859,trustagent,attack,no,no
+*Zhao et al.*  [Paper](https://arxiv.org/abs/2404.16891),2404.16891,trustagent,attack,no,no
+*Zhen Tan et al.* [Paper](https://arxiv.org/pdf/2402.14859),2402.14859,trustagent,attack,no,no
+*Zhenhong Zhou et al.* [Paper](https://arxiv.org/pdf/2502.14529),2502.14529,trustagent,attack,no,no
+*Zhou et al.*  [Paper](https://arxiv.org/abs/2502.05224),2502.05224,trustagent,attack,no,no
+*Zhuang et al.*  [Paper](https://arxiv.org/abs/2306.13304),2306.13304,trustagent,attack,no,no
+*Zihao Wang et al.*  [Paper](https://arxiv.org/abs/2302.01560),2302.01560,trustagent,attack,no,no
+*Zou et al.*  [Paper](https://arxiv.org/abs/2307.15043),2307.15043,trustagent,attack,no,no
+​	  *Aman Priyanshu et al.* [Paper](https://arxiv.org/pdf/2408.16163),2408.16163,trustagent,attack,no,no
+​	  *Haoran Li et al.* [Paper](https://arxiv.org/pdf/2305.03010),2305.03010,trustagent,attack,no,no
+​	  *John X Morris et al.* [Paper](https://arxiv.org/pdf/2310.06816),2310.06816,trustagent,attack,no,no
+​	  *Mark Russinovich et al.* [Paper](https://arxiv.org/pdf/2404.01833),2404.01833,trustagent,attack,no,no
+​	  *Nathaniel Li et al.* [Paper](https://arxiv.org/pdf/2408.15221),2408.15221,trustagent,attack,no,no
+​	  *Terry Tong et al.* [Paper](https://arxiv.org/pdf/2407.04151),2407.04151,trustagent,attack,no,no
+​	  *Yixin Cheng et al.* [Paper](https://arxiv.org/pdf/2402.09177),2402.09177,trustagent,attack,no,no
+​	 *Ang Li et al.* [Paper](https://arxiv.org/pdf/2502.08586),2502.08586,trustagent,attack,no,no
+​	 *Xiangming Gu et al.* [Paper](https://arxiv.org/pdf/2402.08567),2402.08567,trustagent,attack,no,no
+​	 *Zexuan Zhong et al.* [Paper](https://arxiv.org/pdf/2310.19156),2310.19156,trustagent,attack,no,no
+​	  *Divyansh Agarwal et al.* [Paper](https://arxiv.org/pdf/2404.16251),2404.16251,trustagent,attack;defense,no,no
+​	 *Chong Xiang et al.* [Paper](https://arxiv.org/pdf/2405.15556),2405.15556,trustagent,attack;defense,no,no
+​	*Maya Anderson et al.* [Paper](https://arxiv.org/pdf/2405.20446),2405.20446,trustagent,attack;defense,no,no
+​	 *Zhexin Zhang et al.* [Paper](https://arxiv.org/pdf/2412.14470),2412.14470,trustagent,attack;defense;evaluation,no,no
+*Zhu et al.*  [Paper](https://arxiv.org/abs/2502.12575),2502.12575,trustagent,attack;evaluation,no,no
+​	  *Changyue Jiang et al.* [Paper](https://arxiv.org/pdf/2411.14110),2411.14110,trustagent,attack;evaluation,no,no
+​	 *Shenglai Zeng et al.* [Paper](https://arxiv.org/pdf/2402.16893),2402.16893,trustagent,attack;evaluation,no,no
+​	 *Wei Zou et al.* [Paper](https://arxiv.org/pdf/2402.07867),2402.07867,trustagent,attack;evaluation,no,no
+​	 *Zhaorun Chen et al.* [Paper](https://arxiv.org/pdf/2407.12784),2407.12784,trustagent,attack;evaluation,no,no
+*Ayub et al.*  [Paper](https://arxiv.org/abs/2410.22284),2410.22284,trustagent,defense,no,no
+*Chen et al.*  [Paper](https://arxiv.org/abs/2402.06363),2402.06363,trustagent,defense,no,no
+*Chen et al.*  [Paper](https://arxiv.org/abs/2502.09809),2502.09809,trustagent,defense,no,no
+*Chengyu Song et al.* [Paper](https://arxiv.org/pdf/2408.08902),2408.08902,trustagent,defense,no,no
+*Frisch et al.*  [Paper](https://arxiv.org/abs/2402.02896),2402.02896,trustagent,defense,no,no
+*Gao et al.*  [Paper](https://arxiv.org/abs/2404.15269),2404.15269,trustagent,defense,no,no
+*Guang Lin  et al.* [Paper](https://arxiv.org/pdf/2405.20770),2405.20770,trustagent,defense,no,no
+*Kwartler et al.*  [Paper](https://arxiv.org/abs/2410.14262),2410.14262,trustagent,defense,no,no
+*Kwon et al.*  [Paper](https://arxiv.org/abs/2405.19795),2405.19795,trustagent,defense,no,no
+*Pang et al.*  [Paper](https://arxiv.org/abs/2402.05699),2402.05699,trustagent,defense,no,no
+*Shilong Wang  et al.* [Paper](https://arxiv.org/pdf/2502.11127),2502.11127,trustagent,defense,no,no
+*Steffi Chern et al.* [Paper](https://arxiv.org/pdf/2401.05998),2401.05998,trustagent,defense,no,no
+*Tennant et al.*  [Paper](https://arxiv.org/abs/2410.01639),2410.01639,trustagent,defense,no,no
+*Yifan Zeng et al.* [Paper](https://arxiv.org/pdf/2403.04783),2403.04783,trustagent,defense,no,no
+*Zaibin Zhang  et al.* [Paper](https://arxiv.org/pdf/2401.11880),2401.11880,trustagent,defense,no,no
+*Zhang et al.*  [Paper](https://arxiv.org/abs/2402.16444),2402.16444,trustagent,defense,no,no
+​	*Bocheng Chen et al.* [Paper](https://arxiv.org/pdf/2307.09579),2307.09579,trustagent,defense,no,no
+​	*Huichi Zhou et al.* [Paper](https://arxiv.org/pdf/2501.00879),2501.00879,trustagent,defense,no,no
+​	*Shuning Zhang et al.* [Paper](https://arxiv.org/pdf/2410.14931),2410.14931,trustagent,defense,no,no
+​	*Xun Xian et al.* [Paper](https://arxiv.org/pdf/2409.17275),2409.17275,trustagent,defense,no,no
+*Zhen Xiang et al.* [Paper](https://arxiv.org/pdf/2406.09187),2406.09187,trustagent,defense;evaluation,no,no
+AAAR-1.0: Assessing AI's Potential to Assist Research,2410.22394,yehudai,eval_appbench,no,no
+ALMITA: Automated test generation to evaluate tool-augmented LLMs as conversational AI agents,2409.15934,yehudai,eval_appbench,no,no
+AssistantBench: Can Web Agents Solve Realistic and Time-Consuming Tasks?,2407.15711,yehudai,eval_appbench,no,no
+Can LLMs Generate Novel Research Ideas? A Large-Scale Human Study with 100+ NLP Researchers,2409.04109,yehudai,eval_appbench,no,no
+Cybench: A Framework for Evaluating Cybersecurity Capabilities and Risks of Language Models,2408.08926,yehudai,eval_appbench,no,no
+DiscoveryWorld: A Virtual Environment for Developing and Evaluating Automated Scientific Discovery Agents,2406.06769,yehudai,eval_appbench,no,no
+HumanEval: Evaluating Large Language Models Trained on Code,2107.03374,yehudai,eval_appbench,no,no
+Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge,2506.21506,yehudai,eval_appbench,no,no
+Mind2Web: Towards a Generalist Agent for the Web,2306.06070,yehudai,eval_appbench,no,no
+Online-Mind2Web:An Illusion of Progress? Assessing the Current State of Web Agents,2504.01382,yehudai,eval_appbench,no,no
+PaperBench: Evaluating AI's Ability to Replicate AI Research,2504.01848,yehudai,eval_appbench,no,no
+ScienceAgentBench: Toward Rigorous Assessment of Language Agents for Data-Driven Scientific Discovery,2410.05080,yehudai,eval_appbench,no,no
+ScienceQA: Learn to Explain: Multimodal Reasoning via Thought Chains for Science Question Answering,2209.09513,yehudai,eval_appbench,no,no
+ScienceWorld: Is Your Agent Smarter Than a 5th Grader?,2203.07540,yehudai,eval_appbench,no,no
+SMCalFlow: Task-Oriented Dialogue as Dataflow Synthesis,2009.11423,yehudai,eval_appbench,no,no
+SUPER: Evaluating Agents on Setting Up and Executing Tasks from Research Repositories,2409.07440,yehudai,eval_appbench,no,no
+SWELancer: Can Frontier LLMs Earn $1 Million from Real-World Freelance Software Engineering?,2502.12115,yehudai,eval_appbench,no,no
+WebLinX: Real-World Website Navigation with Multi-Turn Dialogue,2402.05930,yehudai,eval_appbench,no,no
+WebShop: Towards Scalable Real-World Web Interaction with Grounded Language Agents,2207.01206,yehudai,eval_appbench,no,no
+WebVoyager: Building an End-to-End Web Agent with Large Multimodal Models,2401.13919,yehudai,eval_appbench,no,no
+MiniWoB++: Reinforcement Learning on Web Interfaces Using Workflow-Guided Exploration,1802.08802,yehudai,eval_appbench;eval_capability,no,no
+IntellAgent: A Multi-Agent Framework for Evaluating Conversational AI Systems,2501.11067,yehudai,eval_appbench;eval_framework,no,no
+AgentBench: Evaluating LLMs as Agents,2308.03688,yehudai,eval_appbench;eval_generalist,no,no
+A Human-Inspired Reading Agent with Gist Memory of Very Long Contexts,2402.09727,yehudai,eval_capability,no,no
+A-Mem: Agentic Memory for LLM Agents,2502.12110,yehudai,eval_capability,no,no
+"ACPBench: Reasoning about Action, Change, and Planning",2410.05669,yehudai,eval_capability,no,no
+ALFWorld: Aligning Text and Embodied Environments for Interactive Learning,2010.03768,yehudai,eval_capability,no,no
+AutoPlanBench: Automating the Generation of Prompts for LLM-based Action Choice in PDDL Planning,2311.09830,yehudai,eval_capability,no,no
+ComplexFuncBench: Exploring Multi-step and Constrained Function Calling under Long-Context Scenario,2501.10132,yehudai,eval_capability,no,no
+FOLIO: Natural Language Reasoning with First-Order Logic,2209.00840,yehudai,eval_capability,no,no
+GSM8K: Training Verifiers to Solve Math Word Problems,2110.14168,yehudai,eval_capability,no,no
+KARMA: Augmenting Embodied AI Agents with Long-and-short Term Memory Systems,2409.14908,yehudai,eval_capability,no,no
+Large Language Models Cannot Self-Correct Reasoning Yet,2310.01798,yehudai,eval_capability,no,no
+LoCoMo: Evaluating Very Long-Term Conversational Memory of LLM Agents,2402.17753,yehudai,eval_capability,no,no
+LogicBench: Towards Systematic Evaluation of Logical Reasoning Ability of Large Language Models,2404.15522,yehudai,eval_capability,no,no
+MemGPT: Towards LLMs as Operating Systems,2310.08560,yehudai,eval_capability,no,no
+MINT: Evaluating LLMs in Multi-turn Interaction with Tools and Language Feedback,2309.10691,yehudai,eval_capability,no,no
+MUSR: Testing the Limits of Chain-of-Thought with Multistep Soft Reasoning,2310.16049,yehudai,eval_capability,no,no
+"QUALITY: Question Answering with Long Input Texts, Yes!",2112.08608,yehudai,eval_capability,no,no
+RAISE: From LLM to Conversational Agent: A Memory Enhanced Architecture with Fine-Tuning of Large Language Models,2401.02777,yehudai,eval_capability,no,no
+RestGPT: Connecting Large Language Models with Real-World RESTful APIs,2306.06624,yehudai,eval_capability,no,no
+"Self-reflection makes Large Language Models safer, less biased, and ideologically neutral",2406.10400,yehudai,eval_capability,no,no
+"Think you have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge",1803.05457,yehudai,eval_capability,no,no
+ToolAlpaca: Generalized Tool Learning for Language Models with 3000 Simulated Cases,2306.05301,yehudai,eval_capability,no,no
+ToolBench: ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs,2307.16789,yehudai,eval_capability,no,no
+ToolEmu: Identifying the Risks of LM Agents with an LM-Emulated Sandbox,2309.15817,trustagent;yehudai,eval_capability;evaluation,no,no
+Agent-as-a-Judge: Evaluate agents with agents,2410.10934,yehudai,eval_framework,no,no
+AI Agents That Matter,2407.01502,yehudai,eval_framework,no,no
+BrowserGym: The BrowserGym Ecosystem for Web Agent Research,2412.05467,yehudai,eval_framework,no,no
+Evaluating Cultural and Social Awareness of LLM Web Agents,2410.23252,yehudai,eval_framework,no,no
+Multi-Agent Risks from Advanced AI,2502.14143,yehudai,eval_framework,no,no
+PersonaGym: Evaluating Persona Agents and LLMs,2407.18416,yehudai,eval_framework,no,no
+RepoST: Scalable Repository-Level Coding Environment Construction with Sandbox Testing,2503.07358,yehudai,eval_framework,no,no
+*Andriushchenko et al.*  [Paper](https://arxiv.org/abs/2410.09024),2410.09024,trustagent;yehudai,eval_framework;evaluation,no,no
+AgentBoard: An Analytical Evaluation Board of Multi-turn LLM Agents,2401.13178,yehudai,eval_generalist,no,no
+*Bolun Sun et al.* [Paper](https://arxiv.org/pdf/2410.11906),2410.11906,trustagent,evaluation,no,no
+*Dorn et al.*  [Paper](https://arxiv.org/abs/2406.01364),2406.01364,trustagent,evaluation,no,no
+*Edoardo Debenedett et al.* [Paper](https://arxiv.org/pdf/2406.13352),2406.13352,trustagent,evaluation,no,no
+*Fan Liu et al.* [Paper](https://arxiv.org/pdf/2410.12855),2410.12855,trustagent,evaluation,no,no
+*Guo et al.*  [Paper](https://arxiv.org/abs/2411.07781),2411.07781,trustagent,evaluation,no,no
+*Javal Vyas et al.* [Paper](https://arxiv.org/pdf/2411.05904),2411.05904,trustagent,evaluation,no,no
+*Jiawei Zhang et al.* [Paper](https://arxiv.org/pdf/2405.14062),2405.14062,trustagent,evaluation,no,no
+*Korir Nancy Jeptoo et al.* [Paper](https://arxiv.org/pdf/2501.11967),2501.11967,trustagent,evaluation,no,no
+*Lucio La Cava et al.* [Paper](https://arxiv.org/pdf/2409.08963),2409.08963,trustagent,evaluation,no,no
+*Richard Fang et al.* [Paper](https://arxiv.org/pdf/2402.06664),2402.06664,trustagent,evaluation,no,no
+*Ruoyu Song et al.* [Paper](https://arxiv.org/pdf/2409.14488),2409.14488,trustagent,evaluation,no,no
+*Shao et al.*  [Paper](https://arxiv.org/abs/2409.00138),2409.00138,trustagent,evaluation,no,no
+*Sheng Yin et al.* [Paper](https://arxiv.org/pdf/2412.13178),2412.13178,trustagent,evaluation,no,no
+*Subhabrata Mukherjee et al.* [Paper](https://arxiv.org/pdf/2403.13313),2403.13313,trustagent,evaluation,no,no
+*Taejin Park.* [Paper](https://arxiv.org/pdf/2403.19735),2403.19735,trustagent,evaluation,no,no
+*Tongxin Yuan et al.* [Paper](https://arxiv.org/pdf/2401.10019),2401.10019,trustagent,evaluation,no,no
+*Xu et al.*  [Paper](https://arxiv.org/abs/2407.16667),2407.16667,trustagent,evaluation,no,no
+*Ye et al.*  [Paper](https://arxiv.org/abs/2402.10753),2402.10753,trustagent,evaluation,no,no
+*Yi Wu et al.* [Paper](https://arxiv.org/pdf/2409.19471),2409.19471,trustagent,evaluation,no,no
+*Yuan et al.*  [Paper](https://arxiv.org/abs/2405.14191),2405.14191,trustagent,evaluation,no,no
+*Zhan et al.*  [Paper](https://arxiv.org/abs/2403.02691),2403.02691,trustagent,evaluation,no,no
+*Zhang et al.*  [Paper](https://arxiv.org/abs/2410.02644),2410.02644,trustagent,evaluation,no,no
+*Zhiping Zhang et al.* [Paper](https://arxiv.org/pdf/2411.01344),2411.01344,trustagent,evaluation,no,no
+*Zhou et al.*  [Paper](https://arxiv.org/abs/2409.16427),2409.16427,trustagent,evaluation,no,no
+*Zichen Chen et al.* [Paper](https://arxiv.org/pdf/2502.15865),2502.15865,trustagent,evaluation,no,no
+*Zihan Liu et al.* [Paper](https://arxiv.org/pdf/2410.14209),2410.14209,trustagent,evaluation,no,no
+*Ziyi Yang et al.* [Paper](https://arxiv.org/pdf/2309.09919),2309.09919,trustagent,evaluation,no,no
+| [Gan et al.](https://arxiv.org/pdf/2411.09523?)    | Agent       | ✅              | ❌       | Atk/Def/Eval    | ❌    |,2411.09523,trustagent,evaluation,no,no
+| [He et al.](https://arxiv.org/pdf/2407.19354)   | Agent       | ❌              | ❌       | Atk/Def         | ❌    |,2407.19354,trustagent,evaluation,no,no
+| [Li et al.](https://arxiv.org/pdf/2401.05459)    | Agent       | ✅              | ❌       | Atk             | ❌    |,2401.05459,trustagent,evaluation,no,no
+| [Liu et al.](https://arxiv.org/pdf/2308.05374)  | LLM         | ✅              | ❌       | Atk/Eval        | ❌    |,2308.05374,trustagent,evaluation,no,no
+| [Wang et al.](https://arxiv.org/pdf/2409.14457)   | Agent       | ❌              | ❌       | Atk             | ❌    |,2409.14457,trustagent,evaluation,no,no
+A Survey on Large Language Model based Autonomous Agents,2308.11432,yehudai,survey,no,no
+A Survey on the Memory Mechanism of Large Language Model based Agents,2404.13501,yehudai,survey,no,no
+Survey on Evaluation of LLM-based Agents,2503.16416,yehudai,survey,no,no
+The Rise and Potential of Large Language Model Based Agents: A Survey,2309.07864,yehudai,survey,no,no
+Understanding the planning of LLM agents: A survey,2402.02716,yehudai,survey,no,no
+Link:,2503.09648,trustagent,trust,no,no
+ABCD: Action-Based Conversations Dataset: A Corpus for Building More In-Depth Task-Oriented Dialogue Systems,2104.00783,yehudai,eval_appbench,yes,no
+BEARCUBS: A benchmark for computer-using web agents,2503.07919,yehudai,eval_appbench,yes,no
+BrowseComp: A Simple Yet Challenging Benchmark for Browsing Agents,2504.12516,yehudai,eval_appbench,yes,no
+CodeARC: Benchmarking Reasoning Capabilities of LLM Agents for Inductive Program Synthesis,2503.23145,yehudai,eval_appbench,yes,no
+CORE-Bench: Fostering the Credibility of Published Research through a Computational Reproducibility Agent Benchmark,2409.11363,yehudai,eval_appbench,yes,no
+GenoTEX: An LLM Agent Benchmark for Automated Gene Expression Data Analysis,2406.15341,yehudai,eval_appbench,yes,no
+IT-Bench: Evaluating AI Agents Across Diverse Real-World IT Automation Tasks,2502.05352,yehudai,eval_appbench,yes,no
+LAB-Bench: Measuring Capabilities of Language Models for Biology Research,2407.10362,yehudai,eval_appbench,yes,no
+MMInA: Benchmarking Multihop Multimodal Internet Agents,2404.09992,yehudai,eval_appbench,yes,no
+QASPER: A Dataset of Information-Seeking Questions and Answers Anchored in Research Papers,2105.03011,yehudai,eval_appbench,yes,no
+SciCode: A Research Coding Benchmark Curated by Scientists,2407.13168,yehudai,eval_appbench,yes,no
+SWE-bench Multimodal: Do AI Systems Generalize to Visual Software Domains?,2410.03859,yehudai,eval_appbench,yes,no
+SWE-bench+,2410.06992,yehudai,eval_appbench,yes,no
+SWE-bench: Can Language Models Resolve Real-World GitHub Issues?,2310.06770,yehudai,eval_appbench,yes,no
+SWT-Bench: Testing and Validating Real-World Bug-Fixes with Code Agents,2406.12952,yehudai,eval_appbench,yes,no
+TDD-Bench Verified: Can LLMs Generate Tests for Issues Before They Get Resolved?,2412.02883,yehudai,eval_appbench,yes,no
+VideoWebArena: Evaluating Long Context Multimodal Agents with Video Understanding Web Tasks,2410.19100,yehudai,eval_appbench,yes,no
+VisualWebArena: Evaluating Multimodal Agents on Realistic Visual Web Tasks,2401.13649,yehudai,eval_appbench,yes,no
+WebArena: A Realistic Web Environment for Building Autonomous Agents,2307.13854,yehudai,eval_appbench,yes,no
+Windows Agent Arena: Evaluating Multi-Modal OS Agents at Scale,2409.08264,yehudai,eval_appbench,yes,no
+WorkArena++: Towards Compositional Planning and Reasoning-Based Common Knowledge Work Tasks,2407.05291,yehudai,eval_appbench,yes,no
+WorkArena: How Capable Are Web Agents at Solving Common Knowledge Work Tasks?,2403.07718,yehudai,eval_appbench,yes,no
+τ-Bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains,2406.12045,yehudai,eval_appbench,yes,no
+LTM-Benchmark: Beyond Prompts: Dynamic Conversational Benchmarking of Large Language Models,2409.20222,yehudai,eval_appbench;eval_capability,yes,no
+MLGym-Bench: A New Framework and Benchmark for Advancing AI Research Agents,2502.14499,yehudai,eval_appbench;eval_framework,yes,no
+ST-WebAgentBench: A Benchmark for Evaluating Safety and Trustworthiness in Web Agents,2410.06703,yehudai,eval_appbench;eval_framework,yes,no
+WebCanvas: Benchmarking Web Agents in Online Environments,2406.12373,yehudai,eval_appbench;eval_framework,yes,no
+AGIEval: A Human-Centric Benchmark for Evaluating Foundation Models,2304.06364,yehudai,eval_capability,yes,no
+API-BLEND: A Comprehensive Corpora for Training and Benchmarking API LLMs,2402.15491,yehudai,eval_capability,yes,no
+"APIBench: Revisiting, Benchmarking and Exploring API Recommendation: How Far Are We?",2112.12653,yehudai,eval_capability,yes,no
+APIGen: Automated Pipeline for Generating Verifiable and Diverse Function-Calling Datasets,2406.18518,yehudai,eval_capability,yes,no
+Challenging BIG-Bench Tasks and Whether Chain-of-Thought Can Solve Them,2210.09261,yehudai,eval_capability,yes,no
+FlowBench: Revisiting and Benchmarking Workflow-Guided Planning for LLM-based Agents,2406.14884,yehudai,eval_capability,yes,no
+"HotpotQA: A Dataset for Diverse, Explainable Multi-hop Question Answering",1809.09600,yehudai,eval_capability,yes,no
+LLF-Bench: Benchmark for Interactive Learning from Language Feedback,2312.06853,yehudai,eval_capability,yes,no
+Measuring Mathematical Problem Solving With the MATH Dataset,2103.03874,yehudai,eval_capability,yes,no
+MedMCQA: A Large-scale Multi-Subject Multi-Choice Dataset for Medical Domain Question Answering,2203.14371,yehudai,eval_capability,yes,no
+Natural Plan: Benchmarking LLMs on Natural Language Planning,2406.04520,yehudai,eval_capability,yes,no
+NESTFUL: A Benchmark for Evaluating LLMs on Nested Sequences of API Calls,2409.03797,yehudai,eval_capability,yes,no
+PlanBench: An Extensible Benchmark for Evaluating Large Language Models on Planning and Reasoning about Change,2206.10498,yehudai,eval_capability,yes,no
+QMSum: A New Benchmark for Query-based Multi-domain Meeting Summarization,2104.05938,yehudai,eval_capability,yes,no
+Reflection-Bench: Probing AI Intelligence with Reflection,2410.16270,yehudai,eval_capability,yes,no
+Seal-Tools: Self-Instruct Tool Learning Dataset for Agent Tuning and Detailed Benchmark,2405.08355,yehudai,eval_capability,yes,no
+StableToolBench: Towards Stable Large-scale Benchmarking on Tool Learning of Large Language Models,2403.07714,yehudai,eval_capability,yes,no
+StreamBench: Towards Benchmarking Continuous Improvement of Language Agents,2406.08747,yehudai,eval_capability,yes,no
+"ToolSandbox: A Stateful, Conversational, Interactive Evaluation Benchmark for LLM Tool Use Capabilities",2408.04682,yehudai,eval_capability,yes,no
+SWE-Gym: Training Software Engineering Agents and Verifiers with SWE-Gym,2412.21139,yehudai,eval_framework,yes,no
+AndroidWorld: A Dynamic Benchmarking Environment for Autonomous Agents,2405.14573,yehudai,eval_generalist,yes,no
+AppWorld: A Controllable World of Apps and People for Benchmarking Interactive Coding Agents,2407.18901,yehudai,eval_generalist,yes,no
+CRMArena: Understanding the Capacity of LLM Agents to Perform Professional CRM Tasks in Realistic Environments,2411.02305,yehudai,eval_generalist,yes,no
+GAIA: A Benchmark for General AI Assistants,2311.12983,yehudai,eval_generalist,yes,no
+OmniACT: A Dataset and Benchmark for Enabling Multimodal Generalist Autonomous Agents for Desktop and Web,2402.17553,yehudai,eval_generalist,yes,no
+OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments,2404.07972,yehudai,eval_generalist,yes,no
+TheAgentCompany: Benchmarking LLM Agents on Consequential Real World Tasks,2412.14161,yehudai,eval_generalist,yes,no
+​	 *Sukmin Cho et al.* [Paper](https://arxiv.org/pdf/2404.13948),2404.13948,trustagent,attack,no,yes
+*Du et al.*  [Paper](https://arxiv.org/abs/2305.14325),2305.14325,trustagent,defense,no,yes
+Game of 24: Tree of Thoughts: Deliberate Problem Solving with Large Language Models,2305.10601,yehudai,eval_capability,no,yes
+Reflexion: Language Agents with Verbal Reinforcement Learning,2303.11366,yehudai,eval_capability,no,yes
