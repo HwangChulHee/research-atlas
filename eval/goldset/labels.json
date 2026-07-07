@@ -3,12 +3,12 @@
     "purpose": "goldset builds_on 정답 (사람 라벨, 채점 정본)",
     "rubric": "lineage-only: 이 논문의 '방법'이 딛고·확장한 방법적 후예(extends/improves/builds-on)만. 점수비교 baseline·부품(PPO/GRPO/MCTS)·데이터셋·툴·self-defined 기법 제외. 본문에 고유명사로 등장한 것만(인용 author-year 풀어넣지 않음). 경계 케이스는 본문 맥락으로 판단.",
     "status": "labels_frozen",
-    "labeled": 135,
-    "total": 135,
+    "labeled": 211,
+    "total": 211,
     "batch2_frozen_at": "2026-06-26",
-    "_count_note": "labeled=frozen 50 + 확장 85(학습형RL 13 + 검색시점 19 + RAG강화추론 14 + 질의계획 19 + 마지막 20, batch2 라벨 완료 85/85). total=frozen 50 + b2 keep pool 85. batch2 라벨 freeze(2026-06-26): 채점 기준 고정. 다음: 적재(B안=baseline 재측정+batch2) → out-of-sample 채점. frozen 50(papers.json frozen_at 2026-06-17)·baseline(P0.82/R0.83)은 불변.",
-    "_draft_note_ma": "multiagent_b3 초안 60편 append(2026-07-07, D1~D4). draft:true·미freeze — 사용자 검수 대기. frozen 135(status labels_frozen)·baseline 불변.",
-    "_draft_note_eval": "eval_b4 초안 16편 append(2026-07-07, D1~D4). draft:true·미freeze — 사용자 검수 대기. frozen 135(status labels_frozen)·baseline 불변."
+    "_count_note": "labeled=total=211 = frozen 50 + RAG batch2 85 + multiagent_b3 60 + eval_b4 16. multiagent_b3·eval_b4 freeze 2026-07-07(A5·§3 RAG통일 반영 후). frozen 50(2026-06-17)·RAG85(2026-06-26)·baseline 불변. C1 lexicon 노드 추가는 별도(gold freeze와 독립).",
+    "multiagent_b3_frozen_at": "2026-07-07",
+    "eval_b4_frozen_at": "2026-07-07"
   },
   "labels": {
     "2503.09516": {
@@ -750,195 +750,135 @@
     },
     "2302.00763": {
       "title": "Collaborating with language models for embodied reasoning",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2303.17760": {
       "title": "CAMEL: Communicative Agents for \"Mind\" Exploration of Large Language Model Society",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2304.05332": {
       "title": "Emergent autonomous scientific research capabilities of large language models",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2304.07590": {
       "title": "Self-collaboration Code Generation via ChatGPT",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2305.11595": {
       "title": "Examining Inter-Consistency of Large Language Models Collaboration: An In-depth Analysis via Debate",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2305.14325": {
       "title": "Improving Factuality and Reasoning in Language Models through Multiagent Debate",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2305.19118": {
       "title": "Encouraging Divergent Thinking in Large Language Models through Multi-Agent Debate",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2307.02485": {
       "title": "Building Cooperative Embodied Agents Modularly with Large Language Models",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2307.04738": {
       "title": "RoCo: Dialectic Multi-Robot Collaboration with Large Language Models",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2307.05300": {
       "title": "Unleashing Cognitive Synergy in Large Language Models: A Task-Solving Agent through Multi-Persona Self-Collaboration",
       "builds_on": [
         "CAMEL",
         "ExpertPrompting"
-      ],
-      "group": "multiagent_b3",
-      "draft": true
+      ]
     },
     "2307.06187": {
       "title": "Self-Adaptive Large Language Model (LLM)-Based Multiagent Systems",
       "builds_on": [
         "MAPE-K"
-      ],
-      "group": "multiagent_b3",
-      "draft": true
+      ]
     },
     "2307.07924": {
       "title": "Communicative Agents for Software Development (ChatDev)",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2308.05481": {
       "title": "LLM As DBA (D-Bot)",
       "builds_on": [
         "tree of thought"
-      ],
-      "group": "multiagent_b3",
-      "draft": true
+      ]
     },
     "2308.07201": {
       "title": "ChatEval: Towards Better LLM-based Evaluators through Multi-Agent Debate",
       "builds_on": [
         "LLM-as-a-judge"
-      ],
-      "group": "multiagent_b3",
-      "draft": true
+      ]
     },
     "2308.10848": {
       "title": "AgentVerse: Facilitating Multi-Agent Collaboration and Exploring Emergent Behaviors",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2308.11339": {
       "title": "ProAgent: Building Proactive Cooperative Agents with Large Language Models",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2309.07870": {
       "title": "Agents: An Open-source Framework for Autonomous Language Agents",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2309.15943": {
       "title": "Scalable Multi-Robot Collaboration with Large Language Models: Centralized or Decentralized Systems?",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2309.17288": {
       "title": "AutoAgents: A Framework for Automatic Agent Generation",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2310.01444": {
       "title": "Adapting LLM Agents Through Communication (LTC)",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2310.02003": {
       "title": "L2MAC: Large Language Model Automatic Computer for Extensive Code Generation",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2310.02170": {
       "title": "Dynamic LLM-Agent Network: An LLM-agent Collaboration Framework with Agent Team Optimization",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2310.06500": {
       "title": "MetaAgents: Simulating Interactions of Human Behaviors for LLM-based Task-oriented Coordination via Collaborative Generative Agents",
       "builds_on": [
         "ChatDev",
         "MetaGPT"
-      ],
-      "group": "multiagent_b3",
-      "draft": true
+      ]
     },
     "2310.07937": {
       "title": "Co-NavGPT: Multi-Robot Cooperative Visual Semantic Navigation using Large Language Models",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2310.20151": {
       "title": "Multi-Agent Consensus Seeking via Large Language Models",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2311.08166": {
       "title": "MechAgents: Large language model multi-agent collaborations can solve mechanics problems, generate new data, and integrate knowledge",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2311.10537": {
       "title": "MedAgents: Large Language Models as Collaborators for Zero-shot Medical Reasoning",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2311.13884": {
       "title": "Controlling Large Language Model-based Agents for Large-Scale Decision-Making: An Actor-Critic Approach (LLaMAC)",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2312.01454": {
       "title": "D-Bot: Database Diagnosis System using Large Language Models",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2312.03664": {
       "title": "Generative agent-based modeling with actions grounded in physical, social, or digital space using Concordia",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2312.13010": {
       "title": "AgentCoder: Multi-Agent-based Code Generation with Iterative Testing and Optimisation",
@@ -948,53 +888,37 @@
         "AgentVerse",
         "CodeCoT",
         "Self-Edit"
-      ],
-      "group": "multiagent_b3",
-      "draft": true
+      ]
     },
     "2401.02705": {
       "title": "XUAT-Copilot: Multi-Agent Collaborative System for Automated User Acceptance Testing with Large Language Model",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2401.14589": {
       "title": "Enhancing Diagnostic Accuracy through Multi-Agent Conversations: Using Large Language Models to Mitigate Cognitive Bias",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2402.01386": {
       "title": "Can Large Language Models Serve as Data Analysts? A Multi-Agent Assisted Approach for Qualitative Data Analysis",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2402.04268": {
       "title": "ProtAgents: Protein discovery via LLM multi-agent collaborations combining physics and machine learning",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2402.05120": {
       "title": "More Agents Is All You Need (Agent Forest)",
       "builds_on": [
         "CoT-SC"
-      ],
-      "group": "multiagent_b3",
-      "draft": true
+      ]
     },
     "2402.15538": {
       "title": "AgentLite: A Lightweight Library for Building and Advancing Task-Oriented LLM Agent System",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2402.16823": {
       "title": "Language Agents as Optimizable Graphs (GPTSwarm)",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2402.18272": {
       "title": "Rethinking the Bounds of LLM Reasoning: Are Multi-Agent Discussions the Key?",
@@ -1002,252 +926,176 @@
         "Debate",
         "MAD",
         "ReConcile"
-      ],
-      "group": "multiagent_b3",
-      "draft": true
+      ]
     },
     "2412.05838": {
       "title": "A Collaborative Multi-Agent Approach to Retrieval-Augmented Generation Across Diverse Data",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2501.07813": {
       "title": "Talk to Right Specialists: Routing and Planning in Multi-agent System for Question Answering",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2503.10265": {
       "title": "SurgRAW: Multi-Agent Workflow with Chain of Thought Reasoning for Robotic Surgical Video Analysis",
       "builds_on": [
         "Chain-of-Thought (CoT)"
-      ],
-      "group": "multiagent_b3",
-      "draft": true
+      ]
     },
     "2503.13275": {
       "title": "Knowledge-Aware Iterative Retrieval for Multi-Agent Systems",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2503.13514": {
       "title": "RAG-KG-IL: A Multi-Agent Hybrid Framework for Reducing Hallucinations and Enhancing LLM Reasoning through RAG and Incremental Knowledge Graph Learning Integration",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2503.13964": {
       "title": "MDocAgent: A Multi-Modal Multi-Agent Framework for Document Understanding",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2503.14340": {
       "title": "MANTRA: Enhancing Automated Method-Level Refactoring with Contextual RAG and Multi-Agent LLM Collaboration",
       "builds_on": [
         "Verbal Reinforcement Learning"
-      ],
-      "group": "multiagent_b3",
-      "draft": true
+      ]
     },
     "2504.12330": {
       "title": "HM-RAG: Hierarchical Multi-Agent Multimodal Retrieval Augmented Generation",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2504.16918": {
       "title": "OptimAI: Optimization from Natural Language Using LLM-Powered AI Agents",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2505.17086": {
       "title": "Advancing Multi-Agent RAG Systems with Minimalist Reinforcement Learning (Mujica-MyGO)",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2507.21035": {
       "title": "GenoMAS: A Multi-Agent Framework for Scientific Discovery via Code-Driven Gene Expression Analysis",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2508.01005": {
       "title": "MAO-ARAG: Multi-Agent Orchestration for Adaptive Retrieval-Augmented Generation",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2508.13167": {
       "title": "Chain-of-Agents: End-to-End Agent Foundation Models via Multi-Agent Distillation and Agentic RL",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2510.08529": {
       "title": "CoMAS: Co-Evolving Multi-Agent Systems via Interaction Rewards",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2510.17797": {
       "title": "Enterprise Deep Research: Steerable MultiAgent Deep Research for Enterprise Analytics",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2601.03743": {
       "title": "O-Researcher: An Open Ended Deep Research Model via Multi-Agent Distillation and Agentic RL",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2601.04703": {
       "title": "Beyond Monolithic Architectures: A Multi-Agent Search and Knowledge Optimization Framework for Agentic Search",
       "builds_on": [
         "Search-R1"
-      ],
-      "group": "multiagent_b3",
-      "draft": true
+      ]
     },
     "2601.05465": {
       "title": "PRISMA: RL Guided Two-Stage Policy Optimization in Multi-Agent Architecture for Open-Domain Multi-Hop QA",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2602.04634": {
       "title": "WideSeek-R1: Exploring Width Scaling for Broad Information Seeking via Multi-Agent Reinforcement Learning",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2602.17607": {
       "title": "AutoNumerics: An Autonomous, PDE-Agnostic Multi-Agent Pipeline for Scientific Computing",
-      "builds_on": [],
-      "group": "multiagent_b3",
-      "draft": true
+      "builds_on": []
     },
     "2604.01658": {
       "title": "CORAL: Towards Autonomous Multi-Agent Evolution for Open-Ended Discovery",
       "builds_on": [
         "AlphaEvolve",
         "FunSearch"
-      ],
-      "group": "multiagent_b3",
-      "draft": true
+      ]
     },
     "2309.15817": {
       "title": "Identifying the Risks of LM Agents with an LM-Emulated Sandbox",
-      "builds_on": [],
-      "group": "eval_b4",
-      "draft": true
+      "builds_on": []
     },
     "2310.01798": {
       "title": "Large Language Models Cannot Self-Correct Reasoning Yet",
-      "builds_on": [],
-      "group": "eval_b4",
-      "draft": true
+      "builds_on": []
     },
     "2310.08560": {
       "title": "MemGPT: Towards LLMs as Operating Systems",
-      "builds_on": [],
-      "group": "eval_b4",
-      "draft": true
+      "builds_on": []
     },
     "2401.02777": {
       "title": "From LLM to Conversational Agent: A Memory Enhanced Architecture with Fine-Tuning of Large Language Models",
       "builds_on": [
         "ReAct"
-      ],
-      "group": "eval_b4",
-      "draft": true
+      ]
     },
     "2402.09727": {
       "title": "A Human-Inspired Reading Agent with Gist Memory of Very Long Contexts",
-      "builds_on": [],
-      "group": "eval_b4",
-      "draft": true
+      "builds_on": []
     },
     "2404.15269": {
       "title": "Aligning LLM Agents by Learning Latent Preference from User Edits",
-      "builds_on": [],
-      "group": "eval_b4",
-      "draft": true
+      "builds_on": []
     },
     "2406.09187": {
       "title": "GuardAgent: Safeguard LLM Agents by a Guard Agent via Knowledge-Enabled Reasoning",
-      "builds_on": [],
-      "group": "eval_b4",
-      "draft": true
+      "builds_on": []
     },
     "2406.10400": {
       "title": "Self-Reflection Makes Large Language Models Safer, Less Biased, and Ideologically Neutral",
-      "builds_on": [],
-      "group": "eval_b4",
-      "draft": true
+      "builds_on": []
     },
     "2407.01502": {
       "title": "AI Agents That Matter",
       "builds_on": [
         "DSPy"
-      ],
-      "group": "eval_b4",
-      "draft": true
+      ]
     },
     "2409.14908": {
       "title": "KARMA: Augmenting Embodied AI Agents with Long-and-short Term Memory Systems",
-      "builds_on": [],
-      "group": "eval_b4",
-      "draft": true
+      "builds_on": []
     },
     "2409.17275": {
       "title": "On the Vulnerability of Applying Retrieval-Augmented Generation within Knowledge-Intensive Application Domains",
-      "builds_on": [],
-      "group": "eval_b4",
-      "draft": true
+      "builds_on": []
     },
     "2410.10934": {
       "title": "Agent-as-a-Judge: Evaluate Agents with Agents",
       "builds_on": [
         "LLM-as-a-Judge"
-      ],
-      "group": "eval_b4",
-      "draft": true
+      ]
     },
     "2410.14262": {
       "title": "Good Parenting is all you need -- Multi-agentic LLM Hallucination Mitigation",
       "builds_on": [
         "self-reflection (self-correction)"
-      ],
-      "group": "eval_b4",
-      "draft": true
+      ]
     },
     "2501.00879": {
       "title": "TrustRAG: Enhancing Robustness and Trustworthiness in Retrieval-Augmented Generation",
-      "builds_on": [],
-      "group": "eval_b4",
-      "draft": true
+      "builds_on": []
     },
     "2502.11127": {
       "title": "G-Safeguard: A Topology-Guided Security Lens and Treatment on LLM-based Multi-agent Systems",
       "builds_on": [
         "graph neural networks (GNN)"
-      ],
-      "group": "eval_b4",
-      "draft": true
+      ]
     },
     "2502.12110": {
       "title": "A-MEM: Agentic Memory for LLM Agents",
       "builds_on": [
         "Zettelkasten"
-      ],
-      "group": "eval_b4",
-      "draft": true
+      ]
     }
   }
 }
