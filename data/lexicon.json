@@ -1914,6 +1914,111 @@
       "definition": "",
       "source": "canon_unification (batch2 D, 분리 유지)",
       "first_seen": "2604.09508"
+    },
+    "CAMEL": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "C1 canon (multiagent_b3/eval_b4 expansion 2026-07-07)",
+      "first_seen": "2307.05300"
+    },
+    "MAD": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "C1 canon (multiagent_b3/eval_b4 expansion 2026-07-07)",
+      "first_seen": "2402.18272"
+    },
+    "Debate": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "C1 canon (multiagent_b3/eval_b4 expansion 2026-07-07)",
+      "first_seen": "2402.18272"
+    },
+    "ReConcile": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "C1 canon (multiagent_b3/eval_b4 expansion 2026-07-07)",
+      "first_seen": "2402.18272"
+    },
+    "FunSearch": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "C1 canon (multiagent_b3/eval_b4 expansion 2026-07-07)",
+      "first_seen": "2604.01658"
+    },
+    "AlphaEvolve": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "C1 canon (multiagent_b3/eval_b4 expansion 2026-07-07)",
+      "first_seen": "2604.01658"
+    },
+    "DSPy": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "C1 canon (multiagent_b3/eval_b4 expansion 2026-07-07)",
+      "first_seen": "2407.01502"
+    },
+    "ExpertPrompting": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "C1 canon (multiagent_b3/eval_b4 expansion 2026-07-07)",
+      "first_seen": "2307.05300"
+    },
+    "CodeCoT": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "C1 canon (multiagent_b3/eval_b4 expansion 2026-07-07)",
+      "first_seen": "2312.13010"
+    },
+    "Self-Edit": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "C1 canon (multiagent_b3/eval_b4 expansion 2026-07-07)",
+      "first_seen": "2312.13010"
+    },
+    "CoT-SC": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "C1 canon (multiagent_b3/eval_b4 expansion 2026-07-07)",
+      "first_seen": "2402.05120"
+    },
+    "Verbal Reinforcement Learning": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "C1 canon (multiagent_b3/eval_b4 expansion 2026-07-07)",
+      "first_seen": "2503.14340"
+    },
+    "tree of thought": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "C1 canon (multiagent_b3/eval_b4 expansion 2026-07-07)",
+      "first_seen": "2308.05481"
+    },
+    "Zettelkasten": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "C1 canon (multiagent_b3/eval_b4 expansion 2026-07-07)",
+      "first_seen": "2502.12110"
+    },
+    "MAPE-K": {
+      "aliases": [],
+      "status": "unreviewed",
+      "definition": "",
+      "source": "C1 canon (multiagent_b3/eval_b4 expansion 2026-07-07)",
+      "first_seen": "2307.06187"
     }
   }
 }
