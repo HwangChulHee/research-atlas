@@ -2,13 +2,15 @@
   "_meta": {
     "purpose": "goldset builds_on 정답 (사람 라벨, 채점 정본)",
     "rubric": "lineage-only: 이 논문의 '방법'이 딛고·확장한 방법적 후예(extends/improves/builds-on)만. 점수비교 baseline·부품(PPO/GRPO/MCTS)·데이터셋·툴·self-defined 기법 제외. 본문에 고유명사로 등장한 것만(인용 author-year 풀어넣지 않음). 경계 케이스는 본문 맥락으로 판단.",
-    "status": "labels_frozen",
+    "status": "final_confirmed",
     "labeled": 211,
     "total": 211,
     "batch2_frozen_at": "2026-06-26",
     "_count_note": "labeled=total=211 = frozen 50 + RAG batch2 85 + multiagent_b3 60 + eval_b4 16. multiagent_b3·eval_b4 freeze 2026-07-07(A5·§3 RAG통일 반영 후). frozen 50(2026-06-17)·RAG85(2026-06-26)·baseline 불변. C1 lexicon 노드 추가는 별도(gold freeze와 독립).",
     "multiagent_b3_frozen_at": "2026-07-07",
-    "eval_b4_frozen_at": "2026-07-07"
+    "eval_b4_frozen_at": "2026-07-07",
+    "pending_decisions": 0,
+    "_final_note": "골든셋 211편 최종 확정(2026-07-07). 모든 사용자 결정 종료: A5(§1~§5)·C1 lexicon(15 추가/2 제외/LLM-as-a-judge 1 제외 확정). 확정 out-of-sample: frozen 0.831/0.817·RAG 0.465/0.741·multiagent 0.262/0.762·eval 0.429/0.500. 상세 oos_scoring_200_final.md."
   },
   "labels": {
     "2503.09516": {

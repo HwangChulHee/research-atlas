@@ -5,6 +5,11 @@
 > extract / full relate temp0 / few-shot 없음). `ATLAS_OFFLINE=1`, Neo4j 미접촉. 작성 2026-07-07.
 > 이 문서가 확정본 — provisional은 `oos_scoring_200.md`.
 
+> ✅ **최종 확정 (no pending decisions, 2026-07-07)**: 모든 사용자 결정 종료 — A5(§1~§5 반영·확정),
+> C1 lexicon(15 추가 / 2 제외 / **LLM-as-a-judge 1 제외 확정**). **골든셋 211편 최종 확정.**
+> 아래 수치가 **최종 out-of-sample 수치**다: frozen **0.831/0.817** · RAG **0.465/0.741** ·
+> multiagent **0.262/0.762** · eval **0.429/0.500**. (LLM-as-a-judge 제외로 이 수치 그대로 확정.)
+
 ## 1. 배치별 P/R (확정)
 
 | 그룹 | n | gold∅ | micro P | micro R | TP | FP | FN | FP:방법오인 | FN:lex | FN:추출X |
@@ -64,8 +69,8 @@ RAG/CoT를 emission → FP. FP의 94%(multiagent 43/45, 전체 99/105)가 method
 1. **out-of-sample gold도 자기 라벨**(프로젝트 본인, D1~D4). held-out(제3자 라벨)은 로드맵. 단 튜닝에 안 쓴
    세트라 in-sample 대비 격차는 과적합 하한 추정으로 유효.
 2. **eval16 표본 작음**(n=16). 방향만 신뢰.
-3. **LLM-as-a-judge 미반영**: STEP3에서 플래그(범주어 vs 명명 50/50, 사용자 판단 대기). 승인 시 multiagent/eval
-   recall 소폭 더 상승(TP+2). 현 수치는 보수적(미추가) 기준.
+3. **LLM-as-a-judge 제외 확정**(사용자 결정 2026-07-07): 명명 명확성 50/50이라 "명확한 named 방법" 기준
+   미달 → 제외(TIR·self-reflection·GNN 제외와 일관, metric gaming 회피). 이 수치가 최종(더 이상 pending 없음).
 4. **비결정성**: full relate temp0도 run-to-run ±0.04. 큰 격차(ΔP −0.37~−0.57)만 신뢰.
 
 ## 7. 확정 결론
