@@ -1034,9 +1034,7 @@
     },
     "2503.13514": {
       "title": "RAG-KG-IL: A Multi-Agent Hybrid Framework for Reducing Hallucinations and Enhancing LLM Reasoning through RAG and Incremental Knowledge Graph Learning Integration",
-      "builds_on": [
-        "Retrieval-Augmented Generation (RAG)"
-      ],
+      "builds_on": [],
       "group": "multiagent_b3",
       "draft": true
     },
@@ -1080,9 +1078,7 @@
     },
     "2508.01005": {
       "title": "MAO-ARAG: Multi-Agent Orchestration for Adaptive Retrieval-Augmented Generation",
-      "builds_on": [
-        "Retrieval-Augmented Generation (RAG)"
-      ],
+      "builds_on": [],
       "group": "multiagent_b3",
       "draft": true
     },
